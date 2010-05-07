@@ -1,6 +1,6 @@
-# Ticketmaster
+# ticketmaster
 
-Ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.
+ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.
 
 ## Support
 

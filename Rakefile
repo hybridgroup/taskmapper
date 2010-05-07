@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ticketmaster"
-    gem.summary = %Q{Ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.}
-    gem.description = %Q{Ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.}
+    gem.summary = %Q{ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.}
+    gem.description = %Q{ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.}
     gem.email = "sirup@sirupsen.dk"
     gem.homepage = "http://github.com/Sirupsen/Ticketmaster"
     gem.authors = ["Sirupsen"]
