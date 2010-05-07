@@ -2,9 +2,11 @@
 
 ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.
 
+**This code is under development.**
+
 ## Support
 
-Currently Ticketmaster supports the following systems:
+Currently ticketmaster supports the following systems:
 
 * None
 
