@@ -1,8 +1,22 @@
-= ticketmaster
+# Ticketmaster
 
-Description goes here.
+Ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.
 
-== Note on Patches/Pull Requests
+## Support
+
+Currently Ticketmaster supports the following systems:
+
+* None
+
+### Planned
+
+It's planned to create a plugin system, which makes it easy for anyone to submit a plugin for a specific system. But here's a few planned to implement:
+
+* Github issues
+* Unfuddle
+* Lighthouse
+
+## Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -12,6 +26,6 @@ Description goes here.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+## Copyright
 
-Copyright (c) 2010 Sirupsen. See LICENSE for details.
+Copyright (c) 2010 [Hybrid Group](http://hybridgroup.com). See LICENSE for details.
