@@ -9,9 +9,13 @@ ticketmaster is a Gem which eases communicating with various project management 
 ### Managing tickets
 
 > github = TicketMaster.new(:Github)
+
 > ticketmaster = github.project(:ticketmaster)
+
 > ticketmaster.ticket.close(17, {:message => "Fixed"})
+
 > ticket = ticketmaster.ticket.open("Do something", {:body => "What to do"})
+
 > ticket.close
 
 ## Support
