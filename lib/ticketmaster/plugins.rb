@@ -11,5 +11,7 @@ module TicketMaster
       plugin.configure(self) if plugin.respond_to?(:configure)
       plugins << mod
     end
+
+    autoload :Lighthouse, 'ticketmaster/plugins/lighthouse'
   end
 end
