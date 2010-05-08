@@ -1,6 +1,6 @@
 # ticketmaster
 
-ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.
+Ticketmaster is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.
 
 **This code is under development.**
 
