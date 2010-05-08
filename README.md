@@ -11,7 +11,8 @@ ticketmaster is a Gem which eases communicating with various project management 
     github = TicketMaster.new(:Github)
     ticketmaster = github.project(:ticketmaster)
     ticketmaster.ticket.close(17, {:message => "Fixed"})
-    ticket = ticketmaster.ticket.open("Do something", {:body => "What to do"})
+    ticket = ticketmaster.ticket.create("Do something", {:body => "What to do"})
+    ticket.open
     ticket.close
 
 ## Support
