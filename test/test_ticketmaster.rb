@@ -1,7 +1,12 @@
 require 'helper'
 
 class TestTicketmaster < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+  should "say hai from github" do
+    class CommunicateWithGithub
+      include TicketMaster::Github
+    end
+    github = CommunicateWithGithub.new
+
+    assert_equal github.hai, "Hai from Github!"
   end
 end
