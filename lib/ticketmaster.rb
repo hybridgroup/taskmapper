@@ -1,7 +1,7 @@
 class TicketMaster
   class NotYetImplemented < StandardError
 
-  class Tickets
+  class Ticket
     [:create, :update, :find, :delete].each do |method|
       define method method do
         raise NotYetImplemented
@@ -9,7 +9,7 @@ class TicketMaster
     end
   end
 
-  class Projects
+  class Project
     [:create, :update, :find, :delete].each do |method|
       define method method do
         raise NotYetImplemented
@@ -18,7 +18,7 @@ class TicketMaster
   end
 
   module Github
-    class Tickets < TicketMaster::Tickets
+    class Ticket < TicketMaster::Ticket
       def self.create(title, body)
       end
 
@@ -32,7 +32,7 @@ class TicketMaster
       end
     end
 
-    class Projects < TicketMaster::Projects
+    class Project < TicketMaster::Project
       def self.create(title)
       end
 
