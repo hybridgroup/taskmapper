@@ -1,18 +1,30 @@
 module TicketMaster
   module Github
-    def self.included(model)
-      model.class_eval do
-        extend model::ClassMethods
-        include model::InstanceMethods
+    class Ticket < TicketMaster::Ticket
+      def self.create(title, body)
+      end
+
+      def self.find(id)
+      end
+
+      def self.update(id, status)
+      end
+
+      def self.delete(id, message)
       end
     end
 
-    module ClassMethods
-    end
+    class Project < TicketMaster::Project
+      def self.create(title)
+      end
 
-    module InstanceMethods
-      def hai
-        "Hai from Github!"
+      def self.find(query)
+      end
+
+      def self.update(id, options = {})
+      end
+
+      def self.delete(id, message)
       end
     end
   end
