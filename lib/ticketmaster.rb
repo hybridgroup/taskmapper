@@ -16,4 +16,4 @@ module TicketMaster
 end
 
 github = TicketMaster.interact_with(:github)
-project = github.project.find("Flimpl", {:user => "sirupsen"})
+github.project.find("Flimpl", {:user => "sirupsen"}).tickets
