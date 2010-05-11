@@ -41,6 +41,8 @@ module TicketMaster
       def self.tickets(project)
         repo = Octopi::Repository.find(project.owner, project.name)
 
+        # @todo: Does it also return an array when there's only one
+        # issue?
         issues = []
         repo.issues.each do |issue|
           issues << TicketMaster::Ticket.new(issue.title, {
