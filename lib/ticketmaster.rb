@@ -3,9 +3,10 @@
   interacter
   project
   ticket
-  rubygems
   systems/github
 }.each {|lib| require 'ticketmaster/' + lib }
+
+require 'rubygems'
 
 module TicketMaster
   # @todo: Fix this, and make it new
