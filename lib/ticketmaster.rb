@@ -17,4 +17,3 @@ end
 
 github = TicketMaster.interact_with(:github)
 project = github.project.find("Flimpl", {:user => "sirupsen"})
-p project.tickets
