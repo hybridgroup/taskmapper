@@ -7,6 +7,7 @@
 }.each {|lib| require 'ticketmaster/' + lib }
 
 module TicketMaster
+  # @todo: Fix this, and make it new
   def self.interact_with(client)
     Interacter.new(client)
   end
