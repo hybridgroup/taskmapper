@@ -31,7 +31,7 @@ module TicketMaster
       # @todo: Use some other system to get this function,
       # since this'll make it tricky to interact with multiple
       # systems at the same time!
-      @@system = system.capitalize
+      @@system = system.to_s.capitalize
       self
     end
 
