@@ -27,6 +27,10 @@ module TicketMaster
       # Set the System, e.g. github. Capitalizing
       # because we use Eval (or const_get) to call
       # for the object
+      #
+      # @todo: Use some other system to get this function,
+      # since this'll make it tricky to interact with multiple
+      # systems at the same time!
       @@system = system.capitalize
       self
     end
