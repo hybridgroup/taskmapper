@@ -4,7 +4,7 @@
   project
   ticket
   systems/github
-}.each {|lib| require 'ticketmaster/' + lib}
+}.each {|lib| require 'ticketmaster/' + lib }
 
 module TicketMaster
   def self.interact_with(client)
@@ -14,9 +14,3 @@ module TicketMaster
   class NotYetImplemented < StandardError
   end
 end
-
-github = TicketMaster.interact_with(:github)
-project = github.project.find("ticketmaster project")
-ticket = project.tickets[28]
-ticket.status = :done
-p ticket

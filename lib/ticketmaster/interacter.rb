@@ -1,10 +1,9 @@
 module TicketMaster
   class Interacter
-    attr_reader :project
+    attr_accessor :project, :hi
 
     def initialize(system)
-      @system = system
-      @project = Project
+      @project = Project.system(system)
     end
   end
 end

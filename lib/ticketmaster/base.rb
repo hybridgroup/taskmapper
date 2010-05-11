@@ -14,10 +14,4 @@ module TicketMaster
       end
     end
   end
-
-  class Hash
-    def find(what)
-      self[what]
-    end
-  end
 end

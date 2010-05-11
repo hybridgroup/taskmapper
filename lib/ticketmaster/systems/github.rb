@@ -1,3 +1,5 @@
+require 'octopi'
+
 module TicketMaster
   module Github
     class Ticket < TicketMaster::Ticket
@@ -18,7 +20,17 @@ module TicketMaster
       def self.create(title)
       end
 
-      def self.find(query)
+      def self.find(query, options = {})
+        repo = Octopi::Repository.find(options[:user], query)
+        Project.new(repo.name, {
+          :owner => repo.owner,
+          # :id  => ??,
+          :description => repo.description,
+          # :created_at => ??,
+          # :updated_at => ??,
+          :url => repo.url,
+          :private => repo.private
+        })
       end
 
       def self.update(id, options = {})
