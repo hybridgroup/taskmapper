@@ -3,6 +3,7 @@
   interacter
   project
   ticket
+  rubygems
   systems/github
 }.each {|lib| require 'ticketmaster/' + lib }
 
@@ -17,4 +18,4 @@ module TicketMaster
 end
 
 github = TicketMaster.interact_with(:github)
-github.project.find("Flimpl", {:user => "sirupsen"}).tickets
+p github.project.find("Flimpl", {:user => "sirupsen"}).tickets
