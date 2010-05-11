@@ -1,5 +1,8 @@
 module TicketMaster
   class Project
+    attr_reader :name, :owner, :id, :description, :created_at, 
+      :updated_at, :url, :private
+
     def initialize(name, info = {})
       # Basic
       @name = name
@@ -32,24 +35,7 @@ module TicketMaster
     end
 
     def tickets
-      # Find tickets associated with the project
-
-      # Dummy stuff
-      {
-        17 => Ticket.new("Fix something", {
-            :id => 17,
-            :status => :open,
-            :body => "Something should be fixed!",
-          }
-        ),
-
-        28 => Ticket.new("Fix something else", {
-            :id => 27,
-            :status => :open,
-            :body => "Something else should be fixed!",
-          }
-        ),
-      }
+      eval(@@system)::Project.tickets(self)
     end
 
     def self.find(query = nil, options = {})

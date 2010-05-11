@@ -7,6 +7,7 @@ module TicketMaster
       # Time
       @created_at = info[:created_at]
       @updated_at = info[:updated_at]
+      @closed_at = info[:closed_at]
 
       # Community
       @votes = info[:votes]
