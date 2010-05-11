@@ -22,7 +22,8 @@ module TicketMaster
 
       def self.find(query, options = {})
         repo = Octopi::Repository.find(options[:user], query)
-        Project.new(repo.name, {
+
+        return Project.new(repo.name, {
           :owner => repo.owner,
           # :id  => ??,
           :description => repo.description,
@@ -30,7 +31,22 @@ module TicketMaster
           # :updated_at => ??,
           :url => repo.url,
           :private => repo.private
-        })
+        }) unless repo.is_a?(Array)
+
+        projects = []
+        repo.each do |repo|
+          projects << Project.new(repo.name, {
+            :owner => repo.owner,
+            # :id  => ??,
+            :description => repo.description,
+            # :created_at => ??,
+            # :updated_at => ??,
+            :url => repo.url,
+            :private => repo.private
+          })
+        end
+
+        projects
       end
 
       def self.update(id, options = {})

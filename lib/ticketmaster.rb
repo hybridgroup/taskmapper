@@ -14,3 +14,6 @@ module TicketMaster
   class NotYetImplemented < StandardError
   end
 end
+
+github = TicketMaster.interact_with(:github)
+p project = github.project.find("Flimpl", {:user => "sirupsen"})
