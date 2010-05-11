@@ -1,6 +1,8 @@
 module TicketMaster
   class Ticket
     def initialize(title, info = {}) 
+      # @todo: Make this more dry!
+      #
       # Basic functionality
       @title, @id, @status, @body = title, info[:id], info[:status], info[:body]
 

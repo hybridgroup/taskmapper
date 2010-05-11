@@ -8,7 +8,7 @@ Ticketmaster is a Gem which eases communication with various project and ticket 
 
 ### Managing tickets
 
-    github = TicketMaster::Github.new(:user => 'joeshmo', :password => '1234')
+    github = TicketMasterl.interact_with(:github)
     project = github.project.find 'ticketmaster project'
     project.tickets.find(17).close(:message => "Fixed")
     ticket = project.ticket.create("Do something", {:body => "What to do"})
@@ -18,7 +18,7 @@ Ticketmaster is a Gem which eases communication with various project and ticket 
 
 Currently ticketmaster supports the following systems:
 
-* None
+* Github (Pre-pre-pre-pre Alpha)
 
 ### Planned
 

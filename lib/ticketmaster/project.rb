@@ -4,6 +4,8 @@ module TicketMaster
       :updated_at, :url, :private
 
     def initialize(name, info = {})
+      # @todo: Make this more DRY!
+      #
       # Basic
       @name = name
       @owner = info[:owner]
@@ -22,6 +24,9 @@ module TicketMaster
     end
 
     def self.system(system)
+      # Set the System, e.g. github. Capitalizing
+      # because we use Eval (or const_get) to call
+      # for the object
       @@system = system.capitalize
       self
     end
@@ -35,11 +40,15 @@ module TicketMaster
     end
 
     def tickets
+      # Lets ask that cute little API if I have any tickets
+      # associated with me, shall we?
       eval(@@system)::Project.tickets(self)
     end
 
     def self.find(query = nil, options = {})
       # @todo replace eval with const_get
+      #
+      # We ask our API module for our project!
       eval(@@system)::Project.find(query, options)
     end
   end
