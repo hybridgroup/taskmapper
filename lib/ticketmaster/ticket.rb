@@ -38,16 +38,10 @@ module TicketMasterMod
     end
 
     class Comment
-      def initialize(info = {})
-        # Basic
-        @author = info[:author]
-        @body = info[:body]
-        @id = info[:id]
-        @ticket = info[:ticket_id] # Associate with a ticket
-
-        # Time
-        @created_at = info[:created_at]
-        @updated_at = info[:updated_at]
+      def initialize(comment_vals = {})
+        comment_vals.each do |index, value|
+          instance_variable_set("@#{index}", value)
+        end
       end
 
       def create
