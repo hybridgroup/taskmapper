@@ -10,8 +10,8 @@ require 'rubygems'
 module TicketMasterMod
   attr_reader :project, :client
 
-  def initialize(client)
-    @project = ProjectFinder.new(client)
+  def initialize(client, authentication = {})
+    @project = ProjectFinder.new(client, authentication)
   end
 end
 
@@ -20,4 +20,4 @@ class TicketMaster
 end
 
 p github = TicketMaster.new(:github)
-p github.project.find("flimpl", {:user => "Sirupsen"}).tickets
+p github.project.find("flimpl", {:user => "Sirupsen"}).tickets[0].close!

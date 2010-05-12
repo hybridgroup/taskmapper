@@ -1,5 +1,9 @@
 module TicketMasterMod
   class Ticket
+    attr_reader :title, :id, :status, :body, :created_at,
+      :updated_at, :closed_at, :votes, :creator, :project, :system,
+      :login, :token
+
     def initialize(title, info = {}) 
       # @todo: Make this more dry!
       #
@@ -17,6 +21,13 @@ module TicketMasterMod
 
       # System
       @system = info[:system].to_s.capitalize
+      @project = {} 
+      @project[:name] = info[:project_name]
+      @project[:owner] = info[:project_owner]
+    
+      # Login
+      @username = info[:username]
+      @token = info[:token]
     end
 
     def create
@@ -35,17 +46,13 @@ module TicketMasterMod
       # Retrieve associated comments
     end
 
-    def status=(status)
-      @status = status
-      # Note that only some systems supports
-      # this feature, if the status is :closed
-      # then close function should be called
-      # Update status to system
+    def close!
+      @status = :closed
+      eval(@system)::Ticket.close!(self)
     end
 
-    def close(option={})
-      @status = :closed
-      # Close at system
+    def reopen!
+      @status = :open
     end
 
     class Comment

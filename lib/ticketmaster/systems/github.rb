@@ -3,6 +3,8 @@ require 'octopi'
 module TicketMasterMod
   module Github
     class Ticket < TicketMasterMod::Ticket
+      include Octopi
+
       def self.create(title, body)
       end
 
@@ -12,8 +14,20 @@ module TicketMasterMod
       def self.update(id, status)
       end
 
-      def self.close(id)
-        
+      def self.close!(ticket, options = {})
+        authenticated_with :login => options[:username], :token => options[:token] do
+          repo = Octopi::Repository.find(ticket.project[:owner], ticket.project[:name])
+
+          right_issue = nil
+          repo.issues.each do |issue|
+            if issue.number = ticket.id
+              right_issue = issue
+              break
+            end
+          end
+
+          right_issue.close
+        end
       end
 
       def self.delete(id, message)
@@ -37,6 +51,8 @@ module TicketMasterMod
           :private => repo.private,
 
           :system => "github",
+          :username => options[:username],
+          :token => options[:token],
         })
       end
 
@@ -59,13 +75,12 @@ module TicketMasterMod
               :votes => issue.votes,
               :creator => issue.user,
 
-              :system => "github"
+              :system => "github",
+              :project_owner => project.owner,
+              :project_name => project.name,
           })
         end
         issues
-      end
-
-      def self.update(id, options = {})
       end
 
       def self.delete(id, message)

@@ -1,10 +1,12 @@
 module TicketMasterMod
   class ProjectFinder
-    def initialize(client)
+    def initialize(client, authentication)
       @client = client
+      @authentication = authentication
     end
 
     def find(project, options = {})
+      options.merge!(@authentication)
       eval(@client.to_s.capitalize)::Project.find(project, options)
     end
   end
@@ -34,6 +36,10 @@ module TicketMasterMod
 
       # System
       @system = info[:system].to_s.capitalize
+
+      # Login
+      @username = info[:username]
+      @token = info[:token]
     end
 
     def create
