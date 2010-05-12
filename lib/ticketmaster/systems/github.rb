@@ -76,8 +76,7 @@ module TicketMasterMod
               :creator => issue.user,
 
               :system => "github",
-              :project_owner => project.owner,
-              :project_name => project.name,
+              :project => repo,
           })
         end
         issues

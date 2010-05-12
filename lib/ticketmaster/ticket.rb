@@ -18,9 +18,10 @@ module TicketMasterMod
       @creator = info[:creator]
       # System
       @system = info[:system].to_s.capitalize
-      @project = {} 
-      @project[:name] = info[:project_name]
-      @project[:owner] = info[:project_owner]
+
+      # Project information
+      @project = info[:project]
+
       # Login
       @authentication = info[:authentication]
     end
