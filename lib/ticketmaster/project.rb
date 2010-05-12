@@ -26,7 +26,7 @@ module TicketMasterMod
     def tickets
       # Lets ask that cute little API if I have any tickets
       # associated with me, shall we?
-      TicketMasterMod.const_get(@system)::Project.tickets(self)
+      "#{@system}::Project".constantize.tickets(self)
     end
   end
 end
