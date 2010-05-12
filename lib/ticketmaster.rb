@@ -2,6 +2,7 @@
   base
   project
   ticket
+  authenticator
   systems/github
 }.each {|lib| require 'ticketmaster/' + lib }
 
