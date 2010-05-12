@@ -9,25 +9,20 @@ module TicketMasterMod
       #
       # Basic functionality
       @title, @id, @status, @body = title, info[:id], info[:status], info[:body]
-
       # Time
       @created_at = info[:created_at]
       @updated_at = info[:updated_at]
       @closed_at = info[:closed_at]
-
       # Community
       @votes = info[:votes]
       @creator = info[:creator]
-
       # System
       @system = info[:system].to_s.capitalize
       @project = {} 
       @project[:name] = info[:project_name]
       @project[:owner] = info[:project_owner]
-    
       # Login
-      @username = info[:username]
-      @token = info[:token]
+      @authentication = info[:authentication]
     end
 
     def create
