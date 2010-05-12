@@ -20,5 +20,5 @@ class TicketMaster
   include TicketMasterMod
 end
 
-p github = TicketMaster.new(:github, {:username => "sirupsen", :token => "ohai"})
-p github.project.find("flimpl", {:user => "sirupsen"}).tickets
+p github = TicketMaster.new(:github, {:username => "sirupsen", :token => "0810cdb248e676c3281a4abbab637fb0"})
+p github.project.find("flimpl", {:user => "sirupsen"}).tickets[0].close

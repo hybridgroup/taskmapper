@@ -16,9 +16,8 @@ module TicketMasterMod
       # Retrieve associated comments
     end
 
-    def close!
-      @status = :closed
-      "#{@system}::Ticket".constantize.close!(self)
+    def close(info = {})
+      TicketMasterMod.const_get(@system)::Ticket.new.close(self, info)
     end
 
     class Comment

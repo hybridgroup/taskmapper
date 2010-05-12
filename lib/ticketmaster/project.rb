@@ -13,7 +13,7 @@ module TicketMasterMod
 
   class Project
     attr_reader :name, :owner, :id, :description, :created_at, 
-      :updated_at, :url, :private, :system
+      :updated_at, :url, :private, :system, :authentication
 
     def initialize(project_vals = {})
       project_vals.each do |index, value|
@@ -26,7 +26,7 @@ module TicketMasterMod
     def tickets
       # Lets ask that cute little API if I have any tickets
       # associated with me, shall we?
-      "#{@system}::Project".constantize.tickets(self)
+      TicketMasterMod.const_get(@system)::Project.tickets(self)
     end
   end
 end

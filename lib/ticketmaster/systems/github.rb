@@ -14,19 +14,14 @@ module TicketMasterMod
       def self.update(id, status)
       end
 
-      def self.close!(ticket, options = {})
-        authenticated_with :login => options[:username], :token => options[:token] do
-          repo = Octopi::Repository.find(ticket.project[:owner], ticket.project[:name])
+      def close(ticket, options = {})
+        authenticated_with :login => "sirupsen", :password => "yP4K9q1DbT8" do
+          repo = Octopi::Repository.find(ticket.project.owner, ticket.project.name)
 
-          right_issue = nil
-          repo.issues.each do |issue|
-            if issue.number = ticket.id
-              right_issue = issue
-              break
-            end
-          end
+          issues = repo.open_issue :title => "Sample",
+            :body => "This issue is a test!"
 
-          right_issue.close
+          puts issue.number
         end
       end
 
@@ -52,8 +47,7 @@ module TicketMasterMod
           :private => repo.private,
 
           :system => "github",
-          :username => options[:username],
-          :token => options[:token],
+          :authentication => options[:authentication],
         })
       end
 
@@ -78,7 +72,7 @@ module TicketMasterMod
               :creator => issue.user,
 
               :system => "github",
-              :project => repo,
+              :project => project,
           })
         end
         issues
