@@ -6,7 +6,7 @@ module TicketMasterMod
 
     def initialize(ticket_vals = {}) 
       ticket_vals.each do |index, value|
-        self.instance_variable_set("@#{index}", value)
+        instance_variable_set("@#{index}", value)
       end
 
       @system = @system.to_s.capitalize
