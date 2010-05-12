@@ -8,6 +8,8 @@ module TicketMasterMod
       ticket.each do |index, value|
         self.instance_variable_set("@#{index}", value)
       end
+
+      @system = @system.to_s.capitalize
     end
 
     def create
@@ -28,7 +30,7 @@ module TicketMasterMod
 
     def close!
       @status = :closed
-      eval(@system)::Ticket.close!(self)
+      TicketMasterMod.const_get(@system)::Ticket.close!(self)
     end
 
     def reopen!
