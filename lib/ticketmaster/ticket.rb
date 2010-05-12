@@ -4,8 +4,8 @@ module TicketMasterMod
       :updated_at, :closed_at, :votes, :creator, :project, :system,
       :login, :token
 
-    def initialize(ticket = {}) 
-      ticket.each do |index, value|
+    def initialize(ticket_vals = {}) 
+      ticket_vals.each do |index, value|
         self.instance_variable_set("@#{index}", value)
       end
 

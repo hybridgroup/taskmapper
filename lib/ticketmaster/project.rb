@@ -15,8 +15,8 @@ module TicketMasterMod
     attr_reader :name, :owner, :id, :description, :created_at, 
       :updated_at, :url, :private, :system
 
-    def initialize(project = {})
-      project.each do |index, value|
+    def initialize(project_vals = {})
+      project_vals.each do |index, value|
         self.instance_variable_set("@#{index}", value)
       end
 
