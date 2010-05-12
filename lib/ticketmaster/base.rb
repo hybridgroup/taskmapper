@@ -1,4 +1,4 @@
-module TicketMaster
+module TicketMasterMod
   class Ticket
     [:create, :update, :find, :delete].each do |method|
       define_method method do

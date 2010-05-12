@@ -1,8 +1,8 @@
 require 'octopi'
 
-module TicketMaster
+module TicketMasterMod
   module Github
-    class Ticket < TicketMaster::Ticket
+    class Ticket < TicketMasterMod::Ticket
       def self.create(title, body)
       end
 
@@ -20,7 +20,7 @@ module TicketMaster
       end
     end
 
-    class Project < TicketMaster::Project
+    class Project < TicketMasterMod::Project
       def self.create(title)
       end
 
@@ -34,7 +34,9 @@ module TicketMaster
           # :created_at => ??,
           # :updated_at => ??,
           :url => repo.url,
-          :private => repo.private
+          :private => repo.private,
+
+          :system => "github",
         })
       end
 
@@ -56,6 +58,8 @@ module TicketMaster
 
               :votes => issue.votes,
               :creator => issue.user,
+
+              :system => "github"
           })
         end
         issues

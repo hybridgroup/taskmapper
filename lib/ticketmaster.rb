@@ -1,6 +1,5 @@
 %w{
   base
-  interacter
   project
   ticket
   systems/github
@@ -8,15 +7,17 @@
 
 require 'rubygems'
 
-module TicketMaster
-  # @todo: Fix this, and make it new
-  def self.interact_with(client)
-    Interacter.new(client)
-  end
+module TicketMasterMod
+  attr_reader :project, :client
 
-  class NotYetImplemented < StandardError
+  def initialize(client)
+    @project = ProjectFinder.new(client)
   end
 end
 
-github = TicketMaster.interact_with(:github)
-p github.project.find("Flimpl", {:user => "sirupsen"}).tickets
+class TicketMaster
+  include TicketMasterMod
+end
+
+p github = TicketMaster.new(:github)
+p github.project.find("flimpl", {:user => "Sirupsen"}).tickets

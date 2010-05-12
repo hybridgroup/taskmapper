@@ -1,4 +1,4 @@
-module TicketMaster
+module TicketMasterMod
   class Ticket
     def initialize(title, info = {}) 
       # @todo: Make this more dry!
@@ -14,6 +14,9 @@ module TicketMaster
       # Community
       @votes = info[:votes]
       @creator = info[:creator]
+
+      # System
+      @system = info[:system].to_s.capitalize
     end
 
     def create
