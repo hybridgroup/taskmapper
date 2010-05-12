@@ -23,14 +23,6 @@ module TicketMasterMod
       @system = @system.to_s.capitalize
     end
 
-    def create
-      # Create project
-    end
-
-    def delete
-      # Delete project
-    end
-
     def tickets
       # Lets ask that cute little API if I have any tickets
       # associated with me, shall we?
