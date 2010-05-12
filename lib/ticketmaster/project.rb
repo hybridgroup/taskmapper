@@ -7,7 +7,7 @@ module TicketMasterMod
 
     def find(project, options = {})
       options[:authentication] = @authentication
-      eval(@client.to_s.capitalize)::Project.find(project, options)
+      TicketMasterMod.const_get(@client.to_s.capitalize)::Project.find(project, options)
     end
   end
 
