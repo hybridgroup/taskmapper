@@ -4,26 +4,10 @@ module TicketMasterMod
       :updated_at, :closed_at, :votes, :creator, :project, :system,
       :login, :token
 
-    def initialize(title, info = {}) 
-      # @todo: Make this more dry!
-      #
-      # Basic functionality
-      @title, @id, @status, @body = title, info[:id], info[:status], info[:body]
-      # Time
-      @created_at = info[:created_at]
-      @updated_at = info[:updated_at]
-      @closed_at = info[:closed_at]
-      # Community
-      @votes = info[:votes]
-      @creator = info[:creator]
-      # System
-      @system = info[:system].to_s.capitalize
-
-      # Project information
-      @project = info[:project]
-
-      # Login
-      @authentication = info[:authentication]
+    def initialize(ticket = {}) 
+      ticket.each do |index, value|
+        self.instance_variable_set("@#{index}", value)
+      end
     end
 
     def create

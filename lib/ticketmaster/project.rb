@@ -2,7 +2,7 @@ module TicketMasterMod
   class ProjectFinder
     def initialize(client, authentication)
       @client = client
-      @authentication = Authentication.new(authentication)
+      @authentication = Authenticator.new(authentication)
     end
 
     def find(project, options = {})
@@ -15,25 +15,12 @@ module TicketMasterMod
     attr_reader :name, :owner, :id, :description, :created_at, 
       :updated_at, :url, :private, :system
 
-    def initialize(name, info = {})
-      # @todo: Make this more DRY!
-      #
-      # Basic
-      @name = name
-      @owner = info[:owner]
-      @id = info[:id]
-      @description = info[:description]
-      # Time
-      @created_at = info[:created_at]
-      @updated_at = info[:updated_at]
-      # Url
-      @url = info[:url]
-      # Public
-      @private = info[:private] # True or false
-      # System
-      @system = info[:system].to_s.capitalize
+    def initialize(project = {})
+      project.each do |index, value|
+        self.instance_variable_set("@#{index}", value)
+      end
 
-      @authentication = info[:authentication]
+      @system = @system.to_s.capitalize
     end
 
     def create
