@@ -1,12 +1,17 @@
 %w{
+  rubygems
+  hashie
+}.each {|lib| require lib }
+
+%w{
   base
   project
   ticket
   authenticator
   systems/github
+  systems/unfuddle
 }.each {|lib| require 'ticketmaster/' + lib }
 
-require 'rubygems'
 
 module TicketMasterMod
   attr_reader :project, :client
@@ -20,5 +25,3 @@ class TicketMaster
   include TicketMasterMod
 end
 
-p github = TicketMaster.new(:github, {:username => "sirupsen", :token => ""})
-p github.project.find("flimpl", {:user => "sirupsen"}).tickets[0].close

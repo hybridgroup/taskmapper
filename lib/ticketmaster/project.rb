@@ -5,28 +5,27 @@ module TicketMasterMod
       @authentication = Authenticator.new(authentication)
     end
 
-    def find(project, options = {})
+    def find(project = nil, options = {})
       options[:authentication] = @authentication
-      TicketMasterMod.const_get(@client.to_s.capitalize)::Project.find(project, options)
+      options[:client] = @client
+      Project::find(project, options)
     end
   end
 
-  class Project
-    attr_reader :name, :owner, :id, :description, :created_at, 
-      :updated_at, :url, :private, :system, :authentication
-
-    def initialize(project_vals = {})
-      project_vals.each do |index, value|
-        instance_variable_set("@#{index}", value)
-      end
-
-      @system = @system.to_s.capitalize
+  class Project < Hashie::Mash
+    # Find a project
+    def self.find(project = nil, options = {})
+      TicketMasterMod.const_get(options[:client].to_s.capitalize)::Project.find(project, options)
     end
 
+    # Ask the right client for the tickets associated with the project
+    # returns an array of Ticket objects.
     def tickets
-      # Lets ask that cute little API if I have any tickets
-      # associated with me, shall we?
-      TicketMasterMod.const_get(@system)::Project.tickets(self)
+      TicketMasterMod.const_get(self.system.capitalize)::Project.tickets(self)
+    end
+
+    def ticket
+      TicketMasterMod::Ticket::Interacter.new(self)
     end
   end
 end

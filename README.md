@@ -18,15 +18,7 @@ Ticketmaster is a Gem which eases communication with various project and ticket 
 
 Currently ticketmaster supports the following systems:
 
-* Github (Pre-pre-pre-pre Alpha)
-
-### Planned
-
-It's planned to create a plugin system, which makes it easy for anyone to submit a plugin for a specific system. But here's a few planned to implement:
-
-* Github issues
-* Unfuddle
-* Lighthouse
+* Unfuddle (Pre-Alpha)
 
 ## Note on Patches/Pull Requests
  
