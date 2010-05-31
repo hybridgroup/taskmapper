@@ -24,4 +24,3 @@ end
 class TicketMaster
   include TicketMasterMod
 end
-

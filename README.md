@@ -14,6 +14,17 @@ Ticketmaster is a Gem which eases communication with various project and ticket 
     ticket = project.ticket.create("Do something", {:body => "What to do"})
     ticket.status = :in_progress
 
+## Usage
+
+As of now.
+
+  unfuddle = TicketMaster.new(:unfuddle, {:username => "john", :password => "seekrit", :subdomain => "ticketmaster"})
+  project = unfuddle.project.find.first
+  project.ticket.create(:priority => 3, :summary => "Test", :description => "Hello World")
+
+  ticket = project.tickets[22]
+  ticket.close(:resolution => "fixed", :description => "fixd")
+
 ## Support
 
 Currently ticketmaster supports the following systems:

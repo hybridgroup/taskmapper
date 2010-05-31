@@ -4,8 +4,8 @@ module TicketMasterMod
       TicketMasterMod.const_get((self.system || self.project.system).to_s.capitalize)::Ticket.create(self)
     end
 
-    def close
-      TicketMasterMod.const_get(self.system.to_s.capitalize)::Ticket.close(self)
+    def close(resolution = {})
+      TicketMasterMod.const_get(self.system.to_s.capitalize)::Ticket.close(self, resolution)
     end
 
     class Interacter
