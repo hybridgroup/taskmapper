@@ -18,7 +18,17 @@ module TicketMasterMod
       def self.find(id)
       end
 
-      def self.update(id, status)
+      def self.save(ticket)
+        Unfuddler.authenticate(ticket.project.authentication.to_hash)
+        project = Unfuddler::Project.find(ticket.project.name)
+        unfuddle_ticket = project.tickets(:number => ticket.id).first # First because it always returns an array
+
+        status = right_status(ticket.status)
+        unfuddle_ticket.status = status if status
+        unfuddle_ticket.description = ticket.description
+        unfuddle_ticket.summary = ticket.summary
+
+        p unfuddle_ticket.save
       end
 
       def self.close(ticket, resolution)
@@ -27,6 +37,20 @@ module TicketMasterMod
         ticket = project.tickets(:number => ticket.id).first # First because it always returns an array
         ticket.close!(resolution)
       end
+
+      private
+        def self.right_status(status)
+          case status
+          when :in_progress
+            "accepted"
+          when :resolved
+            "resolved"
+          when :reopen
+            "reopen"
+          else
+            nil
+          end
+        end
     end
 
     class Project

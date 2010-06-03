@@ -8,6 +8,10 @@ module TicketMasterMod
       TicketMasterMod.const_get(self.system.to_s.capitalize)::Ticket.close(self, resolution)
     end
 
+    def save
+      TicketMasterMod.const_get(self.system.to_s.capitalize)::Ticket.save(self)
+    end
+
     class Interacter
       def initialize(system)
         @system = {:project => system}
