@@ -4,7 +4,7 @@ Ticketmaster is a Gem which eases communication with various project and ticket 
 
 **This code is under development.**
 
-## Usage
+## Planned Usage
 
 ### Managing tickets
 

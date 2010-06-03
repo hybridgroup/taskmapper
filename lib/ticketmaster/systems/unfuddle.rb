@@ -23,6 +23,7 @@ module TicketMasterMod
         project = Unfuddler::Project.find(ticket.project.name)
         unfuddle_ticket = project.tickets(:number => ticket.id).first # First because it always returns an array
 
+        # DRY this up!
         status = right_status(ticket.status)
         unfuddle_ticket.status = status if status
         unfuddle_ticket.description = ticket.description
