@@ -2,7 +2,7 @@
 
 ticketmaster is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.
 
-ticketmaster let's you "remap" a system into a consistent API. For instance the description of an issue/ticket, might be named **description** in one system, and **problem-description** somewhere else. Via ticketmaster, this would always be called description. The ticketmaster remaps makes it easy for you to integrate different kinds of ticket systems into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. ticketmaster handles all this **for** you, so you can focus on making your application awesome.
+ticketmaster let's you "remap" a system into the consistent ticketmaster API, easily. For instance the description of an issue/ticket, might be named **description** in one system, and **problem-description** somewhere else. Via ticketmaster, this would always be called **description**. The ticketmaster remaps makes it easy for you to integrate different kinds of ticket systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. ticketmaster handles all this *for* you, so you can focus on making your application awesome.
 
 ## TODO
 
@@ -11,7 +11,7 @@ ticketmaster let's you "remap" a system into a consistent API. For instance the 
 
 ## Usage
 
-*Note:* May change.
+**Note** Subject to change.
 
 First, we instance a new class with the right set of options. In this example, we are authenticating with Unfuddle. As Unfuddle is a closed system, it is *required* that you authenticate with a user to a subdomain, and so we do:
     unfuddle = TicketMaster.new(:unfuddle, {:username => "john", :password => "seekrit", :subdomain => "ticketmaster"})
@@ -37,7 +37,7 @@ The issue was solved, let's make it official by closing the ticket with the appr
 
 Currently ticketmaster supports the following systems:
 
-* Unfuddle (Pre-Alpha)
+* Unfuddle (Alpha)
 
 ## Note on Patches/Pull Requests
  
