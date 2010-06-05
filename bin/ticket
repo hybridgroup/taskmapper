@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+puts "ticket commands will go thru here..."
+puts "EXAMPLE:"
+puts "ticket list"
+puts "ticket close 127 \"This is done\""
+puts "ticket open \"what a problem we have here\""
