@@ -7,10 +7,7 @@
   project
   ticket
   authenticator
-  systems/github
-  systems/unfuddle
 }.each {|lib| require 'ticketmaster/' + lib }
-
 
 module TicketMasterMod
   attr_reader :project, :client
