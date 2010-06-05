@@ -24,6 +24,7 @@ module TicketMasterMod
       TicketMasterMod.const_get(self.system.capitalize)::Project.tickets(self)
     end
 
+    # For creating tickets
     def ticket
       TicketMasterMod::Ticket::Interacter.new(self)
     end

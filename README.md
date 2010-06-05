@@ -1,34 +1,37 @@
 # ticketmaster
 
-Ticketmaster is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.
+ticketmaster is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.
 
-**This code is under development.**
+ticketmaster let's you "remap" a system into a consistent API. For instance the description of an issue/ticket, might be named **description** in one system, and **problem-description** somewhere else. Via ticketmaster, this would always be called description. The ticketmaster remaps makes it easy for you to integrate different kinds of ticket systems into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. ticketmaster handles all this **for** you, so you can focus on making your application awesome.
 
-## Planned Usage
+## TODO
 
-### Managing tickets
-
-    github = TicketMaster.new(:github)
-    project = github.project.find 'ticketmaster project'
-    project.tickets.find(17).close(:message => "Fixed")
-    ticket = project.ticket.create("Do something", {:body => "What to do"})
-    ticket.status = :in_progress
+* Find project by name
+* Find ticket by property
 
 ## Usage
 
-As of now.
+*Note:* May change.
 
-Retrieving a project:
+First, we instance a new class with the right set of options. In this example, we are authenticating with Unfuddle. As Unfuddle is a closed system, it is *required* that you authenticate with a user to a subdomain, and so we do:
     unfuddle = TicketMaster.new(:unfuddle, {:username => "john", :password => "seekrit", :subdomain => "ticketmaster"})
+
+Now we can use our instance with the right settings, to find a project. Let's go ahead and grab the first one:
     project = unfuddle.project.find.first
+
+And as ticketmaster is all about tickets, let's create one:
     project.ticket.create(:priority => 3, :summary => "Test", :description => "Hello World")
 
-Using a Ticket:
+Let's play with tickets. First we go ahead and grab ticket 22:
     ticket = project.tickets[22]
+
+We're working on this ticket right now, so let's go ahead and change the status, and for the fun of it, we'll change the description as well, and then save it.
     ticket.status = :in_progress
     ticket.description = "Changed description to something else!"
     ticket.save
-    ticket.close(:resolution => "fixed", :description => "fixd")
+
+The issue was solved, let's make it official by closing the ticket with the appropiate resolution:
+    ticket.close(:resolution => "fixed", :description => "Fixed issue by doing x")
 
 ## Support
 

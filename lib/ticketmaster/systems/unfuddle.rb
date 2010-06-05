@@ -15,9 +15,6 @@ module TicketMasterMod
         project.ticket.create(ticket)
       end
 
-      def self.find(id)
-      end
-
       def self.save(ticket)
         Unfuddler.authenticate(ticket.project.authentication.to_hash)
         project = Unfuddler::Project.find(ticket.project.name)
@@ -29,7 +26,7 @@ module TicketMasterMod
         unfuddle_ticket.description = ticket.description
         unfuddle_ticket.summary = ticket.summary
 
-        p unfuddle_ticket.save
+        unfuddle_ticket.save
       end
 
       def self.close(ticket, resolution)
@@ -55,9 +52,6 @@ module TicketMasterMod
     end
 
     class Project
-      def self.create(title)
-      end
-
       def self.find(query, options = {})
         Unfuddler.authenticate(options[:authentication].to_hash)
         projects = Unfuddler::Project.find
@@ -103,9 +97,6 @@ module TicketMasterMod
         end
 
         []
-      end
-
-      def self.delete(id, message)
       end
     end
   end
