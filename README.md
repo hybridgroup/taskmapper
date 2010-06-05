@@ -37,7 +37,13 @@ The issue was solved, let's make it official by closing the ticket with the appr
 
 Currently ticketmaster supports the following systems:
 
-* Unfuddle (Alpha)
+### Unfuddle (Alpha)
+
+To use Unfuddle with ticketmaster, install it:
+    gem install ticketmaster-unfuddle
+
+Then simply require it, and you are good to use Unfuddle with ticketmaster!
+    require 'ticketmaster-unfuddle'
 
 ## Note on Patches/Pull Requests
  
