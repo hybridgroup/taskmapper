@@ -4,7 +4,6 @@
 }.each {|lib| require lib }
 
 %w{
-  base
   project
   ticket
   authenticator
