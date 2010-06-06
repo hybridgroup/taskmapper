@@ -46,7 +46,7 @@ Then simply require it, and you are good to use Unfuddle with ticketmaster!
     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
 
 ## Creating a provider
-Creating your own provider consists of three steps:
+Creating a provider consists of three steps:
 
 * Create the ticketmaster provider (a.k.a. the remap)
 * Release it to RubyGems
