@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://github.com/Sirupsen/Ticketmaster"
     gem.authors = ["Sirupsen", "deadprogrammer"]
     gem.add_development_dependency "shoulda", ">= 0"
+    gem.bindir = 'bin'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
