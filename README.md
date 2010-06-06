@@ -7,6 +7,7 @@ ticketmaster let's you "remap" a system into the consistent ticketmaster API, ea
 ## TODO
 
 * Find ticket by property
+* Load login information from local file
 
 ## Usage
 
