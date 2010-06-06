@@ -16,8 +16,8 @@ ticketmaster let's you "remap" a system into the consistent ticketmaster API, ea
 First, we instance a new class with the right set of options. In this example, we are authenticating with Unfuddle. As Unfuddle is a closed system, it is *required* that you authenticate with a user to a subdomain, and so we do:
     unfuddle = TicketMaster.new(:unfuddle, {:username => "john", :password => "seekrit", :subdomain => "ticketmaster"})
 
-Now we can use our instance with the right settings, to find a project. Let's go ahead and grab the first one:
-    project = unfuddle.project.find.first
+Now we can use our instance with the right settings, to find a project. Let's go ahead and grab "testproject":
+    project = unfuddle.project.find "testproject"
 
 And as ticketmaster is all about tickets, let's create one:
     project.ticket.create(:priority => 3, :summary => "Test", :description => "Hello World")
@@ -30,7 +30,7 @@ We're working on this ticket right now, so let's go ahead and change the status,
     ticket.description = "Changed description to something else!"
     ticket.save
 
-The issue was solved, let's make it official by closing the ticket with the appropiate resolution:
+The issue was solved, let's make it official by closing the ticket with the appropriate resolution:
     ticket.close(:resolution => "fixed", :description => "Fixed issue by doing x")
 
 ## Support
@@ -44,6 +44,38 @@ To use Unfuddle with ticketmaster, install it:
 
 Then simply require it, and you are good to use Unfuddle with ticketmaster!
     require 'ticketmaster-unfuddle'
+
+## Creating a provider
+Creating your own provider consists of three steps:
+
+* Create the ticketmaster provider (a.k.a. remap)
+* Release it
+* Send an email to sirup@sirupsen.dk telling me about the awesome provider you created so we can fit it onto the list!
+
+### Create the ticketmaster provider
+Almost all APIs are different. And so are their Ruby providers. ticketmaster attempts to create a shared API, and thus we need to remap the functionality of the API to the ticketmaster API. This is the providers job. It is the gap or glue between ticketmaster and the ticket management's API. Usually, your provider would rely on another library. For instance, [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) depends on [Unfuddler](http://github.com/hybridgroup/unfuddler) in order to interact with the Unfuddle API. Look at it like this:
+
+Site's API (http://subdomain.unfuddle.com/api/v1/) -> Ruby library ([Unfuddler](http://github.com/hybridgroup/unfuddler)) -> ticketmaster provider ([ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)) -> ticketmaster
+
+It's also possible to do it like this:
+Site's API (http://subdomain.unfuddle.com/api/v1/) -> ticketmaster provider ([ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmater-unfuddle)) -> ticketmaster
+
+However, the first method is recommended, because it seperates stuff in a better way, and would normally be easier to create, because there are Ruby libraries for almost all systems.
+
+An example of a provider would be [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle), an example of a Ruby library would be [Unfuddler](http://github.com/hybridgroup/unfuddler).
+
+For now, look at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) as an example if you want to create a provider. More detailed documentation on this matter will be available soon.
+
+### Release it
+It would be an advantage for everyone, if you would host your provider at Github. Afterwards, simply release it to RubyGems.org, the name of the provider should follow this naming rule:
+
+    ticketmaster-<provider's name>
+
+For instance for a Github provider:
+
+    ticketmaster-github
+
+Then throw me an email at sirup@sirupsen.dk telling me about your awesome provider, and I'll throw it on the list!
 
 ## Note on Patches/Pull Requests
  

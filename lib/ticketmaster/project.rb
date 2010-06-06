@@ -5,17 +5,27 @@ module TicketMasterMod
       @authentication = Authenticator.new(authentication)
     end
 
-    def find(project = nil, options = {})
+    def find(query = nil, options = {})
       options[:authentication] = @authentication
       options[:client] = @client
-      Project::find(project, options)
+      Project::find(query, options)
     end
   end
 
   class Project < Hashie::Mash
     # Find a project
-    def self.find(project = nil, options = {})
-      TicketMasterMod.const_get(options[:client].to_s.capitalize)::Project.find(project, options)
+    def self.find(query = nil, options = {})
+      projects = TicketMasterMod.const_get(options[:client].to_s.capitalize)::Project.find(query, options)
+
+      if query
+        projects.each do |project|
+          return project if project.name == query
+        end
+
+        return [] # No results
+      end
+
+      projects
     end
 
     # Ask the right client for the tickets associated with the project
