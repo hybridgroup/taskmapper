@@ -55,13 +55,9 @@ Creating a provider consists of three steps:
 ### Create the ticketmaster provider
 Almost all APIs are different. And so are their Ruby providers. ticketmaster attempts to create an universal API for all ticket and project management systems, and thus we need to map the functionality to the ticketmaster API. This is the providers job. It is the glue between ticketmaster, and the ticket management's API. Usually, your provider would rely on another library for the raw HTTP interaction. For instance, [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) depends on [Unfuddler](http://github.com/hybridgroup/unfuddler) in order to interact with the Unfuddle API. Look at it like this:
 
-Site's API -> Ruby library ([Unfuddler](http://github.com/hybridgroup/unfuddler)) -> ticketmaster provider ([ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)) -> ticketmaster
+**ticketmaster** -> **Provider** -> *(Ruby library)* -> **Site's API**
 
-It's also very possible to do it like this:
-
-Site's API -> ticketmaster provider ([ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmater-unfuddle)) -> ticketmaster
-
-However, the first method is recommended, because it seperates stuff in a better way, and would normally be easier to create, because there are Ruby libraries for almost all systems. (E.g. [Octopi](http://github.com/fcoury/octopi/) for Github's api)
+Provider being the "glue" between the site's API and ticketmaster. Ruby library is "optional" (though higly recommended as mentioned), thus it is in parantheses.
 
 An example of a provider could be [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle), an example of a Ruby library would be [Unfuddler](http://github.com/hybridgroup/unfuddler).
 
