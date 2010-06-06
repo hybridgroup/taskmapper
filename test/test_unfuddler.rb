@@ -1,5 +1,5 @@
 require 'helper'
-require '/home/sirup/Code/Work/Hybrid/ticketmaster-unfuddle/lib/ticketmaster-unfuddle'
+require 'ticketmaster-unfuddle'
 
 class TestTicketmaster < Test::Unit::TestCase
   context "Unfuddle" do
