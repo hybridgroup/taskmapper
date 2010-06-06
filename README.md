@@ -48,26 +48,27 @@ Then simply require it, and you are good to use Unfuddle with ticketmaster!
 ## Creating a provider
 Creating your own provider consists of three steps:
 
-* Create the ticketmaster provider (a.k.a. remap)
-* Release it
+* Create the ticketmaster provider (a.k.a. the remap)
+* Release it to RubyGems
 * Send an email to sirup@sirupsen.dk telling me about the awesome provider you created so we can fit it onto the list!
 
 ### Create the ticketmaster provider
-Almost all APIs are different. And so are their Ruby providers. ticketmaster attempts to create a shared API, and thus we need to remap the functionality of the API to the ticketmaster API. This is the providers job. It is the gap or glue between ticketmaster and the ticket management's API. Usually, your provider would rely on another library. For instance, [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) depends on [Unfuddler](http://github.com/hybridgroup/unfuddler) in order to interact with the Unfuddle API. Look at it like this:
+Almost all APIs are different. And so are their Ruby providers. ticketmaster attempts to create an universal API for all ticket and project management systems, and thus we need to map the functionality to the ticketmaster API. This is the providers job. It is the glue between ticketmaster, and the ticket management's API. Usually, your provider would rely on another library for the raw HTTP interaction. For instance, [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) depends on [Unfuddler](http://github.com/hybridgroup/unfuddler) in order to interact with the Unfuddle API. Look at it like this:
 
-Site's API (http://subdomain.unfuddle.com/api/v1/) -> Ruby library ([Unfuddler](http://github.com/hybridgroup/unfuddler)) -> ticketmaster provider ([ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)) -> ticketmaster
+Site's API -> Ruby library ([Unfuddler](http://github.com/hybridgroup/unfuddler)) -> ticketmaster provider ([ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)) -> ticketmaster
 
-It's also possible to do it like this:
-Site's API (http://subdomain.unfuddle.com/api/v1/) -> ticketmaster provider ([ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmater-unfuddle)) -> ticketmaster
+It's also very possible to do it like this:
 
-However, the first method is recommended, because it seperates stuff in a better way, and would normally be easier to create, because there are Ruby libraries for almost all systems.
+Site's API -> ticketmaster provider ([ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmater-unfuddle)) -> ticketmaster
 
-An example of a provider would be [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle), an example of a Ruby library would be [Unfuddler](http://github.com/hybridgroup/unfuddler).
+However, the first method is recommended, because it seperates stuff in a better way, and would normally be easier to create, because there are Ruby libraries for almost all systems. (E.g. [Octopi](http://github.com/fcoury/octopi/) for Github's api)
 
-For now, look at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) as an example if you want to create a provider. More detailed documentation on this matter will be available soon.
+An example of a provider could be [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle), an example of a Ruby library would be [Unfuddler](http://github.com/hybridgroup/unfuddler).
+
+For now, look at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) as an example on how to create a provider. More detailed documentation on this matter will be available soon.
 
 ### Release it
-It would be an advantage for everyone, if you would host your provider at Github. Afterwards, simply release it to RubyGems.org, the name of the provider should follow this naming rule:
+It would be an advantage for everyone, if you would host your provider on Github. Afterwards, simply release it to RubyGems.org, the name of the provider Gem should follow this simple naming rule:
 
     ticketmaster-<provider's name>
 
@@ -75,7 +76,13 @@ For instance for a Github provider:
 
     ticketmaster-github
 
-Then throw me an email at sirup@sirupsen.dk telling me about your awesome provider, and I'll throw it on the list!
+This makes it easy for people to install a provider, simply by issuing:
+
+    gem search ticketmaster
+
+They should be presented a nice list of all available providers.
+
+After releasing, throw me an email at sirup@sirupsen.dk telling me about your awesome provider, and I'll throw it on the list of supported systems!
 
 ## Note on Patches/Pull Requests
  
