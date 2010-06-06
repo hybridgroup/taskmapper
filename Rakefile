@@ -5,11 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ticketmaster"
-    gem.summary = %Q{ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.}
-    gem.description = %Q{ticketmaster is a Gem which eases communicating with various project management and ticket tracking systems.}
+    gem.summary = %Q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
+    gem.description = %Q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
     gem.email = "sirup@sirupsen.dk"
     gem.homepage = "http://github.com/Sirupsen/Ticketmaster"
-    gem.authors = ["Sirupsen"]
+    gem.authors = ["Sirupsen", "deadprogrammer"]
     gem.add_development_dependency "shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
