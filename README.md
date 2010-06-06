@@ -6,7 +6,6 @@ ticketmaster let's you "remap" a system into the consistent ticketmaster API, ea
 
 ## TODO
 
-* Find project by name
 * Find ticket by property
 
 ## Usage
