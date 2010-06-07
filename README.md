@@ -46,7 +46,7 @@ Which is a shortcut for:
 Meaning you could also find a project by description or any other property, like this:
     project = unfuddle.project.find :description => "Testproject's description"
 
-Let's createa a ticket with our project instance, unfuddle requires these three properties in order to create a ticket:
+Let's create a ticket with our project instance, unfuddle requires these three properties in order to create a ticket:
     project.ticket.create(:priority => 3, :summary => "Test", :description => "Hello World")
 
 Let's play with tickets. First we go ahead and grab ticket 22:
