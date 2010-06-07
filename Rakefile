@@ -7,8 +7,8 @@ begin
     gem.name = "ticketmaster"
     gem.summary = %Q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
     gem.description = %Q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
-    gem.email = "sirup@sirupsen.dk"
-    gem.homepage = "http://github.com/Sirupsen/Ticketmaster"
+    gem.email = "simon@hybridgroup.com"
+    gem.homepage = "http://ticketrb.com"
     gem.authors = ["Sirupsen", "deadprogrammer"]
     gem.add_dependency "hashie", ">= 0"
     gem.add_development_dependency "shoulda", ">= 0"

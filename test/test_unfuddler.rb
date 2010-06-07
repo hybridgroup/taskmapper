@@ -4,12 +4,24 @@ require 'ticketmaster-unfuddle'
 class TestTicketmaster < Test::Unit::TestCase
   context "Unfuddle" do
     setup do
-      @unfuddle = TicketMaster.new(:unfuddle, {:username => "", :password => "", :subdomain => "ticketmaster"})
+      @unfuddle = TicketMaster.new(:unfuddle, {:username => "simon", :password => "WT00op", :subdomain => "ticketmaster"})
       @project = @unfuddle.project.find.first
     end
 
     should "find testproject" do
+      project = @unfuddle.project.find(:name => "testproject")
+
+      assert_instance_of TicketMasterMod::Project, project
+      assert_equal "testproject", project.name
+
+      #method 2
       project = @unfuddle.project.find("testproject")
+
+      assert_instance_of TicketMasterMod::Project, project
+      assert_equal "testproject", project.name
+
+      #method 3
+      project = @unfuddle.project["testproject"]
 
       assert_instance_of TicketMasterMod::Project, project
       assert_equal "testproject", project.name
@@ -22,6 +34,20 @@ class TestTicketmaster < Test::Unit::TestCase
     
       should "find a bunch of tickets" do
         @project.tickets
+      end
+
+      should "find new tickets" do
+        tickets = @project.tickets(:status => "new")
+
+        tickets.each do |ticket|
+          assert_equal "new", ticket.status
+        end
+      end
+
+      should "find ticket with id 1" do
+        ticket = @project.tickets(:id => 1)
+
+        assert_equal 1, ticket.id
       end
     
       should "create a ticket" do
