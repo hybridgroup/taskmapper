@@ -108,7 +108,7 @@ For instance for a Github provider:
 
 This makes it easy for people to install a provider, simply by issuing:
 
-    gem search ticketmaster
+    gem search -r ticketmaster
 
 They should be presented a nice list of all available providers.
 
