@@ -13,7 +13,7 @@ module TicketMasterMod
   attr_reader :project, :client
 
   def initialize(client, authentication = {})
-    @project = ProjectFinder.new(client, authentication)
+    @project = Project::Finder.new(client, authentication)
   end
 end
 

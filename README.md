@@ -4,6 +4,24 @@ ticketmaster is a Gem which eases communication with various project and ticket 
 
 ticketmaster let's you "remap" a system into the consistent ticketmaster API, easily. For instance the description of an issue/ticket, might be named **description** in one system, and **problem-description** somewhere else. Via ticketmaster, this would always be called **description**. The ticketmaster remaps makes it easy for you to integrate different kinds of ticket systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. ticketmaster handles all this *for* you, so you can focus on making your application awesome.
 
+## Installation
+
+ticketmaster is a Gem, so we can easily install it by using RubyGems:
+
+    gem install ticketmaster
+
+ticketmaster depends on [Hashie](http://github.com/intridea/hashie), which is an amazing library which makes converting objects to hashes, and the other way around, a joy. It should be installed automatically whenever installing ticketmaster.
+
+### Finding and installing a provider
+
+ticketmaster by itself won't do too much. You may want to install a provider, to retrieve a list of available providers issue the following command:
+
+    gem search ticketmaster
+
+You could then install for instance ticketmaster-unfuddle:
+
+    gem install ticketmaster-unfuddle
+
 ## TODO
 
 * Find ticket by property
@@ -17,16 +35,30 @@ First, we instance a new class with the right set of options. In this example, w
     unfuddle = TicketMaster.new(:unfuddle, {:username => "john", :password => "seekrit", :subdomain => "ticketmaster"})
 
 Now we can use our instance with the right settings, to find a project. Let's go ahead and grab "testproject":
+    project = unfuddle.project["testproject"]
+
+Which is a shortcut for:
     project = unfuddle.project.find "testproject"
 
-And as ticketmaster is all about tickets, let's create one:
+Which is a shortcut for:
+    project = unfuddle.project.find :name => "testproject"
+
+Meaning you could also find a project by description or any other property, like this:
+    project = unfuddle.project.find :description => "Testproject's description"
+
+Let's create a ticket with our project instance, unfuddle requires these three properties in order to create a ticket:
     project.ticket.create(:priority => 3, :summary => "Test", :description => "Hello World")
 
 Let's play with tickets. First we go ahead and grab ticket 22:
-    ticket = project.tickets[22]
+    ticket = project.tickets(:id => 22)
 
-We're working on this ticket right now, so let's go ahead and change the status, and for the fun of it, we'll change the description as well, and then save it.
+We're working on this ticket right now, so let's go ahead and change the status
     ticket.status = :in_progress
+
+Other valid ticket statuses are:
+    :closed, :accepted, :resolved
+
+For the fun of it, we'll change the description as well, and then save the ticket.
     ticket.description = "Changed description to something else!"
     ticket.save
 
@@ -43,6 +75,7 @@ To use Unfuddle with ticketmaster, install it:
     gem install ticketmaster-unfuddle
 
 Then simply require it, and you are good to use Unfuddle with ticketmaster!
+    require 'ticketmaster'
     require 'ticketmaster-unfuddle'
     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
 
