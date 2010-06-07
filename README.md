@@ -105,7 +105,7 @@ Note that you could close the ticket by changing all the attributes manually, li
     ticket.resolution_description = "Fixed issue by doing x"
     ticket.save
 
-However, as closing a ticket with a resolution is such a common task, I included the other method which may be more convenient.
+However, as closing a ticket with a resolution is such a common task, the other method is included because it may be more convenient.
 
 ## Support
 
@@ -123,7 +123,7 @@ Then simply require it, and you are good to use Unfuddle with ticketmaster!
     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
 
 ## Creating a provider
-Creating a provider consists of three steps:
+Creating a provider consists of two steps:
 
 * Create the ticketmaster provider (a.k.a. the remap)
 * Release it to RubyGems
