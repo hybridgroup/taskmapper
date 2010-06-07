@@ -24,7 +24,6 @@ You could then install for instance ticketmaster-unfuddle:
 
 ## TODO
 
-* Find ticket by property
 * Load login information from local file
 
 ## Usage
@@ -32,37 +31,48 @@ You could then install for instance ticketmaster-unfuddle:
 **Note** Subject to change.
 
 First, we instance a new class with the right set of options. In this example, we are authenticating with Unfuddle. As Unfuddle is a closed system, it is *required* that you authenticate with a user to a subdomain, and so we do:
+
     unfuddle = TicketMaster.new(:unfuddle, {:username => "john", :password => "seekrit", :subdomain => "ticketmaster"})
 
 Now we can use our instance with the right settings, to find a project. Let's go ahead and grab "testproject":
+
     project = unfuddle.project["testproject"]
 
 Which is a shortcut for:
+
     project = unfuddle.project.find "testproject"
 
 Which is a shortcut for:
+
     project = unfuddle.project.find :name => "testproject"
 
 Meaning you could also find a project by description or any other property, like this:
+
     project = unfuddle.project.find :description => "Testproject's description"
 
 Let's create a ticket with our project instance, unfuddle requires these three properties in order to create a ticket:
+
     project.ticket.create(:priority => 3, :summary => "Test", :description => "Hello World")
 
 Let's play with tickets. First we go ahead and grab ticket 22:
+
     ticket = project.tickets(:id => 22)
 
 We're working on this ticket right now, so let's go ahead and change the status
+
     ticket.status = :in_progress
 
 Other valid ticket statuses are:
+
     :closed, :accepted, :resolved
 
 For the fun of it, we'll change the description as well, and then save the ticket.
+
     ticket.description = "Changed description to something else!"
     ticket.save
 
 The issue was solved, let's make it official by closing the ticket with the appropriate resolution:
+
     ticket.close(:resolution => "fixed", :description => "Fixed issue by doing x")
 
 ## Support
@@ -75,6 +85,7 @@ To use Unfuddle with ticketmaster, install it:
     gem install ticketmaster-unfuddle
 
 Then simply require it, and you are good to use Unfuddle with ticketmaster!
+
     require 'ticketmaster'
     require 'ticketmaster-unfuddle'
     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
