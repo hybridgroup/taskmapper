@@ -49,7 +49,7 @@ class TestTicketmaster < Test::Unit::TestCase
 
         assert_equal 1, ticket.id
       end
-    
+
       should "create a ticket" do
         assert @project.ticket.create(:priority => 3, :summary => "Test", :description => "Hello World from TicketMaster::Unfuddle").empty?
       end
