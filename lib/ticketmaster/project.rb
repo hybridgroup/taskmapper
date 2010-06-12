@@ -52,8 +52,8 @@ module TicketMasterMod
 
       objects.each do |object|
         matches = 0
-        query.each do |query, expected_value|
-          matches += 1 if object.send(query) == expected_value
+        query.each_pair do |method, expected_value|
+          matches += 1 if object.send(method) == expected_value
         end
 
         matching_objects << object if matches == query.length
