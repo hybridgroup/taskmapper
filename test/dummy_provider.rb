@@ -1,7 +1,7 @@
 module TicketMasterMod
   module Dummy
     module Project
-      def self.find
+      def self.find(query = nil, options = {})
         []
       end
     end

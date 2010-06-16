@@ -1,5 +1,4 @@
 require 'helper'
-require 'dummy_provider'
 
 class TestProject < Test::Unit::TestCase
   context "projects" do
