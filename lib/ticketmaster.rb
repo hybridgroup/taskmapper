@@ -14,7 +14,10 @@ module TicketMasterMod
 
   def initialize(system, authentication = {})
     @authentication, @system = Authenticator.new(authentication), system
-    @project = Project::Finder.new(system, @authentication)
+  end
+
+  def projects
+    Project::Finder.new(@system, @authentication)
   end
 end
 
