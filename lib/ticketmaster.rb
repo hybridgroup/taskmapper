@@ -10,10 +10,11 @@
 }.each {|lib| require 'ticketmaster/' + lib }
 
 module TicketMasterMod
-  attr_reader :project, :client
+  attr_reader :project, :system, :authentication
 
-  def initialize(client, authentication = {})
-    @project = Project::Finder.new(client, authentication)
+  def initialize(system, authentication = {})
+    @authentication, @system = Authenticator.new(authentication), system
+    @project = Project::Finder.new(system, @authentication)
   end
 end
 
