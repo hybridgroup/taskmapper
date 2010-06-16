@@ -1,8 +1,9 @@
 require 'helper'
+require 'mocha'
 
 class TestTicketmaster < Test::Unit::TestCase
-  context "a valid Ticketmaster provider" do
-    setup do
+  context "An instance of TicketMaster" do
+    setup do 
       @ticketmaster = TicketMaster.new(:dummy, {:username => "John", :password => "seekrit"})
     end
 
@@ -14,5 +15,4 @@ class TestTicketmaster < Test::Unit::TestCase
       assert_equal :dummy, @ticketmaster.system
     end
   end
-  
 end
