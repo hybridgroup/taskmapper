@@ -4,9 +4,9 @@ module TicketMasterMod
     # projects by not specifying any query.
     #
     #     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
-    #     unfuddle.project.find("ticketmaster")
+    #     unfuddle.projects.find("ticketmaster")
     #         #=> TicketMasterMod::Project<#name = "ticketmaster", ..>
-    #     unfuddle.project.find
+    #     unfuddle.projects.find
     #         #=> [TicketMasterMod::Project<..>, TicketMasterMod::Project<..>, ..]
     #
     def self.find(query = nil, options = {})
