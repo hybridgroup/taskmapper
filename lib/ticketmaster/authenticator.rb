@@ -1,4 +1,2 @@
-module TicketMasterMod
-  class Authenticator < Hashie::Mash
-  end
+class TicketMaster::Authenticator < Hashie::Mash
 end

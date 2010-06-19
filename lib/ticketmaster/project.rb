@@ -1,82 +1,87 @@
-module TicketMasterMod
-  class Project < Hashie::Mash
-    # Find a project, or find more projects. You can also retrieve an array of all
-    # projects by not specifying any query.
+module TicketMaster::Provider
+  module Base
+    # This is the base Project class for providers
     #
-    #     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
-    #     unfuddle.project.find("ticketmaster")
-    #         #=> TicketMasterMod::Project<#name = "ticketmaster", ..>
-    #     unfuddle.project.find
-    #         #=> [TicketMasterMod::Project<..>, TicketMasterMod::Project<..>, ..]
+    # Providers should inherit this class and redefine the methods
+    # 
+    # Each provider should have their own @system defined.
+    # For example, ticketmaster-unfuddle's @system is :unfuddle and ticketmaster-lighthouse's
+    # @system is :lighthouse.
     #
-    def self.find(query = nil, options = {})
-      # Asks the client for the projects, should return an array of
-      # project objects.
-      projects = TicketMasterMod.const_get(options[:client].to_s.capitalize)::Project.find(query, options)
+    # Methods that must be implemented by the provider
+    #
+    # * self.find
+    # * tickets
+    # * ticket
+    # * save
+    # * initialize
+    #
+    # Methods that would probably be okay if the provider left it alone:
+    #
+    # * self.create
+    #
+    # A provider should define as many attributes as feasibly possible. The list below are 
+    # some guidelines as to what attributes are necessary, if your provider's api does not
+    # implement them, point it to an attribute that is close to it. (for example, a name
+    # can point to title. Remember to alias it in your class!)
+    # 
+    # * id
+    # * name
+    # * created_at
+    # * updated_at
+    # * description
+    class Project < Hashie::Mash
+      attr_accessor :system, :system_data
+      # Find a project, or find more projects.
+      # You can also retrieve an array of all projects by not specifying any query.
+      #
+      # The implementation should be able to accept these cases if feasible:
+      #
+      # * find(:all) - Returns an array of all projects
+      # * find(##) - Returns a project based on that id or some other primary (unique) attribute
+      # * find(:first, :summary => 'Project name') - Returns a project based on the project's attributes
+      # * find(:summary => 'Test Project') - Returns all projects based on the given attribute(s)
+      def self.find(*options)
+        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+      end
       
-      if query
-        query = {:name => query} if query.is_a?(String)
-
-        # For some reason #tickets find ability messes up if we use a class method.
-        # Thus I decided to go for an instance method.
-        return Project.new.search(query, projects)
+      # Create a project.
+      # Basically, a .new and .save in the same call. The default method assumes it is passed a
+      # single hash with attribute information
+      def self.create(*options)
+        project = self.new(options.first)
+        project.save
+        project
+      end
+      
+      # The initializer
+      def initialize(*options)
+        super(options.shift)
+        # do some other stuff
       end
 
-      # No query, so we just go ahead and return the array of projects
-      projects
-    end
-
-    # Asks the client for the tickets associated with the project,
-    # returns an array of Ticket objects.
-    #
-    #     project.tickets
-    #         #=> [TicketMasterMod::Ticket<...>, TicketMasterMod::Ticket<...>, ..]
-    def tickets(query = {})
-      tickets = TicketMasterMod.const_get(self.system.capitalize)::Project.tickets(self)
-      return search(query, tickets) unless query.empty?
-
-      tickets
-    end
-
-    # Mainly here because it is more natural to do:
-    #     project.ticket.create(..)
-    #
-    # Than
-    #     project.tickets.create(..)
-    def ticket
-      TicketMasterMod::Ticket::Creator.new(self)
-    end
-
-    def search(query, objects)
-      matching_objects = []
-
-      objects.each do |object|
-        matches = 0
-        query.each_pair do |method, expected_value|
-          matches += 1 if object.send(method) == expected_value
-        end
-
-        matching_objects << object if matches == query.length
+      # Asks the provider's api for the tickets associated with the project,
+      # returns an array of Ticket objects.
+      def tickets(*options)
+        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
       end
 
-      # Raw object versus array with one entry
-      return matching_objects.first if matching_objects.length == 1
-      matching_objects
-    end
-
-    class Finder
-      def initialize(client, authentication)
-        @client = client
-        @authentication = Authenticator.new(authentication)
+      # Mainly here because it is more natural to do:
+      #     project.ticket.create(..)
+      #
+      # Than
+      #     project.tickets.create(..)
+      # 
+      # returns a ticket object or ticket class that responds to .new and .create. 
+      def ticket(*options)
+        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
       end
-
-      def find(query = nil, options = {})
-        options[:authentication] = @authentication
-        options[:client] = @client
-        Project::find(query, options)
+      
+      # Save changes to this project
+      def save
+        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
       end
-
-      alias_method :[], :find
+      
     end
   end
 end
