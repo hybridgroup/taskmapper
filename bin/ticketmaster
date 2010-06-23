@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+# The 'ticketmaster' gem was installed using rubygems
+# This file is the CLI application to use with 'ticketmaster'
+
+puts Dir.pwd
+require File.dirname(__FILE__) + '/../lib/ticketmaster/cli/init.rb'
+

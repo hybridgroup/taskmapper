@@ -27,11 +27,11 @@ class TicketMaster
   #
   # What it DOES NOT do is auto-require the provider...so make sure you have the providers required.
   def initialize(system = nil, authentication = nil)
-    if system.nil?
+    if system.nil? or authentication.nil?
       require 'yaml'
-      data = YAML.load_file File.expand_path('~/.ticketmaster.yml')
-      system = data['default'] || data.first.first
-      authentication = data[system] if authentication.nil?
+      data = YAML.load_file File.expand_path(ENV['TICKETMASTER_CONFIG'] || '~/.ticketmaster.yml')
+      system = system.nil? ? data['default'] || data.first.first : system.to_s
+      authentication = data[system]['authentication'] if authentication.nil? and data[system]['authentication']
     end
     self.extend TicketMaster::Provider.const_get(system.to_s.capitalize)
     authorize authentication

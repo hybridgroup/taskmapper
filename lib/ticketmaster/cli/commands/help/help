@@ -1,0 +1,7 @@
+usage: ticketmaster help COMMAND
+
+This is the help command. You can use this command to get more information on other commands.
+
+Example:
+  ticketmaster help config
+  ticketmaster help console

@@ -1,0 +1,13 @@
+This command is used to open an irb session with the ticketmaster.
+
+The configuration for this command should mostly be dependent on the ticketmaster.yml files.
+See ticketmaster help config for more information on how to set it up.
+
+Example:
+  ticketmaster console
+  ticketmaster -p dummy console
+  ticketmaster -p dummy console -d --tracer
+
+By default, it attempts to load all providers listed in the config unless a provider is explicitly given.
+
+All options passed to console is passed to the irb session. See irb --help for those options and their details

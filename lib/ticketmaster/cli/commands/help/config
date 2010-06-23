@@ -1,0 +1,25 @@
+This command is used to configure ticketmaster settings for use in your terminal.
+
+By default, ticketmaster searches for the config information in a file named 'ticketmaster.yml' in the current directory. Next it searches for 'config/ticketmaster.yml' and if that fails, it uses the home directory's ~/.ticketmaster.yml (note the . in front on this one).
+
+This command helps facilitate the creation of a ticketmaster.yml.
+
+Example:
+  ticketmaster -c ~/.ticketmaster.yml -p dummy -A username:cheese,password:cakes -P 555 config --add
+  ticketmaster -p dummy config --set-default-provider
+
+The format for ticketmaster.yml is:
+  default: <default provider>
+  <provider name>:
+    authentication:
+      <authentication information>
+    project: <project>
+  [...]
+
+For example, a ticketmaster.yml with the Dummy provider would look something like this:
+  default: dummy
+  dummy:
+    authentication:
+      username: name
+      password: doesnt-matter
+    project: 555
