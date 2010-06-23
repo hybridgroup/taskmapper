@@ -10,7 +10,7 @@ def open_irb(options, argv)
   if File.exist?(config = File.expand_path(options[:config]))
     ENV['TICKETMASTER_CONFIG']=config
   end
-  providers = [options[:provider]] || YAML.load_file(config).keys
+  providers = !options[:provider].nil? ? [options[:provider]] : YAML.load_file(config).keys
   providers.delete 'default'
   require 'rubygems'
   providers.reduce(requires) do |mem, p|
