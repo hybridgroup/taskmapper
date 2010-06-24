@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
      "README.md",
      "Rakefile",
      "VERSION",
+     "bin/ticket",
      "lib/ticketmaster.rb",
      "lib/ticketmaster/authenticator.rb",
      "lib/ticketmaster/cli/commands/config.rb",
