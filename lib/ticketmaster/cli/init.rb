@@ -15,7 +15,7 @@ commands ={ 'help' => 'Get the help text for a particular command',
 helptext = lambda {
   helpmsg = "\nAvailable commands:\n"
   commands.sort.reduce(helpmsg) { |mem, cmd| mem << "\t#{cmd.join("\t\t")}\n" }
-  helpmsg << "\nSee 'ticketmaster help COMMAND' for more information on a specific command."
+  helpmsg << "\nSee 'ticket help COMMAND' for more information on a specific command."
   }
   
 ARGV << '--help' if ARGV.length == 0
@@ -31,7 +31,7 @@ end
 
 begin
   OptionParser.new do |opts|
-    opts.banner = 'Usage: ticketmaster [options] COMMAND [command_options]'
+    opts.banner = 'Usage: ticket [options] COMMAND [command_options]'
     opts.separator ''
     opts.separator 'Options:'
     
@@ -61,7 +61,7 @@ begin
     end
   end.order!
 rescue OptionParser::MissingArgument => exception
-  puts "ticketmaster #{ARGV.join(' ')}\n\n"
+  puts "ticket #{ARGV.join(' ')}\n\n"
   puts "Error: An option was called that requires an argument, but was not given one"
   puts exception.message
 end

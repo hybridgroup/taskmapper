@@ -4,9 +4,9 @@ The configuration for this command should mostly be dependent on the ticketmaste
 See ticketmaster help config for more information on how to set it up.
 
 Example:
-  ticketmaster console
-  ticketmaster -p dummy console
-  ticketmaster -p dummy console -d --tracer
+  ticket console
+  ticket -p dummy console
+  ticket -p dummy console -d --tracer
 
 By default, it attempts to load all providers listed in the config unless a provider is explicitly given.
 

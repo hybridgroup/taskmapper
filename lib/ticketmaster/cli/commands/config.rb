@@ -2,7 +2,7 @@ def config(options)
   ARGV << '--help' if ARGV.length == 0
   begin
     OptionParser.new do |opts|
-      opts.banner = 'Usage: ticketmaster -p PROVIDER [options] config [config_options]'
+      opts.banner = 'Usage: ticket -p PROVIDER [options] config [config_options]'
       opts.separator ''
       opts.separator 'Options:'
       
@@ -27,7 +27,7 @@ def config(options)
       end
     end.parse(ARGV)
   rescue OptionParser::MissingArgument => exception
-    puts "ticketmaster #{options[:original_argv].join(' ')}\n\n"
+    puts "ticket #{options[:original_argv].join(' ')}\n\n"
     puts "Error: An option was called that requires an argument, but was not given one"
     puts exception.message
   end
