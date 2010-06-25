@@ -15,6 +15,8 @@ module TicketMaster::Provider
     # * ticket
     # * save
     # * initialize
+    # * update
+    # * destroy
     #
     # Methods that would probably be okay if the provider left it alone:
     #
@@ -78,7 +80,14 @@ module TicketMaster::Provider
       end
       
       # Save changes to this project
+      # Returns true (success) or false (failure)
       def save
+        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+      end
+      
+      # Delete this project
+      # Returns true (success) or false(failure)
+      def destroy
         raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
       end
       

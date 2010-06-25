@@ -1,3 +1,5 @@
+# The command method call implementation
+# This sets the option parser and passes the parsed options to the subcommands
 def config(options)
   ARGV << '--help' if ARGV.length == 0
   begin
@@ -34,6 +36,7 @@ def config(options)
   send(options[:subcommand], options)
 end
 
+# Called on --add. It adds a new entry to the config file and will refuse if it already exists
 def add(options)
   require_provider unless options[:provider]
   provider = options[:provider]
@@ -52,6 +55,7 @@ def add(options)
   exit
 end
 
+# Called on --edit. It updates and edits an entry. If the entry is non-existent, it will add it.
 def edit(options)
   require_provider unless options[:provider]
   provider = options[:provider]
@@ -66,6 +70,7 @@ def edit(options)
   exit
 end
 
+# Called on --set-default-provider. It sets the current provider as the default
 def set_default_provider(options)
   provider = options[:provider]
   config = YAML.load_file(config_file = File.expand_path(options[:config]))
@@ -78,6 +83,7 @@ def set_default_provider(options)
   exit
 end
 
+# Called when a provider is not given.
 def require_provider
   puts "Provider must be specified!"
   exit 1

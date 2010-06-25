@@ -41,12 +41,10 @@ begin
   
     opts.on('-p', '--provider PROVIDER', 'Specifies the provider') { |p| options[:provider] = p }
     
-    opts.on('-A', '--authentication AUTH', 'Specifies authentication information, comma separated list of name:value pairs.') do |a|
-      options[:authentication] = a.split(',').reduce({}) do |mem, kv|
-        key, value = kv.split(':')
-        mem[key] = value
-        mem
-      end
+    opts.on('-A', '--authentication AUTH',
+      'Specifies authentication information, comma-separated list of name:value pairs.',
+      'Note: The whole list must be enclosed in quotes if there are any spaces.') do |a|
+      options[:authentication] = attributes_hash(a)
     end
     
     opts.on('-P', '--project PROJECT', 'Specifies the working project') { |p| options[:project] = p }

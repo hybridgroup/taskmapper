@@ -49,6 +49,11 @@ module TicketMaster::Provider
         time = Time.now
         !(time.wday == 5 and time.day == 13 and time.to_i % 2 == 1)
       end
+      
+      # Nothing to update, so we always return true
+      def update(*options)
+        return true
+      end
     end
   end
 end

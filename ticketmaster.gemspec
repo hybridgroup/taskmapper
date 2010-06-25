@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sirupsen", "deadprogrammer"]
-  s.date = %q{2010-06-23}
+  s.date = %q{2010-06-25}
   s.default_executable = %q{ticket}
   s.description = %q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
   s.email = %q{simon@hybridgroup.com}
@@ -50,6 +50,7 @@ Gem::Specification.new do |s|
      "lib/ticketmaster/ticket.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
+     "spec/ticketmaster-cli_spec.rb",
      "spec/ticketmaster_spec.rb",
      "test/helper.rb",
      "test/test_ticketmaster.rb",

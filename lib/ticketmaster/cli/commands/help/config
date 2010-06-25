@@ -1,6 +1,6 @@
 This command is used to configure ticketmaster settings for use in your terminal.
 
-By default, ticketmaster searches for the config information in a file named 'ticketmaster.yml' in the current directory. Next it searches for 'config/ticketmaster.yml' and if that fails, it uses the home directory's ~/.ticketmaster.yml (note the . in front on this one).
+By default, ticketmaster searches for the config information in a file named 'ticketmaster.yml' in the current directory. Next it searches for 'config/ticketmaster.yml' and if that fails, it uses the home directory's ~/.ticketmaster.yml (note the . in front on this one). There is also the TICKETMASTER_CONFIG environment variable that you can set to point to another configuration file anywhere if necessary.
 
 This command helps facilitate the creation of a ticketmaster.yml.
 
