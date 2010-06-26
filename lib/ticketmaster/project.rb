@@ -91,6 +91,12 @@ module TicketMaster::Provider
         raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
       end
       
+      # Update the project and save
+      def update!(*options)
+        update(*options)
+        save
+      end
+      
     end
   end
 end

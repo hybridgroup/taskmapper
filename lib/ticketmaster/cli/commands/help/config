@@ -4,6 +4,8 @@ By default, ticketmaster searches for the config information in a file named 'ti
 
 This command helps facilitate the creation of a ticketmaster.yml.
 
+Warning: Due to the way the authentication is parsed, if any keys or values contain a comma (,) or colin (:), it can not be parsed through the -A command. Usually this isn't a problem, and if it is, it can be resolved though putting the values in a config file.
+
 Example:
   ticket -c ~/.ticketmaster.yml -p dummy -A username:cheese,password:cakes -P 555 config --add
   ticket -p dummy config --set-default-provider

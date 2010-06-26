@@ -11,9 +11,17 @@ end
 
 # A utility method used to separate name:value pairs
 def attributes_hash(kvlist)
-  kvlist.split(',').reduce({}) do |mem, kv|
-    key, value = kv.split(':')
-    mem[key] = value
+  if kvlist.is_a?(String)
+    kvlist.split(',').reduce({}) do |mem, kv|
+      key, value = kv.split(':')
+      mem[key] = value
+      mem
+    end
+  elsif kvlist.is_a?(Array)
+    mem = {}
+    kvlist.each_slice(2) do |k, v|
+      mem[k] = v
+    end
     mem
   end
 end

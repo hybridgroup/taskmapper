@@ -5,9 +5,9 @@ It can be used to do any of the CRUD actions with projects that are provided by 
 It will attempt to load data through the config files if they are available. See 'ticket help config' for more information.
 
 Examples:
-  ticket -p lighthouse -A account:ticketmaster,token:abc project --create "name:new project"
+  ticket -p lighthouse -A account:ticketmaster,token:abc project --create name "new project"
   ticket project --read 946
   ticket --project 946 project --read
-  ticket -p dummy -A "user:common coder,pass: w3rd out" project --destroy 712
+  ticket -p dummy -A "user:common coder,pass:w3rd out" project --destroy 712
   ticket -p dummy -P 712 project --destroy
-  ticket -p dummy project --update attribute:value
+  ticket -p dummy project --update name "new project name" description "this is the project description"

@@ -9,8 +9,8 @@ def project(options)
       opts.separator ''
       opts.separator 'Options:'
       
-      opts.on('-C', '--create ATTRIBUTES', 'Create a new project') do |attributes|
-        options[:project_attributes] = attributes_hash(attributes)
+      opts.on('-C', '--create ATTRIBUTES', 'Create a new project') do |attribute|
+        options[:project_attributes] = {attribute => ARGV.shift}.merge(attributes_hash(ARGV))
         options[:subcommand] = 'create'
       end
       
@@ -19,13 +19,12 @@ def project(options)
         options[:subcommand] = 'read'
       end
       
-      opts.on('-U', '--update ATTRIBUTES', 'Update project information. Takes a comma-separated list of key:value pairs.',
-        'Enclose the list in quotes if any keys or values have a space.') do |attributes|
-        options[:project_attributes] = attributes_hash(attributes)
+      opts.on('-U', '--update ATTRIBUTES', 'Update project information') do |attribute|
+        options[:project_attributes] = {attribute => ARGV.shift}.merge(attributes_hash(ARGV))
         options[:subcommand] = 'update'
       end
       
-      opts.on('-D', '--destroy [PROJECT]', 'Destroy the project') do |id|
+      opts.on('-D', '--destroy [PROJECT]', 'Destroy the project. Not reversible!') do |id|
         options[:project] = id if id
         options[:subcommand] = 'destroy'
       end
@@ -35,9 +34,13 @@ def project(options)
         options[:subcommand] = 'read'
       end
       
-      opts.on('-S', '--search [ATTRIBUTES]', 'Search for a project based on attributes given as a comma-separated list of key:value pairs.',
-        'Enclose the whole listi n quotes if any keys or values have a space.') do |attributes|
-        options[:project_attributes] = attributes_hash(attributes)
+      opts.on('-S', '--search [ATTRIBUTES]', 'Search for a project based on attributes') do |attribute|
+        options[:project_attributes] = attribute ? {attribute => ARGV.shift}.merge(attributes_hash(ARGV)) : {}
+        options[:subcommand] = 'search'
+      end
+      
+      opts.on('-L', '--list-all', 'List all projects. Same as --search without any parameters') do
+        options[:project_attributes] = {}
         options[:subcommand] = 'search'
       end
       
@@ -48,7 +51,7 @@ def project(options)
         puts opts
         exit
       end
-    end.parse(ARGV)
+    end.order!
   rescue OptionParser::MissingArgument => exception
     puts "ticket #{options[:original_argv].join(' ')}\n\n"
     puts "Error: An option was called that requires an argument, but was not given one"
@@ -65,7 +68,7 @@ def project(options)
 end
 
 
-
+# The create subcommand
 def create(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
   project = tm.project.create(options[:project_attributes])
@@ -73,6 +76,7 @@ def create(options)
   exit
 end
 
+# The read subcommand
 def read(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
   project = tm.project.find(options[:project].to_i)
@@ -80,10 +84,11 @@ def read(options)
   exit
 end
 
+# The update subcommand
 def update(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
   project = tm.project.find(options[:project].to_i)
-  if project.update(options[:project_attributes])
+  if project.update!(options[:project_attributes])
     puts "Successfully updated Project #{project.name} (#{project.id})"
   else
     puts "Sorry, it seems there was an error when trying to update the attributes"
@@ -92,6 +97,7 @@ def update(options)
   exit
 end
 
+# The destroy subcommand.
 def destroy(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
   project = tm.project.find(options[:project].to_i)
@@ -109,6 +115,7 @@ def destroy(options)
   exit
 end
 
+# The search and list subcommands
 def search(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
   projects = tm.projects(options[:project_attributes])
