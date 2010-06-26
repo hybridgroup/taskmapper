@@ -118,7 +118,7 @@ end
 # The search and list subcommands
 def search(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  tickets = tm.ticket.find({"title"=>"This is a new ticket", :project_id=>55132})
+  tickets = tm.ticket.find(options[:ticket_attributes])
   puts "Found #{tickets.length} tickets"
   tickets.each_with_index do |ticket, index|
     puts "#{index+1}) Ticket #{ticket.title} (#{ticket.id})"
