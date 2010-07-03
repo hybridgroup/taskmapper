@@ -16,7 +16,8 @@ Gem::Specification.new do |s|
   s.executables = ["ticket"]
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.md"
+     "README.md",
+     "TODO"
   ]
   s.files = [
     ".document",
@@ -25,6 +26,7 @@ Gem::Specification.new do |s|
      "NOTES",
      "README.md",
      "Rakefile",
+     "TODO",
      "VERSION",
      "bin/ticket",
      "lib/ticketmaster.rb",
@@ -41,10 +43,13 @@ Gem::Specification.new do |s|
      "lib/ticketmaster/cli/commands/ticket.rb",
      "lib/ticketmaster/cli/common.rb",
      "lib/ticketmaster/cli/init.rb",
+     "lib/ticketmaster/comment.rb",
+     "lib/ticketmaster/common.rb",
      "lib/ticketmaster/dummy/dummy.rb",
      "lib/ticketmaster/dummy/project.rb",
      "lib/ticketmaster/dummy/ticket.rb",
      "lib/ticketmaster/exception.rb",
+     "lib/ticketmaster/helper.rb",
      "lib/ticketmaster/project.rb",
      "lib/ticketmaster/provider.rb",
      "lib/ticketmaster/ticket.rb",

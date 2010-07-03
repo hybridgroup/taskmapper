@@ -11,6 +11,11 @@
 # We are also planning on standardizing non-standard/provider-specific object models
 module TicketMaster::Provider
   module Base
+    PROJECT_API = nil # The Class for the project api interaction
+    TICKET_API = nil # The Class for the ticket api interaction
+    
+    include TicketMaster::Provider::Helper
+    
     # All providers must define this method.
     # It doesn't *have* to do anything, it just has to be there. But since it's here, you don't
     # have to worry about it as long as you "include TicketMaster::Provider::Base"
@@ -28,8 +33,15 @@ module TicketMaster::Provider
     #
     # Should try to implement a find :first (or find with singular result) if given parameters
     def project(*options)
-      return TicketMaster::Project.find(*options) if options.length > 0
-      TicketMaster::Project
+      easy_finder(@provider::Project, :first, options)
+    end
+    
+    # All providers should try to define this method.
+    #
+    # It returns all projects in an array
+    # Should try to implement a find :all if given parameters
+    def projects(*options)
+      easy_finder(@provider::Project, :all, options)
     end
     
     # Providers should try to define this method
@@ -43,16 +55,7 @@ module TicketMaster::Provider
     #
     # Should try to implement a find :first (or find with singular result) if given parameters
     def ticket(*options)
-      return TicketMaster::Ticket.find(*options) if options.length > 0
-      TicketMaster::Ticket
-    end
-    
-    # All providers should try to define this method.
-    #
-    # It returns all projects in an array
-    # Should try to implement a find :all if given parameters
-    def projects(*options)
-      []
+      easy_finder(@provider::Ticket, :first, options)
     end
       
     # All providers should try to define this method
@@ -60,7 +63,7 @@ module TicketMaster::Provider
     # It returns all tickets in an array.
     # Should try to implement a find :all if given parameters
     def tickets(*options)
-      []
+      easy_finder(@provider::Ticket, :all, options)
     end
   end
 end
