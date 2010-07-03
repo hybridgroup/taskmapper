@@ -31,7 +31,7 @@ module TicketMaster::Provider
         case first
           when ActiveResource::Base
             @system_data[:client] = first
-            self.prefix_options=@system_data[:client].prefix_options if @system_data[:client].prefix_options
+            self.prefix_options ||= @system_data[:client].prefix_options if @system_data[:client].prefix_options
             super(first.attributes)
           
           when Hash
