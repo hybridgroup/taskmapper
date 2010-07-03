@@ -10,17 +10,21 @@ module TicketMaster::Provider
     #
     # Methods that must be implemented by the provider
     #
-    # * self.find
+    # * self.find_by_id
+    # * self.find_by_attributes
+    #
+    # Methods that might need to be implemented by the provider
     # * tickets
     # * ticket
-    # * save
     # * initialize
     # * update
     # * destroy
+    # * self.create
     #
     # Methods that would probably be okay if the provider left it alone:
     #
-    # * self.create
+    # * self.find - although you can define your own to optimize it a bit
+    # * update!
     #
     # A provider should define as many attributes as feasibly possible. The list below are 
     # some guidelines as to what attributes are necessary, if your provider's api does not
@@ -33,68 +37,101 @@ module TicketMaster::Provider
     # * updated_at
     # * description
     class Project < Hashie::Mash
+      include TicketMaster::Provider::Common
+      include TicketMaster::Provider::Helper
+      extend TicketMaster::Provider::Helper
       attr_accessor :system, :system_data
-      # Find a project, or find more projects.
+      API = nil #Replace with your api digestor's class.
+
+      # Find project
       # You can also retrieve an array of all projects by not specifying any query.
       #
-      # The implementation should be able to accept these cases if feasible:
-      #
-      # * find(:all) - Returns an array of all projects
+      # * find() or find(:all) - Returns an array of all projects
       # * find(##) - Returns a project based on that id or some other primary (unique) attribute
-      # * find(:first, :summary => 'Project name') - Returns a project based on the project's attributes
-      # * find(:summary => 'Test Project') - Returns all projects based on the given attribute(s)
+      # * find([#, #, #]) - Returns many projects with these ids
+      # * find(:first, :name => 'Project name') - Returns the first project based on the project's attribute(s)
+      # * find(:last, :name => 'Some project') - Returns the last project based on the project's attribute(s)
+      # * find(:all, :name => 'Test Project') - Returns all projects based on the given attribute(s)
       def self.find(*options)
-        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+        first = options.shift
+        attributes = options.shift
+        if first.nil? or (first == :all and attributes.nil?)
+          self.find_by_attributes
+        elsif first.is_a? Fixnum
+          self.find_by_id(first)
+        elsif first.is_a? Array
+          first.collect { |id| self.find_by_id(id) }
+        elsif first == :first
+          projects = attributes.nil? ? self.find_by_attributes : self.find_by_attributes(attributes)
+          projects.first
+        elsif first == :last
+          projects = attributes.nil? ? self.find_by_attributes : self.find_by_attributes(attributes)
+          projects.last
+        elsif first == :all
+          self.find_by_attributes(attributes)
+        end
       end
       
-      # Create a project.
-      # Basically, a .new and .save in the same call. The default method assumes it is passed a
-      # single hash with attribute information
-      def self.create(*options)
-        project = self.new(options.first)
-        project.save
-        project
+      # The first of whatever project
+      def self.first(*options)
+        self.find(:first, *options)
       end
       
-      # The initializer
-      def initialize(*options)
-        super(options.shift)
-        # do some other stuff
+      # The last of whatever project
+      def self.last(*options)
+        self.find(:last, *options)
+      end
+      
+      # Accepts an integer id and returns the single project instance
+      # Must be defined by the provider
+      def self.find_by_id(id)
+        if self::API.is_a? Class
+          self.new self::API.find id
+        else
+          raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+        end
+      end
+      
+      # Accepts an attributes hash and returns all projects matching those attributes in an array
+      # Should return all projects if the attributes hash is empty
+      # Must be defined by the provider
+      def self.find_by_attributes(attributes = {})
+        if self::API.is_a? Class
+          self.search(attributes).collect { |thing| self.new thing }
+        else
+          raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+        end
+      end
+      
+      # This is a helper method to find
+      def self.search(options = {}, limit = 1000)
+        if self::API.is_a? Class
+          projects = self::API.find(:all)
+          search_by_attribute(projects, options, limit)
+        else
+          raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+        end
       end
 
       # Asks the provider's api for the tickets associated with the project,
       # returns an array of Ticket objects.
       def tickets(*options)
-        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+        options.insert 0, id
+        easy_finder(self.class.parent::Ticket, :all, options, 1)
       end
-
-      # Mainly here because it is more natural to do:
-      #     project.ticket.create(..)
-      #
-      # Than
-      #     project.tickets.create(..)
-      # 
-      # returns a ticket object or ticket class that responds to .new and .create. 
+      
+      # Very similar to tickets, and is practically an alias of it
+      # however this returns the ticket class if no parameter is given
+      # unlike tickets which returns an array of all tickets when given no parameters
       def ticket(*options)
-        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+        options.insert(0, id) if options.length > 0
+        easy_finder(self.class.parent::Ticket, :first, options, 1)
       end
       
-      # Save changes to this project
-      # Returns true (success) or false (failure)
-      def save
-        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
-      end
-      
-      # Delete this project
-      # Returns true (success) or false(failure)
-      def destroy
-        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
-      end
-      
-      # Update the project and save
-      def update!(*options)
-        update(*options)
-        save
+      # Define some provider specific initalizations
+      def initialize(*options)
+        # @system_data = {'some' => 'data}
+        super(*options)
       end
       
     end

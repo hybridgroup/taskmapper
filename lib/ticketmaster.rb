@@ -7,8 +7,11 @@ class TicketMaster
 end
 
 %w{
+  common
+  helper
   project
   ticket
+  comment
   authenticator
   provider
   exception
@@ -18,7 +21,8 @@ end
 # This is the TicketMaster class
 #
 class TicketMaster
-  attr_reader :provider
+  attr_reader :provider, :symbol
+  attr_accessor :default_project
   
   # This initializes the TicketMaster instance and prepares the provider
   # If called without any arguments, it conveniently tries searching for the information in
@@ -35,6 +39,8 @@ class TicketMaster
     end
     self.extend TicketMaster::Provider.const_get(system.to_s.capitalize)
     authorize authentication
+    @symbol = system.to_sym
+    @provider = TicketMaster::Provider.const_get(system.to_s.capitalize)
   end
   
   # Providers should over-write this method
