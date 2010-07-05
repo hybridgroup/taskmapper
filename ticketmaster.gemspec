@@ -59,6 +59,7 @@ Gem::Specification.new do |s|
      "spec/ticketmaster_spec.rb",
      "test/helper.rb",
      "test/test_ticketmaster.rb",
+     "ticketmaster-0.3.2.gem",
      "ticketmaster.gemspec"
   ]
   s.homepage = %q{http://ticketrb.com}
