@@ -131,6 +131,12 @@ module TicketMaster::Provider
         easy_finder(self.class.parent::Comment, :first, options, 2)
       end
       
+      # Create a comment
+      def comment!(*options)
+        options[0].merge!(:project_id => project_id, :ticket_id => id) if options.first.is_a?(Hash)
+        self.class.parent::Comment.create(*options)
+      end
+      
       # Close this ticket
       #
       # On success it should return true, otherwise false

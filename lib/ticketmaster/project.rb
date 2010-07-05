@@ -128,6 +128,12 @@ module TicketMaster::Provider
         easy_finder(self.class.parent::Ticket, :first, options, 1)
       end
       
+      # Create a ticket
+      def ticket!(*options)
+        options[0].merge!(:project_id => id) if options.first.is_a?(Hash)
+        self.class.parent::Ticket.create(*options)
+      end
+      
       # Define some provider specific initalizations
       def initialize(*options)
         # @system_data = {'some' => 'data}

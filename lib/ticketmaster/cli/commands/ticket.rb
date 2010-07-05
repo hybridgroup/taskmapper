@@ -79,7 +79,7 @@ end
 # The read subcommand
 def read(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  ticket = tm.ticket.find(options[:ticket].to_i, options[:project].to_i)
+  ticket = tm.ticket.find(options[:project].to_i, options[:ticket].to_i)
   read_ticket ticket
   exit
 end
@@ -87,7 +87,7 @@ end
 # The update subcommand
 def update(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  ticket = tm.ticket.find(options[:ticket].to_i, options[:project].to_i)
+  ticket = tm.ticket.find(options[:project].to_i, options[:ticket].to_i)
   if ticket.update!(options[:ticket_attributes])
     puts "Successfully updated Ticket #{ticket.title} (#{ticket.id})"
   else
@@ -100,7 +100,7 @@ end
 # The destroy subcommand.
 def destroy(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  ticket = tm.ticket.find(options[:ticket].to_i, options[:project].to_i)
+  ticket = tm.ticket.find(options[:project].to_i, options[:ticket].to_i)
   puts "Are you sure you want to delete Ticket #{ticket.title} (#{ticket.id})? (yes/no) [no]"
   ARGV.clear
   confirm = readline.chomp.downcase
