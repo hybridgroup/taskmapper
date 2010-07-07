@@ -4,27 +4,16 @@ module TicketMaster::Provider
     class Ticket < TicketMaster::Provider::Base::Ticket
       @system = :dummy
       
-      # Find a ticket
-      #
-      # The implementation should be able to accept these cases if feasible:
-      #
-      # * find(:all) - Returns an array of all tickets
-      # * find(##) - Returns a project based on that id or some other primary (unique) attribute
-      # * find(:first, :summary => 'Ticket title') - Returns a ticket based on the ticket's attributes
-      # * find(:summary => 'Test Ticket') - Returns all tickets based on the given attributes
-      def self.find(*options)
-        first = options.shift
-        if first.nil? or first == :all
-          [Ticket.new]
-        elsif first == :first
-          Ticket.new(options.shift)
-        elsif first.is_a?(Hash)
-          [Ticket.new(first)]
-        end
+      def self.find_by_id(project_id, ticket_id)
+        self.new({:project_id => project, :id => ticket_id})
+      end
+      
+      def self.find_by_attributes(*ticket_attributes)
+        [self.new(*ticket_attributes)]
       end
     
       # You don't need to define an initializer, this is only here to initialize dummy data
-      def initialize(*options)
+      def initialize(project_id, *options)
         data = {:id => rand(1000), :status => ['lol', 'rofl', 'lmao', 'lamo', 'haha', 'heh'][rand(6)],
           :priority => rand(10), :summary => 'Tickets ticket ticket ticket', :resolution => false,
           :created_at => Time.now, :updated_at => Time.now, :description => 'Ticket ticket ticket ticket laughing',

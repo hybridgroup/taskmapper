@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://ticketrb.com"
     gem.authors = ["Sirupsen", "deadprogrammer"]
     gem.add_dependency "hashie", ">= 0"
+    gem.add_dependency "activeresource", ">= 0"
     gem.add_development_dependency "shoulda", ">= 0"
   end
   Jeweler::GemcutterTasks.new

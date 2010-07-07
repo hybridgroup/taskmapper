@@ -2,22 +2,13 @@ module TicketMaster::Provider
   module Dummy
     # This is the Project class for the Dummy provider
     class Project < TicketMaster::Provider::Base::Project
-      # This serves to find projects
-      # As noted in the Project class's documentation, we should try to accept these:
-      #
-      # * find(:all) - Returns an array of all projects
-      # * find(##) - Returns a project based on that id or some other primary (unique) attribute
-      # * find(:first, :summary => 'Project name') - Returns a project based on the project's attributes
-      # * find(:summary => 'Test Project') - Returns all projects based on the given attribute(s)
-      def self.find(*options)
-        first = options.shift
-        if first.nil? or first == :all
-          [Project.new]
-        elsif first == :first
-          Project.new(options.shift)
-        elsif first.is_a?(Hash)
-          [Project.new(first)]
-        end
+      
+      def self.find_by_id(id)
+        self.new({:id => id})
+      end
+      
+      def self.find_by_attributes(*options)
+        [self.new(*options)]
       end
       
       # You should define @system and @system_data here.
@@ -31,18 +22,6 @@ module TicketMaster::Provider
         super(data.merge(options.first || {}))
       end
       
-      # Should return all of the project's tickets
-      def tickets(*options)
-        return Ticket.find(*options) if options.length > 0
-        [Ticket.new]
-      end
-      
-      # Point it to the Dummy's Ticket class
-      def ticket(*options)
-        return Ticket.find(:first, options.first) if options.length > 0
-        Ticket
-      end
-      
       # Nothing to save so we always return true
       # ...unless it's an odd numbered second on Friday the 13th. muhaha!
       def save
@@ -51,7 +30,7 @@ module TicketMaster::Provider
       end
       
       # Nothing to update, so we always return true
-      def update(*options)
+      def update!(*options)
         return true
       end
     end

@@ -16,7 +16,7 @@ def open_irb(options, argv)
   providers.delete 'default'
   require 'rubygems'
   require 'ticketmaster'
-  providers.reduce(requires) do |mem, p|
+  providers.inject(requires) do |mem, p|
     begin
       require "ticketmaster-#{p}"
       requires << "-r ticketmaster-#{p} "

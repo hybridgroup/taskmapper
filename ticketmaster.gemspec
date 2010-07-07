@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sirupsen", "deadprogrammer"]
-  s.date = %q{2010-07-05}
+  s.date = %q{2010-07-06}
   s.default_executable = %q{ticket}
   s.description = %q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
   s.email = %q{simon@hybridgroup.com}
@@ -57,9 +57,6 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/ticketmaster-cli_spec.rb",
      "spec/ticketmaster_spec.rb",
-     "test/helper.rb",
-     "test/test_ticketmaster.rb",
-     "ticketmaster-0.3.2.gem",
      "ticketmaster.gemspec"
   ]
   s.homepage = %q{http://ticketrb.com}
@@ -70,9 +67,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/spec_helper.rb",
      "spec/ticketmaster-cli_spec.rb",
-     "spec/ticketmaster_spec.rb",
-     "test/helper.rb",
-     "test/test_ticketmaster.rb"
+     "spec/ticketmaster_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -81,13 +76,16 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<hashie>, [">= 0"])
+      s.add_runtime_dependency(%q<activeresource>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
       s.add_dependency(%q<hashie>, [">= 0"])
+      s.add_dependency(%q<activeresource>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
     end
   else
     s.add_dependency(%q<hashie>, [">= 0"])
+    s.add_dependency(%q<activeresource>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
   end
 end

@@ -11,8 +11,9 @@ end
 
 # A utility method used to separate name:value pairs
 def attributes_hash(kvlist)
+  require 'enumerator' if RUBY_VERSION < "1.8.7"
   if kvlist.is_a?(String)
-    kvlist.split(',').reduce({}) do |mem, kv|
+    kvlist.split(',').inject({}) do |mem, kv|
       key, value = kv.split(':')
       mem[key] = value
       mem

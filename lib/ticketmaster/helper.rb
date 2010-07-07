@@ -22,7 +22,7 @@ module TicketMaster::Provider
     # Goes through all the things and returns results that match the options attributes hash
     def search_by_attribute(things, options = {}, limit = 1000)
       things.find_all do |thing|
-        options.reduce(true) do |memo, kv|
+        options.inject(true) do |memo, kv|
           break unless memo
           key, value = kv
           begin
@@ -40,11 +40,11 @@ module TicketMaster::Provider
     # 
     # ex: filter_string({:name => 'some value', :tags => ['abc', 'def']}) = "name:'some value' tag:abc tag:def"
     def filter_string(filter = {}, array_join = nil)
-        filter.reduce('') do |mem, kv|
+        filter.inject('') do |mem, kv|
           key, value = kv
           if value.is_a?(Array)
             if !array_join.nil?
-              mem += value.reduce('') { |m, v|
+              mem += value.inject('') { |m, v|
               v = "\"#{v}\"" if v.to_s.include?(' ')
               m+= "#{key}:#{v}"
               }

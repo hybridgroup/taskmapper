@@ -14,7 +14,7 @@ commands ={ 'help' => 'Get the help text for a particular command',
 
 helptext = lambda {
   helpmsg = "\nAvailable commands:\n"
-  commands.sort.reduce(helpmsg) { |mem, cmd| mem << "\t#{cmd.join("\t\t")}\n" }
+  commands.sort.inject(helpmsg) { |mem, cmd| mem << "\t#{cmd.join("\t\t")}\n" }
   helpmsg << "\nSee 'ticket help COMMAND' for more information on a specific command."
   }
   

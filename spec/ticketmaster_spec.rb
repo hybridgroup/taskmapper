@@ -5,7 +5,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 # Also, remember to mock or stub any API calls
 describe "Ticketmaster" do
   before(:each) do
-    @ticketmaster = TicketMaster.new(:dummy)
+    @ticketmaster = TicketMaster.new(:dummy, {})
     @project_class = TicketMaster::Provider::Dummy::Project
     @ticket_class = TicketMaster::Provider::Dummy::Ticket
   end

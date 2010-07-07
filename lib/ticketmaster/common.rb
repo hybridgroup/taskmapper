@@ -29,13 +29,12 @@ module TicketMaster::Provider
         @cache ||= {}
         first = options.shift
         case first
-          when ActiveResource::Base
+          when Hash
+            super(first.to_hash)
+          else
             @system_data[:client] = first
             self.prefix_options ||= @system_data[:client].prefix_options if @system_data[:client].prefix_options
             super(first.attributes)
-          
-          when Hash
-            super(first.to_hash)
         end
       end
       

@@ -1,6 +1,7 @@
 %w{
   rubygems
   hashie
+  active_resource
 }.each {|lib| require lib }
 
 class TicketMaster
