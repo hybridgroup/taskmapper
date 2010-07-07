@@ -5,7 +5,7 @@ module TicketMaster::Provider
       @system = :dummy
       
       def self.find_by_id(project_id, ticket_id)
-        self.new({:project_id => project_id, :id => ticket_id})
+        self.new(project_id, {:id => ticket_id})
       end
       
       def self.find_by_attributes(*ticket_attributes)
@@ -17,7 +17,7 @@ module TicketMaster::Provider
         data = {:id => rand(1000), :status => ['lol', 'rofl', 'lmao', 'lamo', 'haha', 'heh'][rand(6)],
           :priority => rand(10), :summary => 'Tickets ticket ticket ticket', :resolution => false,
           :created_at => Time.now, :updated_at => Time.now, :description => 'Ticket ticket ticket ticket laughing',
-          :assignee => 'lol-man'}
+          :assignee => 'lol-man', :project_id => project_id}
         @system = :dummy
         super(data.merge(options.first || {}))
       end
