@@ -47,21 +47,22 @@ module TicketMasterMod
       TicketMasterMod::Ticket::Creator.new(self)
     end
 
-    def search(query, objects)
-      matching_objects = []
+    def search(query, tix)
+      matching_tickets = []
 
-      objects.each do |object|
+      tix.each do |t|
         matches = 0
         query.each_pair do |method, expected_value|
-          matches += 1 if object.send(method) == expected_value
+          matches += 1 if t.send(method) == expected_value
         end
-
-        matching_objects << object if matches == query.length
+        
+        # only include if it matches ALL the query criteria
+        matching_tickets << t if matches == query.length
       end
 
       # Raw object versus array with one entry
-      return matching_objects.first if matching_objects.length == 1
-      matching_objects
+      return matching_tickets.first if matching_tickets.length == 1
+      matching_tickets
     end
 
     class Finder

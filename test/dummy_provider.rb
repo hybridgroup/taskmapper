@@ -4,6 +4,10 @@ module TicketMasterMod
       def self.find(query = nil, options = {})
         []
       end
+      
+      def self.tickets(thing)
+        []
+      end
     end
 
     module Ticket

@@ -1,5 +1,4 @@
-require 'helper'
-require 'mocha'
+require File.expand_path(File.dirname(__FILE__) + '/helper')
 
 class TestTicketmaster < Test::Unit::TestCase
   context "An instance of TicketMaster" do
