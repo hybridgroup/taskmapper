@@ -52,8 +52,8 @@ describe "Ticketmaster" do
     project.tickets(:id => 999).should be_an_instance_of Array
     
     project.ticket.should ==  TicketMaster::Provider::Dummy::Ticket
-    project.ticket(:id => 888).should be_an_instance_of @ticket_class
-    project.ticket(:id => 888).id.should == 888
+    project.ticket(888).should be_an_instance_of @ticket_class
+    project.ticket(888).id.should == 888
     project.ticket(:id => 888).should be_an_instance_of @ticket_class
     project.ticket(:id => 888).id.should == 888
   end
