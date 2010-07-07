@@ -8,6 +8,7 @@ describe "Ticketmaster" do
     @ticketmaster = TicketMaster.new(:dummy, {})
     @project_class = TicketMaster::Provider::Dummy::Project
     @ticket_class = TicketMaster::Provider::Dummy::Ticket
+    @comment_class = TicketMaster::Provider::Dummy::Comment
   end
   
   # Essentially just a sanity check on the include since .new always returns the object's instance
@@ -45,14 +46,28 @@ describe "Ticketmaster" do
     project = @ticketmaster.projects.first
     project.tickets.should be_an_instance_of Array
     project.tickets.first.should be_an_instance_of @ticket_class
+    project.tickets([999]).should be_an_instance_of Array
+    project.tickets([999]).first.should  be_an_instance_of @ticket_class
+    project.tickets([999]).first.id.should == 999
     project.tickets(:id => 999).should be_an_instance_of Array
-    project.tickets(:id => 999).first.should  be_an_instance_of @ticket_class
-    project.tickets(:id => 999).first.id.should == 999
     
     project.ticket.should ==  TicketMaster::Provider::Dummy::Ticket
     project.ticket(:id => 888).should be_an_instance_of @ticket_class
     project.ticket(:id => 888).id.should == 888
-    project.ticket.find(:first, :id => 888).should be_an_instance_of @ticket_class
-    project.ticket.find(:first, :id => 888).id.should == 888
+    project.ticket(:id => 888).should be_an_instance_of @ticket_class
+    project.ticket(:id => 888).id.should == 888
   end
+  
+  it "should be able to do ticket stuff" do
+    pending
+  end
+  
+  it "should be able to load comments" do
+    pending
+  end
+  
+  it "should be able to do comment stuff" do
+    pending
+  end
+  
 end

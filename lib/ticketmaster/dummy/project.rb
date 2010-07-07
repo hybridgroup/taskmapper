@@ -11,6 +11,10 @@ module TicketMaster::Provider
         [self.new(*options)]
       end
       
+      def self.create(*attributes)
+        self.new(*attributes)
+      end
+      
       # You should define @system and @system_data here.
       # The data stuff is just to initialize fake data. In a real provider, you would use the API
       # to grab the information and then initialize based on that info.
