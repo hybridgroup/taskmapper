@@ -5,7 +5,7 @@ module TicketMaster::Provider
       @system = :dummy
       
       def self.find_by_id(project_id, ticket_id)
-        self.new({:project_id => project, :id => ticket_id})
+        self.new({:project_id => project_id, :id => ticket_id})
       end
       
       def self.find_by_attributes(*ticket_attributes)
