@@ -5,14 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ticketmaster"
-    gem.summary = %Q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
-    gem.description = %Q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
-    gem.email = "simon@hybridgroup.com"
+    gem.summary = %Q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
+    gem.description = %Q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
+    gem.email = "info@hybridgroup.com"
     gem.homepage = "http://ticketrb.com"
-    gem.authors = ["Sirupsen", "deadprogrammer"]
+    gem.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
     gem.add_dependency "hashie", ">= 0"
     gem.add_dependency "activeresource", ">= 0"
-    gem.add_development_dependency "shoulda", ">= 0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
