@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 # This can also act as an example test or test skeleton for your provider.
 # Just replace the Dummy in @project_class and @ticket_class
 # Also, remember to mock or stub any API calls
-describe "Ticketmaster Projects" do
+describe "Projects" do
   before(:each) do
     @ticketmaster = TicketMaster.new(:dummy, {})
     @project_class = TicketMaster::Provider::Dummy::Project
