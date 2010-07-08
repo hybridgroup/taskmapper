@@ -44,6 +44,11 @@ module TicketMaster::Provider
       easy_finder(@provider::Project, :all, options)
     end
     
+    # Create a project same as project.create()
+    def project!(*options)
+      project.create(*options)
+    end
+    
     # Providers should try to define this method
     #
     # It returns the ticket class for this provider, so that there can be calls such as

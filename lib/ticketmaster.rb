@@ -16,6 +16,7 @@ end
   authenticator
   provider
   exception
+  dummy/dummy.rb
 }.each {|lib| require File.dirname(__FILE__) + '/ticketmaster/' + lib }
 
 
