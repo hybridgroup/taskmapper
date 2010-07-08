@@ -30,6 +30,9 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.libs << 'lib' << 'spec'
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
+  spec.rcov_opts = lambda do
+    IO.readlines("spec/rcov.opts").map {|l| l.chomp.split " "}.flatten
+  end
 end
 
 task :spec => :check_dependencies
