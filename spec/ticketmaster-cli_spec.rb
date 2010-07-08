@@ -8,7 +8,7 @@ Spec::Runner.configure do |config| end
 # I'm not quite sure what the most effective way to test this is...
 describe "Ticketmaster CLI" do
   before(:all) do
-    @ticket = File.dirname(__FILE__) + '/../bin/ticket'
+    @ticket = File.dirname(__FILE__) + '/../bin/tm'
     @cli_dir = File.dirname(__FILE__) + '/../lib/ticketmaster/cli'
   end
   
