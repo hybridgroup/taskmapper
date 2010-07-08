@@ -64,4 +64,36 @@ describe "Ticketmaster Projects" do
       @ticketmaster.project.find(:first, :description => "Shocking Dirb").description.should == "Shocking Dirb"
     end
   end
+  
+  describe "declaring a new project" do
+    before do
+      @info = {:id => 777, :name => "Tiket Name  c", :description => "that c thinks the k is trying to steal it's identity"}
+    end
+    
+    it "should return the correct class" do
+      @ticketmaster.project.new(@info).should be_an_instance_of @project_class
+    end
+    
+    it "should have the correct name" do
+      @ticketmaster.project.new(@info).name.should == "Tiket Name  c"
+    end
+    
+    it "should be able to be saved" do
+      @ticketmaster.project.new(@info).save.should be_true
+    end
+  end
+  
+  describe "creating a new project" do
+    before do
+      @info = {:id => 777, :name => "Tiket Name  c", :description => "that c thinks the k is trying to steal it's identity"}
+    end
+    
+    it "should return the correct class" do
+      @ticketmaster.project.create(@info).should be_an_instance_of @project_class
+    end
+    
+    it "should have the correct name" do
+      @ticketmaster.project.create(@info).name.should == "Tiket Name  c"
+    end
+  end
 end

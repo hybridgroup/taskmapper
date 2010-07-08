@@ -17,15 +17,6 @@ describe "Ticketmaster" do
     @ticketmaster.should be_a_kind_of TicketMaster::Provider::Dummy
   end
     
-  it "should be able to do project stuff" do
-    info = {:id => 777, :name => "Tiket Name  c", :description => "that c thinks the k is trying to steal it's identity"}
-    @ticketmaster.project.create(info).should be_an_instance_of @project_class
-    @ticketmaster.project.new(info).should be_an_instance_of @project_class
-    @ticketmaster.project.create(info).id.should == 777
-    @ticketmaster.project.new(info).id.should == 777
-    
-    @ticketmaster.projects.first.save.should == true
-  end
   
   it "should be able to load tickets" do
     project = @ticketmaster.projects.first
