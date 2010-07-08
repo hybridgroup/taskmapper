@@ -2,13 +2,13 @@ This command is used to work with tickets.
 
 It can be used to do any of the CRUD actions with projects that are provided by the provider.
 
-It will attempt to load data through the config files if they are available. See 'ticket help config' for more information.
+It will attempt to load data through the config files if they are available. See 'tm help config' for more information.
 
 If any of the keys or values contain a space, you will have to enclose that key or value in quotes. For example, if you set name to ProjectName it does not need to be quoted, but if you set name to Project Name it will have to be quoted to "Project Name" or 'Project Name'
 
 Examples:
-  ticket -p lighthouse -A account:ticketmaster,token:abc ticket --create name "new ticket" description "this is a new ticket"
-  ticket --project 946 ticket --read --ticket 2
-  ticket -p dummy -A "user:common coder,pass: w3rd out" ticket --destroy --ticket 12
-  ticket -p dummy -P 712 ticket --destroy --ticket 4
-  ticket -p dummy project --ticket 6 --update attribute value name "free dummies"
+  tm -p lighthouse -A account:ticketmaster,token:abc ticket --create name "new ticket" description "this is a new ticket"
+  tm --project 946 ticket --read --ticket 2
+  tm -p dummy -A "user:common coder,pass: w3rd out" ticket --destroy --ticket 12
+  tm -p dummy -P 712 ticket --destroy --ticket 4
+  tm -p dummy project --ticket 6 --update attribute value name "free dummies"

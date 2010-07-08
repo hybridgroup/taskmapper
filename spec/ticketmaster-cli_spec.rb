@@ -8,14 +8,14 @@ Spec::Runner.configure do |config| end
 # I'm not quite sure what the most effective way to test this is...
 describe "Ticketmaster CLI" do
   before(:all) do
-    @ticket = File.dirname(__FILE__) + '/../bin/ticket'
+    @ticket = File.dirname(__FILE__) + '/../bin/tm'
     @cli_dir = File.dirname(__FILE__) + '/../lib/ticketmaster/cli'
   end
   
   it "should output help if no command given" do
     help = `#{@ticket}`
     $?.should == 0
-    help.should include('Usage: ticket [options] COMMAND [command_options]')
+    help.should include('Usage: tm [options] COMMAND [command_options]')
   end
   
   it "should be able to show help pages" do
