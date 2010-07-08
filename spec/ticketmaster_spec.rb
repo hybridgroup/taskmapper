@@ -16,58 +16,9 @@ describe "Ticketmaster" do
     @ticketmaster.should be_an_instance_of TicketMaster
     @ticketmaster.should be_a_kind_of TicketMaster::Provider::Dummy
   end
-  
-  it "should be able to load projects" do
-    @ticketmaster.projects.should be_an_instance_of Array
-    @ticketmaster.projects.first.should be_an_instance_of @project_class
-    @ticketmaster.projects.first.description.should == "Mock!-ing Bird"
-    @ticketmaster.projects(:id => 555).should be_an_instance_of Array
-    @ticketmaster.projects(:id => 555).first.should be_an_instance_of @project_class
-    @ticketmaster.projects(:id => 555).first.id.should == 555
     
-    @ticketmaster.project.should == @project_class
-    @ticketmaster.project(:name => "Whack whack what?").should be_an_instance_of @project_class
-    @ticketmaster.project(:name => "Whack whack what?").name.should == "Whack whack what?"
-    @ticketmaster.project.find(:first, :description => "Shocking Dirb").should be_an_instance_of @project_class
-    @ticketmaster.project.find(:first, :description => "Shocking Dirb").description.should == "Shocking Dirb"
-  end
+  it "should be able to load comments"
   
-  it "should be able to do project stuff" do
-    info = {:id => 777, :name => "Tiket Name  c", :description => "that c thinks the k is trying to steal it's identity"}
-    @ticketmaster.project.create(info).should be_an_instance_of @project_class
-    @ticketmaster.project.new(info).should be_an_instance_of @project_class
-    @ticketmaster.project.create(info).id.should == 777
-    @ticketmaster.project.new(info).id.should == 777
-    
-    @ticketmaster.projects.first.save.should == true
-  end
-  
-  it "should be able to load tickets" do
-    project = @ticketmaster.projects.first
-    project.tickets.should be_an_instance_of Array
-    project.tickets.first.should be_an_instance_of @ticket_class
-    project.tickets([999]).should be_an_instance_of Array
-    project.tickets([999]).first.should  be_an_instance_of @ticket_class
-    project.tickets([999]).first.id.should == 999
-    project.tickets(:id => 999).should be_an_instance_of Array
-    
-    project.ticket.should ==  TicketMaster::Provider::Dummy::Ticket
-    project.ticket(888).should be_an_instance_of @ticket_class
-    project.ticket(888).id.should == 888
-    project.ticket(:id => 888).should be_an_instance_of @ticket_class
-    project.ticket(:id => 888).id.should == 888
-  end
-  
-  it "should be able to do ticket stuff" do
-    pending
-  end
-  
-  it "should be able to load comments" do
-    pending
-  end
-  
-  it "should be able to do comment stuff" do
-    pending
-  end
-  
+  it "should be able to do comment stuff"
+
 end
