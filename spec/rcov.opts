@@ -1,1 +1,1 @@
---exclude "spec/*,gems/*" 
+--exclude "lib/ticketmaster/dummy/*,spec/*,gems/*" 
