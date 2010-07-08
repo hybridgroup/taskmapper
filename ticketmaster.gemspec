@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sirupsen", "deadprogrammer"]
   s.date = %q{2010-07-07}
-  s.default_executable = %q{ticket}
+  s.default_executable = %q{tm}
   s.description = %q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
   s.email = %q{simon@hybridgroup.com}
-  s.executables = ["ticket"]
+  s.executables = ["tm"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.md",
@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "TODO",
      "VERSION",
-     "bin/ticket",
+     "bin/tm",
      "lib/ticketmaster.rb",
      "lib/ticketmaster/authenticator.rb",
      "lib/ticketmaster/cli/commands/config.rb",
