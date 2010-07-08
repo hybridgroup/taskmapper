@@ -11,19 +11,19 @@ describe "Projects" do
 
   describe "with a connection to a provider" do
     it "should return an array" do
-      @ticketmaster.projects.should be_an_instance_of Array
+      @ticketmaster.projects.should be_an_instance_of(Array)
     end
 
     it "should return a project as first element" do
-      @ticketmaster.projects.first.should be_an_instance_of @project_class
+      @ticketmaster.projects.first.should be_an_instance_of(@project_class)
     end
 
     it "should return a project as last element" do
-      @ticketmaster.projects.last.should be_an_instance_of @project_class
+      @ticketmaster.projects.last.should be_an_instance_of(@project_class)
     end
     
     it "should return a Project by name from collection" do
-      @ticketmaster.project(:name => "Whack whack what?").should be_an_instance_of @project_class
+      @ticketmaster.project(:name => "Whack whack what?").should be_an_instance_of(@project_class)
     end
     
     it "should have a project description for first project" do
@@ -40,7 +40,7 @@ describe "Projects" do
       end
 
       it "should return an array" do
-        @project.should be_an_instance_of @project_class
+        @project.should be_an_instance_of(@project_class)
       end
       
       it "should return Project with the correct ID" do
@@ -54,11 +54,11 @@ describe "Projects" do
       end
 
       it "should return an array" do
-        @projects.should be_an_instance_of Array
+        @projects.should be_an_instance_of(Array)
       end
       
       it "should return a Project as first element" do
-        @projects.first.should be_an_instance_of @project_class
+        @projects.first.should be_an_instance_of(@project_class)
       end
       
       it "should return Project with the correct ID" do
@@ -72,11 +72,11 @@ describe "Projects" do
       end
 
       it "should return an array" do
-        @projects.should be_an_instance_of Array
+        @projects.should be_an_instance_of(Array)
       end
       
       it "should return a Project as first element" do
-        @projects.first.should be_an_instance_of @project_class
+        @projects.first.should be_an_instance_of(@project_class)
       end
       
       it "should return Project with the correct ID" do
@@ -102,7 +102,7 @@ describe "Projects" do
     
     describe "when searching by hash" do
       it "should return first Project" do
-        @ticketmaster.project.find(:first, :description => "Shocking Dirb").should be_an_instance_of @project_class
+        @ticketmaster.project.find(:first, :description => "Shocking Dirb").should be_an_instance_of(@project_class)
       end
 
       it "should return first Project with correct description" do
@@ -110,7 +110,7 @@ describe "Projects" do
       end
       
       it "should return last Project" do
-        @ticketmaster.project.find(:last, :description => "Shocking Dirb").should be_an_instance_of @project_class
+        @ticketmaster.project.find(:last, :description => "Shocking Dirb").should be_an_instance_of(@project_class)
       end
 
       it "should return last Project with correct description" do
@@ -121,7 +121,7 @@ describe "Projects" do
   
   describe "declaring a new project" do
     it "should return the correct class" do
-      @ticketmaster.project.new(default_info).should be_an_instance_of @project_class
+      @ticketmaster.project.new(default_info).should be_an_instance_of(@project_class)
     end
     
     it "should have the correct name" do
@@ -135,7 +135,7 @@ describe "Projects" do
   
   describe "creating a new project" do
     it "should return the correct class" do
-      @ticketmaster.project.create(default_info).should be_an_instance_of @project_class
+      @ticketmaster.project.create(default_info).should be_an_instance_of(@project_class)
     end
     
     it "should have the correct name" do
