@@ -1,7 +1,7 @@
 # Parses the configuration information and puts it into options
 def parse_config!(options)
   config = YAML.load_file File.expand_path(options[:config])
-  provider = (options[:provider] ||= config['default'] || config.first.first)
+  provider = (options[:provider] ||= config['default'] || config.keys.first)
   if provider and provider.length > 0
     options[:project] ||= config[provider]['project']
     options[:authentication] ||= config[provider]['authentication']
