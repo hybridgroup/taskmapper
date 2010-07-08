@@ -5,7 +5,7 @@ def ticket(options)
   ARGV << '--help' if ARGV.length == 0
   begin
     OptionParser.new do |opts|
-      opts.banner = 'Usage: ticket -p PROVIDER -P PROJECT [options] ticket [ticket_options]'
+      opts.banner = 'Usage: tm -p PROVIDER -P PROJECT [options] ticket [ticket_options]'
       opts.separator ''
       opts.separator 'Options:'
       
@@ -53,7 +53,7 @@ def ticket(options)
       end
     end.order!
   rescue OptionParser::MissingArgument => exception
-    puts "ticket #{options[:original_argv].join(' ')}\n\n"
+    puts "tm #{options[:original_argv].join(' ')}\n\n"
     puts "Error: An option was called that requires an argument, but was not given one"
     puts exception.message
   end
