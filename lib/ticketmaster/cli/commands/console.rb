@@ -20,10 +20,14 @@ def open_irb(options, argv)
     begin
       require "ticketmaster-#{p}"
       requires << "-r ticketmaster-#{p} "
-    rescue LoadError => exception
-      puts exception
-      require "#{p}"
-      requires << "-r #{p} "
+    rescue Exception => exception
+      #puts exception
+      begin
+        require "#{p}"
+        requires << "-r #{p} "
+      rescue Exception => exception
+        warn "Could not require the '#{p}' provider. Is it installed?"
+      end
     end
   end
   cmd << "#{irb_name} #{requires} --simple-prompt #{ARGV.join(' ')}"
