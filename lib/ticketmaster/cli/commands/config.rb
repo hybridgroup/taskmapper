@@ -40,7 +40,12 @@ end
 def add(options)
   require_provider unless options[:provider]
   provider = options[:provider]
-  config = YAML.load_file(config_file = File.expand_path(options[:config]))
+  config_file = File.expand_path(options[:config])
+  config = if File.exists?(config_file)
+    YAML.load_file(config_file)
+    else
+    {}
+    end
   if config[provider]
     puts "#{provider} has already been specfied in #{options[:config]}. Refusing to add. Use --edit instead."
     exit 1
@@ -59,7 +64,12 @@ end
 def edit(options)
   require_provider unless options[:provider]
   provider = options[:provider]
-  config = YAML.load_file(config_file = File.expand_path(options[:config]))
+  config_file = File.expand_path(options[:config])
+  config = if File.exist?(config_file)
+    YAML.load_file(config_file)
+  else
+    {}
+  end
   config[provider] ||= {}
   config[provider]['authentication'] = options[:authentication] || {}
   config[provider]['project'] = options[:project] if options[:project]
