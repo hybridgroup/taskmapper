@@ -73,41 +73,55 @@
     Here are a few simple examples to give you an idea of some of what you can do with Ticketmaster. The first one just gets a list of available projects for your account on Lighthouse.
   </p>
   <pre>
+    require 'rubygems'
+    require 'ticketmaster'
+    require 'ticketmaster-lighthouse'
+
     # display list of projects
     tm = TicketMaster.new(:lighthouse)
-    tm.projects.each do |project|
+    tm.projects.each {|project|
       puts "#{project.id} - #{project.name}"
-    end
+    }
   </pre>
 
   <p>
     The next example gets a list of tickets for the first project for your account on Pivotal Tracker.
   </p>
   <pre>
-    # display list of tickets for first project
+    require 'rubygems'
+    require 'ticketmaster'
+    require 'ticketmaster-pivotal'
+
+    # display list of tickets for last project
     tm = TicketMaster.new(:pivotal)
-    project = tm.projects.first
-    project.tickets.each do |ticket|
+    project = tm.projects.last
+    project.tickets.each {|ticket|
       puts "#{ticket.id} - #{ticket.title}"
-    end
+    }
   </pre>
 
   <p>
     The last example copies all tickets and associated comments for a project from Lighthouse to Pivotal Tracker.
   </p>
   <pre>
-    # copy all tickets and comments from lighthouse to pivotal tracker
-    lighthouse = TicketMaster.new(:lighthouse)
-    lighthouse_project = lighthouse.project(54448)
-    pivotal = TicketMaster.new(:pivotal)
-    pivotal_project = pivotal.project(93790)
+    require 'rubygems'
+    require 'ticketmaster'
+    require 'ticketmaster-pivotal'
+    require 'ticketmaster-lighthouse'
 
-    lighthouse_project.tickets.each do |lighthouse_ticket|
-      pivotal_ticket = pivotal_project.ticket!(:title => lighthouse_ticket.title, 
-                                               :description => lighthouse_ticket.description)
-      lighthouse_ticket.comments.each do |comment|
-        pivotal_ticket.comment!(:body => comment.body)
-      end
+    # copy all tickets and comments from pivotal tracker to new lighthouse project
+    pivotal = TicketMaster.new(:pivotal)
+    pivotal_project = pivotal.project(97107)
+    lighthouse = TicketMaster.new(:lighthouse)
+    lighthouse_project = lighthouse.project!(:name => "Copy Test on #{Time.now}", :description => "A copy test")
+
+    pivotal_project.tickets.each do |pivotal_ticket|
+      puts pivotal_ticket.title, pivotal_ticket.description
+
+      lighthouse_ticket = lighthouse_project.ticket!({:title => pivotal_ticket.title, :description => pivotal_ticket.description})
+      pivotal_ticket.comments.each do |comment|
+        lighthouse_ticket.comment!(:text => comment.body)
+      end
     end
   </pre>
   <h2>
