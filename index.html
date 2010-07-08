@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>hybridgroup/ticketmaster @ GitHub</title>
+	<title>Ticketmaster - A Universal API for Ticket Tracking and Project Management Systems</title>
 	
 	<style type="text/css">
     a { border:none;color: #222;outline:none; }
@@ -49,29 +49,101 @@
   </h1>
   <a href="http://www.hybridgroup.com" title="The Hybrid Group Homepage"><img src="logo.png" alt="The Hybrid Group"/></a>
   <div class="description">
-    Ticketmaster provides a universal API to trouble ticket and project management systems.
+    Ticketmaster provides a universal API to ticket tracking and project management systems.
   </div>
   <h2>
-    Dependencies
+    How To Install
   </h2>
   <p>
-    Very few.
-  </p>
-  <h2>
-    Install
-  </h2>
-  <p>
-    Fire up terminal
+    Fire up terminal, then
   </p>
   <pre>
     gem install ticketmaster
   </pre> 
   <p>
-    then just install whatever providers you want to use, for example: 
+    then install whatever providers you want to use, for example: 
   </p>
   <pre>
     gem install ticketmaster-pivotal
   </pre>
+  <h2>
+    Examples
+  </h2>
+  <p>
+    Here are a few simple examples to give you an idea of some of what you can do with Ticketmaster. The first one just gets a list of available projects for your account on Lighthouse.
+  </p>
+  <pre>
+    # display list of projects
+    tm = TicketMaster.new(:lighthouse)
+    tm.projects.each {|project|
+      puts "#{project.id} - #{project.name}"
+    }
+  </pre>
+
+  <p>
+    The next example gets a list of tickets for the first project for your account on Pivotal Tracker.
+  </p>
+  <pre>
+    # display list of tickets for first project
+    tm = TicketMaster.new(:pivotal)
+    project = tm.projects.first
+    project.tickets.each {|ticket|
+      puts "#{ticket.id} - #{ticket.title}"
+    }
+  </pre>
+
+  <p>
+    The last example copies all tickets and associated comments for a project from Lighthouse to Pivotal Tracker.
+  </p>
+  <pre>
+    # copy all tickets and comments from lighthouse to pivotal tracker
+    lighthouse = TicketMaster.new(:lighthouse)
+    lighthouse_project = lighthouse.project(54448)
+    pivotal = TicketMaster.new(:pivotal)
+    pivotal_project = pivotal.project(93790)
+
+    lighthouse_project.tickets.each do |lighthouse_ticket|
+      pivotal_ticket = pivotal_project.ticket!(:title => lighthouse_ticket.title, 
+                                               :description => lighthouse_ticket.description)
+      lighthouse_ticket.comments.each do |comment|
+        pivotal_ticket.comment!(:body => comment.body)
+      end
+    end
+  </pre>
+  <h2>
+    Command Line Interface
+  </h2>
+  <p>
+    Ticketmaster includes a command line interface, to make it very easy to perform tasks like creating or closing tickets without disturbing your workflow. The tm command allows you to access all of the functionality of Ticketmaster. A configuration file, located at ~/.ticketmaster.yml by default, tells Ticketmaster about the various backend accounts you have setup. Here is an example of getting a list of all projects for the default provider setup in ticketmaster.yml:
+  </p>
+  <pre>
+    tm project --list
+  </pre>
+  <p>
+    This example gets the list of all tickets for the default provider and default project as setup in ticketmaster.yml:
+  </p>
+  <pre>
+    tm ticket --list
+  </pre>
+  <h2>
+    Supported Providers
+  </h2>
+  <p>
+    Ticketmaster has a plugable architecture, that makes it pretty easy to write a new provider to support your preferred backend system. Here are the providers that we currently have support for:<br>
+    <br>
+    * Pivotal Tracker<br>
+    * Lighthouse<br>
+    * Unfuddle<br>
+    <br>
+    We are working on Github ticketing system support, and lots more!
+  </p>
+  <h2>
+    Get Involved
+  </h2>
+  <p>
+    Ticketmaster is for the community, so help us help you! Get involved, tell us how to make it better, report your issues, and better still, create a back-end provider for your favorite ticket tracking or project management system!
+  </p>
+  
   <h2>
     License
   </h2>
