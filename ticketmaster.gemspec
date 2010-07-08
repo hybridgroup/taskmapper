@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ticketmaster}
-  s.version = "0.3.6"
+  s.version = "0.3.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Sirupsen", "deadprogrammer"]
-  s.date = %q{2010-07-07}
+  s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
+  s.date = %q{2010-07-08}
   s.default_executable = %q{tm}
-  s.description = %q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
-  s.email = %q{simon@hybridgroup.com}
+  s.description = %q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
+  s.email = %q{info@hybridgroup.com}
   s.executables = ["tm"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -29,6 +29,9 @@ Gem::Specification.new do |s|
      "TODO",
      "VERSION",
      "bin/tm",
+     "examples/tm_example.rb",
+     "examples/tm_example_2.rb",
+     "examples/tm_example_3.rb",
      "lib/ticketmaster.rb",
      "lib/ticketmaster/authenticator.rb",
      "lib/ticketmaster/cli/commands/config.rb",
@@ -67,13 +70,16 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
+  s.summary = %q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
   s.test_files = [
     "spec/project_spec.rb",
      "spec/spec_helper.rb",
      "spec/ticket_spec.rb",
      "spec/ticketmaster-cli_spec.rb",
-     "spec/ticketmaster_spec.rb"
+     "spec/ticketmaster_spec.rb",
+     "examples/tm_example.rb",
+     "examples/tm_example_2.rb",
+     "examples/tm_example_3.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -83,16 +89,13 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<hashie>, [">= 0"])
       s.add_runtime_dependency(%q<activeresource>, [">= 0"])
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
       s.add_dependency(%q<hashie>, [">= 0"])
       s.add_dependency(%q<activeresource>, [">= 0"])
-      s.add_dependency(%q<shoulda>, [">= 0"])
     end
   else
     s.add_dependency(%q<hashie>, [">= 0"])
     s.add_dependency(%q<activeresource>, [">= 0"])
-    s.add_dependency(%q<shoulda>, [">= 0"])
   end
 end
 
