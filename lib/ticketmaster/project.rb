@@ -86,7 +86,7 @@ module TicketMaster::Provider
       # Must be defined by the provider
       def self.find_by_id(id)
         if self::API.is_a? Class
-          self.new self::API.find id
+          self.new self::API.find(id)
         else
           raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
         end
