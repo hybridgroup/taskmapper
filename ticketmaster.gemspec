@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ticketmaster}
-  s.version = "0.3.2"
+  s.version = "0.3.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sirupsen", "deadprogrammer"]
-  s.date = %q{2010-07-06}
+  s.date = %q{2010-07-07}
   s.default_executable = %q{ticket}
   s.description = %q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
   s.email = %q{simon@hybridgroup.com}
@@ -45,6 +45,7 @@ Gem::Specification.new do |s|
      "lib/ticketmaster/cli/init.rb",
      "lib/ticketmaster/comment.rb",
      "lib/ticketmaster/common.rb",
+     "lib/ticketmaster/dummy/comment.rb",
      "lib/ticketmaster/dummy/dummy.rb",
      "lib/ticketmaster/dummy/project.rb",
      "lib/ticketmaster/dummy/ticket.rb",
@@ -53,8 +54,11 @@ Gem::Specification.new do |s|
      "lib/ticketmaster/project.rb",
      "lib/ticketmaster/provider.rb",
      "lib/ticketmaster/ticket.rb",
+     "spec/project_spec.rb",
+     "spec/rcov.opts",
      "spec/spec.opts",
      "spec/spec_helper.rb",
+     "spec/ticket_spec.rb",
      "spec/ticketmaster-cli_spec.rb",
      "spec/ticketmaster_spec.rb",
      "ticketmaster.gemspec"
@@ -65,7 +69,9 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Ticketmaster provides a universal API to trouble ticket and project management systems.}
   s.test_files = [
-    "spec/spec_helper.rb",
+    "spec/project_spec.rb",
+     "spec/spec_helper.rb",
+     "spec/ticket_spec.rb",
      "spec/ticketmaster-cli_spec.rb",
      "spec/ticketmaster_spec.rb"
   ]
