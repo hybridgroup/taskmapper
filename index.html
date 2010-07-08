@@ -75,9 +75,9 @@
   <pre>
     # display list of projects
     tm = TicketMaster.new(:lighthouse)
-    tm.projects.each {|project|
+    tm.projects.each do |project|
       puts "#{project.id} - #{project.name}"
-    }
+    end
   </pre>
 
   <p>
@@ -87,9 +87,9 @@
     # display list of tickets for first project
     tm = TicketMaster.new(:pivotal)
     project = tm.projects.first
-    project.tickets.each {|ticket|
+    project.tickets.each do |ticket|
       puts "#{ticket.id} - #{ticket.title}"
-    }
+    end
   </pre>
 
   <p>
@@ -129,12 +129,12 @@
     Supported Providers
   </h2>
   <p>
-    Ticketmaster has a plugable architecture, that makes it pretty easy to write a new provider to support your preferred backend system. Here are the providers that we currently have support for:<br>
-    <br>
-    * Pivotal Tracker<br>
-    * Lighthouse<br>
-    * Unfuddle<br>
-    <br>
+    Ticketmaster has a plugable architecture, that makes it pretty easy to write a new provider to support your preferred backend system. Here are the providers that we currently have support for:<br/>
+    <br/>
+    * Pivotal Tracker<br/>
+    * Lighthouse<br/>
+    * Unfuddle<br/>
+    <br/>
     We are working on Github ticketing system support, and lots more!
   </p>
   <h2>
