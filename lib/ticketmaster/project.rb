@@ -97,7 +97,7 @@ module TicketMaster::Provider
       # Must be defined by the provider
       def self.find_by_attributes(attributes = {})
         if self::API.is_a? Class
-          self.search(attributes).collect { |thing| self.new thing }
+          self.search(attributes)
         else
           raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
         end
@@ -106,7 +106,7 @@ module TicketMaster::Provider
       # This is a helper method to find
       def self.search(options = {}, limit = 1000)
         if self::API.is_a? Class
-          projects = self::API.find(:all)
+          projects = self::API.find(:all).collect { |project| self.new project }
           search_by_attribute(projects, options, limit)
         else
           raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
