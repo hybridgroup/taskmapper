@@ -126,8 +126,8 @@ def search(options)
   puts "Found #{tickets.length} tickets"
   tickets.each_with_index do |ticket, index|
     puts "#{index+1}) Ticket #{ticket.title} (#{ticket.id})"
-    read_ticket ticket
-    puts
+    #read_ticket ticket
+    #puts
   end
   exit
 end

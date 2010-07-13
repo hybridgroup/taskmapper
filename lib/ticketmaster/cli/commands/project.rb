@@ -122,8 +122,8 @@ def search(options)
   puts "Found #{projects.length} projects"
   projects.each_with_index do |project, index|
     puts "#{index+1}) Project #{project.name} (#{project.id})"
-    read_project project
-    puts
+    #read_project project
+    #puts
   end
   exit
 end
