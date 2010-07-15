@@ -44,6 +44,10 @@ def project(options)
         options[:subcommand] = 'search'
       end
       
+      opts.on('-P', '--project [PROJECT_ID]', 'Set the project id') do |id|
+        options[:project] = id
+      end
+      
       opts.separator ''
       opts.separator 'Other options:'
       

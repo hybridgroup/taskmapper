@@ -17,7 +17,8 @@ def ticket(options)
         options[:subcommand] = 'create'
       end
       
-      opts.on('-R', '--read', 'Read out ticket and its attributes. Requires --ticket to be set') do
+      opts.on('-R', '--read [TICKET]', 'Read out ticket and its attributes. Requires --ticket to be set') do |id|
+        options[:ticket] = id if id
         options[:subcommand] = 'read'
       end
       
@@ -42,6 +43,10 @@ def ticket(options)
       opts.on('-L', '--list-all', 'List all tickets. Same as --search without any parameters') do
         options[:ticket_attributes] = {}
         options[:subcommand] = 'search'
+      end
+      
+      opts.on('-P', '--project [PROJECT_ID]', 'Set the project id') do |id|
+        options[:project] = id
       end
       
       opts.separator ''
