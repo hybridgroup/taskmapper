@@ -122,6 +122,8 @@ Then simply require it, and you are good to use Pivotal Tracker with ticketmaste
     require 'ticketmaster-pivotal'
     unfuddle = TicketMaster.new(:pivotal, {:username => "..", :password => ".."})
 
+The source code is located at [ticketmaster-pivotal](http://github.com/hybridgroup/ticketmaster-pivotal)
+
 ### Lighthouse
 
 To use Lighthouse with ticketmaster, install it:
@@ -133,6 +135,8 @@ Then simply require it, and you are all set to use Lighthouse with ticketmaster!
     require 'ticketmaster-lighthouse'
     lighthouse = TicketMaster.new(:lighthouse, {:username => "..", :password => ".."})
 
+The source code is located at [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse)
+
 ### Unfuddle (Alpha, needs compatibility update)
 
 To use Unfuddle with ticketmaster, install it:
@@ -143,6 +147,8 @@ Then simply require it, and you are good to use Unfuddle with ticketmaster!
     require 'ticketmaster'
     require 'ticketmaster-unfuddle'
     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
+
+The source code is located at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)
 
 ## Creating a provider
 Creating a provider consists of three steps:
