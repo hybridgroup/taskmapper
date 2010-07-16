@@ -18,52 +18,52 @@ ticketmaster by itself won't do too much. You may want to install a provider, to
 
     gem search ticketmaster
 
-You could then install for instance ticketmaster-unfuddle:
+You could then install for instance ticketmaster-pivotal:
 
-    gem install ticketmaster-unfuddle
+    gem install ticketmaster-pivotal
 
 ## Usage
 
 **Note:** The API may change, and the following may not be the final. Please keep yourself updated before you upgrade.
 
-First, we instance a new class with the right set of options. In this example, we are authenticating with Unfuddle. As Unfuddle is a closed system, it is *required* that you authenticate to a subdomain:
+First, we instance a new class with the right set of options. In this example, we are authenticating with Pivotal Tracker.
 
-    unfuddle = TicketMaster.new(:unfuddle, {:username => "john", :password => "seekrit", :subdomain => "ticketmaster"})
+    pivotal = TicketMaster.new(:pivotal, {:username => "john", :password => "seekrit"})
 
 ### Grabbing a project
 
 Now that we've got out ticketmaster instance, let's go ahead and grab "testproject":
 
-    project = unfuddle.project["testproject"]
+    project = pivotal.project["testproject"]
         #=> TicketMaster::Project<#name="testproject"..>
 
 *Project#[]* is an alias to *Project#find*:
 
-    project = unfuddle.project.find "testproject"
+    project = pivotal.project.find "testproject"
         #=> TicketMaster::Project<#name="testproject"..>
 
 Which translates into:
 
-    project = unfuddle.project.find :name => "testproject"
+    project = pivotal.project.find :name => "testproject"
         #=> TicketMaster::Project<#name="testproject"..>
 
 That means you can actually look up a project by something else than the title, like the owner:
 
-    project = unfuddle.project.find :owner => "Sirupsen"
+    project = pivotal.project.find :owner => "Sirupsen"
         #=> TicketMaster::Project<#owner="sirupsen"..>
 
 To retrieve all projects, simply pass no argument to find:
 
-    project = unfuddle.project.find
+    project = pivotal.project.find
         #=> [TicketMaster::Project<#..>,TicketMaster::Project<#..>,..]
 
 ### Creating a ticket
 
 Now that we grabbed the right project. Let's go ahead and create a ticket at this project:
 
-    project.ticket.create(:priority => 3, :summary => "Test", :description => "Hello World")
+    project.ticket.create(:summary => "Test", :description => "Hello World")
 
-We create our ticket with three properties, the only one which may seem unfamiliar is the priority one, however, this attribute is required by Unfuddle.
+We create our ticket with three properties.
 
 ### Finding tickets
 
@@ -111,7 +111,29 @@ However, as closing a ticket with a resolution is such a common task, the other 
 
 Currently ticketmaster supports the following systems:
 
-### Unfuddle (Alpha)
+### Pivotal Tracker
+
+To use Pivotal Tracker with ticketmaster, install it:
+    gem install ticketmaster-pivotal
+
+Then simply require it, and you are good to use Pivotal Tracker with ticketmaster!
+
+    require 'ticketmaster'
+    require 'ticketmaster-pivotal'
+    unfuddle = TicketMaster.new(:pivotal, {:username => "..", :password => ".."})
+
+### Lighthouse
+
+To use Lighthouse with ticketmaster, install it:
+    gem install ticketmaster-lighthouse
+
+Then simply require it, and you are all set to use Lighthouse with ticketmaster!
+
+    require 'ticketmaster'
+    require 'ticketmaster-lighthouse'
+    lighthouse = TicketMaster.new(:lighthouse, {:username => "..", :password => ".."})
+
+### Unfuddle (Alpha, needs compatibility update)
 
 To use Unfuddle with ticketmaster, install it:
     gem install ticketmaster-unfuddle
@@ -123,22 +145,23 @@ Then simply require it, and you are good to use Unfuddle with ticketmaster!
     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
 
 ## Creating a provider
-Creating a provider consists of two steps:
+Creating a provider consists of three steps:
 
-* Create the ticketmaster provider (a.k.a. the remap)
+* Create the ticketmaster provider (a.k.a. the remap) using the skeleton located at http://github.com/hybridgroup/ticketmaster-provider-skeleton
+* Implement whatever is needed to connect to your desired backend
 * Release it to RubyGems
 
 ### Create the ticketmaster provider
 Almost all APIs are different. And so are their Ruby providers. ticketmaster attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the ticketmaster API. This is the providers job. The provider is the glue between ticketmaster, and the ticket management system's API.
-Usually, your provider would rely on another library for the raw HTTP interaction. For instance, [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) relies on [Unfuddler](http://github.com/hybridgroup/unfuddler) in order to interact with the Unfuddle API. Look at it like this:
+Usually, your provider would rely on another library for the raw HTTP interaction. For instance, [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse) relies on ActiveResource in order to interact with the Lighthouse API. Look at it like this:
 
 **ticketmaster** -> **Provider** -> *(Ruby library)* -> **Site's API**
 
-Provider being the *glue* between the site's API and ticketmaster. The Ruby library is "optional" (though higly recommended as mentioned), therefore it is in parantheses.
+Provider being the *glue* between the site's API and ticketmaster. The Ruby library is "optional" (though highly recommended as mentioned), therefore it is in parantheses.
 
-An example of a provider could be [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle), an example of a Ruby library could be [Unfuddler](http://github.com/hybridgroup/unfuddler).
+An example of a provider could be [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse), an example of a Ruby library could be ActiveResource.
 
-For now, look at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle) as an example on how to create a provider. More detailed documentation will be available soon.
+For now, look at [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse) as an example on how to create a provider. More detailed documentation will be available soon.
 
 ### Release it
 Simply release it to RubyGems.org, the name of the provider Gem should follow this simple naming rule:
@@ -159,12 +182,12 @@ They should be presented with a nice list of all available providers.
  
 * Fork the project.
 * Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
+* Add tests for it. This is important so we don't break it in a
   future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+  (if you want to have your own version, that is fine but bump version in a commit by itself so we can ignore when we pull)
+* Send us a pull request. Bonus points for feature branches.
 
 ## Copyright
 
-Copyright (c) 2010 [Hybrid Group](http://hybridgroup.com). See LICENSE for details.
+Copyright (c) 2010 [The Hybrid Group](http://hybridgroup.com). See LICENSE for details.
