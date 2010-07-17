@@ -44,7 +44,7 @@ def generate(options)
     puts "Error: An option was called that requires an argument, but was not given one"
     puts exception.message
   rescue OptionParser::InvalidOption => exception
-    options[:jeweler] = ARGV
+    options[:jeweler] = exception.recover(ARGV)
     options[:mkdir] = false
   end
   options[:lib] ||= options[:provider_dir] + '/lib/'
@@ -69,8 +69,12 @@ end
 # Create the directories so copy_skeleton can do its job
 def create_directories(options)
   if options[:jeweler]
-    puts "Running jeweler #{options[:jeweler].join(' ')} #{options[:provider_dir]}"
-    puts `jeweler #{options[:jeweler].join(' ')} #{options[:provider_dir]}`
+    jeweler_options = options[:jeweler].inject('') do |mem, j|
+      j="'#{j}'" if j.include?(' ')
+      mem + j + ' '
+    end
+    puts "Running jeweler #{jeweler_options} #{options[:provider_dir]}"
+    puts `jeweler #{jeweler_options} #{options[:provider_dir]}`
   elsif options[:mkdir]
     begin 
       Dir.mkdir(options[:provider_dir])
