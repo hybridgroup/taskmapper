@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ticketmaster}
-  s.version = "0.3.10"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  s.date = %q{2010-07-15}
+  s.date = %q{2010-07-16}
   s.default_executable = %q{tm}
   s.description = %q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
   s.email = %q{info@hybridgroup.com}
@@ -36,9 +36,16 @@ Gem::Specification.new do |s|
      "lib/ticketmaster/authenticator.rb",
      "lib/ticketmaster/cli/commands/config.rb",
      "lib/ticketmaster/cli/commands/console.rb",
+     "lib/ticketmaster/cli/commands/generate.rb",
+     "lib/ticketmaster/cli/commands/generate/provider.rb",
+     "lib/ticketmaster/cli/commands/generate/provider/comment.rb",
+     "lib/ticketmaster/cli/commands/generate/provider/project.rb",
+     "lib/ticketmaster/cli/commands/generate/provider/provider.rb",
+     "lib/ticketmaster/cli/commands/generate/provider/ticket.rb",
      "lib/ticketmaster/cli/commands/help.rb",
      "lib/ticketmaster/cli/commands/help/config",
      "lib/ticketmaster/cli/commands/help/console",
+     "lib/ticketmaster/cli/commands/help/generate",
      "lib/ticketmaster/cli/commands/help/help",
      "lib/ticketmaster/cli/commands/help/project",
      "lib/ticketmaster/cli/commands/help/ticket",
