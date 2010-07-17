@@ -10,11 +10,14 @@ commands ={ 'help' => 'Get the help text for a particular command',
   'config' => 'Setup and configure a ticketmaster.yml file',
   'ticket' => 'Work with tickets (create, edit, delete, etc)',
   'project' => 'Work with projects (create, edit, delete, etc)',
+  'generate' => 'Generate skeleton library files for a new provider',
   }
+
+
 
 helptext = lambda {
   helpmsg = "\nAvailable commands:\n"
-  commands.sort.inject(helpmsg) { |mem, cmd| mem << "\t#{cmd.join("\t\t")}\n" }
+  commands.sort.inject(helpmsg) { |mem, cmd| mem << "\t#{cmd.join("    \t")}\n" }
   helpmsg << "\nSee 'tm help COMMAND' for more information on a specific command."
   }
   

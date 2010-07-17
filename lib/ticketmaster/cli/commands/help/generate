@@ -1,0 +1,19 @@
+This command is used to generate a new provider.
+
+It generates some basic files to get you started on creating your own provider.
+
+NOTE: This command, in an attempt to keep provider names consistent, will prepend 'ticketmaster-' to the given provider name. You can cancel this by prepending a _ before your provider name, which will be removed if found.
+
+If you have not created a gem directory or skeleton and want to use Jeweler (http://github.com/technicalpickles/jeweler) you can execute:
+
+  $ tm generate myprovider --jeweler [JEWELER ARGS]
+
+And it will create your whole directory and skeleton using jeweler.
+
+If you like the old "classic" gem creation process or are using some other gem processor, you can create the directory to store your files, cd into it and run this command to put the skeleton files inside the directory's lib/.
+
+Example:
+  mkdir myprovider myprovider/lib
+  cd myprovider
+  [...]
+  tm generate myprovider
