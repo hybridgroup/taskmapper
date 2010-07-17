@@ -19,7 +19,7 @@ def generate(options)
       opts.separator 'Options:'
       
       opts.on('-J', '--jeweler [JEWELER_OPTIONS]', 'Sets the working ticket') do |option|
-        options[:jeweler] = [option] + ARGV
+        options[:jeweler] = ARGV
         options[:mkdir] = false
       end
       
@@ -43,6 +43,9 @@ def generate(options)
     puts "tm #{options[:original_argv].join(' ')}\n\n"
     puts "Error: An option was called that requires an argument, but was not given one"
     puts exception.message
+  rescue OptionParser::InvalidOption => exception
+    options[:jeweler] = ARGV
+    options[:mkdir] = false
   end
   options[:lib] ||= options[:provider_dir] + '/lib/'
   create_directories(options)
