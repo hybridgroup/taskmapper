@@ -69,8 +69,8 @@ end
 # Create the directories so copy_skeleton can do its job
 def create_directories(options)
   if options[:jeweler]
-    puts "Running jeweler #{options[:provider_dir]} #{options[:jeweler].join(' ')}"
-    puts `jeweler #{options[:provider_dir]} #{options[:jeweler].join(' ')}`
+    puts "Running jeweler #{options[:jeweler].join(' ')} #{options[:provider_dir]}"
+    puts `jeweler #{options[:jeweler].join(' ')} #{options[:provider_dir]}`
   elsif options[:mkdir]
     begin 
       Dir.mkdir(options[:provider_dir])
