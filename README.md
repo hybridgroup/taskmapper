@@ -153,11 +153,17 @@ The source code is located at [ticketmaster-unfuddle](http://github.com/hybridgr
 ## Creating a provider
 Creating a provider consists of three steps:
 
-* Create the ticketmaster provider (a.k.a. the remap) using the skeleton located at http://github.com/hybridgroup/ticketmaster-provider-skeleton
+* Run the generator like this:
+    tm generate myprovider
 * Implement whatever is needed to connect to your desired backend
 * Release it to RubyGems
 
 ### Create the ticketmaster provider
+Thanks for a simple generator, it is easy to get started with a new provider. Run this from the command line:
+    tm generate myprovider
+
+This will generate a new skeleton provider called ticketmaster-myprovider in the current directory. Create a repo from that directory, and you can start implementing your provider.
+
 Almost all APIs are different. And so are their Ruby providers. ticketmaster attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the ticketmaster API. This is the providers job. The provider is the glue between ticketmaster, and the ticket management system's API.
 Usually, your provider would rely on another library for the raw HTTP interaction. For instance, [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse) relies on ActiveResource in order to interact with the Lighthouse API. Look at it like this:
 
