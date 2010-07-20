@@ -159,7 +159,7 @@ Creating a provider consists of three steps:
 * Release it to RubyGems
 
 ### Create the ticketmaster provider
-Thanks for a simple generator, it is easy to get started with a new provider. Run this from the command line:
+Thanks to a simple generator, it is easy to get started with a new provider. Run this from the command line:
     tm generate myprovider
 
 This will generate a new skeleton provider called ticketmaster-myprovider in the current directory. Create a repo from that directory, and you can start implementing your provider.
