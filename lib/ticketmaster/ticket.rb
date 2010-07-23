@@ -59,8 +59,6 @@ module TicketMaster::Provider
         first, attributes = options
         if first.nil? or (first == :all and attributes.nil?)
           self.find_by_attributes(project_id)
-        elsif first.is_a? Fixnum
-          self.find_by_id(project_id, first)
         elsif first.is_a? Array
           first.collect { |id| self.find_by_id(project_id, id) }
         elsif first == :first
@@ -71,6 +69,8 @@ module TicketMaster::Provider
           tickets.last
         elsif first == :all
           self.find_by_attributes(project_id, attributes)
+        else
+          self.find_by_id(project_id, first)
         end
       end
       
