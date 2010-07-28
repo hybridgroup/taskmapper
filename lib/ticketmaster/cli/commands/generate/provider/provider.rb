@@ -2,6 +2,8 @@ module TicketMaster::Provider
   # This is the Yoursystem Provider for ticketmaster
   module Yoursystem
     include TicketMaster::Provider::Base
+    #TICKET_API = Yoursystem::Ticket # The class to access the api's tickets
+    #PROJECT_API = Yoursystem::Project # The class to access the api's projects
     
     # This is for cases when you want to instantiate using TicketMaster::Provider::Yoursystem.new(auth)
     def self.new(auth = {})

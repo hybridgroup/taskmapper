@@ -6,6 +6,7 @@ module TicketMaster::Provider
     # versions of the ticket.
     #
     class Comment < TicketMaster::Provider::Base::Comment
+      #API = Yoursystem::Comment # The class to access the api's comments
       # declare needed overloaded methods here
       
     end

@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://ticketrb.com"
     gem.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
     gem.add_dependency "hashie", ">= 0"
-    gem.add_dependency "activeresource", ">= 0"
+    gem.add_dependency "activeresource", "< 3.0.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
