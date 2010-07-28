@@ -137,6 +137,19 @@ Then simply require it, and you are all set to use Lighthouse with ticketmaster!
 
 The source code is located at [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse)
 
+### Basecamp
+
+To use Basecamp with ticketmaster, install it:
+    gem install ticketmaster-basecamp
+
+Once you require it, then you are ready to use Basecamp with ticketmaster
+
+    require 'ticketmaster'
+    require 'ticketmaster-basecamp'
+    basecamp = TicketMaster.new(:basecamp, :domain => 'yourdomain.basecamphq.com', :username => 'you', :password => 'pass')
+
+The source code is located at [ticketmaster-basecamp](http://github.com/hybridgroup/ticketmaster-basecamp)
+
 ### Unfuddle (Alpha, needs compatibility update)
 
 To use Unfuddle with ticketmaster, install it:
