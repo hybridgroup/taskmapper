@@ -72,10 +72,10 @@ module TicketMaster::Provider
         end
       end
       
-      def respond_to?(symbol)
+      def respond_to?(symbol, include_private = false)
         result = super(symbol)
         return true if result or @system_data.nil? or @system_data[:client].nil?
-        @system_data[:client].respond_to?(symbol)
+        @system_data[:client].respond_to?(symbol, include_private)
       end
   end
 end
