@@ -150,6 +150,19 @@ Once you require it, then you are ready to use Basecamp with ticketmaster
 
 The source code is located at [ticketmaster-basecamp](http://github.com/hybridgroup/ticketmaster-basecamp)
 
+### Github
+
+To use Github's issue tracking with ticketmaster, install it:
+    gem install ticketmaster-github
+
+Once you require it, then you are ready to use Github and ticketmaster
+
+    require 'ticketmaster'
+    require 'ticketmaster-github'
+    github = TicketMaster.new(:github, :username => 'you', :password => 'pass')
+
+The source code is located at [ticketmaster-github](http://github.com/hybridgroup/ticketmaster-github)
+
 ### Unfuddle (Alpha, needs compatibility update)
 
 To use Unfuddle with ticketmaster, install it:
