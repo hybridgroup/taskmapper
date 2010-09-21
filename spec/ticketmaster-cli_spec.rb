@@ -3,6 +3,8 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'spec'
 require 'spec/autorun'
 
+require 'fileutils'
+
 Spec::Runner.configure do |config| end
 # Tests for the cli
 # I'm not quite sure what the most effective way to test this is...
@@ -30,6 +32,31 @@ describe "Ticketmaster CLI" do
   
   it "should be able to open up a console" do
     pending
+  end
+  
+  describe :generate do
+    it "should generate provider skeleton w/o runtime errors" do
+      provider_name = "test-provider"
+      expected_name = "ticketmaster-#{provider_name}"
+      begin
+        generate = `#{@ticket} generate #{provider_name}`
+        $?.should == 0
+        File.exists?(expected_name).should == true
+      ensure
+        FileUtils.remove_dir(expected_name) if File.exists? expected_name
+      end
+    end  
+    
+    it "should not prefix 'ticketmaster' when not asked to" do
+      provider_name = "test-provider"
+      begin
+        generate = `#{@ticket} generate _#{provider_name}`
+        $?.should == 0
+        File.exists?(provider_name).should == true
+      ensure
+        FileUtils.remove_dir(provider_name) if File.exists? provider_name
+      end
+    end
   end
   
 end

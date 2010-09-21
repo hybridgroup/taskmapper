@@ -3,11 +3,12 @@ def generate(options)
   if ARGV.length == 0
     ARGV << '--help'
   else
-    options[:provider] = ARGV.shift
-    if options[:provider].first == '_'
-      options[:provider][0] = ''
+    provider_name = ARGV.shift
+    if provider_name.start_with? '_'
+      options[:provider] = provider_name[1..-1]
       options[:provider_dir] = options[:provider]
     else
+      options[:provider] = provider_name
       options[:provider_dir] = 'ticketmaster-' + options[:provider]
     end
   end
