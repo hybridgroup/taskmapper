@@ -120,7 +120,7 @@ module TicketMaster::Provider
       def comments(*options)
         options.insert 0, project_id
         options.insert 1, id
-        easy_finder(self.class.parent::Comment, :all, options, 2)
+        easy_finder(provider_parent(self.class)::Comment, :all, options, 2)
       end
       
       def comment(*options)
@@ -128,13 +128,13 @@ module TicketMaster::Provider
           options.insert(0, project_id)
           options.insert(1, id)
         end
-        easy_finder(self.class.parent::Comment, :first, options, 2)
+        easy_finder(provider_parent(self.class)::Comment, :first, options, 2)
       end
       
       # Create a comment
       def comment!(*options)
         options[0].merge!(:project_id => project_id, :ticket_id => id) if options.first.is_a?(Hash)
-        self.class.parent::Comment.create(*options)
+        provider_parent(self.class)::Comment.create(*options)
       end
       
       # Close this ticket

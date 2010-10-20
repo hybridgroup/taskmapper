@@ -19,6 +19,10 @@ module TicketMaster::Provider
       k
     end
     
+    def provider_parent(klass)
+      TicketMaster::Provider.const_get(klass.to_s.split('::')[-2])
+    end
+    
     # Goes through all the things and returns results that match the options attributes hash
     def search_by_attribute(things, options = {}, limit = 1000)
       things.find_all do |thing|

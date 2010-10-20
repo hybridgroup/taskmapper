@@ -117,7 +117,7 @@ module TicketMaster::Provider
       # returns an array of Ticket objects.
       def tickets(*options)
         options.insert 0, id
-        easy_finder(self.class.parent::Ticket, :all, options, 1)
+        easy_finder(provider_parent(self.class)::Ticket, :all, options, 1)
       end
       
       # Very similar to tickets, and is practically an alias of it
@@ -125,13 +125,13 @@ module TicketMaster::Provider
       # unlike tickets which returns an array of all tickets when given no parameters
       def ticket(*options)
         options.insert(0, id) if options.length > 0
-        easy_finder(self.class.parent::Ticket, :first, options, 1)
+        easy_finder(provider_parent(self.class)::Ticket, :first, options, 1)
       end
       
       # Create a ticket
       def ticket!(*options)
         options[0].merge!(:project_id => id) if options.first.is_a?(Hash)
-        self.class.parent::Ticket.create(*options)
+        provider_parent(self.class)::Ticket.create(*options)
       end
       
       # Define some provider specific initalizations

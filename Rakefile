@@ -11,13 +11,13 @@ begin
     gem.homepage = "http://ticketrb.com"
     gem.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
     gem.add_dependency "hashie", ">= 0"
-    gem.add_dependency "activeresource", "< 3.0.0"
+    gem.add_dependency "activesupport", ">= 2.3.2"
+    gem.add_dependency "activeresource", ">= 2.3.2"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
-
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
