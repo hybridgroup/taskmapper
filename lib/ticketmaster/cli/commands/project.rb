@@ -83,7 +83,7 @@ end
 # The read subcommand
 def read(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  project = tm.project.find(options[:project].to_i)
+  project = tm.project.find(options[:project])
   read_project project
   exit
 end
@@ -91,7 +91,7 @@ end
 # The update subcommand
 def update(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  project = tm.project.find(options[:project].to_i)
+  project = tm.project.find(options[:project])
   if project.update!(options[:project_attributes])
     puts "Successfully updated Project #{project.name} (#{project.id})"
   else
@@ -104,7 +104,7 @@ end
 # The destroy subcommand.
 def destroy(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  project = tm.project.find(options[:project].to_i)
+  project = tm.project.find(options[:project])
   puts "Are you sure you want to delete Project #{project.name} (#{project.id})? (yes/no) [no]"
   ARGV.clear
   confirm = readline.chomp.downcase

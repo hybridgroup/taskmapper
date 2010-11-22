@@ -76,7 +76,7 @@ end
 # The create subcommand
 def create(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  ticket = tm.ticket.create(options[:ticket_attributes].merge({:project_id => options[:project].to_i}))
+  ticket = tm.ticket.create(options[:ticket_attributes].merge({:project_id => options[:project]}))
   read_ticket ticket
   exit
 end
@@ -84,8 +84,8 @@ end
 # The read subcommand
 def read(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  project = tm.project(options[:project].to_i)
-  ticket = project.ticket(options[:ticket].to_i)
+  project = tm.project(options[:project])
+  ticket = project.ticket(options[:ticket])
   read_ticket ticket
   exit
 end
@@ -93,8 +93,8 @@ end
 # The update subcommand
 def update(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  project = tm.project(options[:project].to_i)
-  ticket = project.ticket(options[:ticket].to_i)
+  project = tm.project(options[:project])
+  ticket = project.ticket(options[:ticket])
   if ticket.update!(options[:ticket_attributes])
     puts "Successfully updated Ticket #{ticket.title} (#{ticket.id})"
   else
@@ -107,8 +107,8 @@ end
 # The destroy subcommand.
 def destroy(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  project = tm.project(options[:project].to_i)
-  ticket = project.ticket(options[:ticket].to_i)
+  project = tm.project(options[:project])
+  ticket = project.ticket(options[:ticket])
   puts "Are you sure you want to delete Ticket #{ticket.title} (#{ticket.id})? (yes/no) [no]"
   ARGV.clear
   confirm = readline.chomp.downcase
@@ -126,7 +126,7 @@ end
 # The search and list subcommands
 def search(options)
   tm = TicketMaster.new(options[:provider], options[:authentication])
-  project = tm.project(options[:project].to_i)
+  project = tm.project(options[:project])
   tickets = project.tickets(options[:ticket_attributes])
   puts "Found #{tickets.length} tickets"
   tickets.each_with_index do |ticket, index|
