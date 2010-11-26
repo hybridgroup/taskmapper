@@ -163,7 +163,7 @@ Once you require it, then you are ready to use Github and ticketmaster
 
 The source code is located at [ticketmaster-github](http://github.com/hybridgroup/ticketmaster-github)
 
-### Unfuddle (Alpha, needs compatibility update)
+### Unfuddle
 
 To use Unfuddle with ticketmaster, install it:
     gem install ticketmaster-unfuddle
@@ -175,6 +175,21 @@ Then simply require it, and you are good to use Unfuddle with ticketmaster!
     unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
 
 The source code is located at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)
+
+### Kanban Pad (currently read-only functionality only)
+
+To use Kanban Pad with ticketmaster, install it:
+    gem install ticketmaster-kanbanpad
+
+Once you require it, you can connect to Kanban Pad using ticketmaster!
+
+    require 'ticketmaster'
+    require 'ticketmaster-kanbanpad'
+    unfuddle = TicketMaster.new(:kanbanpad, {:username => "xx", :password => "xx"})
+
+The source code is located at [ticketmaster-kanbanpad](https://github.com/hybridgroup/ticketmaster-kanbanpad)
+
+
 
 ## Creating a provider
 Creating a provider consists of three steps:
