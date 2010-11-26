@@ -101,7 +101,7 @@
   </pre>
 
   <p>
-    The last example copies all tickets and associated comments for a project from Lighthouse to Pivotal Tracker.
+    The third example copies all tickets and associated comments for a project from Lighthouse to Pivotal Tracker.
   </p>
   <pre>
     require 'rubygems'
@@ -124,6 +124,27 @@
       end
     end
   </pre>
+  
+  <p>
+    Copying all tickets and associated comments is such a typical need, that we have a copy method as a shortcut:
+  </p>
+  <pre>
+    require 'rubygems'
+    require 'ticketmaster'
+    require 'ticketmaster-pivotal'
+    require 'ticketmaster-lighthouse'
+
+    # copy all tickets and comments from pivotal tracker to new lighthouse project (the easy way)
+    pivotal = TicketMaster.new(:pivotal)
+    pivotal_project = pivotal.project(97107)
+    lighthouse = TicketMaster.new(:lighthouse)
+
+    lighthouse_project = lighthouse.project!(:name => "Copy Test on #{Time.now}", 
+                                             :description => "A copy test")
+    lighthouse_project.copy(pivotal_project)
+    puts "Copy finished."
+  </pre>
+  
   <h2>
     Command Line Interface
   </h2>
@@ -148,9 +169,11 @@
     * Pivotal Tracker (<a href="http://github.com/hybridgroup/ticketmaster-pivotal">ticketmaster-pivotal</a>)<br/>
     * Lighthouse (<a href="http://github.com/hybridgroup/ticketmaster-lighthouse">ticketmaster-lighthouse</a>)<br/>
     * Basecamp (<a href="http://github.com/hybridgroup/ticketmaster-basecamp">ticketmaster-basecamp</a>)<br/>
-	* Github Issue Tracking (<a href="http://github.com/hybridgroup/ticketmaster-github">ticketmaster-github</a>)<br/>
+	  * Github Issue Tracking (<a href="http://github.com/hybridgroup/ticketmaster-github">ticketmaster-github</a>)<br/>
+	  * Unfuddle (<a href="http://github.com/hybridgroup/ticketmaster-unfuddle">ticketmaster-unfuddle</a>)<br/>
+	  * Kanban Pad (<a href="http://github.com/hybridgroup/ticketmaster-kanbanpad">ticketmaster-kanbanpad</a>)<br/>
     <br/>
-    We are working on completing Unfuddle system support, and lots more!
+    We are working on supporting lots more back-ends, and other people are too. Check back for the latest and greatest provider support here.
   </p>
   <h2>
     Get Involved
@@ -167,15 +190,17 @@
     License
   </h2>
   <p>
-    Copyright (c) 2009-2010 The Hybrid Group Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: NONE The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    Copyright (c) 2009-2010 The Hybrid Group. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: NONE The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   </p>
   <h2>
     Authors
   </h2>
   <p>
     Hong Quach<br>
+	  Juan Espinosa<br>
+	  Sonia Grajales<br>
+	  Luis Hurtado<br>
     Simon Eskildsen<br>
-	Juan Espinosa<br>
     Ron Evans<br>
     Daniel Fischer (site design)
     <br>
