@@ -101,7 +101,7 @@
   </pre>
 
   <p>
-    The third example copies all tickets and associated comments for a project from Lighthouse to Pivotal Tracker.
+    This third example copies all tickets and associated comments for a project from Lighthouse to Pivotal Tracker.
   </p>
   <pre>
     require 'rubygems'
@@ -126,7 +126,7 @@
   </pre>
   
   <p>
-    Copying all tickets and associated comments is such a typical need, that we have a copy method as a shortcut:
+    Copying all tickets and associated comments like example 3 is such a typical use case for Ticketmaster, that we have a copy method as a shortcut:
   </p>
   <pre>
     require 'rubygems'
@@ -149,7 +149,7 @@
     Command Line Interface
   </h2>
   <p>
-    Ticketmaster includes a command line interface, to make it very easy to perform tasks like creating or closing tickets without disturbing your workflow. The tm command allows you to access all of the functionality of Ticketmaster. A configuration file, located at ~/.ticketmaster.yml by default, tells Ticketmaster about the various backend accounts you have setup. Here is an example of getting a list of all projects for the default provider setup in ticketmaster.yml:
+    Ticketmaster includes a command line interface, to make it very easy to perform tasks like creating or closing tickets without disturbing your workflow. The tm command allows you to access all of the functionality of Ticketmaster. A configuration file, located at ~/.ticketmaster.yml by default, tells Ticketmaster about the various backend accounts you have setup. You can also use project-specific ticketmaster.yml files to connect to whichever back-end systems are in use for each project. Here is an example of getting a list of all projects for the default provider setup in ticketmaster.yml:
   </p>
   <pre>
     tm project --list
