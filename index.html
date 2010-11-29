@@ -113,7 +113,8 @@
     pivotal = TicketMaster.new(:pivotal)
     pivotal_project = pivotal.project(97107)
     lighthouse = TicketMaster.new(:lighthouse)
-    lighthouse_project = lighthouse.project!(:name => "Copy Test on #{Time.now}", :description => "A copy test")
+    lighthouse_project = lighthouse.project!(:name => "Copy Test on #{Time.now}", 
+                                             :description => "A copy test")
 
     pivotal_project.tickets.each do |pivotal_ticket|
       puts pivotal_ticket.title, pivotal_ticket.description
@@ -126,7 +127,7 @@
   </pre>
   
   <p>
-    Copying all tickets and associated comments like example 3 is such a typical use case for Ticketmaster, that we have a copy method as a shortcut:
+    Copying all tickets and associated comments, like example 3 above, is such a typical use case for Ticketmaster, that we have a shortcut: the copy method:
   </p>
   <pre>
     require 'rubygems'
@@ -138,11 +139,10 @@
     pivotal = TicketMaster.new(:pivotal)
     pivotal_project = pivotal.project(97107)
     lighthouse = TicketMaster.new(:lighthouse)
-
     lighthouse_project = lighthouse.project!(:name => "Copy Test on #{Time.now}", 
                                              :description => "A copy test")
+    
     lighthouse_project.copy(pivotal_project)
-    puts "Copy finished."
   </pre>
   
   <h2>
