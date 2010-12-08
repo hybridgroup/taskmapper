@@ -172,7 +172,7 @@ Then simply require it, and you are good to use Unfuddle with ticketmaster!
 
     require 'ticketmaster'
     require 'ticketmaster-unfuddle'
-    unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :subdomain => ".."})
+    unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :account => ".."})
 
 The source code is located at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)
 
@@ -232,7 +232,7 @@ This makes it easy for people to find providers, simply by issuing:
 They should be presented with a nice list of all available providers.
 
 ## Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so we don't break it in a
