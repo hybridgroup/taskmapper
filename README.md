@@ -61,7 +61,7 @@ To retrieve all projects, simply pass no argument to find:
 
 Now that we grabbed the right project. Let's go ahead and create a ticket at this project:
 
-    project.ticket!(:summary => "Test", :description => "Hello World")
+    project.ticket!(:title => "Test", :description => "Hello World")
 
 We create our ticket with three properties.
 
