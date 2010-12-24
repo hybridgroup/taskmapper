@@ -189,6 +189,18 @@ Once you require it, you can connect to Kanban Pad using ticketmaster!
 
 The source code is located at [ticketmaster-kanbanpad](https://github.com/hybridgroup/ticketmaster-kanbanpad)
 
+### Redmine
+
+To use Redmine with ticketmaster, install it:
+    gem install ticketmaster-redmine
+
+Just require it, and you are ready to use Redmine with ticketmaster!
+
+    require 'ticketmaster'
+    require 'ticketmaster-redmine'
+    unfuddle = TicketMaster.new(:redmine, {:username => "..", :password => "..", :server => ".."})
+
+The source code is located at [ticketmaster-redmine](http://github.com/hybridgroup/ticketmaster-redmine)
 
 
 ## Creating a provider
