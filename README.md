@@ -176,7 +176,7 @@ Then simply require it, and you are good to use Unfuddle with ticketmaster!
 
 The source code is located at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)
 
-### Kanban Pad (currently read-only functionality only)
+### Kanban Pad
 
 To use Kanban Pad with ticketmaster, install it:
     gem install ticketmaster-kanbanpad
@@ -185,7 +185,7 @@ Once you require it, you can connect to Kanban Pad using ticketmaster!
 
     require 'ticketmaster'
     require 'ticketmaster-kanbanpad'
-    unfuddle = TicketMaster.new(:kanbanpad, {:username => "xx", :password => "xx"})
+    kanbanpad = TicketMaster.new(:kanbanpad, {:username => "xx", :password => "xx"})
 
 The source code is located at [ticketmaster-kanbanpad](https://github.com/hybridgroup/ticketmaster-kanbanpad)
 
@@ -198,10 +198,22 @@ Just require it, and you are ready to use Redmine with ticketmaster!
 
     require 'ticketmaster'
     require 'ticketmaster-redmine'
-    unfuddle = TicketMaster.new(:redmine, {:username => "..", :password => "..", :server => ".."})
+    redmine = TicketMaster.new(:redmine, {:username => "..", :password => "..", :server => ".."})
 
 The source code is located at [ticketmaster-redmine](http://github.com/hybridgroup/ticketmaster-redmine)
 
+### Trac
+
+To use Trac with ticketmaster, install it:
+    gem install ticketmaster-trac
+
+Require it, and you are happening to call Trac with ticketmaster!
+
+    require 'ticketmaster'
+    require 'ticketmaster-trac'
+    trac = TicketMaster.new(:trac, {:username => "..", :password => "..", :url => ".."})
+
+The source code is located at [ticketmaster-trac](http://github.com/hybridgroup/ticketmaster-trac)
 
 ## Creating a provider
 Creating a provider consists of three steps:
