@@ -215,6 +215,19 @@ Require it, and you are happening to call Trac with ticketmaster!
 
 The source code is located at [ticketmaster-trac](http://github.com/hybridgroup/ticketmaster-trac)
 
+### Codaset
+
+To use Codaset with ticketmaster, install it:
+    gem install ticketmaster-codaset
+
+Require and you have connected to Codaset with ticketmaster!
+
+    require 'ticketmaster'
+    require 'ticketmaster-codaset'
+    codaset = TicketMaster.new(:codaset, {:username => "foo", :password => "bar", :client_id => "your_client_id", :client_secret => "your_client_secret"})
+
+The source code is located at [ticketmaster-codaset](http://github.com/hybridgroup/ticketmaster-codaset)
+
 ## Creating a provider
 Creating a provider consists of three steps:
 
