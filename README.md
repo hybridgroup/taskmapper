@@ -228,6 +228,19 @@ Require and you have connected to Codaset with ticketmaster!
 
 The source code is located at [ticketmaster-codaset](http://github.com/hybridgroup/ticketmaster-codaset)
 
+### Bugzilla
+
+To use Bugzilla with ticketmaster, install it:
+    gem install ticketmaster-bugzilla
+
+Require and you can talk to Bugzilla with ticketmaster!
+
+    require 'ticketmaster'
+    require 'ticketmaster-bugzilla'
+    codaset = TicketMaster.new(:bugzilla, {:username => "foo", :password => "bar", :url => "https://bugzilla.mozilla.org"})
+
+The source code is located at [ticketmaster-bugzilla](http://github.com/hybridgroup/ticketmaster-bugzilla)
+
 ## Creating a provider
 Creating a provider consists of three steps:
 
