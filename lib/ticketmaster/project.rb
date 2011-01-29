@@ -88,7 +88,7 @@ module TicketMaster::Provider
         if self::API.is_a? Class
           self.new self::API.find(id)
         else
-          raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -99,7 +99,7 @@ module TicketMaster::Provider
         if self::API.is_a? Class
           self.search(attributes)
         else
-          raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -109,7 +109,7 @@ module TicketMaster::Provider
           projects = self::API.find(:all).collect { |project| self.new project }
           search_by_attribute(projects, options, limit)
         else
-          raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
 

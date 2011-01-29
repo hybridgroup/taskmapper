@@ -12,7 +12,7 @@ module TicketMaster::Provider
             something.save
             self.new something
           else
-            raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+            raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
           end
         end
       end
@@ -58,7 +58,7 @@ module TicketMaster::Provider
           end
           something.save if changes > 0
         else
-          raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+          raise TicketMaster::Exception.new("#{self.class.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -68,7 +68,7 @@ module TicketMaster::Provider
         if @system_data and @system_data[:client] and @system_data[:client].respond_to?(:destroy)
           return @system_data[:client].destroy
         else
-          raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+          raise TicketMaster::Exception.new("#{self.class.name}::#{this_method} method must be implemented by the provider")
         end
       end
       

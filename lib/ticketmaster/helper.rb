@@ -2,6 +2,13 @@ module TicketMaster::Provider
   # Contains a series of helper methods
   module Helper
   
+    # Current method name reflection
+    # http://www.ruby-forum.com/topic/75258#895630
+    # Call when raising 'implemented by the provider' exceptions
+    def this_method
+      caller[0][/`([^']*)'/, 1]
+    end
+    
     # A helper method for easy finding
     def easy_finder(api, symbol, options, at_index = 0)
       if api.is_a? Class
@@ -9,7 +16,7 @@ module TicketMaster::Provider
         options.insert(at_index, symbol) if options[at_index].is_a?(Hash)
         api.find(*options)
       else
-        raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+        raise TicketMaster::Exception.new("#{Helper.name}::#{this_method} method must be reimplemented in the provider")
       end
     end
     
