@@ -16,7 +16,7 @@ module TicketMaster::Provider
         options.insert(at_index, symbol) if options[at_index].is_a?(Hash)
         api.find(*options)
       else
-        raise TicketMaster::Exception.new("#{Helper.name}::#{this_method} method must be reimplemented in the provider")
+        raise TicketMaster::Exception.new("#{Helper.name}::#{this_method} method must be implemented by the provider")
       end
     end
     
