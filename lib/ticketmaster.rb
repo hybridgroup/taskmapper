@@ -17,6 +17,7 @@ end
   provider
   exception
   dummy/dummy.rb
+  tester/tester.rb
 }.each {|lib| require File.dirname(__FILE__) + '/ticketmaster/' + lib }
 
 
