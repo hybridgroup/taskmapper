@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ticketmaster}
-  s.version = "0.5.2"
+  s.version = "0.5.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  s.date = %q{2010-11-22}
+  s.date = %q{2011-02-02}
   s.default_executable = %q{tm}
   s.description = %q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
   s.email = %q{info@hybridgroup.com}
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
      "examples/tm_example.rb",
      "examples/tm_example_2.rb",
      "examples/tm_example_3.rb",
+     "examples/tm_example_4.rb",
      "lib/ticketmaster.rb",
      "lib/ticketmaster/authenticator.rb",
      "lib/ticketmaster/cli/commands/config.rb",
@@ -63,6 +64,10 @@ Gem::Specification.new do |s|
      "lib/ticketmaster/helper.rb",
      "lib/ticketmaster/project.rb",
      "lib/ticketmaster/provider.rb",
+     "lib/ticketmaster/tester/comment.rb",
+     "lib/ticketmaster/tester/project.rb",
+     "lib/ticketmaster/tester/tester.rb",
+     "lib/ticketmaster/tester/ticket.rb",
      "lib/ticketmaster/ticket.rb",
      "spec/project_spec.rb",
      "spec/rcov.opts",
@@ -70,6 +75,7 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/ticket_spec.rb",
      "spec/ticketmaster-cli_spec.rb",
+     "spec/ticketmaster-exception_spec.rb",
      "spec/ticketmaster_spec.rb",
      "ticketmaster.gemspec"
   ]
@@ -83,10 +89,12 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/ticket_spec.rb",
      "spec/ticketmaster-cli_spec.rb",
+     "spec/ticketmaster-exception_spec.rb",
      "spec/ticketmaster_spec.rb",
      "examples/tm_example.rb",
      "examples/tm_example_2.rb",
-     "examples/tm_example_3.rb"
+     "examples/tm_example_3.rb",
+     "examples/tm_example_4.rb"
   ]
 
   if s.respond_to? :specification_version then
