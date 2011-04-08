@@ -10,7 +10,7 @@ begin
     gem.email = "info@hybridgroup.com"
     gem.homepage = "http://ticketrb.com"
     gem.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-    gem.add_dependency "hashie", "<= 0.3.0"
+    gem.add_dependency "hashie", "1.0.0"
     gem.add_dependency "activesupport", ">= 2.3.2"
     gem.add_dependency "activeresource", ">= 2.3.2"
   end
