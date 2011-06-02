@@ -24,6 +24,12 @@ module TicketMaster::Provider
     def authorize(authentication = {})
       @authentication = TicketMaster::Authenticator.new(authentication)
     end
+
+    # All providers must define this method. 
+    # It should implement the code for validating the authentication 
+    def valid?
+      raise TicketMaster::Exception.new("#{Base.name}::#{this_method} method must be implemented by the provider")
+    end
     
     # Providers should try to define this method
     #

@@ -13,6 +13,13 @@ describe "Ticketmaster Exception Messages" do
   before(:each) do
     @ticketmaster = TicketMaster.new(:tester, {})
   end
+
+  describe "TicketMaster::Provider::Base" do 
+    it "valid? method raises correct exception" do 
+      msg = "TicketMaster::Provider::Base::valid? method must be implemented by the provider"
+      lambda { @ticketmaster.valid? }.should raise_error(@exception, msg)
+    end
+  end
   
   describe "TicketMaster::Provider::Helper" do
     it "easy_finder method raises correct exception" do
