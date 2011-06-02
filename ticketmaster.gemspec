@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ticketmaster}
-  s.version = "0.5.6"
+  s.version = "0.6.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  s.date = %q{2011-04-08}
+  s.date = %q{2011-06-02}
   s.default_executable = %q{tm}
   s.description = %q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
   s.email = %q{info@hybridgroup.com}
@@ -82,7 +82,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://ticketrb.com}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.2}
+  s.rubygems_version = %q{1.6.0}
   s.summary = %q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
   s.test_files = [
     "examples/tm_example.rb",
