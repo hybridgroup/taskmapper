@@ -6,5 +6,5 @@ gem 'jeweler'
 gem 'hashie'
 
 group :test do
-  gem 'rspec', '1.3.0'
+  gem 'rspec', '~> 2.0.0'
 end
