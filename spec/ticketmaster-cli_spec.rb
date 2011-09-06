@@ -15,6 +15,7 @@ describe "Ticketmaster CLI" do
   it "should output help if no command given" do
     help = `#{@ticket}`
     $?.should == 0
+    puts help.inspect
     help.should include('Usage: tm [options] COMMAND [command_options]')
   end
   
