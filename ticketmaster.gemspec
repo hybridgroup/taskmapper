@@ -4,15 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{ticketmaster}
-  s.version = "0.6.6"
+  s.name = "ticketmaster"
+  s.version = "0.6.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  s.date = %q{2011-06-02}
-  s.default_executable = %q{tm}
-  s.description = %q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
-  s.email = %q{info@hybridgroup.com}
+  s.date = "2011-11-28"
+  s.description = "Ticketmaster provides a universal API to ticket tracking and project management systems."
+  s.email = "info@hybridgroup.com"
   s.executables = ["tm"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -80,22 +79,10 @@ Gem::Specification.new do |s|
     "spec/ticketmaster_spec.rb",
     "ticketmaster.gemspec"
   ]
-  s.homepage = %q{http://ticketrb.com}
+  s.homepage = "http://ticketrb.com"
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.0}
-  s.summary = %q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
-  s.test_files = [
-    "examples/tm_example.rb",
-    "examples/tm_example_2.rb",
-    "examples/tm_example_3.rb",
-    "examples/tm_example_4.rb",
-    "spec/project_spec.rb",
-    "spec/spec_helper.rb",
-    "spec/ticket_spec.rb",
-    "spec/ticketmaster-cli_spec.rb",
-    "spec/ticketmaster-exception_spec.rb",
-    "spec/ticketmaster_spec.rb"
-  ]
+  s.rubygems_version = "1.8.10"
+  s.summary = "Ticketmaster provides a universal API to ticket tracking and project management systems."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -104,16 +91,14 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<activeresource>, [">= 0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_runtime_dependency(%q<jeweler>, [">= 0"])
-      s.add_runtime_dependency(%q<hashie>, [">= 0"])
-      s.add_runtime_dependency(%q<hashie>, ["= 1.0.0"])
+      s.add_runtime_dependency(%q<hashie>, ["= 1.2.0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 2.3.2"])
       s.add_runtime_dependency(%q<activeresource>, [">= 2.3.2"])
     else
       s.add_dependency(%q<activeresource>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<hashie>, [">= 0"])
-      s.add_dependency(%q<hashie>, ["= 1.0.0"])
+      s.add_dependency(%q<hashie>, ["= 1.2.0"])
       s.add_dependency(%q<activesupport>, [">= 2.3.2"])
       s.add_dependency(%q<activeresource>, [">= 2.3.2"])
     end
@@ -121,8 +106,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<activeresource>, [">= 0"])
     s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<hashie>, [">= 0"])
-    s.add_dependency(%q<hashie>, ["= 1.0.0"])
+    s.add_dependency(%q<hashie>, ["= 1.2.0"])
     s.add_dependency(%q<activesupport>, [">= 2.3.2"])
     s.add_dependency(%q<activeresource>, [">= 2.3.2"])
   end
