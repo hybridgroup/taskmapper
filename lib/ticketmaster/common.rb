@@ -33,8 +33,8 @@ module TicketMaster::Provider
             super(first.to_hash)
           else
             @system_data[:client] = first
-            self.prefix_options ||= @system_data[:client].prefix_options if @system_data[:client].prefix_options
-            super(first.attributes)
+            self.prefix_options ||= @system_data[:client].prefix_options if @system_data[:client] and @system_data[:client].prefix_options
+            super(first.attributes) if first
         end
       end
       
