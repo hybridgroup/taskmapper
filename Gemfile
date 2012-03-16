@@ -1,8 +1,8 @@
 source :rubygems
 
-gem 'activeresource', "~> 3.2.2"
-gem 'activesupport', "~> 3.2.2"
-gem 'hashie', "~> 1.2.0"
+gem 'activeresource', '~> 3.0'
+gem 'activesupport', '~> 3.0'
+gem 'hashie', "~> 1.2"
 
 group :test, :development  do
   gem 'rspec', '1.3.0'
