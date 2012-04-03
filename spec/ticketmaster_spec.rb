@@ -10,15 +10,19 @@ describe "Ticketmaster" do
     @ticket_class = TicketMaster::Provider::Dummy::Ticket
     @comment_class = TicketMaster::Provider::Dummy::Comment
   end
-  
+
   # Essentially just a sanity check on the include since .new always returns the object's instance
   it "should be able to instantiate a new instance" do
     @ticketmaster.should be_an_instance_of TicketMaster
     @ticketmaster.should be_a_kind_of TicketMaster::Provider::Dummy
   end
-    
-  it "should be able to load comments"
-  
-  it "should be able to do comment stuff"
+
+  it "should be able to load comments" do
+  	pending
+  end
+
+  it "should be able to do comment stuff" do
+  	pending
+  end
 
 end
