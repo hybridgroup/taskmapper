@@ -15,38 +15,38 @@ describe "Tickets" do
     it "should return an array" do
       @project.tickets.should be_an_instance_of Array
     end
-    
+
     it "should return Ticket objects" do
       @project.tickets.first.should be_an_instance_of @ticket_class
     end
-    
+
     describe "when searching wanting back all tickets that match the query" do
       before do
         @tickets = @project.tickets([999])
       end
-      
+
       it "should return an array" do
         @tickets.should be_an_instance_of Array
       end
-      
+
       it "should return Ticket objects" do
         @tickets.first.should be_an_instance_of @ticket_class
       end
-      
+
       it "should return Tickets that match ID" do
         @tickets.first.id.should == 999
       end
-      
+
       it "should return an array when passing query hash" do
         @project.tickets(:id => 999).should be_an_instance_of Array
       end
     end
-    
+
     describe "when searching wanting back the first ticket that matches the query" do
       it "should return the first Ticket as a default" do
         @project.ticket.should == TicketMaster::Provider::Dummy::Ticket
       end
-      
+
       describe "when querying using default ID query" do
         it "should return a Ticket object" do
           @project.ticket(888).should be_an_instance_of @ticket_class
@@ -56,7 +56,7 @@ describe "Tickets" do
           @project.ticket(888).id.should == 888
         end
       end
-      
+
       describe "when querying using hash" do
         it "should return a Ticket object" do
           @project.ticket(:id => 888).should be_an_instance_of @ticket_class
@@ -64,11 +64,9 @@ describe "Tickets" do
 
         it "should only return Tickets with the correct ID" do
           @project.ticket(:id => 888).id.should == 888
-        end        
+        end
       end
-    end    
+    end
   end
-  
-  it "should be able to do other ticket stuff"
 
 end
