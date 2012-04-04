@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "ticketmaster"
-  s.version = "0.6.10"
+  s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  s.date = "2012-03-16"
+  s.date = "2012-04-04"
   s.description = "Ticketmaster provides a universal API to ticket tracking and project management systems."
   s.email = "info@hybridgroup.com"
   s.executables = ["tm"]
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".travis.yml",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE",
@@ -91,21 +92,27 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<activeresource>, ["~> 3.0"])
       s.add_runtime_dependency(%q<activesupport>, ["~> 3.0"])
       s.add_runtime_dependency(%q<hashie>, ["~> 1.2"])
-      s.add_development_dependency(%q<rspec>, ["= 1.3.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8"])
+      s.add_development_dependency(%q<simplecov>, ["~> 0.5"])
+      s.add_development_dependency(%q<rcov>, ["~> 1.0"])
     else
       s.add_dependency(%q<activeresource>, ["~> 3.0"])
       s.add_dependency(%q<activesupport>, ["~> 3.0"])
       s.add_dependency(%q<hashie>, ["~> 1.2"])
-      s.add_dependency(%q<rspec>, ["= 1.3.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_dependency(%q<rspec>, ["~> 2.0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8"])
+      s.add_dependency(%q<simplecov>, ["~> 0.5"])
+      s.add_dependency(%q<rcov>, ["~> 1.0"])
     end
   else
     s.add_dependency(%q<activeresource>, ["~> 3.0"])
     s.add_dependency(%q<activesupport>, ["~> 3.0"])
     s.add_dependency(%q<hashie>, ["~> 1.2"])
-    s.add_dependency(%q<rspec>, ["= 1.3.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+    s.add_dependency(%q<rspec>, ["~> 2.0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8"])
+    s.add_dependency(%q<simplecov>, ["~> 0.5"])
+    s.add_dependency(%q<rcov>, ["~> 1.0"])
   end
 end
 
