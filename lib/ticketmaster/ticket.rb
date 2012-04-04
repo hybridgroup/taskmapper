@@ -61,6 +61,9 @@ module TicketMaster::Provider
           self.find_by_attributes(project_id)
         elsif first.is_a? Array
           first.collect { |id| self.find_by_id(project_id, id) }
+        # attributes has an :id key, so call Ticket.find_by_id
+        elsif !attributes.nil? and attributes.has_key?(:id)
+          self.find_by_id(project_id, attributes[:id])
         elsif first == :first
           tickets = attributes.nil? ? self.find_by_attributes(project_id) : self.find_by_attributes(project_id, attributes)
           tickets.first
