@@ -125,6 +125,13 @@ describe "Ticketmaster Exception Messages" do
       lambda { @comment.destroy }.should raise_error(@exception, msg)
     end    
   end
-
+  
+  describe "When an operation is not supported by the provider" do
+    it "should be able to raise a NotSupported exception" do
+      exception = TicketMaster::Exceptions::NotSupported.new :update, :ticket
+      exception.should be_kind_of TicketMaster::Exception
+      exception.message.should == "Operation 'update ticket' not supported by this provider"
+    end
+  end
 end
 
