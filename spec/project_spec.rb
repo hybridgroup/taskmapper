@@ -4,142 +4,81 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 # Just replace the Dummy in @project_class and @ticket_class
 # Also, remember to mock or stub any API calls
 describe "Projects" do
+  let(:tm) { TaskMapper.new(:dummy, {}) }
+  let(:project_class) { TaskMapper::Provider::Dummy::Project }
   before(:each) do
-    @ticketmaster = TicketMaster.new(:dummy, {})
-    @project_class = TicketMaster::Provider::Dummy::Project
+    @ticketmaster = TaskMapper.new(:dummy, {})
+    @project_class = TaskMapper::Provider::Dummy::Project
   end
 
   describe "with a connection to a provider" do
-    it "should return an array" do
-      @ticketmaster.projects.should be_an_instance_of(Array)
+    context "when #projects" do 
+      subject { tm.projects } 
+      it { should be_an_instance_of Array }
+      it { subject.first.should be_an_instance_of project_class }
+      it { subject.last.should be_an_instance_of project_class }
     end
 
-    it "should return a project as first element" do
-      @ticketmaster.projects.first.should be_an_instance_of(@project_class)
+    context "when #project with a hash is call" do 
+      subject { tm.project(:name => "Whack whack what?") }
+      it { should be_an_instance_of project_class }
+      it { subject.name.should be_eql("Whack whack what?") }
     end
 
-    it "should return a project as last element" do
-      @ticketmaster.projects.last.should be_an_instance_of(@project_class)
-    end
-    
-    it "should return a Project by name from collection" do
-      @ticketmaster.project(:name => "Whack whack what?").should be_an_instance_of(@project_class)
-    end
-    
-    it "should have a project description for first project" do
-      @ticketmaster.projects.first.description.should == "Mock!-ing Bird"
-    end
-    
-    it "should have a project name for first project" do
-      @ticketmaster.projects(:name => "Whack whack what?").first.name.should == "Whack whack what?"
-    end
-    
-    describe "when searching by ID" do
-      before do
-        @project = @ticketmaster.projects(555)
-      end
-
-      it "should return an array" do
-        @project.should be_an_instance_of(@project_class)
-      end
-      
-      it "should return Project with the correct ID" do
-        @project.id.should == 555
-      end
+    context "when retreiving a project" do 
+      subject { tm.projects.first } 
+      it { subject.description.should_not be_nil }
+      it { subject.description.should be_eql("Mock!-ing Bird") }
     end
 
-    describe "when searching with an array of IDs" do
-      before do
-        @projects = @ticketmaster.projects([555])
-      end
-
-      it "should return an array" do
-        @projects.should be_an_instance_of(Array)
-      end
-      
-      it "should return a Project as first element" do
-        @projects.first.should be_an_instance_of(@project_class)
-      end
-      
-      it "should return Project with the correct ID" do
-        @projects.first.id.should == 555
-      end
+    context "when #projects is call with an ID" do 
+      subject { tm.projects(555) }
+      it { should be_an_instance_of project_class }
+      it { subject.id.should be_eql(555) } 
     end
-    
-    describe "when searching by hash" do
-      before do
-        @projects = @ticketmaster.projects(:id => 555)
-      end
 
-      it "should return an array" do
-        @projects.should be_an_instance_of(Array)
-      end
-      
-      it "should return a Project as first element" do
-        @projects.first.should be_an_instance_of(@project_class)
-      end
-      
-      it "should return Project with the correct ID" do
-        @projects.first.id.should == 555
-      end
+    context "when #projects is call with an array of IDs" do 
+      subject { tm.projects([555]) }
+      it { should be_an_instance_of Array }
+      it { subject.first.should be_an_instance_of project_class }
+      it { subject.first.id.should be_eql(555) }
     end
-  end
-  
-  describe "for a specific project" do
-    it "should return the first project by default" do
-      @ticketmaster.project.should == @project_class
-    end
-    
-    describe "with no params" do
-      it "should return first Project" do
-        @ticketmaster.project.first.description.should == "Mock!-ing Bird"
-      end
-      
-      it "should return last project" do
-        @ticketmaster.project.last.description.should == "Mock!-ing Bird"
-      end
-    end
-    
-    describe "when searching by hash" do
-      it "should return first Project" do
-        @ticketmaster.project.find(:first, :description => "Shocking Dirb").should be_an_instance_of(@project_class)
-      end
 
-      it "should return first Project with correct description" do
-        @ticketmaster.project.find(:first, :description => "Shocking Dirb").description.should == "Shocking Dirb"
-      end
-      
-      it "should return last Project" do
-        @ticketmaster.project.find(:last, :description => "Shocking Dirb").should be_an_instance_of(@project_class)
-      end
+    context "when #projects is call with a hash" do 
+      subject { tm.projects(:id => 555) }
+      it { should be_an_instance_of Array }
+      it { subject.first.should be_an_instance_of project_class }
+      it { subject.first.id.should be_eql(555) }
+    end
 
-      it "should return last Project with correct description" do
-        @ticketmaster.project.find(:last, :description => "Shocking Dirb").description.should == "Shocking Dirb"
-      end      
-    end    
+    context "when #project is call" do 
+      subject { tm.project }
+      it { should be_eql project_class }
+      it { subject.first.description be_eql("Mock!-ing Bird") }
+      it { subject.last.description be_eql("Mock!-ing Bird") }
+    end
+
+    context "when #project is call with a hash" do 
+      subject { tm.project.find(:first, :description => "Shocking Dirb") }
+      it { should be_an_instance_of project_class }
+      it { subject.description.should be_eql("Shocking Dirb") }
+    end
   end
   
   describe "declaring a new project" do
-    it "should return the correct class" do
-      @ticketmaster.project.new(default_info).should be_an_instance_of(@project_class)
-    end
-    
-    it "should have the correct name" do
-      @ticketmaster.project.new(default_info).name.should == "Tiket Name  c"
-    end
-    
-    it "should be able to be saved" do
-      @ticketmaster.project.new(default_info).save.should be_true
+    context "when calling #new" do 
+      subject { tm.project.new(default_info) }
+      it { should be_an_instance_of project_class }
+      it { subject.name.should be_eql("Tiket Name  c") }
+      it { subject.save.should be_true }
     end
   end
   
   describe "creating a new project" do
-    it "should return the correct class" do
-      @ticketmaster.project.create(default_info).should be_an_instance_of(@project_class)
-    end
-    
-    it "should have the correct name" do
-      @ticketmaster.project.create(default_info).name.should == "Tiket Name  c"
+    context "when calling #create" do 
+      subject { tm.project.create(default_info) }
+      it { should be_an_instance_of project_class }
+      it { subject.name.should be_eql("Tiket Name  c") }
     end
   end
   
