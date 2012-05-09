@@ -18,7 +18,7 @@ end
   exception
   dummy/dummy.rb
   tester/tester.rb
-}.each {|lib| require File.dirname(__FILE__) + '/ticketmaster/' + lib }
+}.each {|lib| require File.dirname(__FILE__) + '/taskmapper/' + lib }
 
 
 # This is the TaskMapper class
@@ -29,7 +29,7 @@ class TaskMapper
   
   # This initializes the TaskMapper instance and prepares the provider
   # If called without any arguments, it conveniently tries searching for the information in
-  # ~/.ticketmaster.yml
+  # ~/.taskmapper.yml
   # See the documentation for more information on the format of that file.
   #
   # What it DOES NOT do is auto-require the provider...so make sure you have the providers required.

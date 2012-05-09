@@ -63,8 +63,8 @@ def project(options)
   end
   parse_config!(options)
   begin
-    require 'ticketmaster'
-    require "ticketmaster-#{options[:provider]}"
+    require 'taskmapper'
+    require "taskmapper-#{options[:provider]}"
   rescue
     require options[:provider]
   end
@@ -74,7 +74,7 @@ end
 
 # The create subcommand
 def create(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   project = tm.project.create(options[:project_attributes])
   read_project project
   exit
@@ -82,7 +82,7 @@ end
 
 # The read subcommand
 def read(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   project = tm.project.find(options[:project])
   read_project project
   exit
@@ -90,7 +90,7 @@ end
 
 # The update subcommand
 def update(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   project = tm.project.find(options[:project])
   if project.update!(options[:project_attributes])
     puts "Successfully updated Project #{project.name} (#{project.id})"
@@ -103,7 +103,7 @@ end
 
 # The destroy subcommand.
 def destroy(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   project = tm.project.find(options[:project])
   puts "Are you sure you want to delete Project #{project.name} (#{project.id})? (yes/no) [no]"
   ARGV.clear
@@ -121,7 +121,7 @@ end
 
 # The search and list subcommands
 def search(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   projects = tm.projects(options[:project_attributes])
   puts "Found #{projects.length} projects"
   projects.each_with_index do |project, index|

@@ -6,8 +6,8 @@ require File.dirname(__FILE__) + '/common.rb'
 
 
 commands ={ 'help' => 'Get the help text for a particular command',
-  'console' => 'Open up a ticketmaster console session',
-  'config' => 'Setup and configure a ticketmaster.yml file',
+  'console' => 'Open up a taskmapper console session',
+  'config' => 'Setup and configure a taskmapper.yml file',
   'ticket' => 'Work with tickets (create, edit, delete, etc)',
   'project' => 'Work with projects (create, edit, delete, etc)',
   'generate' => 'Generate skeleton library files for a new provider',
@@ -25,11 +25,11 @@ ARGV << '--help' if ARGV.length == 0
 
 options = {:original_argv => ARGV.dup}
 
-if File.exist?(options[:config] = File.expand_path('ticketmaster.yml'))
-elsif File.exist?(options[:config] = File.expand_path('config/ticketmaster.yml'))
-elsif ENV['TICKETMASTER_CONFIG'] and File.exist?(options[:config] = File.expand_path(ENV['TICKETMASTER_CONFIG']))
+if File.exist?(options[:config] = File.expand_path('taskmapper.yml'))
+elsif File.exist?(options[:config] = File.expand_path('config/taskmapper.yml'))
+elsif ENV['TASKMAPPER_CONFIG'] and File.exist?(options[:config] = File.expand_path(ENV['TASKMAPPER_CONFIG']))
 else
-  options[:config] = File.expand_path('~/.ticketmaster.yml')
+  options[:config] = File.expand_path('~/.taskmapper.yml')
 end
 
 begin
@@ -38,7 +38,7 @@ begin
     opts.separator ''
     opts.separator 'Options:'
     
-    opts.on('-c', '--config CONFIG', 'Use CONFIG as the configuration file. default: ~/.ticketmaster.yml') do |c|
+    opts.on('-c', '--config CONFIG', 'Use CONFIG as the configuration file. default: ~/.taskmapper.yml') do |c|
       options[:config] = c
     end
   
@@ -72,6 +72,6 @@ if commands[command]
   require File.dirname(__FILE__) + '/commands/' + command
   send(command, options)
 else
-  puts "'#{command}' is not a ticketmaster command\n\n", helptext.call
+  puts "'#{command}' is not a taskmapper command\n\n", helptext.call
   exit
 end

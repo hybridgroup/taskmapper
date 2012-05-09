@@ -8,11 +8,11 @@ def config(options)
       opts.separator ''
       opts.separator 'Options:'
       
-      opts.on('-a', '--add', 'Add a new entry to the configuration file based on ticketmaster options.') do
+      opts.on('-a', '--add', 'Add a new entry to the configuration file based on taskmapper options.') do
         options[:subcommand] = 'add'
       end
       
-      opts.on('-e', '--edit', 'Edit an existing entry to the configuration file based on ticketmaster options') do
+      opts.on('-e', '--edit', 'Edit an existing entry to the configuration file based on taskmapper options') do
         options[:subcommand] = 'edit'
       end
       

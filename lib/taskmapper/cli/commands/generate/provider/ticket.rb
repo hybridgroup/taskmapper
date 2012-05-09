@@ -1,6 +1,6 @@
 module TaskMapper::Provider
   module Yoursystem
-    # Ticket class for ticketmaster-yoursystem
+    # Ticket class for taskmapper-yoursystem
     #
     
     class Ticket < TaskMapper::Provider::Base::Ticket

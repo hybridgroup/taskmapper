@@ -1,26 +1,26 @@
-# ticketmaster
+# taskmapper
 
-ticketmaster is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.
+taskmapper is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.
 
-ticketmaster let's you "remap" a system into the consistent ticketmaster API, easily. For instance the description of an issue/ticket, might be named **description** in one system, and **problem-description** somewhere else. Via ticketmaster, this would always be called **description**. The ticketmaster remaps makes it easy for you to integrate different kinds of ticket systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. ticketmaster handles all this *for* you, so you can focus on making your application awesome.
+taskmapper let's you "remap" a system into the consistent taskmapper API, easily. For instance the description of an issue/ticket, might be named **description** in one system, and **problem-description** somewhere else. Via taskmapper, this would always be called **description**. The taskmapper remaps makes it easy for you to integrate different kinds of ticket systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. taskmapper handles all this *for* you, so you can focus on making your application awesome.
 
 ## Installation
 
-ticketmaster is a Gem, so we can easily install it by using RubyGems:
+taskmapper is a Gem, so we can easily install it by using RubyGems:
 
-    gem install ticketmaster
+    gem install taskmapper
 
-ticketmaster depends on [Hashie](http://github.com/intridea/hashie), which is an amazing library which makes converting objects to hashes, and the other way around, a joy. It should be installed automatically whenever installing ticketmaster.
+taskmapper depends on [Hashie](http://github.com/intridea/hashie), which is an amazing library which makes converting objects to hashes, and the other way around, a joy. It should be installed automatically whenever installing taskmapper.
 
 ### Finding and installing a provider
 
-ticketmaster by itself won't do too much. You may want to install a provider, to retrieve a list of available providers issue the following command:
+taskmapper by itself won't do too much. You may want to install a provider, to retrieve a list of available providers issue the following command:
 
-    gem search ticketmaster
+    gem search taskmapper
 
-You could then install for instance ticketmaster-pivotal:
+You could then install for instance taskmapper-pivotal:
 
-    gem install ticketmaster-pivotal
+    gem install taskmapper-pivotal
 
 ## Usage
 
@@ -28,34 +28,34 @@ You could then install for instance ticketmaster-pivotal:
 
 First, we instance a new class with the right set of options. In this example, we are authenticating with Pivotal Tracker.
 
-    pivotal = TicketMaster.new(:pivotal, {:username => "john", :password => "seekrit"})
+    pivotal = taskmapper.new(:pivotal, {:username => "john", :password => "seekrit"})
 
 ### Grabbing a project
 
-Now that we've got out ticketmaster instance, let's go ahead and grab "testproject":
+Now that we've got out taskmapper instance, let's go ahead and grab "testproject":
 
     project = pivotal.project["testproject"]
-        #=> TicketMaster::Project<#name="testproject"..>
+        #=> taskmapper::Project<#name="testproject"..>
 
 *Project#[]* is an alias to *Project#find*:
 
     project = pivotal.project.find "testproject"
-        #=> TicketMaster::Project<#name="testproject"..>
+        #=> taskmapper::Project<#name="testproject"..>
 
 Which translates into:
 
     project = pivotal.project.find :name => "testproject"
-        #=> TicketMaster::Project<#name="testproject"..>
+        #=> taskmapper::Project<#name="testproject"..>
 
 That means you can actually look up a project by something else than the title, like the owner:
 
     project = pivotal.project.find :owner => "Sirupsen"
-        #=> TicketMaster::Project<#owner="sirupsen"..>
+        #=> taskmapper::Project<#owner="sirupsen"..>
 
 To retrieve all projects, simply pass no argument to find:
 
     project = pivotal.project.find
-        #=> [TicketMaster::Project<#..>,TicketMaster::Project<#..>,..]
+        #=> [taskmapper::Project<#..>,TaskMapper::Project<#..>,..]
 
 ### Creating a ticket
 
@@ -70,12 +70,12 @@ We create our ticket with three properties.
 Alright, let's play with the projects tickets! Here we grab the ticket with the id of 22:
 
     ticket = project.tickets(:id => 22)
-        #=> TicketMaster::Ticket<#id=22..>
+        #=> taskmapper::Ticket<#id=22..>
 
 Like with projects, we can also find tickets by other attributes, like title, priority and so on, with tickets we do not use a find method though. Also as with projects, if no argument is passed, all tickets are retrieved:
 
     tickets = project.tickets
-        #=> [TicketMaster::Ticket<#..>,TicketMaster::Ticket<#..>,..]
+        #=> [taskmapper::Ticket<#..>,TaskMapper::Ticket<#..>,..]
 
 ### Changing ticket attributes
 
@@ -109,137 +109,137 @@ However, as closing a ticket with a resolution is such a common task, the other 
 
 ## Support
 
-Currently ticketmaster supports the following systems:
+Currently taskmapper supports the following systems:
 
 ### Pivotal Tracker
 
-To use Pivotal Tracker with ticketmaster, install it:
-    gem install ticketmaster-pivotal
+To use Pivotal Tracker with taskmapper, install it:
+    gem install taskmapper-pivotal
 
-Then simply require it, and you are good to use Pivotal Tracker with ticketmaster!
+Then simply require it, and you are good to use Pivotal Tracker with taskmapper!
 
-    require 'ticketmaster'
-    require 'ticketmaster-pivotal'
-    unfuddle = TicketMaster.new(:pivotal, {:username => "..", :password => ".."})
+    require 'taskmapper'
+    require 'taskmapper-pivotal'
+    unfuddle = taskmapper.new(:pivotal, {:username => "..", :password => ".."})
 
-The source code is located at [ticketmaster-pivotal](http://github.com/hybridgroup/ticketmaster-pivotal)
+The source code is located at [taskmapper-pivotal](http://github.com/hybridgroup/taskmapper-pivotal)
 
 ### Lighthouse
 
-To use Lighthouse with ticketmaster, install it:
-    gem install ticketmaster-lighthouse
+To use Lighthouse with taskmapper, install it:
+    gem install taskmapper-lighthouse
 
-Then simply require it, and you are all set to use Lighthouse with ticketmaster!
+Then simply require it, and you are all set to use Lighthouse with taskmapper!
 
-    require 'ticketmaster'
-    require 'ticketmaster-lighthouse'
-    lighthouse = TicketMaster.new(:lighthouse, {:username => "..", :password => ".."})
+    require 'taskmapper'
+    require 'taskmapper-lighthouse'
+    lighthouse = taskmapper.new(:lighthouse, {:username => "..", :password => ".."})
 
-The source code is located at [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse)
+The source code is located at [taskmapper-lighthouse](http://github.com/hybridgroup/taskmapper-lighthouse)
 
 ### Basecamp
 
-To use Basecamp with ticketmaster, install it:
-    gem install ticketmaster-basecamp
+To use Basecamp with taskmapper, install it:
+    gem install taskmapper-basecamp
 
-Once you require it, then you are ready to use Basecamp with ticketmaster
+Once you require it, then you are ready to use Basecamp with taskmapper
 
-    require 'ticketmaster'
-    require 'ticketmaster-basecamp'
-    basecamp = TicketMaster.new(:basecamp, :domain => 'yourdomain.basecamphq.com', :username => 'you', :password => 'pass')
+    require 'taskmapper'
+    require 'taskmapper-basecamp'
+    basecamp = taskmapper.new(:basecamp, :domain => 'yourdomain.basecamphq.com', :username => 'you', :password => 'pass')
 
-The source code is located at [ticketmaster-basecamp](http://github.com/hybridgroup/ticketmaster-basecamp)
+The source code is located at [taskmapper-basecamp](http://github.com/hybridgroup/taskmapper-basecamp)
 
 ### Github
 
-To use Github's issue tracking with ticketmaster, install it:
-    gem install ticketmaster-github
+To use Github's issue tracking with taskmapper, install it:
+    gem install taskmapper-github
 
-Once you require it, then you are ready to use Github and ticketmaster
+Once you require it, then you are ready to use Github and taskmapper
 
-    require 'ticketmaster'
-    require 'ticketmaster-github'
-    github = TicketMaster.new(:github, :username => 'you', :password => 'pass')
+    require 'taskmapper'
+    require 'taskmapper-github'
+    github = taskmapper.new(:github, :username => 'you', :password => 'pass')
 
-The source code is located at [ticketmaster-github](http://github.com/hybridgroup/ticketmaster-github)
+The source code is located at [taskmapper-github](http://github.com/hybridgroup/taskmapper-github)
 
 ### Unfuddle
 
-To use Unfuddle with ticketmaster, install it:
-    gem install ticketmaster-unfuddle
+To use Unfuddle with taskmapper, install it:
+    gem install taskmapper-unfuddle
 
-Then simply require it, and you are good to use Unfuddle with ticketmaster!
+Then simply require it, and you are good to use Unfuddle with taskmapper!
 
-    require 'ticketmaster'
-    require 'ticketmaster-unfuddle'
-    unfuddle = TicketMaster.new(:unfuddle, {:username => "..", :password => "..", :account => ".."})
+    require 'taskmapper'
+    require 'taskmapper-unfuddle'
+    unfuddle = taskmapper.new(:unfuddle, {:username => "..", :password => "..", :account => ".."})
 
-The source code is located at [ticketmaster-unfuddle](http://github.com/hybridgroup/ticketmaster-unfuddle)
+The source code is located at [taskmapper-unfuddle](http://github.com/hybridgroup/taskmapper-unfuddle)
 
 ### Kanban Pad
 
-To use Kanban Pad with ticketmaster, install it:
-    gem install ticketmaster-kanbanpad
+To use Kanban Pad with taskmapper, install it:
+    gem install taskmapper-kanbanpad
 
-Once you require it, you can connect to Kanban Pad using ticketmaster!
+Once you require it, you can connect to Kanban Pad using taskmapper!
 
-    require 'ticketmaster'
-    require 'ticketmaster-kanbanpad'
-    kanbanpad = TicketMaster.new(:kanbanpad, {:username => "xx", :password => "xx"})
+    require 'taskmapper'
+    require 'taskmapper-kanbanpad'
+    kanbanpad = taskmapper.new(:kanbanpad, {:username => "xx", :password => "xx"})
 
-The source code is located at [ticketmaster-kanbanpad](https://github.com/hybridgroup/ticketmaster-kanbanpad)
+The source code is located at [taskmapper-kanbanpad](https://github.com/hybridgroup/taskmapper-kanbanpad)
 
 ### Redmine
 
-To use Redmine with ticketmaster, install it:
-    gem install ticketmaster-redmine
+To use Redmine with taskmapper, install it:
+    gem install taskmapper-redmine
 
-Just require it, and you are ready to use Redmine with ticketmaster!
+Just require it, and you are ready to use Redmine with taskmapper!
 
-    require 'ticketmaster'
-    require 'ticketmaster-redmine'
-    redmine = TicketMaster.new(:redmine, {:username => "..", :password => "..", :server => ".."})
+    require 'taskmapper'
+    require 'taskmapper-redmine'
+    redmine = taskmapper.new(:redmine, {:username => "..", :password => "..", :server => ".."})
 
-The source code is located at [ticketmaster-redmine](http://github.com/hybridgroup/ticketmaster-redmine)
+The source code is located at [taskmapper-redmine](http://github.com/hybridgroup/taskmapper-redmine)
 
 ### Trac
 
-To use Trac with ticketmaster, install it:
-    gem install ticketmaster-trac
+To use Trac with taskmapper, install it:
+    gem install taskmapper-trac
 
-Require it, and you are happening to call Trac with ticketmaster!
+Require it, and you are happening to call Trac with taskmapper!
 
-    require 'ticketmaster'
-    require 'ticketmaster-trac'
-    trac = TicketMaster.new(:trac, {:username => "..", :password => "..", :url => ".."})
+    require 'taskmapper'
+    require 'taskmapper-trac'
+    trac = taskmapper.new(:trac, {:username => "..", :password => "..", :url => ".."})
 
-The source code is located at [ticketmaster-trac](http://github.com/hybridgroup/ticketmaster-trac)
+The source code is located at [taskmapper-trac](http://github.com/hybridgroup/taskmapper-trac)
 
 ### Codaset
 
-To use Codaset with ticketmaster, install it:
-    gem install ticketmaster-codaset
+To use Codaset with taskmapper, install it:
+    gem install taskmapper-codaset
 
-Require and you have connected to Codaset with ticketmaster!
+Require and you have connected to Codaset with taskmapper!
 
-    require 'ticketmaster'
-    require 'ticketmaster-codaset'
-    codaset = TicketMaster.new(:codaset, {:username => "foo", :password => "bar", :client_id => "your_client_id", :client_secret => "your_client_secret"})
+    require 'taskmapper'
+    require 'taskmapper-codaset'
+    codaset = taskmapper.new(:codaset, {:username => "foo", :password => "bar", :client_id => "your_client_id", :client_secret => "your_client_secret"})
 
-The source code is located at [ticketmaster-codaset](http://github.com/hybridgroup/ticketmaster-codaset)
+The source code is located at [taskmapper-codaset](http://github.com/hybridgroup/taskmapper-codaset)
 
 ### Bugzilla
 
-To use Bugzilla with ticketmaster, install it:
-    gem install ticketmaster-bugzilla
+To use Bugzilla with taskmapper, install it:
+    gem install taskmapper-bugzilla
 
-Require and you can talk to Bugzilla with ticketmaster!
+Require and you can talk to Bugzilla with taskmapper!
 
-    require 'ticketmaster'
-    require 'ticketmaster-bugzilla'
-    codaset = TicketMaster.new(:bugzilla, {:username => "foo", :password => "bar", :url => "https://bugzilla.mozilla.org"})
+    require 'taskmapper'
+    require 'taskmapper-bugzilla'
+    codaset = taskmapper.new(:bugzilla, {:username => "foo", :password => "bar", :url => "https://bugzilla.mozilla.org"})
 
-The source code is located at [ticketmaster-bugzilla](http://github.com/hybridgroup/ticketmaster-bugzilla)
+The source code is located at [taskmapper-bugzilla](http://github.com/hybridgroup/taskmapper-bugzilla)
 
 ## Creating a provider
 Creating a provider consists of three steps:
@@ -249,35 +249,35 @@ Creating a provider consists of three steps:
 * Implement whatever is needed to connect to your desired backend
 * Release it to RubyGems
 
-### Create the ticketmaster provider
+### Create the taskmapper provider
 Thanks to a simple generator, it is easy to get started with a new provider. Run this from the command line:
     tm generate myprovider
 
-This will generate a new skeleton provider called ticketmaster-myprovider in the current directory. Create a repo from that directory, and you can start implementing your provider.
+This will generate a new skeleton provider called taskmapper-myprovider in the current directory. Create a repo from that directory, and you can start implementing your provider.
 
-Almost all APIs are different. And so are their Ruby providers. ticketmaster attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the ticketmaster API. This is the providers job. The provider is the glue between ticketmaster, and the ticket management system's API.
-Usually, your provider would rely on another library for the raw HTTP interaction. For instance, [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse) relies on ActiveResource in order to interact with the Lighthouse API. Look at it like this:
+Almost all APIs are different. And so are their Ruby providers. taskmapper attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the taskmapper API. This is the providers job. The provider is the glue between taskmapper, and the ticket management system's API.
+Usually, your provider would rely on another library for the raw HTTP interaction. For instance, [taskmapper-lighthouse](http://github.com/hybridgroup/taskmapper-lighthouse) relies on ActiveResource in order to interact with the Lighthouse API. Look at it like this:
 
-**ticketmaster** -> **Provider** -> *(Ruby library)* -> **Site's API**
+**taskmapper** -> **Provider** -> *(Ruby library)* -> **Site's API**
 
-Provider being the *glue* between the site's API and ticketmaster. The Ruby library is "optional" (though highly recommended as mentioned), therefore it is in parantheses.
+Provider being the *glue* between the site's API and taskmapper. The Ruby library is "optional" (though highly recommended as mentioned), therefore it is in parantheses.
 
-An example of a provider could be [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse), an example of a Ruby library could be ActiveResource.
+An example of a provider could be [taskmapper-lighthouse](http://github.com/hybridgroup/taskmapper-lighthouse), an example of a Ruby library could be ActiveResource.
 
-For now, look at [ticketmaster-lighthouse](http://github.com/hybridgroup/ticketmaster-lighthouse) as an example on how to create a provider. More detailed documentation will be available soon.
+For now, look at [taskmapper-lighthouse](http://github.com/hybridgroup/taskmapper-lighthouse) as an example on how to create a provider. More detailed documentation will be available soon.
 
 ### Release it
 Simply release it to RubyGems.org, the name of the provider Gem should follow this simple naming rule:
 
-    ticketmaster-<provider's name>
+    taskmapper-<provider's name>
 
 For instance if you set for a Github provider, it would be named:
 
-    ticketmaster-github
+    taskmapper-github
 
 This makes it easy for people to find providers, simply by issuing:
 
-    gem search -r ticketmaster
+    gem search -r taskmapper
 
 They should be presented with a nice list of all available providers.
 

@@ -9,7 +9,7 @@ def generate(options)
       options[:provider_dir] = options[:provider]
     else
       options[:provider] = provider_name
-      options[:provider_dir] = 'ticketmaster-' + options[:provider]
+      options[:provider_dir] = 'taskmapper-' + options[:provider]
     end
   end
   options[:mkdir] = true
@@ -37,7 +37,7 @@ def generate(options)
         exit
       end
       opts.separator ''
-      opts.separator 'NOTE: ticketmaster- will be prepended to your provider name'
+      opts.separator 'NOTE: taskmapper- will be prepended to your provider name'
       opts.separator 'unless you set the first character as _ (it will be removed)'
     end.order!
   rescue OptionParser::MissingArgument => exception

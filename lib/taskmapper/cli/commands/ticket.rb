@@ -64,8 +64,8 @@ def ticket(options)
   end
   parse_config!(options)
   begin
-    require 'ticketmaster'
-    require "ticketmaster-#{options[:provider]}"
+    require 'taskmapper'
+    require "taskmapper-#{options[:provider]}"
   rescue
     require options[:provider]
   end
@@ -75,7 +75,7 @@ end
 
 # The create subcommand
 def create(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   ticket = tm.ticket.create(options[:ticket_attributes].merge({:project_id => options[:project]}))
   read_ticket ticket
   exit
@@ -83,7 +83,7 @@ end
 
 # The read subcommand
 def read(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   project = tm.project(options[:project])
   ticket = project.ticket(options[:ticket])
   read_ticket ticket
@@ -92,7 +92,7 @@ end
 
 # The update subcommand
 def update(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   project = tm.project(options[:project])
   ticket = project.ticket(options[:ticket])
   if ticket.update!(options[:ticket_attributes])
@@ -106,7 +106,7 @@ end
 
 # The destroy subcommand.
 def destroy(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   project = tm.project(options[:project])
   ticket = project.ticket(options[:ticket])
   puts "Are you sure you want to delete Ticket #{ticket.title} (#{ticket.id})? (yes/no) [no]"
@@ -125,7 +125,7 @@ end
 
 # The search and list subcommands
 def search(options)
-  tm = TicketMaster.new(options[:provider], options[:authentication])
+  tm = TaskMapper.new(options[:provider], options[:authentication])
   project = tm.project(options[:project])
   tickets = project.tickets(options[:ticket_attributes])
   puts "Found #{tickets.length} tickets"

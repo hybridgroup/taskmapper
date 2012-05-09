@@ -1,7 +1,7 @@
 module TaskMapper::Provider
   # This is the Tester Provider
   #
-  # It doesn't really do anything, it exists in order to test the basic functionality of ticketmaster
+  # It doesn't really do anything, it exists in order to test the basic functionality of taskmapper
   # and to provide an example the basics of what is to be expected from the providers.
   # 
   # Note that the initial provider name is a module rather than a class. TaskMapper.new

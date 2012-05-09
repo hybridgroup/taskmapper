@@ -1,6 +1,6 @@
 module TaskMapper::Provider
   module Base
-    # The base ticket class for ticketmaster
+    # The base ticket class for taskmapper
     # All providers should inherit this class
     #
     # The difference between the class methods and instance methods are that the instance

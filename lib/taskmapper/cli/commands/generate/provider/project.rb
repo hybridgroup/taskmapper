@@ -1,6 +1,6 @@
 module TaskMapper::Provider
   module Yoursystem
-    # Project class for ticketmaster-yoursystem
+    # Project class for taskmapper-yoursystem
     #
     #
     class Project < TaskMapper::Provider::Base::Project

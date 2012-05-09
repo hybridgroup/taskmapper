@@ -2,7 +2,7 @@ module TaskMapper::Provider
   module Base
     # The comment class
     #
-    # This will probably one of the most troublesome parts of creating a provider for ticketmaster
+    # This will probably one of the most troublesome parts of creating a provider for taskmapper 
     # since there are so many different ways comments are handled by different APIs.
     # Keep in mind that if you do need to change/overwrite the methods, you will most likely
     # only need to overwrite #find_by_id, #find_by_attributes, #search, and possibly #initialize

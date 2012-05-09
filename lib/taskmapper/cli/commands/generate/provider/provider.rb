@@ -1,5 +1,5 @@
 module TaskMapper::Provider
-  # This is the Yoursystem Provider for ticketmaster
+  # This is the Yoursystem Provider for taskmapper 
   module Yoursystem
     include TaskMapper::Provider::Base
     #TICKET_API = Yoursystem::Ticket # The class to access the api's tickets

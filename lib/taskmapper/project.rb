@@ -5,7 +5,7 @@ module TaskMapper::Provider
     # Providers should inherit this class and redefine the methods
     # 
     # Each provider should have their own @system defined.
-    # For example, ticketmaster-unfuddle's @system is :unfuddle and ticketmaster-lighthouse's
+    # For example, taskmapper-unfuddle's @system is :unfuddle and taskmapper-lighthouse's
     # @system is :lighthouse.
     #
     # Methods that must be implemented by the provider

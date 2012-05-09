@@ -34,8 +34,8 @@ module TaskMapper::Provider
     # Providers should try to define this method
     #
     # It returns the project class for this provider, so that there can be calls such as
-    #    ticketmaster.project.find :all
-    #    ticketmaster.project(:id => 777, :name => 'Proj test')
+    #    taskmapper.project.find :all
+    #    taskmapper.project(:id => 777, :name => 'Proj test')
     #
     # Should try to implement a find :first (or find with singular result) if given parameters
     def project(*options)
@@ -58,8 +58,8 @@ module TaskMapper::Provider
     # Providers should try to define this method
     #
     # It returns the ticket class for this provider, so that there can be calls such as
-    #    ticketmaster.ticket.find :all
-    #    ticketmaster.ticket(:id => 102, :title => 'Ticket')
+    #    taskmapper.ticket.find :all
+    #    taskmapper.ticket(:id => 102, :title => 'Ticket')
     #
     # Don't confuse this with project.ticket.find(...) since that deals with tickets specific to a
     # project. This is deals with tickets

@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "ticketmaster"
+  s.name = "taskmapper"
   s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
   s.date = "2012-04-04"
-  s.description = "Ticketmaster provides a universal API to ticket tracking and project management systems."
+  s.description = "TaskMapper provides a universal API to ticket tracking and project management systems."
   s.email = "info@hybridgroup.com"
   s.executables = ["tm"]
   s.extra_rdoc_files = [
@@ -34,56 +34,56 @@ Gem::Specification.new do |s|
     "examples/tm_example_2.rb",
     "examples/tm_example_3.rb",
     "examples/tm_example_4.rb",
-    "lib/ticketmaster.rb",
-    "lib/ticketmaster/authenticator.rb",
-    "lib/ticketmaster/cli/commands/config.rb",
-    "lib/ticketmaster/cli/commands/console.rb",
-    "lib/ticketmaster/cli/commands/generate.rb",
-    "lib/ticketmaster/cli/commands/generate/provider.rb",
-    "lib/ticketmaster/cli/commands/generate/provider/comment.rb",
-    "lib/ticketmaster/cli/commands/generate/provider/project.rb",
-    "lib/ticketmaster/cli/commands/generate/provider/provider.rb",
-    "lib/ticketmaster/cli/commands/generate/provider/ticket.rb",
-    "lib/ticketmaster/cli/commands/help.rb",
-    "lib/ticketmaster/cli/commands/help/config",
-    "lib/ticketmaster/cli/commands/help/console",
-    "lib/ticketmaster/cli/commands/help/generate",
-    "lib/ticketmaster/cli/commands/help/help",
-    "lib/ticketmaster/cli/commands/help/project",
-    "lib/ticketmaster/cli/commands/help/ticket",
-    "lib/ticketmaster/cli/commands/project.rb",
-    "lib/ticketmaster/cli/commands/ticket.rb",
-    "lib/ticketmaster/cli/common.rb",
-    "lib/ticketmaster/cli/init.rb",
-    "lib/ticketmaster/comment.rb",
-    "lib/ticketmaster/common.rb",
-    "lib/ticketmaster/dummy/comment.rb",
-    "lib/ticketmaster/dummy/dummy.rb",
-    "lib/ticketmaster/dummy/project.rb",
-    "lib/ticketmaster/dummy/ticket.rb",
-    "lib/ticketmaster/exception.rb",
-    "lib/ticketmaster/helper.rb",
-    "lib/ticketmaster/project.rb",
-    "lib/ticketmaster/provider.rb",
-    "lib/ticketmaster/tester/comment.rb",
-    "lib/ticketmaster/tester/project.rb",
-    "lib/ticketmaster/tester/tester.rb",
-    "lib/ticketmaster/tester/ticket.rb",
-    "lib/ticketmaster/ticket.rb",
+    "lib/taskmapper.rb",
+    "lib/taskmapper/authenticator.rb",
+    "lib/taskmapper/cli/commands/config.rb",
+    "lib/taskmapper/cli/commands/console.rb",
+    "lib/taskmapper/cli/commands/generate.rb",
+    "lib/taskmapper/cli/commands/generate/provider.rb",
+    "lib/taskmapper/cli/commands/generate/provider/comment.rb",
+    "lib/taskmapper/cli/commands/generate/provider/project.rb",
+    "lib/taskmapper/cli/commands/generate/provider/provider.rb",
+    "lib/taskmapper/cli/commands/generate/provider/ticket.rb",
+    "lib/taskmapper/cli/commands/help.rb",
+    "lib/taskmapper/cli/commands/help/config",
+    "lib/taskmapper/cli/commands/help/console",
+    "lib/taskmapper/cli/commands/help/generate",
+    "lib/taskmapper/cli/commands/help/help",
+    "lib/taskmapper/cli/commands/help/project",
+    "lib/taskmapper/cli/commands/help/ticket",
+    "lib/taskmapper/cli/commands/project.rb",
+    "lib/taskmapper/cli/commands/ticket.rb",
+    "lib/taskmapper/cli/common.rb",
+    "lib/taskmapper/cli/init.rb",
+    "lib/taskmapper/comment.rb",
+    "lib/taskmapper/common.rb",
+    "lib/taskmapper/dummy/comment.rb",
+    "lib/taskmapper/dummy/dummy.rb",
+    "lib/taskmapper/dummy/project.rb",
+    "lib/taskmapper/dummy/ticket.rb",
+    "lib/taskmapper/exception.rb",
+    "lib/taskmapper/helper.rb",
+    "lib/taskmapper/project.rb",
+    "lib/taskmapper/provider.rb",
+    "lib/taskmapper/tester/comment.rb",
+    "lib/taskmapper/tester/project.rb",
+    "lib/taskmapper/tester/tester.rb",
+    "lib/taskmapper/tester/ticket.rb",
+    "lib/taskmapper/ticket.rb",
     "spec/project_spec.rb",
     "spec/rcov.opts",
     "spec/spec.opts",
     "spec/spec_helper.rb",
     "spec/ticket_spec.rb",
-    "spec/ticketmaster-cli_spec.rb",
-    "spec/ticketmaster-exception_spec.rb",
-    "spec/ticketmaster_spec.rb",
-    "ticketmaster.gemspec"
+    "spec/taskmapper-cli_spec.rb",
+    "spec/taskmapper-exception_spec.rb",
+    "spec/taskmapper_spec.rb",
+    "taskmapper.gemspec"
   ]
   s.homepage = "http://ticketrb.com"
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.17"
-  s.summary = "Ticketmaster provides a universal API to ticket tracking and project management systems."
+  s.summary = "taskmapper provides a universal API to ticket tracking and project management systems."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

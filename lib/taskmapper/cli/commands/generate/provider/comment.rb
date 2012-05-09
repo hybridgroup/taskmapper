@@ -1,8 +1,8 @@
 module TaskMapper::Provider
   module Yoursystem
-    # The comment class for ticketmaster-yoursystem
+    # The comment class for taskmapper-yoursystem
     #
-    # Do any mapping between Ticketmaster and your system's comment model here
+    # Do any mapping between TaskMapper and your system's comment model here
     # versions of the ticket.
     #
     class Comment < TaskMapper::Provider::Base::Comment
