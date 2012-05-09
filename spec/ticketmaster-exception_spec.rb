@@ -10,21 +10,21 @@ describe "TaskMapper Exception Messages" do
   let(:validation_error) { "TaskMapper::Provider::Base::valid? method must be implemented by the provider" }
   let(:easy_finder_error) { "TaskMapper::Provider::Helper::easy_finder method must be implemented by the provider" }
 
-  describe "TaskMapper::Provider::Base" do 
+  describe TaskMapper::Provider::Base do 
     context "when calling #valid? method" do 
       subject { lambda { tm.valid? } }
       it { should raise_error(exception, validation_error) }
     end
   end
 
-  describe "TaskMapper::Provider::Helper" do
+  describe TaskMapper::Provider::Helper do
     context "when calling #easy_finder" do 
       subject { lambda { tm.easy_finder(1, :test, {}) } }
       it { should raise_error(exception, easy_finder_error) }
     end
   end
 
-  describe "TaskMapper::Provider::Tester::Project" do
+  describe TaskMapper::Provider::Tester::Project do
     let(:find_by_id_error) { "TaskMapper::Provider::Tester::Project::find_by_id method must be implemented by the provider" }
     let(:find_by_attributes_error) { "TaskMapper::Provider::Tester::Project::find_by_attributes method must be implemented by the provider" }
     let(:search_error) { "TaskMapper::Provider::Tester::Project::search method must be implemented by the provider"}
@@ -64,7 +64,7 @@ describe "TaskMapper Exception Messages" do
     end
   end
 
-  describe "TaskMapper::Provider::Tester::Ticket" do
+  describe TaskMapper::Provider::Tester::Ticket do
     let(:ticket) { TaskMapper::Provider::Tester::Ticket.new(1) }
     let(:find_by_id_error) { "TaskMapper::Provider::Tester::Ticket::find_by_id method must be implemented by the provider" }
     let(:find_by_attributes_error) { "TaskMapper::Provider::Tester::Ticket::find_by_attributes method must be implemented by the provider" }
@@ -116,42 +116,45 @@ describe "TaskMapper Exception Messages" do
     end
   end
 
-  describe "TaskMapper::Provider::Tester::Comment" do
-    before(:each) do
-      @ticket_with_comments = TaskMapper::Provider::Tester::Ticket.new(1)
-      @comment = TaskMapper::Provider::Tester::Comment.new(1, 1)
-    end
-    it "find_by_id method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Comment::find_by_id method must be implemented by the provider"
-      lambda { @ticket_with_comments.comment.find(1, 1, [1,2]) }.should raise_error(@exception, msg)
-    end    
-    it "find_by_attributes method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Comment::find_by_attributes method must be implemented by the provider"
-      lambda { @ticket_with_comments.comment.find(1, 1, :all, :tag => "tag") }.should raise_error(@exception, msg)
-    end    
-    it "search method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Comment::search method must be implemented by the provider"
-      lambda { @ticket_with_comments.comment.search(1, 1, :tag => 'testing') }.should raise_error(@exception, msg)
-    end    
-    it "create method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Comment::create method must be implemented by the provider"
-      lambda { @ticket_with_comments.comment.create :name => 'Foo Bar' }.should raise_error(@exception, msg)
-    end    
-    it "save method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Comment::save method must be implemented by the provider"
-      lambda { @comment.save }.should raise_error(@exception, msg)
-    end    
-    it "destroy method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Comment::destroy method must be implemented by the provider"
-      lambda { @comment.destroy }.should raise_error(@exception, msg)
-    end    
-  end
+  describe TaskMapper::Provider::Tester::Comment do
+    let(:ticket_with_comments) { TaskMapper::Provider::Tester::Ticket.new(1) }
+    let(:comment) { TaskMapper::Provider::Tester::Comment.new(1, 1) }
+    let(:find_by_id_error) { "TaskMapper::Provider::Tester::Comment::find_by_id method must be implemented by the provider" }
+    let(:find_by_attributes_error) { "TaskMapper::Provider::Tester::Comment::find_by_attributes method must be implemented by the provider" }
+    let(:search_error) { "TaskMapper::Provider::Tester::Comment::search method must be implemented by the provider" }
+    let(:create_error) { "TaskMapper::Provider::Tester::Comment::create method must be implemented by the provider" }
+    let(:save_error) { "TaskMapper::Provider::Tester::Comment::save method must be implemented by the provider" }
+    let(:destroy_error) { "TaskMapper::Provider::Tester::Comment::destroy method must be implemented by the provider" }
 
+    context "when #find_by_id" do 
+      subject { lambda { ticket_with_comments.comment.find(1,1,[1,2]) } } 
+      it { should raise_error(exception, find_by_id_error) }
+    end
+
+    context "when #find_by_attributes" do 
+      subject { lambda { ticket_with_comments.comment.find(1, 1, :all, :tag => 'tag') } }
+      it { should raise_error(exception, find_by_attributes_error) }
+    end
+
+    context "when #search" do 
+      subject { lambda { ticket_with_comments.comment.search(1, 1, :tag => 'testing') } }
+      it { should raise_error(exception, search_error) }
+    end
+
+    context "when #create" do 
+      subject { lambda { ticket_with_comments.comment.create :name => 'Foo Bar' } }
+      it { should raise_error(exception, create_error) }
+    end
+
+    context "when #save" do 
+      subject { lambda { comment.save } } 
+      it { should raise_error(exception, save_error) }
+    end
+
+    context "when #destroy" do 
+      subject { lambda { comment.destroy } }
+      it { should raise_error(exception, destroy_error) }
+    end
+  end
 end
 
