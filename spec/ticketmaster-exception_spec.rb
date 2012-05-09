@@ -65,49 +65,55 @@ describe "TaskMapper Exception Messages" do
   end
 
   describe "TaskMapper::Provider::Tester::Ticket" do
-    before(:each) do
-      @ticket = TaskMapper::Provider::Tester::Ticket.new(1)
+    let(:ticket) { TaskMapper::Provider::Tester::Ticket.new(1) }
+    let(:find_by_id_error) { "TaskMapper::Provider::Tester::Ticket::find_by_id method must be implemented by the provider" }
+    let(:find_by_attributes_error) { "TaskMapper::Provider::Tester::Ticket::find_by_attributes method must be implemented by the provider" }
+    let(:search_error) { "TaskMapper::Provider::Tester::Ticket::search method must be implemented by the provider" }
+    let(:create_error) { "TaskMapper::Provider::Tester::Ticket::create method must be implemented by the provider" } 
+    let(:save_error) { "TaskMapper::Provider::Tester::Ticket::save method must be implemented by the provider" }
+    let(:destroy_error) { "TaskMapper::Provider::Tester::Ticket::destroy method must be implemented by the provider" }
+    let(:close_error) { "TaskMapper::Provider::Tester::Ticket::close method must be implemented by the provider" }
+    let(:reload_error) { "TaskMapper::Provider::Tester::Ticket::reload! method must be implemented by the provider" }
+
+    context "when #find_by_id" do 
+      subject { lambda { tm.tickets(:id => 22) } }
+      it { should raise_error(exception, find_by_id_error) }
     end
-    it "find_by_id method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Ticket::find_by_id method must be implemented by the provider"
-      lambda { @ticketmaster.tickets(:id => 22) }.should raise_error(@exception, msg)
-    end    
-    it "find_by_attributes method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Ticket::find_by_attributes method must be implemented by the provider"
-      lambda { @ticketmaster.ticket.find(1, :all, :title => 'Test ticket') }.should raise_error(@exception, msg)
-    end    
-    it "search method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Ticket::search method must be implemented by the provider"
-      lambda { @ticketmaster.ticket.search :tag => 'testing' }.should raise_error(@exception, msg)
-    end    
-    it "create method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Ticket::create method must be implemented by the provider"
-      lambda { @ticketmaster.ticket.create :name => 'Foo Bar' }.should raise_error(@exception, msg)
-    end    
-    it "save method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Ticket::save method must be implemented by the provider"
-      lambda { @ticket.save }.should raise_error(@exception, msg)
-    end    
-    it "destroy method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Ticket::destroy method must be implemented by the provider"
-      lambda { @ticket.destroy }.should raise_error(@exception, msg)
-    end    
-    it "close method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Ticket::close method must be implemented by the provider"
-      lambda { @ticket.close }.should raise_error(@exception, msg)
-    end    
-    it "reload! method raises correct exception" do
-      pending
-      msg = "TaskMapper::Provider::Tester::Ticket::reload! method must be implemented by the provider"
-      lambda { @ticket.reload! }.should raise_error(@exception, msg)
-    end    
+
+    context "when #find_by_attributes" do 
+      subject { lambda { tm.ticket.find(1, :all, :title => 'Test ticket') } }
+      it { should raise_error(exception, find_by_attributes_error) }
+    end
+
+    context "when #search" do 
+      subject { lambda { tm.ticket.search :tag => 'testing' } }
+      it { should raise_error(exception, search_error) }
+    end
+
+    context "when #create" do 
+      subject { lambda { tm.ticket.create :name => 'Foo Bar' } }
+      it { should raise_error(exception, create_error) }
+    end
+
+    context "when #save" do 
+      subject { lambda { ticket.save } }
+      it { should raise_error(exception, save_error) }
+    end
+
+    context "when #destroy" do 
+      subject { lambda { ticket.destroy } }
+      it { should raise_error(exception, destroy_error) }
+    end
+
+    context "when #close" do 
+      subject { lambda { ticket.close } }
+      it { should raise_error(exception, close_error) }
+    end
+
+    context "when #reload!" do 
+      subject { lambda { ticket.reload! } }
+      it { should raise_error(exception, reload_error) }
+    end
   end
 
   describe "TaskMapper::Provider::Tester::Comment" do
