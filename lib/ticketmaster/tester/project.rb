@@ -1,7 +1,7 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Tester
     # This is the Project class for the Tester provider
-    class Project < TicketMaster::Provider::Base::Project
+    class Project < TaskMapper::Provider::Base::Project
             
       # You should define @system and @system_data here.
       # The data stuff is just to initialize fake data. In a real provider, you would use the API

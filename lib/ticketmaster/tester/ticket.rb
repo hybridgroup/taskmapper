@@ -1,7 +1,7 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Tester
     # The Tester Provider's Ticket class
-    class Ticket < TicketMaster::Provider::Base::Ticket
+    class Ticket < TaskMapper::Provider::Base::Ticket
       @system = :tester
       
       # You don't need to define an initializer, this is only here to initialize tester data

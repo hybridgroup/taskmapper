@@ -4,7 +4,7 @@
   active_resource
 }.each {|lib| require lib }
 
-class TicketMaster
+class TaskMapper 
 end
 
 %w{
@@ -21,13 +21,13 @@ end
 }.each {|lib| require File.dirname(__FILE__) + '/ticketmaster/' + lib }
 
 
-# This is the TicketMaster class
+# This is the TaskMapper class
 #
-class TicketMaster
+class TaskMapper
   attr_reader :provider, :symbol
   attr_accessor :default_project
   
-  # This initializes the TicketMaster instance and prepares the provider
+  # This initializes the TaskMapper instance and prepares the provider
   # If called without any arguments, it conveniently tries searching for the information in
   # ~/.ticketmaster.yml
   # See the documentation for more information on the format of that file.
@@ -40,14 +40,14 @@ class TicketMaster
       system = system.nil? ? data['default'] || data.first.first : system.to_s
       authentication = data[system]['authentication'] if authentication.nil? and data[system]['authentication']
     end
-    self.extend TicketMaster::Provider.const_get(system.to_s.capitalize)
+    self.extend TaskMapper::Provider.const_get(system.to_s.capitalize)
     authorize authentication
     @symbol = system.to_sym
-    @provider = TicketMaster::Provider.const_get(system.to_s.capitalize)
+    @provider = TaskMapper::Provider.const_get(system.to_s.capitalize)
   end
   
   # Providers should over-write this method
   def authorize(authentication = {})
-    raise TicketMaster::Exception.new("This method must be reimplemented in the provider")
+    raise TaskMapper::Exception.new("This method must be reimplemented in the provider")
   end
 end

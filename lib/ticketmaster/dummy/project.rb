@@ -1,7 +1,7 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Dummy
     # This is the Project class for the Dummy provider
-    class Project < TicketMaster::Provider::Base::Project
+    class Project < TaskMapper::Provider::Base::Project
       
       def self.find_by_id(id)
         self.new({:id => id})

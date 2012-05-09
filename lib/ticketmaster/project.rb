@@ -1,4 +1,4 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Base
     # This is the base Project class for providers
     #
@@ -37,9 +37,9 @@ module TicketMaster::Provider
     # * updated_at
     # * description
     class Project < Hashie::Mash
-      include TicketMaster::Provider::Common
-      include TicketMaster::Provider::Helper
-      extend TicketMaster::Provider::Helper
+      include TaskMapper::Provider::Common
+      include TaskMapper::Provider::Helper
+      extend TaskMapper::Provider::Helper
       attr_accessor :system, :system_data
       API = nil #Replace with your api digestor's class.
 
@@ -88,7 +88,7 @@ module TicketMaster::Provider
         if self::API.is_a? Class
           self.new self::API.find(id)
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -99,7 +99,7 @@ module TicketMaster::Provider
         if self::API.is_a? Class
           self.search(attributes)
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -109,7 +109,7 @@ module TicketMaster::Provider
           projects = self::API.find(:all).collect { |project| self.new project }
           search_by_attribute(projects, options, limit)
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
 

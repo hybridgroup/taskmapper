@@ -1,4 +1,4 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   # Contains a series of helper methods
   module Helper
   
@@ -16,7 +16,7 @@ module TicketMaster::Provider
         options.insert(at_index, symbol) if options[at_index].is_a?(Hash)
         api.find(*options)
       else
-        raise TicketMaster::Exception.new("#{Helper.name}::#{this_method} method must be implemented by the provider")
+        raise TaskMapper::Exception.new("#{Helper.name}::#{this_method} method must be implemented by the provider")
       end
     end
     
@@ -27,7 +27,7 @@ module TicketMaster::Provider
     end
     
     def provider_parent(klass)
-      TicketMaster::Provider.const_get(klass.to_s.split('::')[-2])
+      TaskMapper::Provider.const_get(klass.to_s.split('::')[-2])
     end
     
     # Goes through all the things and returns results that match the options attributes hash

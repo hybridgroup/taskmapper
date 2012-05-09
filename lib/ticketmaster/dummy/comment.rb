@@ -1,7 +1,7 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Dummy
     # This is the Comment class for the Dummy provider
-    class Comment < TicketMaster::Provider::Base::Comment
+    class Comment < TaskMapper::Provider::Base::Comment
       
             
       def self.find_by_id(id)

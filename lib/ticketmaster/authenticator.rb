@@ -1,2 +1,2 @@
-class TicketMaster::Authenticator < Hashie::Mash
+class TaskMapper::Authenticator < Hashie::Mash
 end

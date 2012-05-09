@@ -1,4 +1,4 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Base
     # The comment class
     #
@@ -18,9 +18,9 @@ module TicketMaster::Provider
     # * ticket_id
     # * project_id
     class Comment < Hashie::Mash
-      include TicketMaster::Provider::Common
-      include TicketMaster::Provider::Helper
-      extend TicketMaster::Provider::Helper
+      include TaskMapper::Provider::Common
+      include TaskMapper::Provider::Helper
+      extend TaskMapper::Provider::Helper
       attr_accessor :system, :system_data
       API = nil # Replace with your comment's API's Class
 
@@ -68,7 +68,7 @@ module TicketMaster::Provider
         if self::API.is_a? Class
           self.new self::API.find(id, :params => {:project_id => project_id, :ticket_id => ticket_id})
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -79,7 +79,7 @@ module TicketMaster::Provider
         if self::API.is_a? Class
           self.search(project_id, ticket_id, attributes)
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -89,7 +89,7 @@ module TicketMaster::Provider
           comments = self::API.find(:all, :params => {:project_id => project_id, :ticket_id => ticket_id}).collect { |comment| self.new comment }
           search_by_attribute(comments, options, limit)
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
     end

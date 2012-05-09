@@ -1,4 +1,4 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Base
     # The base ticket class for ticketmaster
     # All providers should inherit this class
@@ -40,9 +40,9 @@ module TicketMaster::Provider
     # * requestor
     # * project_id
     class Ticket < Hashie::Mash
-      include TicketMaster::Provider::Common
-      include TicketMaster::Provider::Helper
-      extend TicketMaster::Provider::Helper
+      include TaskMapper::Provider::Common
+      include TaskMapper::Provider::Helper
+      extend TaskMapper::Provider::Helper
       attr_accessor :system, :system_data
       API = nil # Replace with your ticket API's Class
 
@@ -90,7 +90,7 @@ module TicketMaster::Provider
         if self::API.is_a? Class
           self.new self::API.find(ticket_id, :params => {:project_id => project_id})
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -101,7 +101,7 @@ module TicketMaster::Provider
         if self::API.is_a? Class
           self.search(project_id, attributes)
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
       
@@ -111,7 +111,7 @@ module TicketMaster::Provider
           tickets = self::API.find(:all, :params => {:project_id => project_id}).collect { |ticket| self.new ticket }
           search_by_attribute(tickets, options, limit)
         else
-          raise TicketMaster::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
+          raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
 
@@ -141,12 +141,12 @@ module TicketMaster::Provider
       #
       # On success it should return true, otherwise false
       def close(*options)
-        raise TicketMaster::Exception.new("#{self.class.name}::#{this_method} method must be implemented by the provider")
+        raise TaskMapper::Exception.new("#{self.class.name}::#{this_method} method must be implemented by the provider")
       end
       
       # Reload this ticket
       def reload!(*options)
-        raise TicketMaster::Exception.new("#{self.class.name}::#{this_method} method must be implemented by the provider")
+        raise TaskMapper::Exception.new("#{self.class.name}::#{this_method} method must be implemented by the provider")
       end
 
     end

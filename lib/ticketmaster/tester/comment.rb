@@ -1,7 +1,7 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Tester
     # This is the Comment class for the Tester provider
-    class Comment < TicketMaster::Provider::Base::Comment
+    class Comment < TaskMapper::Provider::Base::Comment
                  
       # You don't need to define an initializer, this is only here to initialize tester data
       def initialize(project_id, ticket_id, *options)

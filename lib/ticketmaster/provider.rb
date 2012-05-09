@@ -1,4 +1,4 @@
-# This is the TicketMaster::Provider Module
+# This is the TaskMapper::Provider Module
 #
 # All provider classes will extend into this module. 
 # See the Dummy provider's code for some specifics on implementing a provider
@@ -9,26 +9,26 @@
 # incorporate and standardize many of these into the overall provider. Keep on the look out for it!
 #
 # We are also planning on standardizing non-standard/provider-specific object models
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Base
     PROJECT_API = nil # The Class for the project api interaction
     TICKET_API = nil # The Class for the ticket api interaction
     
-    include TicketMaster::Provider::Helper
+    include TaskMapper::Provider::Helper
     
     # All providers must define this method.
     # It doesn't *have* to do anything, it just has to be there. But since it's here, you don't
-    # have to worry about it as long as you "include TicketMaster::Provider::Base"
+    # have to worry about it as long as you "include TaskMapper::Provider::Base"
     #
     # If you need to do some additional things to initialize the instance, here is where you would put it
     def authorize(authentication = {})
-      @authentication = TicketMaster::Authenticator.new(authentication)
+      @authentication = TaskMapper::Authenticator.new(authentication)
     end
 
     # All providers must define this method. 
     # It should implement the code for validating the authentication 
     def valid?
-      raise TicketMaster::Exception.new("#{Base.name}::#{this_method} method must be implemented by the provider")
+      raise TaskMapper::Exception.new("#{Base.name}::#{this_method} method must be implemented by the provider")
     end
     
     # Providers should try to define this method

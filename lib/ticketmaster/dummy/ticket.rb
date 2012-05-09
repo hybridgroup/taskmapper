@@ -1,7 +1,7 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Dummy
     # The Dummy Provider's Ticket class
-    class Ticket < TicketMaster::Provider::Base::Ticket
+    class Ticket < TaskMapper::Provider::Base::Ticket
       @system = :dummy
       
       def self.find_by_id(project_id, ticket_id)

@@ -1,9 +1,9 @@
-module TicketMaster::Provider
+module TaskMapper::Provider
   module Yoursystem
     # Project class for ticketmaster-yoursystem
     #
     #
-    class Project < TicketMaster::Provider::Base::Project
+    class Project < TaskMapper::Provider::Base::Project
       #API = Yoursystem::Project # The class to access the api's projects
       # declare needed overloaded methods here
       

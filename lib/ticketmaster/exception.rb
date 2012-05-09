@@ -1,2 +1,2 @@
-class TicketMaster::Exception < Exception
+class TaskMapper::Exception < Exception
 end
