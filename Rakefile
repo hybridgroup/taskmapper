@@ -4,9 +4,9 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "ticketmaster"
-    gem.summary = %Q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
-    gem.description = %Q{Ticketmaster provides a universal API to ticket tracking and project management systems.}
+    gem.name = "taskmapper"
+    gem.summary = %Q{TaskMapper provides a universal API to ticket tracking and project management systems.}
+    gem.description = %Q{TaskMapper provides a universal API to ticket tracking and project management systems.}
     gem.email = "info@hybridgroup.com"
     gem.homepage = "http://ticketrb.com"
     gem.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
@@ -34,7 +34,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "ticketmaster-kanbanpad#{version}"
+  rdoc.title = "taskmapper#{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

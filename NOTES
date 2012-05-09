@@ -1,14 +1,14 @@
 This needs a documentation for implementing Providers and some guidelines on Provider stuff.
 
 Environment variables and config files
-    ~/.ticketmaster.yml
+    ~/.taskmapper.yml
     
     
-.ticketmaster.yml
+.taskmapper.yml
     default: lighthouse
     lighthouse:
       token: 67dc50b88ea1e339eb72ba0e2b90573b6453d805
-      account: ticketmaster
+      account: taskmapper 
     unfuddle:
       username: xxx
       password: xxx
