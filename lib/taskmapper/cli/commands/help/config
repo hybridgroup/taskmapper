@@ -1,0 +1,27 @@
+This command is used to configure taskmapper settings for use in your terminal.
+
+By default, taskmapper searches for the config information in a file named 'taskmapper.yml' in the current directory. Next it searches for 'config/taskmapper.yml' and if that fails, it uses the home directory's ~/.taskmapper.yml (note the . in front on this one). There is also the TASKMAPPER environment variable that you can set to point to another configuration file anywhere if necessary.
+
+This command helps facilitate the creation of a taskmapper.yml.
+
+Warning: Due to the way the authentication is parsed, if any keys or values contain a comma (,) or colin (:), it can not be parsed through the -A command. Usually this isn't a problem, and if it is, it can be resolved though putting the values in a config file.
+
+Example:
+  tm -c ~/.taskmapper.yml -p dummy -A username:cheese,password:cakes -P 555 config --add
+  tm -p dummy config --set-default-provider
+
+The format for taskmapper.yml is:
+  default: <default provider>
+  <provider name>:
+    authentication:
+      <authentication information>
+    project: <project>
+  [...]
+
+For example, a taskmapper.yml with the Dummy provider would look something like this:
+  default: dummy
+  dummy:
+    authentication:
+      username: name
+      password: doesnt-matter
+    project: 555

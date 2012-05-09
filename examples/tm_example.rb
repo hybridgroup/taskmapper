@@ -1,9 +1,9 @@
 require 'rubygems'
-require 'ticketmaster'
-require 'ticketmaster-lighthouse'
+require 'taskmapper'
+require 'taskmapper-lighthouse'
 
 # display list of projects
-tm = TicketMaster.new(:lighthouse)
+tm = TaskMapper.new(:lighthouse)
 tm.projects.each {|project|
   puts "#{project.id} - #{project.name}"
 }

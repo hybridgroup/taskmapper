@@ -5,7 +5,7 @@ It can be used to do any of the CRUD actions with projects that are provided by 
 It will attempt to load data through the config files if they are available. See 'tm help config' for more information.
 
 Examples:
-  tm -p lighthouse -A account:ticketmaster,token:abc project --create name "new project"
+  tm -p lighthouse -A account:taskmapper,token:abc project --create name "new project"
   tm project --read 946
   tm --project 946 project --read
   tm -p dummy -A "user:common coder,pass:w3rd out" project --destroy 712

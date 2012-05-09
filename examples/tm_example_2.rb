@@ -1,9 +1,9 @@
 require 'rubygems'
-require 'ticketmaster'
-require 'ticketmaster-pivotal'
+require 'taskmapper'
+require 'taskmapper-pivotal'
 
 # display list of tickets for last project
-tm = TicketMaster.new(:pivotal)
+tm = TaskMapper.new(:pivotal)
 project = tm.projects.last
 project.tickets.each {|ticket|
   puts "#{ticket.id} - #{ticket.title}"

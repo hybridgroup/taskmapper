@@ -7,7 +7,7 @@ It will attempt to load data through the config files if they are available. See
 If any of the keys or values contain a space, you will have to enclose that key or value in quotes. For example, if you set name to ProjectName it does not need to be quoted, but if you set name to Project Name it will have to be quoted to "Project Name" or 'Project Name'
 
 Examples:
-  tm -p lighthouse -A account:ticketmaster,token:abc ticket --create name "new ticket" description "this is a new ticket"
+  tm -p lighthouse -A account:taskmapper,token:abc ticket --create name "new ticket" description "this is a new ticket"
   tm --project 946 ticket --read --ticket 2
   tm -p dummy -A "user:common coder,pass: w3rd out" ticket --destroy --ticket 12
   tm -p dummy -P 712 ticket --destroy --ticket 4

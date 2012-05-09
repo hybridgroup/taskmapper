@@ -1,7 +1,7 @@
-This command is used to open an irb session with the ticketmaster.
+This command is used to open an irb session with the taskmapper.
 
-The configuration for this command should mostly be dependent on the ticketmaster.yml files.
-See ticketmaster help config for more information on how to set it up.
+The configuration for this command should mostly be dependent on the taskmapper.yml files.
+See taskmapper help config for more information on how to set it up.
 
 Example:
   tm console

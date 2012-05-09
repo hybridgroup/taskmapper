@@ -3,5 +3,5 @@
 # The 'ticketmaster' gem was installed using rubygems
 # This file is the CLI application to use with 'ticketmaster'
 
-require File.dirname(__FILE__) + '/../lib/ticketmaster/cli/init.rb'
+require File.dirname(__FILE__) + '/../lib/taskmapper/cli/init.rb'
 

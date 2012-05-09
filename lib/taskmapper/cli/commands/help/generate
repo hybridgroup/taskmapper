@@ -2,7 +2,7 @@ This command is used to generate a new provider.
 
 It generates some basic files to get you started on creating your own provider.
 
-NOTE: This command, in an attempt to keep provider names consistent, will prepend 'ticketmaster-' to the given provider name. You can cancel this by prepending a _ before your provider name, which will be removed if found.
+NOTE: This command, in an attempt to keep provider names consistent, will prepend 'taskmapper-' to the given provider name. You can cancel this by prepending a _ before your provider name, which will be removed if found.
 
 If you have not created a gem directory or skeleton and want to use Jeweler (http://github.com/technicalpickles/jeweler) you can execute:
 

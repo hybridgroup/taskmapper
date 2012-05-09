@@ -1,11 +1,11 @@
 require 'rubygems'
-require 'ticketmaster'
-require 'ticketmaster-pivotal'
-require 'ticketmaster-lighthouse'
+require 'taskmapper'
+require 'taskmapper-pivotal'
+require 'taskmapper-lighthouse'
 
 # copy all tickets and comments from pivotal tracker to new lighthouse project (the hard way)
-pivotal = TicketMaster.new(:pivotal)
-lighthouse = TicketMaster.new(:lighthouse)
+pivotal = TaskMapper.new(:pivotal)
+lighthouse = TaskMapper.new(:lighthouse)
 
 from = pivotal.project(97107)
 

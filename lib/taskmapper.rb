@@ -36,7 +36,7 @@ class TaskMapper
   def initialize(system = nil, authentication = nil)
     if system.nil? or authentication.nil?
       require 'yaml'
-      data = YAML.load_file File.expand_path(ENV['TICKETMASTER_CONFIG'] || '~/.ticketmaster.yml')
+      data = YAML.load_file File.expand_path(ENV['TASKMAPPER_CONFIG'] || '~/.taskmapper.yml')
       system = system.nil? ? data['default'] || data.first.first : system.to_s
       authentication = data[system]['authentication'] if authentication.nil? and data[system]['authentication']
     end
