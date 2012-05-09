@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "taskmapper"
-  s.version = "0.7.0"
+  s.version = "0.8.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  s.date = "2012-04-04"
+  s.date = "2012-05-09"
   s.description = "TaskMapper provides a universal API to ticket tracking and project management systems."
   s.email = "info@hybridgroup.com"
   s.executables = ["tm"]
@@ -74,16 +74,16 @@ Gem::Specification.new do |s|
     "spec/rcov.opts",
     "spec/spec.opts",
     "spec/spec_helper.rb",
-    "spec/ticket_spec.rb",
     "spec/taskmapper-cli_spec.rb",
     "spec/taskmapper-exception_spec.rb",
     "spec/taskmapper_spec.rb",
+    "spec/ticket_spec.rb",
     "taskmapper.gemspec"
   ]
   s.homepage = "http://ticketrb.com"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.17"
-  s.summary = "taskmapper provides a universal API to ticket tracking and project management systems."
+  s.rubygems_version = "1.8.15"
+  s.summary = "TaskMapper provides a universal API to ticket tracking and project management systems."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
