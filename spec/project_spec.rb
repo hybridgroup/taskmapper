@@ -6,10 +6,6 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe "Projects" do
   let(:tm) { TaskMapper.new(:dummy, {}) }
   let(:project_class) { TaskMapper::Provider::Dummy::Project }
-  before(:each) do
-    @ticketmaster = TaskMapper.new(:dummy, {})
-    @project_class = TaskMapper::Provider::Dummy::Project
-  end
 
   describe "with a connection to a provider" do
     context "when #projects" do 

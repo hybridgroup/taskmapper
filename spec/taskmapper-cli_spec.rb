@@ -6,10 +6,10 @@ require 'fileutils'
 
 # Tests for the cli
 # I'm not quite sure what the most effective way to test this is...
-describe "Ticketmaster CLI" do
+describe "TaskMapper CLI" do
   before(:all) do
     @ticket = File.expand_path(File.dirname(__FILE__) + '/../bin/tm')
-    @cli_dir = File.expand_path(File.dirname(__FILE__) + '/../lib/ticketmaster/cli')
+    @cli_dir = File.expand_path(File.dirname(__FILE__) + '/../lib/taskmapper/cli')
   end
 
   it "should output help if no command given" do
@@ -35,7 +35,7 @@ describe "Ticketmaster CLI" do
   describe :generate do
     it "should generate provider skeleton w/o runtime errors" do
       provider_name = "test-provider"
-      expected_name = "ticketmaster-#{provider_name}"
+      expected_name = "taskmapper-#{provider_name}"
       begin
         generate = `#{@ticket} generate #{provider_name}`
         $?.should == 0
@@ -45,7 +45,7 @@ describe "Ticketmaster CLI" do
       end
     end
 
-    it "should not prefix 'ticketmaster' when not asked to" do
+    it "should not prefix 'taskmapper' when not asked to" do
       provider_name = "test-provider"
       begin
         generate = `#{@ticket} generate _#{provider_name}`

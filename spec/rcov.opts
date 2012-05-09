@@ -1,1 +1,1 @@
---exclude "lib/ticketmaster/dummy/*,spec/*,gems/*" 
+--exclude "lib/taskmapper/dummy/*,spec/*,gems/*" 
