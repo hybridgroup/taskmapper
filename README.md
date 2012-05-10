@@ -1,20 +1,20 @@
-# taskmapper
+# Taskmapper
 
-taskmapper is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.
+Taskmapper is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.
 
-taskmapper let's you "remap" a system into the consistent taskmapper API, easily. For instance the description of an issue/ticket, might be named **description** in one system, and **problem-description** somewhere else. Via taskmapper, this would always be called **description**. The taskmapper remaps makes it easy for you to integrate different kinds of ticket systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. taskmapper handles all this *for* you, so you can focus on making your application awesome.
+Taskmapper let's you "remap" a system into the consistent Taskmapper API, easily. For instance the description of an issue/ticket, might be named **description** in one system, and **problem-description** somewhere else. Via Taskmapper, this would always be called **description**. The Taskmapper remaps makes it easy for you to integrate different kinds of ticket systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. Taskmapper handles all this *for* you, so you can focus on making your application awesome.
 
 ## Installation
 
-taskmapper is a Gem, so we can easily install it by using RubyGems:
+Taskmapper is a Gem, so we can easily install it by using RubyGems:
 
     gem install taskmapper
 
-taskmapper depends on [Hashie](http://github.com/intridea/hashie), which is an amazing library which makes converting objects to hashes, and the other way around, a joy. It should be installed automatically whenever installing taskmapper.
+Taskmapper depends on [Hashie](http://github.com/intridea/hashie), which is an amazing library which makes converting objects to hashes, and the other way around, a joy. It should be installed automatically whenever installing taskmapper.
 
 ### Finding and installing a provider
 
-taskmapper by itself won't do too much. You may want to install a provider, to retrieve a list of available providers issue the following command:
+Taskmapper by itself won't do too much. You may want to install a provider, to retrieve a list of available providers issue the following command:
 
     gem search taskmapper
 
@@ -32,30 +32,30 @@ First, we instance a new class with the right set of options. In this example, w
 
 ### Grabbing a project
 
-Now that we've got out taskmapper instance, let's go ahead and grab "testproject":
+Now that we've got out Taskmapper instance, let's go ahead and grab "testproject":
 
     project = pivotal.project["testproject"]
-        #=> taskmapper::Project<#name="testproject"..>
+        #=> TaskMapper::Project<#name="testproject"..>
 
 *Project#[]* is an alias to *Project#find*:
 
     project = pivotal.project.find "testproject"
-        #=> taskmapper::Project<#name="testproject"..>
+        #=> TaskMapper::Project<#name="testproject"..>
 
 Which translates into:
 
     project = pivotal.project.find :name => "testproject"
-        #=> taskmapper::Project<#name="testproject"..>
+        #=> TaskMapper::Project<#name="testproject"..>
 
 That means you can actually look up a project by something else than the title, like the owner:
 
     project = pivotal.project.find :owner => "Sirupsen"
-        #=> taskmapper::Project<#owner="sirupsen"..>
+        #=> TaskMapper::Project<#owner="sirupsen"..>
 
 To retrieve all projects, simply pass no argument to find:
 
     project = pivotal.project.find
-        #=> [taskmapper::Project<#..>,TaskMapper::Project<#..>,..]
+        #=> [TaskMapper::Project<#..>,TaskMapper::Project<#..>,..]
 
 ### Creating a ticket
 
@@ -70,12 +70,12 @@ We create our ticket with three properties.
 Alright, let's play with the projects tickets! Here we grab the ticket with the id of 22:
 
     ticket = project.tickets(:id => 22)
-        #=> taskmapper::Ticket<#id=22..>
+        #=> TaskMapper::Ticket<#id=22..>
 
 Like with projects, we can also find tickets by other attributes, like title, priority and so on, with tickets we do not use a find method though. Also as with projects, if no argument is passed, all tickets are retrieved:
 
     tickets = project.tickets
-        #=> [taskmapper::Ticket<#..>,TaskMapper::Ticket<#..>,..]
+        #=> [TaskMapper::Ticket<#..>,TaskMapper::Ticket<#..>,..]
 
 ### Changing ticket attributes
 
@@ -109,14 +109,14 @@ However, as closing a ticket with a resolution is such a common task, the other 
 
 ## Support
 
-Currently taskmapper supports the following systems:
+Currently Taskmapper supports the following systems:
 
 ### Pivotal Tracker
 
-To use Pivotal Tracker with taskmapper, install it:
+To use Pivotal Tracker with Taskmapper, install it:
     gem install taskmapper-pivotal
 
-Then simply require it, and you are good to use Pivotal Tracker with taskmapper!
+Then simply require it, and you are good to use Pivotal Tracker with Taskmapper!
 
     require 'taskmapper'
     require 'taskmapper-pivotal'
@@ -126,10 +126,10 @@ The source code is located at [taskmapper-pivotal](http://github.com/hybridgroup
 
 ### Lighthouse
 
-To use Lighthouse with taskmapper, install it:
+To use Lighthouse with Taskmapper, install it:
     gem install taskmapper-lighthouse
 
-Then simply require it, and you are all set to use Lighthouse with taskmapper!
+Then simply require it, and you are all set to use Lighthouse with Taskmapper!
 
     require 'taskmapper'
     require 'taskmapper-lighthouse'
@@ -139,10 +139,10 @@ The source code is located at [taskmapper-lighthouse](http://github.com/hybridgr
 
 ### Basecamp
 
-To use Basecamp with taskmapper, install it:
+To use Basecamp with Taskmapper, install it:
     gem install taskmapper-basecamp
 
-Once you require it, then you are ready to use Basecamp with taskmapper
+Once you require it, then you are ready to use Basecamp with Taskmapper
 
     require 'taskmapper'
     require 'taskmapper-basecamp'
@@ -152,10 +152,10 @@ The source code is located at [taskmapper-basecamp](http://github.com/hybridgrou
 
 ### Github
 
-To use Github's issue tracking with taskmapper, install it:
+To use Github Issue tracking with Taskmapper, install it:
     gem install taskmapper-github
 
-Once you require it, then you are ready to use Github and taskmapper
+Once you require it, then you are ready to use Github and Taskmapper
 
     require 'taskmapper'
     require 'taskmapper-github'
@@ -165,10 +165,10 @@ The source code is located at [taskmapper-github](http://github.com/hybridgroup/
 
 ### Unfuddle
 
-To use Unfuddle with taskmapper, install it:
+To use Unfuddle with Taskmapper, install it:
     gem install taskmapper-unfuddle
 
-Then simply require it, and you are good to use Unfuddle with taskmapper!
+Then simply require it, and you are good to use Unfuddle with Taskmapper!
 
     require 'taskmapper'
     require 'taskmapper-unfuddle'
@@ -176,12 +176,12 @@ Then simply require it, and you are good to use Unfuddle with taskmapper!
 
 The source code is located at [taskmapper-unfuddle](http://github.com/hybridgroup/taskmapper-unfuddle)
 
-### Kanban Pad
+### Kanbanpad
 
-To use Kanban Pad with taskmapper, install it:
+To use Kanbanpad with taskmapper, install it:
     gem install taskmapper-kanbanpad
 
-Once you require it, you can connect to Kanban Pad using taskmapper!
+Once you require it, you can connect to Kanbanpad using Taskmapper!
 
     require 'taskmapper'
     require 'taskmapper-kanbanpad'
@@ -191,10 +191,10 @@ The source code is located at [taskmapper-kanbanpad](https://github.com/hybridgr
 
 ### Redmine
 
-To use Redmine with taskmapper, install it:
+To use Redmine with Taskmapper, install it:
     gem install taskmapper-redmine
 
-Just require it, and you are ready to use Redmine with taskmapper!
+Just require it, and you are ready to use Redmine with Taskmapper!
 
     require 'taskmapper'
     require 'taskmapper-redmine'
@@ -204,10 +204,10 @@ The source code is located at [taskmapper-redmine](http://github.com/hybridgroup
 
 ### Trac
 
-To use Trac with taskmapper, install it:
+To use Trac with Taskmapper, install it:
     gem install taskmapper-trac
 
-Require it, and you are happening to call Trac with taskmapper!
+Require it, and you are happening to call Trac with Taskmapper!
 
     require 'taskmapper'
     require 'taskmapper-trac'
@@ -215,25 +215,12 @@ Require it, and you are happening to call Trac with taskmapper!
 
 The source code is located at [taskmapper-trac](http://github.com/hybridgroup/taskmapper-trac)
 
-### Codaset
-
-To use Codaset with taskmapper, install it:
-    gem install taskmapper-codaset
-
-Require and you have connected to Codaset with taskmapper!
-
-    require 'taskmapper'
-    require 'taskmapper-codaset'
-    codaset = taskmapper.new(:codaset, {:username => "foo", :password => "bar", :client_id => "your_client_id", :client_secret => "your_client_secret"})
-
-The source code is located at [taskmapper-codaset](http://github.com/hybridgroup/taskmapper-codaset)
-
 ### Bugzilla
 
-To use Bugzilla with taskmapper, install it:
+To use Bugzilla with Taskmapper, install it:
     gem install taskmapper-bugzilla
 
-Require and you can talk to Bugzilla with taskmapper!
+Require and you can talk to Bugzilla with Taskmapper!
 
     require 'taskmapper'
     require 'taskmapper-bugzilla'
@@ -249,18 +236,18 @@ Creating a provider consists of three steps:
 * Implement whatever is needed to connect to your desired backend
 * Release it to RubyGems
 
-### Create the taskmapper provider
+### Create the Taskmapper provider
 Thanks to a simple generator, it is easy to get started with a new provider. Run this from the command line:
     tm generate myprovider
 
 This will generate a new skeleton provider called taskmapper-myprovider in the current directory. Create a repo from that directory, and you can start implementing your provider.
 
-Almost all APIs are different. And so are their Ruby providers. taskmapper attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the taskmapper API. This is the providers job. The provider is the glue between taskmapper, and the ticket management system's API.
+Almost all APIs are different. And so are their Ruby providers. Taskmapper attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the Taskmapper API. This is the providers job. The provider is the glue between Taskmapper, and the task management system's API.
 Usually, your provider would rely on another library for the raw HTTP interaction. For instance, [taskmapper-lighthouse](http://github.com/hybridgroup/taskmapper-lighthouse) relies on ActiveResource in order to interact with the Lighthouse API. Look at it like this:
 
-**taskmapper** -> **Provider** -> *(Ruby library)* -> **Site's API**
+**Taskmapper** -> **Provider** -> *(Ruby library)* -> **Site's API**
 
-Provider being the *glue* between the site's API and taskmapper. The Ruby library is "optional" (though highly recommended as mentioned), therefore it is in parantheses.
+Provider being the *glue* between the site's API and Taskmapper. The Ruby library is "optional" (though highly recommended as mentioned), therefore it is in parantheses.
 
 An example of a provider could be [taskmapper-lighthouse](http://github.com/hybridgroup/taskmapper-lighthouse), an example of a Ruby library could be ActiveResource.
 
@@ -293,4 +280,4 @@ They should be presented with a nice list of all available providers.
 
 ## Copyright
 
-Copyright (c) 2010 [The Hybrid Group](http://hybridgroup.com). See LICENSE for details.
+Copyright (c) 2010-2012 [The Hybrid Group](http://hybridgroup.com). See LICENSE for details.
