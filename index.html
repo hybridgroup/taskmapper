@@ -1,0 +1,362 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Taskmapper by hybridgroup</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/hybridgroup/taskmapper">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/hybridgroup/taskmapper/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/hybridgroup/taskmapper/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Taskmapper</h1>
+          <p>Taskmapper provides a universal API to project management, bug tracking, and trouble ticket systems using Ruby</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/hybridgroup">hybridgroup</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>Taskmapper</h1>
+
+<p>Taskmapper is a Gem which eases communication with various project management and bug tracking/ticket tracking systems by providing a consistent Ruby API.</p>
+
+<p>Taskmapper let's you "remap" a system into the consistent Taskmapper API, easily. For instance the description of an issue/ticket, might be named <strong>description</strong> in one system, and <strong>problem-description</strong> somewhere else. Via Taskmapper, this would always be called <strong>description</strong>. The Taskmapper remaps makes it easy for you to integrate different kinds of ticket/task systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. Taskmapper handles all this <em>for</em> you, so you can focus on making your application awesome.</p>
+
+<h2>Installation</h2>
+
+<p>Taskmapper is a Gem, so we can easily install it by using RubyGems:</p>
+
+<pre><code>gem install taskmapper
+</code></pre>
+
+<p>Taskmapper depends on <a href="http://github.com/intridea/hashie">Hashie</a>, which is an amazing library which makes converting objects to hashes, and the other way around, a joy. It should be installed automatically whenever installing Taskmapper.</p>
+
+<h3>Finding and installing a provider</h3>
+
+<p>Taskmapper by itself won't do too much. You may want to install a provider, to retrieve a list of available providers issue the following command:</p>
+
+<pre><code>gem search taskmapper
+</code></pre>
+
+<p>You could then install for instance taskmapper-pivotal:</p>
+
+<pre><code>gem install taskmapper-pivotal
+</code></pre>
+
+<h2>Usage</h2>
+
+<p><strong>Note:</strong> The API may change, and the following may not be the final. Please keep yourself updated before you upgrade.</p>
+
+<p>First, we instance a new class with the right set of options. In this example, we are authenticating with Pivotal Tracker.</p>
+
+<pre><code>pivotal = taskmapper.new(:pivotal, {:username =&gt; "john", :password =&gt; "seekrit"})
+</code></pre>
+
+<h3>Grabbing a project</h3>
+
+<p>Now that we've got out taskmapper instance, let's go ahead and grab "testproject":</p>
+
+<pre><code>project = pivotal.project["testproject"]
+    #=&gt; TaskMapper::Project&lt;#name="testproject"..&gt;
+</code></pre>
+
+<p><em>Project#[]</em> is an alias to <em>Project#find</em>:</p>
+
+<pre><code>project = pivotal.project.find "testproject"
+    #=&gt; TaskMapper::Project&lt;#name="testproject"..&gt;
+</code></pre>
+
+<p>Which translates into:</p>
+
+<pre><code>project = pivotal.project.find :name =&gt; "testproject"
+    #=&gt; TaskMapper::Project&lt;#name="testproject"..&gt;
+</code></pre>
+
+<p>That means you can actually look up a project by something else than the title, like the owner:</p>
+
+<pre><code>project = pivotal.project.find :owner =&gt; "Sirupsen"
+    #=&gt; TaskMapper::Project&lt;#owner="sirupsen"..&gt;
+</code></pre>
+
+<p>To retrieve all projects, simply pass no argument to find:</p>
+
+<pre><code>project = pivotal.project.find
+    #=&gt; [TaskMapper::Project&lt;#..&gt;,TaskMapper::Project&lt;#..&gt;,..]
+</code></pre>
+
+<h3>Creating a ticket</h3>
+
+<p>Now that we grabbed the right project. Let's go ahead and create a ticket at this project:</p>
+
+<pre><code>project.ticket!(:title =&gt; "Test", :description =&gt; "Hello World")
+</code></pre>
+
+<p>We create our ticket with three properties.</p>
+
+<h3>Finding tickets</h3>
+
+<p>Alright, let's play with the projects tickets! Here we grab the ticket with the id of 22:</p>
+
+<pre><code>ticket = project.tickets(:id =&gt; 22)
+    #=&gt; TaskMapper::Ticket&lt;#id=22..&gt;
+</code></pre>
+
+<p>Like with projects, we can also find tickets by other attributes, like title, priority and so on, with tickets we do not use a find method though. Also as with projects, if no argument is passed, all tickets are retrieved:</p>
+
+<pre><code>tickets = project.tickets
+    #=&gt; [TaskMapper::Ticket&lt;#..&gt;,TaskMapper::Ticket&lt;#..&gt;,..]
+</code></pre>
+
+<h3>Changing ticket attributes</h3>
+
+<p>Let's say that we're working on this ticket right now, so let's go ahead and change the status to reflect that:</p>
+
+<pre><code>ticket.status = :in_progress
+</code></pre>
+
+<p>Other valid ticket statuses include:</p>
+
+<pre><code>:closed, :accepted, :resolved
+</code></pre>
+
+<p>For the sake of example, we'll change the description as well, and then save the ticket.</p>
+
+<pre><code>ticket.description = "Changed description to something else!"
+ticket.save
+</code></pre>
+
+<h3>Closing a ticket</h3>
+
+<p>The issue was solved, let's make that official by closing the ticket with the appropriate resolution:</p>
+
+<pre><code>ticket.close(:resolution =&gt; "fixed", :description =&gt; "Fixed issue by doing x")
+</code></pre>
+
+<p>Note that you could close the ticket by changing all the attributes manually, like so:</p>
+
+<pre><code>ticket.status = :closed
+ticket.resolution = "fixed"
+ticket.resolution_description = "Fixed issue by doing x"
+ticket.save
+</code></pre>
+
+<p>However, as closing a ticket with a resolution is such a common task, the other method is included because it may be more convenient.</p>
+
+<h2>Support</h2>
+
+<p>Currently Taskmapper supports the following systems:</p>
+
+<h3>Pivotal Tracker</h3>
+
+<p>To use Pivotal Tracker with Taskmapper, install it:
+    gem install taskmapper-pivotal</p>
+
+<p>Then simply require it, and you are good to use Pivotal Tracker with Taskmapper!</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-pivotal'
+unfuddle = taskmapper.new(:pivotal, {:username =&gt; "..", :password =&gt; ".."})
+</code></pre>
+
+<p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-pivotal">taskmapper-pivotal</a></p>
+
+<h3>Lighthouse</h3>
+
+<p>To use Lighthouse with Taskmapper, install it:
+    gem install taskmapper-lighthouse</p>
+
+<p>Then simply require it, and you are all set to use Lighthouse with Taskmapper!</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-lighthouse'
+lighthouse = taskmapper.new(:lighthouse, {:username =&gt; "..", :password =&gt; ".."})
+</code></pre>
+
+<p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-lighthouse">taskmapper-lighthouse</a></p>
+
+<h3>Basecamp</h3>
+
+<p>To use Basecamp with Taskmapper, install it:
+    gem install taskmapper-basecamp</p>
+
+<p>Once you require it, then you are ready to use Basecamp with Taskmapper</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-basecamp'
+basecamp = taskmapper.new(:basecamp, :domain =&gt; 'yourdomain.basecamphq.com', :username =&gt; 'you', :password =&gt; 'pass')
+</code></pre>
+
+<p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-basecamp">taskmapper-basecamp</a></p>
+
+<h3>Github</h3>
+
+<p>To use Github Issue tracking with Taskmapper, install it:
+    gem install taskmapper-github</p>
+
+<p>Once you require it, then you are ready to use Github and Taskmapper</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-github'
+github = taskmapper.new(:github, :username =&gt; 'you', :password =&gt; 'pass')
+</code></pre>
+
+<p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-github">taskmapper-github</a></p>
+
+<h3>Unfuddle</h3>
+
+<p>To use Unfuddle with Taskmapper, install it:
+    gem install taskmapper-unfuddle</p>
+
+<p>Then simply require it, and you are good to use Unfuddle with Taskmapper!</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-unfuddle'
+unfuddle = taskmapper.new(:unfuddle, {:username =&gt; "..", :password =&gt; "..", :account =&gt; ".."})
+</code></pre>
+
+<p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-unfuddle">taskmapper-unfuddle</a></p>
+
+<h3>Kanbanpad</h3>
+
+<p>To use Kanbanpad with taskmapper, install it:
+    gem install taskmapper-kanbanpad</p>
+
+<p>Once you require it, you can connect to Kanbanpad using Taskmapper!</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-kanbanpad'
+kanbanpad = taskmapper.new(:kanbanpad, {:username =&gt; "xx", :password =&gt; "xx"})
+</code></pre>
+
+<p>The source code is located at <a href="https://github.com/hybridgroup/taskmapper-kanbanpad">taskmapper-kanbanpad</a></p>
+
+<h3>Redmine</h3>
+
+<p>To use Redmine with Taskmapper, install it:
+    gem install taskmapper-redmine</p>
+
+<p>Just require it, and you are ready to use Redmine with Taskmapper!</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-redmine'
+redmine = taskmapper.new(:redmine, {:username =&gt; "..", :password =&gt; "..", :server =&gt; ".."})
+</code></pre>
+
+<p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-redmine">taskmapper-redmine</a></p>
+
+<h3>Trac</h3>
+
+<p>To use Trac with Taskmapper, install it:
+    gem install taskmapper-trac</p>
+
+<p>Require it, and you are happening to call Trac with Taskmapper!</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-trac'
+trac = taskmapper.new(:trac, {:username =&gt; "..", :password =&gt; "..", :url =&gt; ".."})
+</code></pre>
+
+<p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-trac">taskmapper-trac</a></p>
+
+<h3>Bugzilla</h3>
+
+<p>To use Bugzilla with Taskmapper, install it:
+    gem install taskmapper-bugzilla</p>
+
+<p>Require and you can talk to Bugzilla with taskmapper!</p>
+
+<pre><code>require 'taskmapper'
+require 'taskmapper-bugzilla'
+codaset = taskmapper.new(:bugzilla, {:username =&gt; "foo", :password =&gt; "bar", :url =&gt; "https://bugzilla.mozilla.org"})
+</code></pre>
+
+<p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-bugzilla">taskmapper-bugzilla</a></p>
+
+<h2>Creating a provider</h2>
+
+<p>Creating a provider consists of three steps:</p>
+
+<ul>
+<li>Run the generator like this:
+tm generate myprovider</li>
+<li>Implement whatever is needed to connect to your desired backend</li>
+<li>Release it to RubyGems</li>
+</ul><h3>Create the Taskmapper provider</h3>
+
+<p>Thanks to a simple generator, it is easy to get started with a new provider. Run this from the command line:
+    tm generate myprovider</p>
+
+<p>This will generate a new skeleton provider called taskmapper-myprovider in the current directory. Create a repo from that directory, and you can start implementing your provider.</p>
+
+<p>Almost all APIs are different. And so are their Ruby providers. Taskmapper attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the taskmapper API. This is the providers job. The provider is the glue between Taskmapper, and the project management or bug tracking system's API.
+Usually, your provider would rely on another library for the raw HTTP interaction. For instance, <a href="http://github.com/hybridgroup/taskmapper-lighthouse">taskmapper-lighthouse</a> relies on ActiveResource in order to interact with the Lighthouse API. Look at it like this:</p>
+
+<p><strong>Taskmapper</strong> -&gt; <strong>Provider</strong> -&gt; <em>(Ruby library)</em> -&gt; <strong>Site's API</strong></p>
+
+<p>Provider being the <em>glue</em> between the site's API and Taskmapper. The Ruby library is "optional" (though highly recommended as mentioned), therefore it is in parantheses.</p>
+
+<p>An example of a provider could be <a href="http://github.com/hybridgroup/taskmapper-lighthouse">taskmapper-lighthouse</a>, an example of a Ruby library could be ActiveResource.</p>
+
+<p>For now, look at <a href="http://github.com/hybridgroup/taskmapper-lighthouse">taskmapper-lighthouse</a> as an example on how to create a provider. More detailed documentation will be available soon.</p>
+
+<h3>Release it</h3>
+
+<p>Simply release it to RubyGems.org, the name of the provider Gem should follow this simple naming rule:</p>
+
+<pre><code>taskmapper-&lt;provider's name&gt;
+</code></pre>
+
+<p>For instance if you set for a Github provider, it would be named:</p>
+
+<pre><code>taskmapper-github
+</code></pre>
+
+<p>This makes it easy for people to find providers, simply by issuing:</p>
+
+<pre><code>gem search -r taskmapper
+</code></pre>
+
+<p>They should be presented with a nice list of all available providers.</p>
+
+<h2>Note on Patches/Pull Requests</h2>
+
+<ul>
+<li>Fork the project.</li>
+<li>Make your feature addition or bug fix.</li>
+<li>Add tests for it. This is important so we don't break it in a
+future version unintentionally.</li>
+<li>Commit, do not mess with rakefile, version, or history.
+(if you want to have your own version, that is fine but bump version in a commit by itself so we can ignore when we pull)</li>
+<li>Send us a pull request. Bonus points for feature branches.</li>
+</ul><h2>Copyright</h2>
+
+<p>Copyright (c) 2010-2012 <a href="http://hybridgroup.com">The Hybrid Group</a>. See LICENSE for details.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
