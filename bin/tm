@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-
-# The 'taskmapper' gem was installed using rubygems
-# This file is the CLI application to use with 'taskmapper'
-
-require File.dirname(__FILE__) + '/../lib/taskmapper/cli/init.rb'
-
