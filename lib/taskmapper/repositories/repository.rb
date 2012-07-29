@@ -4,8 +4,8 @@ module TaskMapper
       attr_reader :criteria
       
       #TODO Refactor to construct with hash
-      def initialize(provider, attrs = {})
-        self.provider = provider
+      def initialize(attrs)
+        self.provider = attrs[:provider]
         self.criteria = attrs[:criteria] || {}
       end      
       

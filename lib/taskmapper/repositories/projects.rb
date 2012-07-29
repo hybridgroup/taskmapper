@@ -2,9 +2,9 @@ module TaskMapper
   class Projects < Repository
     attr_reader :session
     
-    def initialize(session, provider)
-      self.session = session
-      super provider
+    def initialize(attrs)
+      self.session = attrs[:session]
+      super attrs
     end
     
     def each(&block)

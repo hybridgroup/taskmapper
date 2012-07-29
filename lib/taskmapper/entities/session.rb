@@ -6,10 +6,12 @@ module TaskMapper
       def initialize(provider_name, credentials, options = {})
         projects_provider = options[:projects_provider] ||TaskMapper::Providers::Projects.new(provider_name, self)
         tasks_provider = options[:tasks_provider] || TaskMapper::Providers::Tasks.new(provider_name, self)
-        #TODO Refactor: Move Projects to Repositories module
-        #TODO Refactor: Contruct Projects with hash
-        self.projects = TaskMapper::Projects.new self, projects_provider
-        self.tasks = TaskMapper::Repositories::Tasks.new :provider => tasks_provider
+        
+        self.projects = TaskMapper::Projects.new :session => self, 
+          :provider => projects_provider
+        
+        self.tasks = TaskMapper::Repositories::Tasks.new :session => self, 
+          :provider => tasks_provider
       end
       
       def create_project(attrs)
