@@ -11,4 +11,11 @@ RSpec.configure do |config|
   config.formatter     = 'documentation'
 end
 
+def catch_error(&block)
+  yield
+  nil
+rescue Exception => e
+  e
+end
+
 require_relative '../lib/taskmapper'

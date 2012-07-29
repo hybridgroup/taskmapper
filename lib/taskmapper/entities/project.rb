@@ -16,7 +16,7 @@ module TaskMapper
       end
       
       def name=(value)
-        raise Exceptions::RequiredAttribute.new :name if value.nil? or value.empty?
+        raise Exceptions::RequiredAttribute.new 'Project', 'name', value if value.nil? or value.empty?
         @name = value
       end
       

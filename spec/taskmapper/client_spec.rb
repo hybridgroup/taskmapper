@@ -10,26 +10,38 @@ describe TaskMapper::Client do
   let(:projects_provider) { double :projects_provider }
   
   describe "create a project" do
-    let(:project) do 
-      client.project! :name => 'test', 
-        :description => 'this is a test'
+    
+    context "given valid project attributes" do
+      let(:project) do 
+        client.project! :name => 'test', 
+          :description => 'this is a test'
+      end
+      
+      context "when backend saves successfully" do
+        describe :project do
+          subject { project }
+          
+          before do
+            projects_provider.should_receive(:create)
+              .with(:name => 'test', :description => 'this is a test')
+              .and_return 1
+          end
+          
+          its(:id) { should == 1 }
+          its(:name) { should == 'test' }
+          its(:description) { should == 'this is a test'}
+          its(:session) { should == client.session }
+        end   
+      end
     end
     
-    context "when backend saves successfully" do
-      describe :project do
-        subject { project }
-        
-        before do
-          projects_provider.should_receive(:create)
-            .with(:name => 'test', :description => 'this is a test')
-            .and_return 1
-        end
-        
-        its(:id) { should == 1 }
-        its(:name) { should == 'test' }
-        its(:description) { should == 'this is a test'}
-        its(:session) { should == client.session }
-      end   
+    context "when project name is nil" do
+      let(:error) { catch_error { client.project! :name => nil } } 
+      describe :error do
+        subject { error }
+        it { should_not be_nil }
+        its(:message) { should match /Project name is required/ }
+      end
     end
   end
   
