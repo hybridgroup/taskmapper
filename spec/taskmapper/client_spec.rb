@@ -14,30 +14,29 @@ describe TaskMapper::Client do
       client.project! :name => 'test', 
         :description => 'this is a test'
     end
-    
-    subject { project }
-    
-    before do
-      projects_provider.should_receive(:create)
-        .with(:name => 'test', :description => 'this is a test')
-        .and_return 1
-    end
-    
-    its(:id) { should == 1 }
-    its(:name) { should == 'test' }
-    its(:description) { should == 'this is a test'}
-    its(:session) { should == client.session }   
+          
+    describe :project do
+      subject { project }
+      
+      before do
+        projects_provider.should_receive(:create)
+          .with(:name => 'test', :description => 'this is a test')
+          .and_return 1
+      end
+      
+      its(:id) { should == 1 }
+      its(:name) { should == 'test' }
+      its(:description) { should == 'this is a test'}
+      its(:session) { should == client.session }
+    end   
   end
   
   describe :projects do
     let(:projects) { client.projects }
     
-    subject { projects }
-    
-    before { projects_provider.should_receive(:list).and_return projects_attrs }
-    
-    let(:projects_attrs) do 
-      [{
+    before do 
+      projects_provider.should_receive(:list)
+      .and_return [{
         :id => 1,
         :name => 'p1',
         :description => 'desc',
@@ -47,8 +46,10 @@ describe TaskMapper::Client do
         :id => 2,
         :name => 'p2',
         :description => 'desc'
-      }]
+      }] 
     end
+    
+    subject { projects }
     
     it { should be_a Array }
     its(:count) { should == 2 }
