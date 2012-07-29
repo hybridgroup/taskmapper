@@ -1,8 +1,8 @@
 module TaskMapper
   class Repository
     include Enumerable
-      def initialize(provider)
-        self.provider = provider
+      def initialize(attrs)
+        self.provider = attrs[:provider]
       end      
       
       def each(criteria = {}, &block)

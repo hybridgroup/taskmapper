@@ -13,11 +13,16 @@ module TaskMapper
         self.description  = attrs[:description]
         self.created_at   = attrs[:created_at]
         self.session      = attrs[:session]
+        self.tasks        = attrs[:tasks]
       end
       
       def name=(value)
         raise Exceptions::RequiredAttribute.new 'Project', 'name', value if value.nil? or value.empty?
         @name = value
+      end
+      
+      def task!(attrs)
+        self.tasks << task_factory.new(attrs.merge :project => self)
       end
       
       def to_hash
@@ -28,7 +33,11 @@ module TaskMapper
       end
             
       protected
-        attr_writer :session
+        attr_writer :session, :tasks
+        
+        def task_factory
+          TaskMapper::Entities::Task
+        end
     end
   end
 end

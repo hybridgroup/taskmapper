@@ -1,7 +1,9 @@
 module TaskMapper
-  class Tasks < Repository
-    def initialize(provider = DefaultProvider.new(:tasks))
-      super provider
+  module Repositories
+    class Tasks < Repository
+      def initialize(attrs)
+        super attrs[:provider]
+      end
     end
   end
 end

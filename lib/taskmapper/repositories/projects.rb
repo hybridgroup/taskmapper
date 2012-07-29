@@ -4,7 +4,7 @@ module TaskMapper
     
     def initialize(session, provider)
       self.session = session
-      super provider
+      super :provider => provider
     end
     
     def each(&block)

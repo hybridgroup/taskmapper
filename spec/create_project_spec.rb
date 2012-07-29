@@ -31,6 +31,7 @@ describe "Create a new Project" do
         its(:name) { should == 'test' }
         its(:description) { should == 'this is a test'}
         its(:session) { should == client.session }
+        pending "test tasks"
       end   
     end
   end

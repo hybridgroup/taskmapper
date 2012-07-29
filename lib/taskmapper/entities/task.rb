@@ -1,40 +1,32 @@
 module TaskMapper
   module Entities
     class Task
-      include HashMade
+      include Entity
       
-      attr_accessor :status, 
-        :priority, 
-        :description, 
-        :assignee, 
-        :closed,
-        :resolution
-        
-      attr_reader :title, :requestor, :project, :comments
+      attr_reader :project
       
-      def initialize(attributes)
-        update_attributes defaults.merge(attributes)
+      attr_accessor :title, :description, :requestor, :assignee
+      
+      def initialize(attrs)
+        self.title        = attrs[:title]
+        self.description  = attrs[:description]
+        self.requestor    = attrs[:requestor]
+        self.assignee     = attrs[:assignee]
+        self.project      = attrs[:project]
       end
       
-      def title=(value)
-        raise Exceptions::RequiredAttribute.new :title if value.nil? or value.empty?
-        @title = value
-      end
-      
-      def requestor=(value)
-        raise Exceptions::RequiredAttribute.new :requestor if value.nil? or value.empty?
-        @requestor = value
+      def to_hash
+        {
+          :title        => self.title,
+          :description  => self.description,
+          :requestor    => self.requestor,
+          :assignee     => self.assignee,
+          :project      => self.project
+        }
       end
       
       protected
-        attr_writer :comments, :project
-        
-        def defaults
-          {
-            :status => :new,
-            :priority => 1
-          }
-        end
+        attr_writer :project
     end
   end
 end
