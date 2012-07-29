@@ -5,14 +5,13 @@ module TaskMapper
       
       attr_reader :tasks
       
-      attr_accessor :name, :description, :session
+      attr_accessor :name, :description
       
       def initialize(attrs)
         self.id           = attrs[:id]
         self.name         = attrs[:name]
         self.description  = attrs[:description]
         self.created_at   = attrs[:created_at]
-        self.session      = attrs[:session]
         self.tasks        = attrs[:tasks]
       end
       
@@ -33,7 +32,7 @@ module TaskMapper
       end
             
       protected
-        attr_writer :session, :tasks
+        attr_writer :tasks
         
         def task_factory
           TaskMapper::Entities::Task
