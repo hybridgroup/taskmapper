@@ -30,7 +30,11 @@ describe "Create a new Project" do
         its(:id) { should == 1 }
         its(:name) { should == 'test' }
         its(:description) { should == 'this is a test'}
-        pending "test tasks"
+        
+        describe :tasks do
+          subject { created_project.tasks }
+          its(:filter) { should == { :project => created_project } }
+        end
       end   
     end
   end

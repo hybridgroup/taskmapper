@@ -11,7 +11,7 @@ module TaskMapper
       session.projects.create(attrs)
     end
     
-    def projects(search_criteria = nil)
+    def projects
       session.projects.to_a
     end
     
