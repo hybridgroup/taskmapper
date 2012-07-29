@@ -23,7 +23,6 @@ describe TaskMapper::Client do
         .and_return 1
     end
     
-    it { should be_a TaskMapper::Entities::Project }
     its(:id) { should == 1 }
     its(:name) { should == 'test' }
     its(:description) { should == 'this is a test'}
@@ -56,7 +55,6 @@ describe TaskMapper::Client do
     
     describe :first do
       subject { projects.first }
-      it { should be_a TaskMapper::Entities::Project }
       its(:id) { should == 1 }
       its(:name) { should == 'p1' }
       its(:description) { should == 'desc' }
