@@ -8,11 +8,11 @@ module TaskMapper
     end
     
     def project!(attrs)
-      session.projects.create(attrs)
+      session.create_project(attrs.merge :session => self)
     end
     
     def projects
-      session.projects.to_a
+      session.projects
     end
     
     protected

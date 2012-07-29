@@ -4,7 +4,7 @@ module TaskMapper
     
     def initialize(session, provider)
       self.session = session
-      super :provider => provider
+      super provider
     end
     
     def each(&block)
@@ -12,7 +12,11 @@ module TaskMapper
     end
     
     def create(attrs)
-      self << Entities::Project.new(attrs.merge :session => self.session)
+      project = Entities::Project.new(attrs)
+      
+      project.tasks = session.tasks.where :project => project
+        
+      self << project
     end
     
     protected

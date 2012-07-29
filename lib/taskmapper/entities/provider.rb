@@ -1,20 +1,35 @@
 module TaskMapper
-  module Entities
+  module Providers
     class Provider
-      attr_reader :session
+      attr_reader :session, :entity
       
-      def initialize(provider_name, session)
+      def initialize(provider_name, session, entity)
         self.session = session
-        provider_module = get_provider_module(provider_name)::Projects
+        self.entity = entity
+        
+        provider_module = get_provider_module(provider_name)::self.entity
+        raise provider_module.inspect
         self.extend provider_module
       end
       
       protected
-        attr_writer :session
+        attr_writer :session, :entity
         
         def get_provider_module(name)
           TaskMapper::Providers.const_get(name.capitalize)
         end
+    end
+    
+    class Projects < Provider
+      def initialize(provider_name, session)
+        super(provider_name, session, Projects)
+      end
+    end
+    
+    class Tasks < Provider
+      def initialize(provider_name, session)
+        super(provider_name, session, Tasks)
+      end
     end
   end
 end

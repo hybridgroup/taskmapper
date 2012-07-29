@@ -4,12 +4,14 @@ describe "Search projects" do
   let(:client) do
     TaskMapper::Client.new :kanbanpad, 
       { :user => 'foo', :password => 'bar' },
-      :projects_provider => projects_provider
+      :projects_provider => projects_provider,
+      :tasks_provider => tasks_provider
   end
   
   let(:search_results) { client.projects }
   
   let(:projects_provider) { double :projects_provider }
+  let(:tasks_provider) { double :tasks_provider }
   
   context "Given the backend has 2 projects" do
     let(:backend_projects) do

@@ -4,7 +4,8 @@ describe "Create a new Project" do
   let(:client) do
     TaskMapper::Client.new :kanbanpad, 
       { :user => 'foo', :password => 'bar' },
-      :projects_provider => projects_provider
+      :projects_provider => projects_provider,
+      :tasks_provider => tasks_provider
   end
   
   let(:created_project) do 
@@ -12,6 +13,7 @@ describe "Create a new Project" do
   end
   
   let(:projects_provider) { double :projects_provider }
+  let(:tasks_provider) { double :tasks_provider }
   
   context "Given valid project attributes" do
     let(:attributes) {{ :name => 'test', :description => 'this is a test' }}
@@ -33,7 +35,8 @@ describe "Create a new Project" do
         
         describe :tasks do
           subject { created_project.tasks }
-          its(:filter) { should == { :project => created_project } }
+          its(:criteria) { should == { :project => created_project } }
+          its(:provider) { should == tasks_provider }
         end
       end   
     end

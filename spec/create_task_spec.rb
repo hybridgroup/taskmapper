@@ -25,13 +25,15 @@ describe "Create Task" do
     .with(attributes.merge :project => project)
     .and_return 100 }
   
-  its(:id) { should == 100 }
-  
-  its(:title) { should == "Test Task" }
-  
-  its(:description) { should == "This is a test" }
-  
-  its(:requestor) { should == "Ron Evans" }
-  
-  its(:assignee) { should == "Omar Rodriguez" }
+  pending do
+    its(:id) { should == 100 }
+    
+    its(:title) { should == "Test Task" }
+    
+    its(:description) { should == "This is a test" }
+    
+    its(:requestor) { should == "Ron Evans" }
+    
+    its(:assignee) { should == "Omar Rodriguez" }
+  end
 end
