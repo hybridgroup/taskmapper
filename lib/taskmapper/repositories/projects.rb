@@ -1,9 +1,6 @@
 module TaskMapper
   class Projects < Repository
-    attr_reader :session
-    
     def initialize(attrs)
-      self.session = attrs[:session]
       super attrs
     end
     
@@ -12,14 +9,7 @@ module TaskMapper
     end
     
     def create(attrs)
-      project = Entities::Project.new(attrs)
-      
-      project.tasks = session.tasks.where :project => project
-        
-      self << project
+      self << Entities::Project.new(attrs)
     end
-    
-    protected
-      attr_writer :session
   end
 end

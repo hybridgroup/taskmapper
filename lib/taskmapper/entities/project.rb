@@ -3,7 +3,7 @@ module TaskMapper
     class Project
       include Entity
       
-      attr_accessor :name, :description, :tasks
+      attr_accessor :name, :description
       
       def initialize(attrs)
         self.id           = attrs[:id]
@@ -18,6 +18,10 @@ module TaskMapper
         @name = value
       end
       
+      def tasks
+        @tasks.where :project => self
+      end
+      
       def to_hash
         { 
           :name => self.name,
@@ -26,6 +30,8 @@ module TaskMapper
       end
             
       protected
+        attr_writer :tasks
+        
         def task_factory
           TaskMapper::Entities::Task
         end
