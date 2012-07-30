@@ -3,9 +3,9 @@ module TaskMapper
     class Session
       attr_reader :projects, :tasks
       
-      def initialize(provider_name, credentials, options = {})
-        projects_provider = options[:projects_provider] ||TaskMapper::Providers::Projects.new(provider_name, credentials)
-        tasks_provider = options[:tasks_provider] || TaskMapper::Providers::Tasks.new(provider_name, credentials)
+      def initialize(options = {})
+        projects_provider = options[:projects_provider] ||TaskMapper::Providers::Projects.new(options[:provider_name], credentials)
+        tasks_provider = options[:tasks_provider] || TaskMapper::Providers::Tasks.new(options[:provider_name], credentials)
         
         self.projects = TaskMapper::Projects.new :provider => projects_provider
         

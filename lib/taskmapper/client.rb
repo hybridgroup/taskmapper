@@ -3,8 +3,8 @@ module TaskMapper
     attr_reader :session
     
     def initialize(provider_name, credentials, options = {})
-      self.session = Entities::Session.new provider_name, 
-        credentials, options
+      self.session = Entities::Session.new options.merge(:provider_name => provider_name, 
+        :credentials => credentials)
     end
     
     def project!(attrs)
