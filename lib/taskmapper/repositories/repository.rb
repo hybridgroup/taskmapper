@@ -17,12 +17,12 @@ module TaskMapper
     
     def each(criteria = {}, &block)
       self.provider.list(criteria).each do |attributes|
-        yield factory.entity(entity_class, attributes)
+        yield new_entity(attributes)
       end
     end
     
     def create(attributes)
-      self << factory.entity(entity_class, attributes)
+      self << new_entity(attributes)
     end
 
     def find(criteria = {}, &block)
@@ -35,12 +35,12 @@ module TaskMapper
         
     def find_by_id(id)
       return find { |entity| entity.id == id } unless provider.respond_to?(:find_by_id)
-      factory.entity entity_class, provider.find_by_id(id) 
+      new_entity_or_nil provider.find_by_id(id)
     end
     
     def find_by_attributes(attrs)
       return find { |entity| entity.satisfy(attrs) } unless provider.respond_to?(:find_by_attributes)
-      factory.entity entity_class, provider.find_by_attributes(attrs.merge criteria)
+      new_entity_or_nil provider.find_by_attributes(attrs.merge criteria)
     end
     
     def where(criteria = {})
@@ -78,6 +78,14 @@ module TaskMapper
         criteria = {}
         criteria[attribute.to_sym] = value
         find_by_attributes criteria
+      end
+      
+      def new_entity(attrs)
+        factory.entity(entity_class, attrs)
+      end
+      
+      def new_entity_or_nil(attrs)
+        attrs ? new_entity(attrs) : nil 
       end
   end
 end

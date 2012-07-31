@@ -86,4 +86,16 @@ describe "Search projects" do
       end
     end
   end
+  
+  context "Given there are no projects" do
+    context "Retrieve all" do
+      subject { client.projects.to_a }
+      it { should == [] }
+    end
+    
+    context "Find a project by id" do
+      subject { client.projects.find 2 }
+      it { should be_nil }
+    end    
+  end
 end
