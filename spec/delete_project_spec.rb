@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Delete project" do 
   let(:client) do 
-    TaskMapper::Client.new :inmemory, :user => 'omar', :password => '1234'
+    pending TaskMapper::Client.new :inmemory, :user => 'omar', :password => '1234'
   end
   let(:projects) { client.projects }
 
@@ -16,13 +16,11 @@ describe "Delete project" do
     end
 
     subject { projects } 
-
-    its(:count) { should has_size 2 }
+    it { should have(2).items }
 
     describe :delete do 
       subject { projects.first.delete }
       it { should be_true }
-
     end
   end
 end
