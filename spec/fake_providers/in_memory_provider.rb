@@ -24,6 +24,10 @@ module InMemoryProvider
       :created_at => Time.now, :update_at => Time.now)
     id
   end
+
+  def delete(object)
+    !objects.delete(object).nil?
+  end
   
   def list(criteria = {})
     objects.select { |o| o == o.merge(criteria) }
