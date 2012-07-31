@@ -35,6 +35,10 @@ module TaskMapper
       factory.entity entity_class, attributes
     end
     
+    def where(criteria = {})
+      self.class.new factory, self.criteria.merge(criteria)
+    end
+    
     def delete(entity)
       self.provider.delete entity
       entity
