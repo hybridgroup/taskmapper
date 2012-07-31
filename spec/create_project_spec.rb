@@ -4,12 +4,12 @@ module TaskMapper
   module Providers
     module Kanbanpad
       module Projects
-        def create(project)
-          return 1
-        end
+        include InMemoryProvider
       end
       
-      module Tasks; end
+      module Tasks
+        include InMemoryProvider
+      end
     end
   end
 end
