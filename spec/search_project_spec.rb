@@ -5,7 +5,7 @@ describe "Search projects" do
     TaskMapper::Client.new :in_memory, :user => 'omar', :password => '1234'
   end
   
-  context "Given the following projects" do
+  context "Given the backend have projects" do
     before do
       client.project! :name => 'Awesome Project',
                       :description => 'This is awesome!'

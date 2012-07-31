@@ -8,23 +8,21 @@ describe "Create a new Project" do
   context "Given valid project attributes" do
     let(:attributes) {{ :name => 'test', :description => 'this is a test' }}
     
-    context "Given backend saves successfully" do
-      describe :project do
-        let(:created_project) { client.project! attributes }
-        subject { created_project }
-        
+    describe :project do
+      let(:created_project) { client.project! attributes }
+      subject { created_project }
+      
+      its(:id) { should == 1 }
+      its(:name) { should == 'test' }
+      its(:description) { should == 'this is a test'}
+      its(:created_at) { should be_a Time }
+      its(:updated_at) { should be_a Time }
+      
+      describe :tasks do
+        subject { created_project.tasks.criteria[:project] }
         its(:id) { should == 1 }
-        its(:name) { should == 'test' }
-        its(:description) { should == 'this is a test'}
-        its(:created_at) { should be_a Time }
-        its(:updated_at) { should be_a Time }
-        
-        describe :tasks do
-          subject { created_project.tasks }
-          its(:criteria) { should == { :project => created_project } }
-        end
-      end   
-    end
+      end
+    end   
   end
   
   context "Given project name is nil" do
