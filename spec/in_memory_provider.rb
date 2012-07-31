@@ -31,7 +31,7 @@ end
 
 module TaskMapper
   module Providers
-    module Inmemory
+    module InMemory
       module Projects
         include InMemoryProvider
       end

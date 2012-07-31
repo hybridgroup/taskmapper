@@ -20,7 +20,8 @@ module TaskMapper
           str_name = name.to_s
           str_name.gsub! /\_/, ''
           str_name.capitalize!
-          TaskMapper::Providers.const_get(str_name)
+          const = TaskMapper::Providers.constants.find { |c| c.to_s.downcase == str_name.downcase }
+          TaskMapper::Providers.const_get const
         end
     end
   end
