@@ -30,7 +30,7 @@ module TaskMapper
       def task!(attrs)
         tasks.create attrs
       end
-      
+
       def to_hash
         super.merge({ 
           :name => name,

@@ -5,12 +5,24 @@ describe "Delete project" do
     TaskMapper::Client.new :inmemory, :user => 'omar', :password => '1234'
   end
 
-  context "Given the backend has 1 projects" do 
-    it "Delete a project from the project repository" do 
-      p = client.project! :name => 'Awesome Project', :description => 'Awesome' 
-      client.projects.should have(1).items
-      client.projects.delete(p).should be_true
-      client.projects.should have(0).items
+  context "Given the backend has 2 projects" do 
+    before do 
+      client.project! :name => 'Awesome Project',
+        :description => 'This is awesome!'
+
+      client.project! :name => 'Bored Project',
+        :description => 'This is bored'
+    end
+
+    subject { projects } 
+    it { should have(2).items }
+
+    describe :delete do 
+      context "Given a project id" do 
+        let(:project) { projects.first }
+        subject { projects.delete project }
+        it { should be_true }
+      end
     end
   end
 end
