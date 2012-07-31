@@ -39,8 +39,7 @@ module TaskMapper
     
     protected
       def <<(entity)
-        #TODO Refactor pass the object instead of a hash
-        id = self.provider.create entity.to_hash
+        id = self.provider.create entity
         entity.tap do |p|
           p.id          = id
           p.created_at  = Time.now
