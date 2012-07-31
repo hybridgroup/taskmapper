@@ -9,19 +9,14 @@ describe "Create a new Project" do
     let(:attributes) {{ :name => 'test', :description => 'this is a test' }}
     
     describe :project do
-      let(:created_project) { client.project! attributes }
-      subject { created_project }
+      subject { client.project! attributes }
       
       its(:id) { should == 1 }
       its(:name) { should == 'test' }
       its(:description) { should == 'this is a test'}
       its(:created_at) { should be_a Time }
       its(:updated_at) { should be_a Time }
-      
-      describe :tasks do
-        subject { created_project.tasks }
-        its(:project_id) { should == 1 }
-      end
+      it { should satisfy { |p| p.tasks.project_id == 1 } }
     end   
   end
   
