@@ -12,6 +12,7 @@ module TaskMapper
         self.name         = attrs[:name]
         self.description  = attrs[:description]
         self.created_at   = attrs[:created_at]
+        self.updated_at   = attrs[:created_at]
         self.factory      = attrs[:factory]
       end
       

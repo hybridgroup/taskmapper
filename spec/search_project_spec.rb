@@ -20,6 +20,7 @@ describe "Search projects" do
       its(:name) { should == 'Bored Project' }
       its(:description) { should == 'This is bored' }
       its(:created_at) { should be_a Time }
+      its(:updated_at) { should be_a Time }
       it { should satisfy { |p| p.tasks.project_id == 2 } }
     end
     
