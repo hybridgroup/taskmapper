@@ -19,8 +19,8 @@ describe "Create a new Project" do
       its(:updated_at) { should be_a Time }
       
       describe :tasks do
-        subject { created_project.tasks.criteria[:project] }
-        its(:id) { should == 1 }
+        subject { created_project.tasks }
+        its(:project_id) { should == 1 }
       end
     end   
   end
