@@ -22,6 +22,9 @@ describe "Delete project" do
       subject { projects.first.delete }
       it { should be_true }
     end
+
+    it { should have(1).items }
+
   end
 end
 
