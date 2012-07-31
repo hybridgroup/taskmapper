@@ -19,4 +19,4 @@ rescue Exception => e
 end
 
 require_relative '../lib/taskmapper'
-require 'in_memory_provider'
+require 'fake_providers/in_memory_provider'
