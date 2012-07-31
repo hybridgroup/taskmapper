@@ -29,13 +29,6 @@ module TaskMapper
       provider.list.find { |e| e[:id] == id }
     end
     
-    def []=(id, entity)
-      self.provider.update id, entity
-      entity.extend Entities::Entity
-      entity.updated_at = Time.now
-      entity.extend Entities::PersistedEntity
-    end
-    
     def delete(entity)
       self.provider.delete entity
       entity
