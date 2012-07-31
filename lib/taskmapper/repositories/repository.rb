@@ -1,16 +1,19 @@
 module TaskMapper
   class Repository
     include Enumerable
-    attr_accessor :factory, :criteria, :provider, :entity_class
+    attr_accessor :factory, :criteria, :entity_class
     
-    protected :factory=, :criteria=, :provider=, :entity_class=
+    protected :factory=, :criteria=, :entity_class=
     
     def initialize(factory, entity_class, criteria = {})
       self.factory      = factory
       self.entity_class = entity_class
-      self.provider     = factory.provider self.entity_class
       self.criteria     = criteria
-    end      
+    end
+    
+    def provider
+      factory.provider self.entity_class
+    end     
     
     def each(criteria = {}, &block)
       self.provider.list(criteria).each do |attributes|
