@@ -78,5 +78,12 @@ describe "Search projects" do
         its(:id) { should == 2 }
       end
     end
+    
+    context "Find with dynamic" do
+      context "Find by attributes" do
+        subject { client.projects.find_by_name 'Bored Project' }
+        its(:id) { should == 2 }
+      end
+    end
   end
 end

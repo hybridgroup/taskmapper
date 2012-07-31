@@ -52,6 +52,17 @@ module TaskMapper
       entity
     end
     
+    # Dynamic finder
+    def method_missing(method, *args, &block)
+      pattern = /^find_by_/
+      method_s = method.to_s
+      case method_s
+        when pattern
+          dynamic_find method_s.sub(pattern, ''), args.first
+        else super method, *args, &block
+      end
+    end
+    
     protected
       def <<(entity)
         id = self.provider.create entity
@@ -61,6 +72,12 @@ module TaskMapper
           p.updated_at  = Time.now
           p.extend Entities::PersistedEntity
         end
+      end
+      
+      def dynamic_find(attribute, value)
+        criteria = {}
+        criteria[attribute.to_sym] = value
+        find_by_attributes criteria
       end
   end
 end
