@@ -4,7 +4,7 @@ module TaskMapper
     
     protected :session=
     
-    def initialize(provider_name, credentials, factory = Factory.new(provider_name, credentials))
+    def initialize(provider_name, credentials = {}, factory = Factory.new(provider_name, credentials))
       self.session = factory.session
     end
     

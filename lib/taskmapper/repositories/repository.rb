@@ -24,8 +24,9 @@ module TaskMapper
       end
     end
     
-    def [](id)
-      self.provider.find id
+    def find_by_id(id)
+      return provider.find_by_id id if provider.respond_to? :find_by_id
+      provider.list.find { |e| e[:id] == id }
     end
     
     def []=(id, entity)

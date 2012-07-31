@@ -53,6 +53,25 @@ describe "Search projects" do
       its(:name) { should == 'Bored Project' }
       its(:description) { should == 'This is bored' }
       its(:created_at) { should be_a Time }
-    end    
+    end
+    
+    context "Find a project by id" do
+      let(:project) { client.projects.find_by_id 2 }
+      subject { project }
+      its(:id) { should == 2 }
+      its(:name) { should == 'Bored Project' }
+      its(:description) { should == 'This is bored' }
+      its(:created_at) { should be_a Time }
+    end
+    
+    context "Given the provider does not define find_by_id method" do
+      let(:client) { TaskMapper::Client.new :without_finders }
+      let(:project) { client.projects.find_by_id 2 }
+      subject { project }
+      its(:id) { should == 2 }
+      its(:name) { should == 'Bored Project' }
+      its(:description) { should == 'This is bored' }
+      its(:created_at) { should be_a Time }
+    end
   end
 end

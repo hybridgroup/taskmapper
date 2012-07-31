@@ -16,5 +16,9 @@ module TaskMapper
     def create(attrs)
       self << factory.project(attrs)
     end
+    
+    def find_by_id(id)
+      factory.project(super id)
+    end
   end
 end

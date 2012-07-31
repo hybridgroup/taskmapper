@@ -12,4 +12,5 @@ guard :rspec, :version => 2 do
   watch(%r{^lib/(.+)\.rb$}) { "spec" }
   
   watch(%r{^spec/(.+)_helper\.rb$})  { "spec" }
+  watch(%r{^spec/fake_providers/(.+)\.rb$})  { "spec" }
 end

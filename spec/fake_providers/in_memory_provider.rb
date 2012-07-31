@@ -19,19 +19,40 @@ module InMemoryProvider
   
   def create(object)
     id = next_id
-    objects << object.merge(:id => id)
+    objects << object.merge(:id => id, :created_at => Time.now, :update_at => Time.now)
     id
   end
   
-  def list(criteria)
+  def list(criteria = {})
     objects.select { |o| o == o.merge(criteria) }
-      .map { |o| o.merge(:created_at => Time.now, :update_at => Time.now) }
+  end
+end
+
+module Finders
+  def find_by_id(id)
+    objects.find { |o| o[:id] == id }
   end
 end
 
 module TaskMapper
   module Providers
     module InMemory
+      module Projects
+        include InMemoryProvider
+        include Finders
+      end
+      
+      module Tasks
+        include InMemoryProvider
+        include Finders
+      end
+    end
+  end
+end
+
+module TaskMapper
+  module Providers
+    module WithoutFinders
       module Projects
         include InMemoryProvider
       end
