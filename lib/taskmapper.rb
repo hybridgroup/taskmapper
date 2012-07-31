@@ -1,5 +1,4 @@
 require 'taskmapper/version'
-require 'taskmapper/helpers'
 require 'taskmapper/exceptions'
 require 'taskmapper/default_provider'
 require 'taskmapper/repositories'
