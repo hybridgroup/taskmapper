@@ -39,6 +39,7 @@ module TaskMapper
     end
     
     def find_by_attributes(attrs)
+      return find { |entity| entity.to_hash == entity.to_hash.merge(attrs) } unless provider.respond_to?(:find_by_attributes)
       factory.entity entity_class, provider.find_by_attributes(attrs.merge criteria)
     end
     
