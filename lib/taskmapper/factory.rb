@@ -28,7 +28,7 @@ module TaskMapper
     end
     
     def project(attrs)
-      Entities::Project.new self, attrs
+      Entities::Project.new attrs.merge(:factory => self)
     end
     
     def projects
