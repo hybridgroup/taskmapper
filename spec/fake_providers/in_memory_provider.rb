@@ -34,6 +34,10 @@ module Finders
   def find_by_id(id)
     objects.find { |o| o[:id] == id }
   end
+  
+  def find_by_attributes(attrs)
+    objects.find { |o| o == o.merge(attrs) }
+  end
 end
 
 module TaskMapper

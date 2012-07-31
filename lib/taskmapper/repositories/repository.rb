@@ -24,10 +24,22 @@ module TaskMapper
     def create(attributes)
       self << factory.entity(entity_class, attributes)
     end
-    
+
+    def find(criteria = {}, &block)
+      return super &block if block_given?
+      case criteria
+        when Fixnum then find_by_id criteria
+        else find_by_attributes criteria
+      end
+    end    
+        
     def find_by_id(id)
       return find { |entity| entity.id == id } unless provider.respond_to?(:find_by_id)
       factory.entity entity_class, provider.find_by_id(id) 
+    end
+    
+    def find_by_attributes(attrs)
+      factory.entity entity_class, provider.find_by_attributes(attrs.merge criteria)
     end
     
     def where(criteria = {})
