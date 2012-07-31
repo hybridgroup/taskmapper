@@ -45,5 +45,14 @@ describe "Search projects" do
         it { should == ['Bored Project', 'Extra Bored Project'] }
       end
     end
+    
+    context "Find a project by id" do
+      let(:project) { client.projects.find { |project| project.id == 2 } }
+      subject { project }
+      its(:id) { should == 2 }
+      its(:name) { should == 'Bored Project' }
+      its(:description) { should == 'This is bored' }
+      its(:created_at) { should be_a Time }
+    end    
   end
 end
