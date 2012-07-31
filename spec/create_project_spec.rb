@@ -1,22 +1,26 @@
 require 'spec_helper'
 
+module TaskMapper
+  module Providers
+    module Kanbanpad
+      module Projects
+        def create(project)
+          return 1
+        end
+      end
+      
+      module Tasks; end
+    end
+  end
+end
+
 describe "Create a new Project" do
+  
   let(:client) do
-    TaskMapper::Client.new :kanbanpad, 
-      {:user => 'omar', :password => '1234'}, factory
+    TaskMapper::Client.new :kanbanpad, :user => 'omar', :password => '1234'
   end
   
-  let(:factory) { TaskMapper::Factory.new :kanbanpad, 
-    { :user => 'omar', :password => '1234' }, 
-    :projects_provider => projects_provider,
-    :tasks_provider => tasks_provider }
-  
-  let(:projects_provider) { mock :projects_provider }
-  let(:tasks_provider) { mock :tasks_provider }
-  
-  let(:created_project) do 
-    client.project! attributes
-  end
+  let(:created_project) { client.project! attributes }
   
   context "Given valid project attributes" do
     let(:attributes) {{ :name => 'test', :description => 'this is a test' }}
@@ -25,19 +29,12 @@ describe "Create a new Project" do
       describe :created_project do
         subject { created_project }
         
-        before do
-          projects_provider.should_receive(:create)
-            .with(:name => 'test', :description => 'this is a test')
-            .and_return 1
-        end
-        
         its(:id) { should == 1 }
         its(:name) { should == 'test' }
         its(:description) { should == 'this is a test'}
         
         describe :tasks do
           subject { created_project.tasks }
-          
           its(:criteria) { should == { :project => created_project } }
         end
       end   
