@@ -3,7 +3,7 @@ module TaskMapper
     include Enumerable
     attr_accessor :factory, :criteria, :provider, :entity_class
     
-    protected :factory=, :criteria=, :provider=, :entity_class
+    protected :factory=, :criteria=, :provider=, :entity_class=
     
     def initialize(factory, entity_class, criteria = {})
       self.factory      = factory
@@ -22,18 +22,6 @@ module TaskMapper
       self << factory.entity(entity_class, attributes)
     end
     
-    # TODO Maybe this method should be protected
-    def <<(entity)
-      #TODO Refactor pass the object instead of a hash
-      id = self.provider.create entity.to_hash
-      entity.tap do |p|
-        p.id          = id
-        p.created_at  = Time.now
-        p.updated_at  = Time.now
-        p.extend Entities::PersistedEntity
-      end
-    end
-    
     def find_by_id(id)
       attributes= if provider.respond_to?(:find_by_id)
         provider.find_by_id id
@@ -48,5 +36,17 @@ module TaskMapper
       self.provider.delete entity
       entity
     end
+    
+    protected
+      def <<(entity)
+        #TODO Refactor pass the object instead of a hash
+        id = self.provider.create entity.to_hash
+        entity.tap do |p|
+          p.id          = id
+          p.created_at  = Time.now
+          p.updated_at  = Time.now
+          p.extend Entities::PersistedEntity
+        end
+      end
   end
 end
