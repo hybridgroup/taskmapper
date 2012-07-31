@@ -1,6 +1,6 @@
 module TaskMapper
   module Repositories
-    class Tasks < Repository
+    class Tasks < Repositories::Repository
       def initialize(factory, criteria = {})
         super factory, factory.task_class, criteria
       end
