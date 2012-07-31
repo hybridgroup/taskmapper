@@ -1,23 +1,8 @@
 require 'spec_helper'
 
-module TaskMapper
-  module Providers
-    module Kanbanpad
-      module Projects
-        include InMemoryProvider
-      end
-      
-      module Tasks
-        include InMemoryProvider
-      end
-    end
-  end
-end
-
 describe "Create a new Project" do
-  
   let(:client) do
-    TaskMapper::Client.new :kanbanpad, :user => 'omar', :password => '1234'
+    TaskMapper::Client.new :inmemory, :user => 'omar', :password => '1234'
   end
   
   let(:created_project) { client.project! attributes }

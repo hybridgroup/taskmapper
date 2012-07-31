@@ -1,18 +1,22 @@
 require 'spec_helper'
-describe "Search projects" do
-  let(:client) do
-    pending "Needs refactor" do
-      TaskMapper::Client.new :kanbanpad, 
-        { :user => 'foo', :password => 'bar' },
-        :projects_provider => projects_provider,
-        :tasks_provider => tasks_provider
+
+module TaskMapper
+  module Providers
+    module Kanbanpad
+      module Projects
+        include InMemoryProvider
+      end
+      
+      module Tasks
+        include InMemoryProvider
+      end
     end
   end
-  
+end
+
+describe "Search projects" do
+  pending do
   let(:search_results) { client.projects }
-  
-  let(:projects_provider) { double :projects_provider }
-  let(:tasks_provider) { double :tasks_provider }
   
   context "Given the backend has 2 projects" do
     let(:backend_projects) do
@@ -29,11 +33,6 @@ describe "Search projects" do
       }]
     end
     
-    before do 
-      projects_provider.should_receive(:list)
-      .and_return backend_projects  
-    end
-    
     describe :search_results do
       subject { search_results }
     
@@ -46,6 +45,7 @@ describe "Search projects" do
         its(:description) { should == 'desc' }
         its(:created_at) { should be_a Time }
       end
+    end
     end
   end
 end
