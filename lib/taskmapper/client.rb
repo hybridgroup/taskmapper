@@ -1,10 +1,11 @@
 module TaskMapper
   class Client
-    attr_accessor :session
+    attr_accessor :session, :factory
     
-    protected :session=
+    protected :session=, :session=
     
     def initialize(provider_name, credentials = {}, factory = Factory.new(provider_name, credentials))
+      self.factory = factory
       self.session = factory.session
     end
     
@@ -14,6 +15,14 @@ module TaskMapper
     
     def projects
       session.projects
+    end
+    
+    def metadata
+      self.factory.provider_metadata
+    end
+    
+    def support?(operation, entity)
+      self.factory.provider_metadata.support? operation, entity
     end
   end
 end

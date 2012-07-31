@@ -2,14 +2,10 @@ module TaskMapper
   class Factory
     attr_accessor :provider_name, 
       :credentials,
-      :projects_provider,
-      :tasks_provider,
       :providers
     
     protected :provider_name=, 
       :credentials=,
-      :projects_provider=,
-      :tasks_provider=,
       :providers=
     
     def initialize(provider_name, credentials, options ={})
@@ -30,15 +26,23 @@ module TaskMapper
       providers[project_class] = provider
     end
     
+    def projects_provider
+      providers[project_class]
+    end
+    
+    def tasks_provider
+      providers[task_class]
+    end
+    
     def tasks_provider=(provider)
-      providers[tasks_class] = provider
+      providers[task_class] = provider
     end
     
     def provider(entity_class)
       providers[entity_class]
     end
     
-    def tasks_class
+    def task_class
       Entities::Task
     end
     
@@ -64,6 +68,10 @@ module TaskMapper
     
     def entity(entity_class, attrs)
       entity_class.new attrs.merge(:factory => self)
+    end
+    
+    def provider_metadata
+      Provider::Metadata.new self
     end
   end
 end

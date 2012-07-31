@@ -28,6 +28,10 @@ module InMemoryProvider
   def list(criteria = {})
     objects.select { |o| o == o.merge(criteria) }
   end
+  
+  def supported_operations
+    [:create, :search]
+  end
 end
 
 module Finders
@@ -46,11 +50,19 @@ module TaskMapper
       module Projects
         include InMemoryProvider
         include Finders
+        
+        def supported_operations
+          [:create, :search, :find]
+        end
       end
       
       module Tasks
         include InMemoryProvider
         include Finders
+        
+        def supported_operations
+          [:create, :search, :find]
+        end
       end
     end
   end
