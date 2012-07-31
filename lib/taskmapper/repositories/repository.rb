@@ -26,13 +26,8 @@ module TaskMapper
     end
     
     def find_by_id(id)
-      attributes= if provider.respond_to?(:find_by_id)
-        provider.find_by_id id
-      else
-        all = provider.list 
-        all.find { |e| e[:id] == id }        
-      end
-      factory.entity entity_class, attributes
+      return find { |entity| entity.id == id } unless provider.respond_to?(:find_by_id)
+      factory.entity entity_class, provider.find_by_id(id) 
     end
     
     def where(criteria = {})
