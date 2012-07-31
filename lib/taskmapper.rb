@@ -4,8 +4,8 @@ require 'taskmapper/exceptions'
 require 'taskmapper/default_provider'
 require 'taskmapper/repositories'
 require 'taskmapper/entities'
-require 'taskmapper/factories'
 require 'taskmapper/client'
+require 'taskmapper/factory'
 
 module TaskMapper
   class << self

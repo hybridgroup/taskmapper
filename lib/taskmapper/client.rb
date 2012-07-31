@@ -1,10 +1,12 @@
 module TaskMapper
   class Client
-    attr_reader :session
+    attr_accessor :factory, :session
     
-    def initialize(provider_name, credentials, options = {})
-      self.session = Entities::Session.new options.merge(:provider_name => provider_name, 
-        :credentials => credentials)
+    protected :factory=, :session=
+    
+    def initialize(provider_name, credentials, factory = nil)
+      self.factory = factory || Factory.new(provider_name, credentials)
+      self.session = factory.session
     end
     
     def project!(attrs)
@@ -14,8 +16,5 @@ module TaskMapper
     def projects
       session.projects
     end
-    
-    protected
-      attr_writer :session
   end
 end

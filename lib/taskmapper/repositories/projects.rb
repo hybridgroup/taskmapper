@@ -1,15 +1,20 @@
 module TaskMapper
   class Projects < Repository
-    def initialize(attrs)
-      super attrs
+    attr_accessor :factory
+    
+    protected :factory
+    
+    def initialize(factory)
+      self.factory = factory
+      super factory.projects_provider
     end
     
     def each(&block)
-      super { |attrs| yield Entities::Project.new(attrs) }
+      super { |attrs| yield factory.project(attrs) }
     end
     
     def create(attrs)
-      self << Entities::Project.new(attrs)
+      self << factory.project(attrs)
     end
   end
 end

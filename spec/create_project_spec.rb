@@ -3,23 +3,25 @@ require 'spec_helper'
 describe "Create a new Project" do
   let(:client) do
     TaskMapper::Client.new :kanbanpad, 
-      { :user => 'foo', :password => 'bar' },
-      :projects_provider => projects_provider,
-      :tasks_provider => tasks_provider
+      {:user => 'omar', :password => '1234'}, factory
   end
+  
+  let(:factory) { TaskMapper::Factory.new :kanbanpad, 
+    { :user => 'omar', :password => '1234' }, 
+    :projects_provider => projects_provider,
+    :tasks_provider => tasks_provider }
+  
+  let(:projects_provider) { mock :projects_provider }
+  let(:tasks_provider) { mock :tasks_provider }
   
   let(:created_project) do 
     client.project! attributes
   end
   
-  let(:projects_provider) { double :projects_provider }
-  let(:tasks_provider) { double :tasks_provider }
-  
   context "Given valid project attributes" do
     let(:attributes) {{ :name => 'test', :description => 'this is a test' }}
     
     context "Given backend saves successfully" do
-      
       describe :created_project do
         subject { created_project }
         
@@ -35,8 +37,8 @@ describe "Create a new Project" do
         
         describe :tasks do
           subject { created_project.tasks }
+          
           its(:criteria) { should == { :project => created_project } }
-          its(:provider) { should == tasks_provider }
         end
       end   
     end

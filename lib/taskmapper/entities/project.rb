@@ -3,14 +3,16 @@ module TaskMapper
     class Project
       include Entity
       
-      attr_accessor :name, :description
+      attr_accessor :name, :description, :factory
       
-      def initialize(attrs)
+      protected :factory=
+      
+      def initialize(factory, attrs)
         self.id           = attrs[:id]
         self.name         = attrs[:name]
         self.description  = attrs[:description]
         self.created_at   = attrs[:created_at]
-        self.tasks        = attrs[:tasks]
+        self.factory      = factory
       end
       
       def name=(value)
@@ -19,7 +21,7 @@ module TaskMapper
       end
       
       def tasks
-        @tasks.where :project => self
+        r = self.factory.tasks.where :project => self
       end
       
       def to_hash
@@ -28,13 +30,6 @@ module TaskMapper
           :description => self.description
         }
       end
-            
-      protected
-        attr_writer :tasks
-        
-        def task_factory
-          TaskMapper::Entities::Task
-        end
     end
   end
 end
