@@ -17,6 +17,8 @@ describe "Create a new Project" do
         its(:id) { should == 1 }
         its(:name) { should == 'test' }
         its(:description) { should == 'this is a test'}
+        its(:created_at) { should be_a Time }
+        its(:updated_at) { should be_a Time }
         
         describe :tasks do
           subject { created_project.tasks }
