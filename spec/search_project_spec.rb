@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Search projects" do
   let(:client) do
-    TaskMapper::Client.new :inmemory, :user => 'omar', :password => '1234'
+    TaskMapper::Client.new :in_memory, :user => 'omar', :password => '1234'
   end
   
   context "Given the following projects" do

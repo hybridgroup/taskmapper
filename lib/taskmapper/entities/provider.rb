@@ -17,7 +17,10 @@ module TaskMapper
         end
         
         def get_provider_module(name)
-          TaskMapper::Providers.const_get(name.capitalize)
+          str_name = name.to_s
+          str_name.gsub! /\_/, ''
+          str_name.capitalize!
+          TaskMapper::Providers.const_get(str_name)
         end
     end
   end
