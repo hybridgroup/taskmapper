@@ -11,10 +11,10 @@ describe "Create Task" do
     
     context "When I create a task for Project X" do
       let(:attributes) {{
-        :title => 'Test Task',
-        :description => 'This is a test',
-        :requestor => 'Ron Evans',
-        :assignee => 'Omar Rodriguez',
+        :title        => 'Test Task',
+        :description  => 'This is a test',
+        :requestor    => 'Ron Evans',
+        :assignee     => 'Omar Rodriguez',
       }}
       
       describe :task do
