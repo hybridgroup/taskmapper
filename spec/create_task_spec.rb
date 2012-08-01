@@ -35,5 +35,17 @@ describe "Create Task" do
         it { should == 'Test Task' }
       end
     end
+    
+    context "When I create a project with nil name" do
+      before { $B = 1 }
+      let(:attributes) {{ :title => nil }}
+      let(:error) { catch_error { task } }
+       
+      describe :error do
+        subject { error }
+        it { should_not be_nil }
+        its(:message) { should match /Task title is required/ }
+      end
+    end
   end
 end

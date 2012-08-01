@@ -15,8 +15,8 @@ module TaskMapper
       end
       
       def name=(value)
-        raise Exceptions::RequiredAttribute.new 'Project', 'name', value if value.nil? or value.empty?
         @name = value
+        validate_presence_of :name
       end
       
       def tasks
@@ -28,10 +28,10 @@ module TaskMapper
       end
       
       def to_hash
-        { 
-          :name => self.name,
-          :description => self.description
-        }
+        super.merge({ 
+          :name => name,
+          :description => description
+        })
       end
     end
   end

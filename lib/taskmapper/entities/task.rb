@@ -24,18 +24,23 @@ module TaskMapper
         self.factory      = attrs[:factory]
       end
       
+      def title=(value)
+        @title = value
+        validate_presence_of :title
+      end
+      
       def comments
         factory.comments.where(:task => self)
       end
       
       def to_hash
-        {
+        super.merge({
           :title        => self.title,
           :description  => self.description,
           :requestor    => self.requestor,
           :assignee     => self.assignee,
-          :project      => self.project
-        }
+          :project      => self.project.to_hash
+        })
       end
       
       protected

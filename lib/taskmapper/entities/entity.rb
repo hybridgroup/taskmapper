@@ -13,6 +13,21 @@ module TaskMapper
         attrs = to_hash
         attrs == attrs.merge(given_attrs)
       end
+      
+      def validate_presence_of(attribute)
+        value = self.__send__ attribute
+        if value.nil? or value.empty?
+          raise Exceptions::RequiredAttribute.new(self.class, attribute, value) 
+        end
+      end
+      
+      def to_hash
+        {
+          :id         => id,
+          :created_at => created_at,
+          :updated_at => updated_at
+        }
+      end
     end
   end
 end
