@@ -1,17 +1,17 @@
 require 'spec_helper'
 
 describe "Search projects" do
-  let(:client) do
-    TaskMapper::Client.new :in_memory, :user => 'omar', :password => '1234'
+  let(:tm) do
+    TaskMapper.new :in_memory, :user => 'omar', :password => '1234'
   end
   
   context "Given the backend have projects" do
     before do
-      client.project! :name => 'Awesome Project',
+      tm.project! :name => 'Awesome Project',
                       :description => 'This is awesome!'
-      client.project! :name => 'Bored Project',
+      tm.project! :name => 'Bored Project',
                       :description => 'This is bored'
-      client.project! :name => 'Extra Bored Project',
+      tm.project! :name => 'Extra Bored Project',
                       :description => 'This is extra bored'
     end
     
@@ -25,7 +25,7 @@ describe "Search projects" do
     end
     
     context "Retrieve all projects" do
-      let(:search_results) { client.projects }
+      let(:search_results) { tm.projects }
       
       subject { search_results }
     
@@ -41,7 +41,7 @@ describe "Search projects" do
     end
     
     context "Search projects with name containing 'Bored'" do
-      let(:search_results) { client.projects.select { |project| project.name.include? 'Bored' } }
+      let(:search_results) { tm.projects.select { |project| project.name.include? 'Bored' } }
       subject { search_results }
       its(:count) { should == 2 }
       describe :project_names do
@@ -51,37 +51,37 @@ describe "Search projects" do
     end
     
     context "Find a project by id" do
-      subject { client.projects.find { |project| project.id == 2 } }
+      subject { tm.projects.find { |project| project.id == 2 } }
       it_behaves_like :bored_project
     end
     
     context "Find a project by id" do
-      subject { client.projects.find 2 }
+      subject { tm.projects.find 2 }
       it_behaves_like :bored_project
     end
     
     context "Find by attributes" do
-      subject { client.projects.find :name => 'Bored Project' }
+      subject { tm.projects.find :name => 'Bored Project' }
       it_behaves_like :bored_project
     end
     
     context "Given the provider does not define finder methods" do
-      let(:client) { TaskMapper::Client.new :without_finders }
+      let(:tm) { TaskMapper.new :without_finders }
       
       context "Find a project by id" do
-        subject { client.projects.find 2 }
+        subject { tm.projects.find 2 }
         it_behaves_like :bored_project
       end
       
       context "Find by attributes" do
-        subject { client.projects.find :name => 'Bored Project' }
+        subject { tm.projects.find :name => 'Bored Project' }
         it_behaves_like :bored_project
       end
     end
     
     context "Find with dynamic" do
       context "Find by attributes" do
-        subject { client.projects.find_by_name 'Bored Project' }
+        subject { tm.projects.find_by_name 'Bored Project' }
         it_behaves_like :bored_project
       end
     end
@@ -89,12 +89,12 @@ describe "Search projects" do
   
   context "Given there are no projects" do
     context "Retrieve all" do
-      subject { client.projects.to_a }
+      subject { tm.projects.to_a }
       it { should == [] }
     end
     
     context "Find a project by id" do
-      subject { client.projects.find 2 }
+      subject { tm.projects.find 2 }
       it { should be_nil }
     end    
   end

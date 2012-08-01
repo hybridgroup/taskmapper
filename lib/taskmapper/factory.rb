@@ -16,6 +16,10 @@ module TaskMapper
         Entities::Project => Providers::Provider.new(self, :projects),
         Entities::Task    => Providers::Provider.new(self, :tasks) 
       }
+    end
+    
+    def client
+      TaskMapper::Client.new provider_name, credentials
     end    
     
     def projects_provider
