@@ -8,19 +8,19 @@ describe "Search projects" do
   context "Given the backend have projects" do
     before do
       tm.project! :name => 'Awesome Project',
-                      :description => 'This is awesome!'
+                  :description => 'This is awesome!'
       tm.project! :name => 'Bored Project',
-                      :description => 'This is bored'
+                  :description => 'This is bored'
       tm.project! :name => 'Extra Bored Project',
-                      :description => 'This is extra bored'
+                  :description => 'This is extra bored'
     end
     
     shared_examples_for :bored_project do
-      its(:id) { should == 2 }
-      its(:name) { should == 'Bored Project' }
+      its(:id)          { should == 2 }
+      its(:name)        { should == 'Bored Project' }
       its(:description) { should == 'This is bored' }
-      its(:created_at) { should be_a Time }
-      its(:updated_at) { should be_a Time }
+      its(:created_at)  { should be_a Time }
+      its(:updated_at)  { should be_a Time }
       it { should satisfy { |p| p.tasks.project.name == 'Bored Project' } }
     end
     
@@ -33,10 +33,10 @@ describe "Search projects" do
     
       describe :first do
         subject { search_results.first }
-        its(:id) { should == 1 }
-        its(:name) { should == 'Awesome Project' }
+        its(:id)          { should == 1 }
+        its(:name)        { should == 'Awesome Project' }
         its(:description) { should == 'This is awesome!' }
-        its(:created_at) { should be_a Time }
+        its(:created_at)  { should be_a Time }
       end
     end
     
