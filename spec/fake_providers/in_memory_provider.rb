@@ -26,7 +26,7 @@ module InMemoryProvider
   end
 
   def delete(object)
-    !objects.delete(object).nil?
+    objects.delete_if { |o| o[:id] == object.id }
   end
   
   def list(criteria = {})
