@@ -12,10 +12,6 @@ module TaskMapper
       def project
         criteria[:project]
       end
-      
-      def project_id
-        project.id if project 
-      end
     end
   end
 end

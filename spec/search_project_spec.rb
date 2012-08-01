@@ -21,7 +21,7 @@ describe "Search projects" do
       its(:description) { should == 'This is bored' }
       its(:created_at) { should be_a Time }
       its(:updated_at) { should be_a Time }
-      it { should satisfy { |p| p.tasks.project_id == 2 } }
+      it { should satisfy { |p| p.tasks.project.name == 'Bored Project' } }
     end
     
     context "Retrieve all projects" do
