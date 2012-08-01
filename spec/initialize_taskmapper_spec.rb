@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe "Initialize TaskMapper" do
-  
-  context "Given the provider module is not defined" do
-    it "should raise provider not found error" do
-      error = catch_error { TaskMapper.new :unknown } 
-      error.should be_a TaskMapper::Exceptions::ProviderNotFound
-      error.message.should match /Provider 'Unknown' was not found/i
-      error.message.should match /In order to implement it/i
-      error.message.should match /Define module/i
-      error.message.should match /TaskMapper::Providers::Unknown/i
+  context "Given the provider is not defined" do
+    let(:error) { catch_error { TaskMapper.new :fantasy } }
+    subject { error }
+    it { should_not be_nil }
+    it { should be_kind_of TaskMapper::Exceptions::ProviderNotFound }
+    
+    describe :message do
+      subject { error.message }
+      it { should match /Define module: TaskMapper::Providers::Fantasy/ }
     end
   end
 end

@@ -10,10 +10,9 @@ module TaskMapper
     
     class ProviderNotFound < TaskMapperException
       def initialize(provider_name)
-        super %{Provider '#{provider_name}' was not found
-          In order to implement it
-          Define module: TaskMapper::Providers::#{provider_name}/
-        }
+        super ("Provider '#{provider_name.capitalize}' was not found " +
+              "In order to implement it " +
+              "Define module: TaskMapper::Providers::#{provider_name.capitalize}")
       end
     end
   end
