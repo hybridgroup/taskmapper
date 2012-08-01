@@ -22,10 +22,10 @@ module TaskMapper
         self.assignee     = attrs[:assignee]
         self.project      = attrs[:project]
         self.factory      = attrs[:factory]
+        validate
       end
       
-      def title=(value)
-        @title = value
+      def validate
         validate_presence_of :title
       end
       

@@ -37,7 +37,6 @@ describe "Create Task" do
     end
     
     context "When I create a project with nil name" do
-      before { $B = 1 }
       let(:attributes) {{ :title => nil }}
       let(:error) { catch_error { task } }
        

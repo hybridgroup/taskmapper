@@ -12,10 +12,10 @@ module TaskMapper
         self.name         = attrs[:name]
         self.description  = attrs[:description]
         self.factory      = attrs[:factory]
+        validate
       end
       
-      def name=(value)
-        @name = value
+      def validate
         validate_presence_of :name
       end
       
