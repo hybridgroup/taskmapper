@@ -37,13 +37,24 @@ describe "Create Task" do
     end
     
     context "When I create a project with nil name" do
-      let(:attributes) {{ :title => nil }}
+      let(:attributes) {{ :title => nil, :requestor => 'Ron' }}
       let(:error) { catch_error { task } }
        
       describe :error do
         subject { error }
         it { should_not be_nil }
         its(:message) { should match /Task title is required/ }
+      end
+    end
+    
+    context "When I create a project with nil requestor" do
+      let(:attributes) {{ :title => "test" }}
+      let(:error) { catch_error { task } }
+       
+      describe :error do
+        subject { error }
+        it { should_not be_nil }
+        its(:message) { should match /Task requestor is required/ }
       end
     end
   end

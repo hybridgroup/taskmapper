@@ -27,6 +27,7 @@ module TaskMapper
       
       def validate
         validate_presence_of :title
+        validate_presence_of :requestor
       end
       
       def comments
