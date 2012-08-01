@@ -43,6 +43,7 @@ describe "Create Task" do
       describe :error do
         subject { error }
         it { should_not be_nil }
+        it { should be_a TaskMapper::Exceptions::RequiredAttribute }
         its(:message) { should match /Task title is required/ }
       end
     end
@@ -54,6 +55,7 @@ describe "Create Task" do
       describe :error do
         subject { error }
         it { should_not be_nil }
+        it { should be_a TaskMapper::Exceptions::RequiredAttribute }
         its(:message) { should match /Task requestor is required/ }
       end
     end
