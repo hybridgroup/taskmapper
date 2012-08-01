@@ -5,7 +5,7 @@ describe "Create a new Project" do
     TaskMapper.new :inmemory, :user => 'omar', :password => '1234'
   end
   
-  context "Given valid project attributes" do
+  context "When I create a project with valid attributes" do
     let(:attributes) {{ :name => 'test', :description => 'this is a test' }}
     
     describe :project do
@@ -18,10 +18,10 @@ describe "Create a new Project" do
       its(:created_at) { should be_a Time }
       its(:updated_at) { should be_a Time }
       it { should satisfy { |p| p.tasks.project_id == 1 } }
-    end   
+    end
   end
   
-  context "Given project name is nil" do
+  context "When I create a project with nil name" do
     let(:attributes) {{ :name => nil }}
     let(:error) { catch_error { tm.project! attributes } }
      

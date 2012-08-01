@@ -20,7 +20,11 @@ module TaskMapper
       end
       
       def tasks
-        r = self.factory.tasks.where :project => self
+        factory.tasks.where :project => self
+      end
+      
+      def task!(attrs)
+        tasks.create attrs
       end
       
       def to_hash

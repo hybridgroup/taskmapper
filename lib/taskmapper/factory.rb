@@ -42,6 +42,10 @@ module TaskMapper
       Entities::Project
     end
     
+    def comment_class
+      Entities::Project
+    end
+    
     def entity(entity_class, attrs)
       entity_class.new attrs.merge(:factory => self)
     end
@@ -56,6 +60,10 @@ module TaskMapper
     
     def tasks(criteria = {})
       Repositories::Tasks.new self, criteria
+    end
+    
+    def comments(criteria = {})
+      Repositories::Comments.new self, criteria
     end
     
     def provider_metadata

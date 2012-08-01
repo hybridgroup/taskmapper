@@ -5,8 +5,16 @@ module TaskMapper
         super factory, factory.task_class, criteria
       end
       
+      def create(attrs)
+        super attrs.merge(:project => project)
+      end
+      
+      def project
+        criteria[:project]
+      end
+      
       def project_id
-        criteria[:project].id if criteria[:project] 
+        project.id if project 
       end
     end
   end

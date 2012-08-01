@@ -3,16 +3,29 @@ module TaskMapper
     class Task
       include Entity
       
-      attr_reader :project
+      attr_accessor :title, 
+        :description, 
+        :requestor, 
+        :assignee, 
+        :project,
+        :factory
       
-      attr_accessor :title, :description, :requestor, :assignee
+      protected :requestor=,
+        :project=,
+        :factory=
       
       def initialize(attrs)
+        super attrs
         self.title        = attrs[:title]
         self.description  = attrs[:description]
         self.requestor    = attrs[:requestor]
         self.assignee     = attrs[:assignee]
         self.project      = attrs[:project]
+        self.factory      = attrs[:factory]
+      end
+      
+      def comments
+        factory.comments.where(:task => self)
       end
       
       def to_hash
