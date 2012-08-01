@@ -17,22 +17,24 @@ describe "Create Task" do
         :assignee => 'Omar Rodriguez',
       }}
       
-      subject { task }
-      
-      its(:id)          { should == 1 }
-      its(:title)       { should == 'Test Task' }
-      its(:description) { should == 'This is a test'; }
-      its(:requestor)   { should == 'Ron Evans' }
-      its(:assignee)    { should == 'Omar Rodriguez' }
-      
-      describe :project_name do
-        subject { task.project.name }
-        it { should == 'Project X' }
-      end
-      
-      describe :comments_project_id do
-        subject { task.comments.task.title }
-        it { should == 'Test Task' }
+      describe :task do
+        subject { task }
+        
+        its(:id)          { should == 1 }
+        its(:title)       { should == 'Test Task' }
+        its(:description) { should == 'This is a test'; }
+        its(:requestor)   { should == 'Ron Evans' }
+        its(:assignee)    { should == 'Omar Rodriguez' }
+        
+        describe :task_parent do
+          subject { task.project.name }
+          it { should == 'Project X' }
+        end
+        
+        describe :task_comments_parent do
+          subject { task.comments.task.title }
+          it { should == 'Test Task' }
+        end
       end
     end
     
