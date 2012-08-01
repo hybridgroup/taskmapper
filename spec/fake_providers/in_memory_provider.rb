@@ -21,7 +21,7 @@ module InMemoryProvider
     id = next_id
     attributes = object.to_hash
     objects << attributes.merge(:id => id, 
-      :created_at => Time.now, :update_at => Time.now)
+      :created_at => Time.now, :updated_at => Time.now)
     id
   end
 
@@ -32,11 +32,19 @@ module InMemoryProvider
   def list(criteria = {})
     objects.select { |o| o == o.merge(criteria) }
   end
+  
+  def supported_operations
+    [:create, :search]
+  end
 end
 
 module Finders
   def find_by_id(id)
     objects.find { |o| o[:id] == id }
+  end
+  
+  def find_by_attributes(attrs)
+    objects.find { |o| o == o.merge(attrs) }
   end
 end
 
@@ -46,11 +54,19 @@ module TaskMapper
       module Projects
         include InMemoryProvider
         include Finders
+        
+        def supported_operations
+          [:create, :search, :find]
+        end
       end
       
       module Tasks
         include InMemoryProvider
         include Finders
+        
+        def supported_operations
+          [:create, :search, :find]
+        end
       end
     end
   end

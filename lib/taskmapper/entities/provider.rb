@@ -11,6 +11,10 @@ module TaskMapper
         self.extend get_entity_module(entity)
       end
       
+      def supported_operations
+        [:no_metadata_available]
+      end
+      
       protected
         def get_entity_module(entity)
           get_provider_module(factory.provider_name).const_get(entity.capitalize)

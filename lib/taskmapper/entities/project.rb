@@ -8,10 +8,9 @@ module TaskMapper
       protected :factory=
       
       def initialize(attrs)
-        self.id           = attrs[:id]
+        super attrs
         self.name         = attrs[:name]
         self.description  = attrs[:description]
-        self.created_at   = attrs[:created_at]
         self.factory      = attrs[:factory]
       end
       
