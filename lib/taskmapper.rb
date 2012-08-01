@@ -12,4 +12,7 @@ module TaskMapper
     factory = TaskMapper::Factory.new(provider_name, credentials)
     factory.client
   end
+  
+  module Providers
+  end
 end
