@@ -35,12 +35,10 @@ module TaskMapper
       end    
           
       def find_by_id(id)
-        return find { |entity| entity.id == id } unless provider.respond_to?(:find_by_id)
         new_entity_or_nil provider.find_by_id(id)
       end
       
       def find_by_attributes(attrs)
-        return find { |entity| entity.satisfy(attrs) } unless provider.respond_to?(:find_by_attributes)
         new_entity_or_nil provider.find_by_attributes(attrs.merge criteria)
       end
       
@@ -51,6 +49,10 @@ module TaskMapper
       def delete(entity)
         self.provider.delete entity
         entity
+      end
+      
+      def [](index)
+        to_a[index]
       end
       
       # Dynamic finder
@@ -66,13 +68,8 @@ module TaskMapper
       
       protected
         def <<(entity)
-          id = self.provider.create entity.to_hash
-          entity.tap do |p|
-            p.id          = id
-            p.created_at  = Time.now
-            p.updated_at  = Time.now
-            p.extend Entities::PersistedEntity
-          end
+          entity.id = self.provider.create(entity.to_hash)
+          entity.extend Entities::PersistedEntity
         end
         
         def dynamic_find(attribute, value)

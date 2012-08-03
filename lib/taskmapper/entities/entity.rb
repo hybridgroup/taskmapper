@@ -5,8 +5,8 @@ module TaskMapper
       
       def initialize(attrs)
         self.id          = attrs[:id]
-        self.created_at  = attrs[:created_at]
-        self.updated_at  = attrs[:updated_at]
+        self.created_at  = attrs[:created_at] || Time.now
+        self.updated_at  = attrs[:updated_at] || Time.now
       end
       
       def satisfy(given_attrs)
@@ -19,6 +19,12 @@ module TaskMapper
         if value.nil? or value.empty?
           raise Exceptions::RequiredAttribute.new(self.class, attribute, value) 
         end
+      end
+      
+      def update_attributes(attrs)
+        id = attrs[:id]
+        created_at = attrs[:created_at]
+        updated_at = attrs[:updated_att]
       end
       
       def to_hash
