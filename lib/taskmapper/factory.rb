@@ -75,16 +75,21 @@ module TaskMapper
     end
     
     def get_provider_module
-      str_name = provider_name.to_s
-      str_name.gsub! /\_/, ''
-      str_name.capitalize!
-      str_name.downcase!
+      str_name = nice_provider_name
+      
       const = TaskMapper::Providers.constants.find { |c| c.to_s.downcase == str_name }
       
       raise TaskMapper::Exceptions::ProviderNotFound.new(str_name) unless const
       
       provider_module = TaskMapper::Providers.const_get const
       provider_module
+    end
+    
+    def nice_provider_name
+      provider_name.to_s
+        .gsub /\_/, ''
+        .capitalize
+        .downcase
     end
   end
 end
