@@ -68,6 +68,11 @@ module TaskMapper
           [:create, :search, :find]
         end
       end
+      
+      module Comments
+        include InMemoryProvider
+        include Finders
+      end
     end
   end
 end
@@ -80,6 +85,10 @@ module TaskMapper
       end
       
       module Tasks
+        include InMemoryProvider
+      end
+      
+      module Comments
         include InMemoryProvider
       end
     end

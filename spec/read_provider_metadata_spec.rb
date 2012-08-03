@@ -14,10 +14,9 @@ describe "Read Provider metadata" do
       subject { tm.metadata }
       its(:operations) { should == {
         :projects => [:create, :search, :find],
-        :tasks    => [:create, :search, :find]
+        :tasks    => [:create, :search, :find],
+        :comments => [:create, :search, :find]
       }}
-      
-      pending "metadata for comments"
     end
     
     context "Support create projects?" do
@@ -42,11 +41,10 @@ describe "Read Provider metadata" do
     context "Retrieve operations" do
       subject { tm.metadata }
       its(:operations) { should == {
-        :projects => [:no_metadata_available],
-        :tasks => [:no_metadata_available]
+        :projects =>  [:no_metadata_available],
+        :tasks =>     [:no_metadata_available],
+        :comments =>  [:no_metadata_available]
       }}
-      
-      pending "metadata for comments"
     end
   end
 end

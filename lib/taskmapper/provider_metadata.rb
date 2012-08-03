@@ -8,7 +8,8 @@ module TaskMapper
       def initialize(factory)
         self.operations = {
           :projects => factory.projects_provider.supported_operations,
-          :tasks    => factory.tasks_provider.supported_operations
+          :tasks    => factory.tasks_provider.supported_operations,
+          :comments => factory.comments_provider.supported_operations
         }
       end
       

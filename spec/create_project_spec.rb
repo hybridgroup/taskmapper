@@ -3,6 +3,7 @@ require 'spec_helper'
 module TaskMapper::Providers::NotImplemented
   module Projects; end
   module Tasks; end
+  module Comments; end
 end
 
 describe "Create a new Project" do
