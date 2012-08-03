@@ -35,19 +35,11 @@ module TaskMapper
       end    
           
       def find_by_id(id)
-        if provider.respond_to?(:find_by_id)
-          return new_entity_or_nil provider.find_by_id(id)
-        end
-        
-        find { |entity| entity.id == id }
+        new_entity_or_nil provider.find_by_id(id)
       end
       
       def find_by_attributes(attrs)
-        if provider.respond_to?(:find_by_attributes)
-          return new_entity_or_nil provider.find_by_attributes(attrs.merge criteria)
-        end
-        
-        find { |entity| entity.satisfy(attrs) }
+        new_entity_or_nil provider.find_by_attributes(attrs.merge criteria)
       end
       
       def where(criteria = {})
