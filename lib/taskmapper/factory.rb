@@ -74,15 +74,25 @@ module TaskMapper
       get_provider_module.const_get(entity_name)
     end
     
+    def providers_module
+      TaskMapper::Providers
+    end
+    
+    def exceptions_module
+      TaskMapper::Exceptions
+    end
+    
     def get_provider_module
-      str_name = nice_provider_name
-      
-      const = TaskMapper::Providers.constants.find { |c| c.to_s.downcase == str_name }
-      
-      raise TaskMapper::Exceptions::ProviderNotFound.new(str_name) unless const
-      
-      provider_module = TaskMapper::Providers.const_get const
-      provider_module
+      unless provider_module_name
+        raise exceptions_module::ProviderNotFound
+          .new(nice_provider_name) 
+      end      
+      providers_module.const_get provider_module_name
+    end
+    
+    def provider_module_name
+      providers_module.constants
+        .find { |c| c.to_s.downcase == nice_provider_name }
     end
     
     def nice_provider_name
