@@ -27,20 +27,11 @@ module TaskMapper
       
       protected
         def get_entity_module
-          get_provider_module.const_get(entity)
+          factory.get_entity_module(entity)
         end
         
         def get_provider_module
-          str_name = factory.provider_name.to_s
-          str_name.gsub! /\_/, ''
-          str_name.capitalize!
-          str_name.downcase!
-          const = TaskMapper::Providers.constants.find { |c| c.to_s.downcase == str_name }
-          
-          raise TaskMapper::Exceptions::ProviderNotFound.new(str_name) unless const
-          
-          provider_module = TaskMapper::Providers.const_get const
-          provider_module
+          factory.get_provider_module
         end
     end
   end
