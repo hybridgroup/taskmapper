@@ -9,7 +9,7 @@ module TaskMapper
         self.factory      = factory
         self.credentials  = factory.credentials
         self.entity       = entity
-        self.extend get_entity_module(entity)
+        self.extend get_entity_module
       end
       
       def supported_operations
@@ -22,22 +22,22 @@ module TaskMapper
         end
         
         raise TaskMapper::Exceptions::ImplementationNotFound
-          .new(get_provider_module(factory.provider_name), entity, method, args)
+          .new(get_provider_module, entity, method, args)
       end
       
       protected
-        def get_entity_module(entity)
-          get_provider_module(factory.provider_name).const_get(entity.capitalize)
+        def get_entity_module
+          get_provider_module.const_get(entity)
         end
         
-        def get_provider_module(name)
-          str_name = name.to_s
+        def get_provider_module
+          str_name = factory.provider_name.to_s
           str_name.gsub! /\_/, ''
           str_name.capitalize!
           str_name.downcase!
           const = TaskMapper::Providers.constants.find { |c| c.to_s.downcase == str_name }
           
-          raise TaskMapper::Exceptions::ProviderNotFound.new(name) unless const
+          raise TaskMapper::Exceptions::ProviderNotFound.new(str_name) unless const
           
           provider_module = TaskMapper::Providers.const_get const
           provider_module

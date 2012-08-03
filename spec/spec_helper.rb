@@ -11,10 +11,10 @@ RSpec.configure do |config|
   config.formatter     = 'documentation'
 end
 
-def catch_error(&block)
+def catch_error(type = Exception, &block)
   yield
   nil
-rescue Exception => e
+rescue type => e
   e
 end
 
