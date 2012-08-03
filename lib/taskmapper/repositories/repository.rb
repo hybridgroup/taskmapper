@@ -53,6 +53,10 @@ module TaskMapper
         entity
       end
       
+      def [](index)
+        to_a[index]
+      end
+      
       # Dynamic finder
       def method_missing(method, *args, &block)
         pattern = /^find_by_/
