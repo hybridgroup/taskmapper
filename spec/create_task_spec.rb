@@ -40,24 +40,22 @@ describe "Create Task" do
     
     context "When I create a project with nil name" do
       let(:attributes) {{ :title => nil, :requestor => 'Ron' }}
-      let(:error) { catch_error { task } }
+      let(:error) { catch_error(TaskMapper::Exceptions::RequiredAttribute) { task } }
        
       describe :error do
         subject { error }
         it { should_not be_nil }
-        it { should be_a TaskMapper::Exceptions::RequiredAttribute }
         its(:message) { should match /Task title is required/ }
       end
     end
     
     context "When I create a project with nil requestor" do
       let(:attributes) {{ :title => "test" }}
-      let(:error) { catch_error { task } }
+      let(:error) { catch_error(TaskMapper::Exceptions::RequiredAttribute) { task } }
        
       describe :error do
         subject { error }
         it { should_not be_nil }
-        it { should be_a TaskMapper::Exceptions::RequiredAttribute }
         its(:message) { should match /Task requestor is required/ }
       end
     end

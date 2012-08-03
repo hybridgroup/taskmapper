@@ -29,12 +29,11 @@ describe "Create a new Project" do
     
     context "Given the provider does not implement create method in Projects" do
       let(:tm) { TaskMapper.new :not_implemented }
-      let(:error) { catch_error { tm.project! attributes } }
+      let(:error) { catch_error(TaskMapper::Exceptions::ImplementationNotFound) { tm.project! attributes } }
       
       describe :error do
         subject { error }
         it { should_not be_nil }
-        it { should be_a TaskMapper::Exceptions::ImplementationNotFound }
         its(:message) { should match /Provider TaskMapper::Providers::NotImplemented does not define Projects#create\(Hash\)/i }
       end
     end
@@ -42,7 +41,7 @@ describe "Create a new Project" do
   
   context "When I create a project with nil name" do
     let(:attributes) {{ :name => nil }}
-    let(:error) { catch_error { tm.project! attributes } }
+    let(:error) { catch_error(TaskMapper::Exceptions::RequiredAttribute) { tm.project! attributes } }
      
     describe :error do
       subject { error }
