@@ -12,7 +12,6 @@ describe "Delete project" do
       client.projects.delete(p).should be_true
       client.projects.should have(0).items
     end
-
   end
 end
 

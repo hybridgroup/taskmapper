@@ -15,5 +15,11 @@ module TaskMapper
               "Define module: TaskMapper::Providers::#{provider_name.capitalize}")
       end
     end
+    
+    class ImplementationNotFound < TaskMapperException
+      def initialize(provider, entities, method, args)
+        super "Provider #{provider} does not define #{entities}##{method}#{args}"
+      end
+    end
   end
 end

@@ -6,13 +6,23 @@ module TaskMapper
       protected :credentials=, :entity=, :factory=
       
       def initialize(factory, entity)
-        self.factory = factory
-        self.credentials = factory.credentials
+        self.factory      = factory
+        self.credentials  = factory.credentials
+        self.entity       = entity
         self.extend get_entity_module(entity)
       end
       
       def supported_operations
         [:no_metadata_available]
+      end
+      
+      def method_missing(method, *args, &block)
+        def args.to_s
+          empty? ? "" : "(#{map(&:class).join ','})"
+        end
+        
+        raise TaskMapper::Exceptions::ImplementationNotFound
+          .new(get_provider_module(factory.provider_name), entity, method, args)
       end
       
       protected

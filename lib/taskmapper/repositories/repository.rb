@@ -66,7 +66,7 @@ module TaskMapper
       
       protected
         def <<(entity)
-          id = self.provider.create entity
+          id = self.provider.create entity.to_hash
           entity.tap do |p|
             p.id          = id
             p.created_at  = Time.now
