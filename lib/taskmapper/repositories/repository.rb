@@ -76,13 +76,8 @@ module TaskMapper
       
       protected
         def <<(entity)
-          id = self.provider.create entity.to_hash
-          entity.tap do |p|
-            p.id          = id
-            p.created_at  = Time.now
-            p.updated_at  = Time.now
-            p.extend Entities::PersistedEntity
-          end
+          entity.id = self.provider.create(entity.to_hash)
+          entity.extend Entities::PersistedEntity
         end
         
         def dynamic_find(attribute, value)
