@@ -33,6 +33,12 @@ module InMemoryProvider
     objects.select { |o| o == o.merge(criteria) }
   end
   
+  def update(attributes)
+    hash = objects.find { |o| o[:id] == attributes[:id] }
+    hash.merge! attributes
+    true
+  end
+  
   def supported_operations
     [:create, :search]
   end

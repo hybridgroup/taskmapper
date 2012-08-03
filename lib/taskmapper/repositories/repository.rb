@@ -25,6 +25,14 @@ module TaskMapper
       def create(attributes)
         self << new_entity(attributes)
       end
+      
+      def update(entity)
+        result = provider.update entity.to_hash
+        entity.instance_eval do
+          updated_at = Time.now
+        end
+        result
+      end
 
       def find(criteria = {}, &block)
         return super &block if block_given?
