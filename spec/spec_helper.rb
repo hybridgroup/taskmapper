@@ -11,7 +11,7 @@ RSpec.configure do |config|
   config.formatter     = 'documentation'
 end
 
-def catch_error(type = Exception, &block)
+def catch_error(type, &block)
   yield
   nil
 rescue type => e
