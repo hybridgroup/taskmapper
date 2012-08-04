@@ -26,11 +26,17 @@ module InMemoryProvider
   end
 
   def delete(object)
-    objects.delete_if { |o| o[:id] == object.id }
+    objects.delete_if { |o| o[:id] == object[:id] }
   end
   
   def list(criteria = {})
     objects.select { |o| o == o.merge(criteria) }
+  end
+  
+  def update(attributes)
+    hash = objects.find { |o| o[:id] == attributes[:id] }
+    hash.merge! attributes
+    true
   end
   
   def supported_operations

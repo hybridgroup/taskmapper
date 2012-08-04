@@ -15,6 +15,10 @@ module TaskMapper
         validate
       end
       
+      def save
+        factory.projects.update self
+      end
+      
       def validate
         validate_presence_of :name
       end

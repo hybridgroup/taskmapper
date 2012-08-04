@@ -3,6 +3,8 @@ module TaskMapper
     module Entity
       attr_accessor :id, :created_at, :updated_at
       
+      protected :id=, :created_at=, :updated_at=
+      
       def initialize(attrs)
         self.id          = attrs[:id]
         self.created_at  = attrs[:created_at] || Time.now

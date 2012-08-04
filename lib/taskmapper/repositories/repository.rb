@@ -17,42 +17,39 @@ module TaskMapper
       end     
       
       def each(criteria = {}, &block)
-        self.provider.list(criteria).each do |attributes|
-          yield new_entity(attributes)
-        end
+        provider.list(criteria).each &block
       end
       
-      def create(attributes)
-        self << new_entity(attributes)
+      def update(attributes)
+        provider.update attributes
       end
-
+      
       def find(criteria = {}, &block)
         return super &block if block_given?
         case criteria
           when Fixnum then find_by_id criteria
           else find_by_attributes criteria
         end
-      end    
-          
+      end
+      
       def find_by_id(id)
-        new_entity_or_nil provider.find_by_id(id)
+        provider.find_by_id(id)
       end
       
       def find_by_attributes(attrs)
-        new_entity_or_nil provider.find_by_attributes(attrs.merge criteria)
+        provider.find_by_attributes(attrs.merge criteria)
       end
       
-      def where(criteria = {})
-        self.class.new factory, self.criteria.merge(criteria)
-      end
-      
-      def delete(entity)
-        self.provider.delete entity
-        entity
+      def delete(attributes)
+        provider.delete attributes
       end
       
       def [](index)
         to_a[index]
+      end
+      
+      def where(criteria = {})
+        self.class.new factory, self.criteria.merge(criteria)
       end
       
       # Dynamic finder
@@ -67,23 +64,14 @@ module TaskMapper
       end
       
       protected
-        def <<(entity)
-          entity.id = self.provider.create(entity.to_hash)
-          entity.extend Entities::PersistedEntity
+        def <<(attributes)
+          provider.create(attributes)
         end
         
         def dynamic_find(attribute, value)
           criteria = {}
           criteria[attribute.to_sym] = value
           find_by_attributes criteria
-        end
-        
-        def new_entity(attrs)
-          factory.entity(entity_class, attrs)
-        end
-        
-        def new_entity_or_nil(attrs)
-          attrs ? new_entity(attrs) : nil 
         end
     end
   end

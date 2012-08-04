@@ -1,6 +1,6 @@
 module TaskMapper
   module Repositories
-    class Comments < Repository
+    class Comments < Repositories::EntityRepository
       def initialize(factory, criteria = {})
         super factory, factory.comment_class, criteria
       end
