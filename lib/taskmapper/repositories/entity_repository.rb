@@ -32,8 +32,11 @@ module TaskMapper
       
       protected
         def <<(entity)
-          entity.id = super(entity.to_hash)
-          entity.extend Entities::PersistedEntity
+          new_id = super(entity.to_hash)
+          entity.instance_eval do
+            self.id = new_id
+          end
+          entity 
         end
         
         def new_entity(attrs)
