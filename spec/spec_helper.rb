@@ -1,9 +1,22 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'taskmapper.rb'
-require 'taskmapper/dummy/dummy.rb'
-require 'rspec'
+unless ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter "/spec/"
+  end
+end
 
+require 'rspec'
 RSpec.configure do |config|
   config.color_enabled = true
+  config.formatter     = 'documentation'
 end
+
+def catch_error(type, &block)
+  yield
+  nil
+rescue type => e
+  e
+end
+
+require_relative '../lib/taskmapper'
+require 'fake_providers/in_memory_provider'
