@@ -1,34 +1,31 @@
 require 'spec_helper'
 
 describe "Delete project" do 
-  let(:client) do 
+  let(:tm) do 
     TaskMapper::Client.new :inmemory, :user => 'omar', :password => '1234'
   end
-<<<<<<< HEAD
-=======
-  let(:project) { client.project! :name => 'Awesome Project', :description => 'Awesome' }
->>>>>>> This spec implementation is wrong
 
-  context "Given the backend has 2 projects" do 
-    it "Delete a project from the collection of projects" do 
-      client.projects << project
-      client.projects.should have(1).items
-
+  context "Given the backend have projects" do 
+    before(:all) do 
+      tm.project! :name => 'Awesome Projet', 
+        :description => 'This is awesome!'
+      tm.project! :name => 'Bored Project',
+        :description => 'This is bored'
     end
-<<<<<<< HEAD
+    let(:project) { tm.projects.first }
+    let(:projects) { tm.projects }
 
-    subject { projects } 
-    it { should have(2).items }
+    context "Delete a single project" do 
+      subject { projects }
+      its(:count) { should == 2 }
 
-    describe :delete do 
-      context "Given a project id" do 
-        let(:project) { projects.first }
-        subject { projects.delete project }
+      describe :delete do 
+        subject { projects.delete project } 
         it { should be_true }
       end
+      its(:count) { should == 1 }
+
     end
-=======
->>>>>>> This spec implementation is wrong
   end
 end
 
