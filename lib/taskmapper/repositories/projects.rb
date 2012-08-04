@@ -1,5 +1,5 @@
 module TaskMapper
-  class Projects < Repositories::Repository
+  class Projects < Repositories::EntityRepository
     def initialize(factory)
       super factory, factory.project_class
     end
