@@ -26,8 +26,12 @@ describe "Update a Project" do
       describe :updated_project do
         subject   { tm.projects.find_by_name "P2" }
         
-        its(:id)          { should == project.id }
-        its(:updated_at)  { should satisfy { |t| t.day == Time.now.day } }
+        its(:id)  { should == project.id }
+        
+        describe :updated_at do
+          subject { project.updated_at }
+          its(:day) { should == Time.now.day }
+        end
       end
     end
   end
