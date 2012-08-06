@@ -9,10 +9,11 @@ module TaskMapper
       self.session = factory.session
     end
     
-    def project!(attrs)
+    def create_project(attrs)
       session.create_project(attrs.merge :session => self)
     end
-    
+    alias :project! :create_project
+
     def projects
       session.projects
     end

@@ -14,7 +14,7 @@ describe "Update a Task" do
                             :requestor    => "Ron",
     end
     
-    pending "When I updated Task X with valid values" do
+    context "When I updated Task X with valid values" do
       before do
         task_x.update_attributes  :title        => "Task X.1",
                                   :description  => "This is task X.1",
