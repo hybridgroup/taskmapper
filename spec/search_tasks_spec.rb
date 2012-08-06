@@ -5,10 +5,12 @@ describe "Search Tasks" do
     TaskMapper.new :in_memory, :user => 'mark', :password => 'twain'
   end
   
-  context "Given the project 'Secret Project'" do
+  context "Given the project following projects" do
     let(:secret_project) { tm.project! :name => 'Plan to kill Justin Bieber' }
     
-    context "Given Secret Project have the following tasks" do
+    let(:learn_ukulele) { tm.project! :name => 'Leard to play ukulele' }
+    
+    context "Given the following tasks" do
       before do
         secret_project.task!  :title        => "Buy bomb materias",
                               :description  => "Go to hardware store",
@@ -25,9 +27,25 @@ describe "Search Tasks" do
         secret_project.task!  :title        => "Detonate bomb with remote controller",
                               :description  => "Save the world",
                               :requestor    => "Ludwig van Beethoven"
+                              
+        learn_ukulele.task! :title      =>  "Buy Ukulele",
+
+                            :requestor  =>  "Me"
+                            
+        learn_ukulele.task! :title      =>  "Buy Ukulele book",
+                            :requestor  =>  "Me"
+                            
+        learn_ukulele.task! :title      =>  "Practice hard",
+                            :requestor  =>  "Me"
       end
       
-      context "Retrieve Secret Project's tasks'" do
+      context "Retrieve all tasks" do
+        subject { tm.tasks }
+        
+        its(:count) { should == 7 }
+      end
+       
+      context "Retrieve Plan to kill Justin Bieber' project tasks" do
         subject { secret_project.tasks }
         its(:count) { should == 4 }
         
