@@ -1,7 +1,7 @@
 module TaskMapper
   module Repositories
     class EntityRepository < Repository
-      def each(criteria = {}, &block)
+      def each(&block)
         super { |attributes| yield new_entity(attributes) }
       end
       

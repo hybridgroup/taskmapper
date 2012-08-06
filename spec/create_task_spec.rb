@@ -26,11 +26,6 @@ describe "Create Task" do
         its(:requestor)   { should == 'Ron Evans' }
         its(:assignee)    { should == 'Omar Rodriguez' }
         
-        describe :task_parent do
-          subject { task.project.name }
-          it { should == 'Project X' }
-        end
-        
         describe :task_comments_parent do
           subject { task.comments.task.title }
           it { should == 'Test Task' }

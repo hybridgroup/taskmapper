@@ -2,6 +2,7 @@ module TaskMapper
   module Repositories
     class Repository
       include Enumerable
+      
       attr_accessor :factory, :criteria, :entity_class
       
       protected :factory=, :criteria=, :entity_class=
@@ -16,7 +17,7 @@ module TaskMapper
         factory.provider self.entity_class
       end     
       
-      def each(criteria = {}, &block)
+      def each(&block)
         provider.list(criteria).each &block
       end
       
@@ -40,6 +41,10 @@ module TaskMapper
         provider.find_by_attributes(attrs.merge criteria)
       end
       
+      def find_by_attribute(attribute, value)
+        find_by_attributes attribute.to_sym => value
+      end
+      
       def delete(attributes)
         provider.delete attributes
       end
@@ -54,24 +59,26 @@ module TaskMapper
       
       # Dynamic finder
       def method_missing(method, *args, &block)
-        pattern = /^find_by_/
-        method_s = method.to_s
-        case method_s
-          when pattern
-            dynamic_find method_s.sub(pattern, ''), args.first
+        case method
+          when FINDER_PATTERN
+            dynamic_find method, args.first
           else super method, *args, &block
         end
       end
       
+      def dynamic_find(finder_method, value)
+        find_by_attribute parse_attribute(finder_method), value
+      end
+      
+      def parse_attribute(finder_method)
+        finder_method.to_s.sub(FINDER_PATTERN, '')
+      end
+      
       protected
+        FINDER_PATTERN = /^find_by_/
+        
         def <<(attributes)
           provider.create(attributes)
-        end
-        
-        def dynamic_find(attribute, value)
-          criteria = {}
-          criteria[attribute.to_sym] = value
-          find_by_attributes criteria
         end
     end
   end
