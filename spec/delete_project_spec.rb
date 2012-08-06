@@ -17,13 +17,6 @@ describe "Delete project" do
 
     context "Delete a single project" do 
       subject { projects }
-      its(:count) { should == 2 }
-
-      describe :first do 
-        subject { projects.first }
-        its(:name) { should == 'Awesome Project' }
-        its(:id) { should == 1 }
-      end
 
       describe :delete do 
         subject { projects.delete project } 
