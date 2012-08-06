@@ -8,6 +8,8 @@ module TaskMapper
         :requestor, 
         :assignee, 
         :project,
+        :priority,
+        :status,
         :factory
       
       protected :requestor=,
@@ -21,10 +23,25 @@ module TaskMapper
         self.requestor    = attrs[:requestor]
         self.assignee     = attrs[:assignee]
         self.project      = attrs[:project]
+        self.priority     = attrs[:priority]
+        self.status       = attrs[:status]
         self.factory      = attrs[:factory]
         validate
       end
-      
+
+      def save
+        factory.tasks.update self
+      end
+
+      def update_attributes(attrs) 
+        self.title = attrs[:title]
+        self.description = attrs[:description]
+        self.assignee = attrs[:assignee]
+        self.priority = attrs[:priority]
+        self.status = attrs[:status]
+        super self.to_hash
+      end
+
       def validate
         validate_presence_of :title
         validate_presence_of :requestor
