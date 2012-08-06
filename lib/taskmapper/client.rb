@@ -17,6 +17,10 @@ module TaskMapper
       session.projects
     end
     
+    def tasks
+      session.tasks
+    end
+    
     def metadata
       self.factory.provider_metadata
     end
