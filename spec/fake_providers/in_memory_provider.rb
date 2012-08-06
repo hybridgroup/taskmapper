@@ -20,8 +20,10 @@ module InMemoryProvider
   def create(object)
     id = next_id
     attributes = object.to_hash
+    
     objects << attributes.merge(:id => id, 
-      :created_at => Time.now, :updated_at => Time.now)
+      :created_at => Time.now, 
+      :updated_at => Time.now)
     id
   end
 
