@@ -27,10 +27,11 @@ module TaskMapper
         factory.tasks.where :project => { :id => self.id }
       end
       
-      def task!(attrs)
+      def create_task(attrs)
         tasks.create attrs
       end
-
+      alias :task! :create_task
+      
       def to_hash
         super.merge({ 
           :name => name,

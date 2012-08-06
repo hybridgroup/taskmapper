@@ -5,10 +5,15 @@ describe "Create Task" do
     let(:tm) { TaskMapper.new :in_memory, 
       :user => 'chuck', :password => 'norris' }
     
-    let(:project) { tm.project! :name => 'Project X' }
+    let(:project) { tm.create_project :name => 'Project X' }
     
-    let(:task) { project.task! attributes }
-    
+    let(:task) { project.create_task attributes }
+
+    describe :task! do 
+      subject { project }
+      it { should respond_to :task! }
+    end
+
     context "When I create a task for Project X" do
       let(:attributes) {{
         :title        => 'Test Task',

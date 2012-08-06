@@ -22,11 +22,11 @@ module TaskMapper
           raise Exceptions::RequiredAttribute.new(self.class, attribute, value) 
         end
       end
-      
-      def update_attributes(attrs)
-        id = attrs[:id]
-        created_at = attrs[:created_at]
-        updated_at = attrs[:updated_att]
+
+      def update_attributes(attrs) 
+        attrs.each do |key, value|
+          self.send("#{key}=".to_sym, value)
+        end
       end
       
       def to_hash
