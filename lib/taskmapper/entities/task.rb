@@ -6,12 +6,12 @@ module TaskMapper
       attr_accessor :title, 
         :description, 
         :requestor, 
-        :assignee, 
-        :project,
+        :assignee,
+        :project_id, 
         :factory
       
       protected :requestor=,
-        :project=,
+        :project_id=,
         :factory=
       
       def initialize(attrs)
@@ -20,9 +20,13 @@ module TaskMapper
         self.description  = attrs[:description]
         self.requestor    = attrs[:requestor]
         self.assignee     = attrs[:assignee]
-        self.project      = attrs[:project]
+        self.project_id   = attrs[:project_id]
         self.factory      = attrs[:factory]
         validate
+      end
+      
+      def delete
+        factory.tasks.delete self
       end
       
       def validate
@@ -40,7 +44,7 @@ module TaskMapper
           :description  => self.description,
           :requestor    => self.requestor,
           :assignee     => self.assignee,
-          :project      => self.project.to_hash
+          :project_id   => self.project_id
         })
       end
       
