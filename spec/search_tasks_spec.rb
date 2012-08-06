@@ -39,7 +39,15 @@ describe "Search Tasks" do
                             :requestor  =>  "Me"
       end
       
-      context "Plan to kill Justin Bieber' project tasks" do
+      pending "Retrieve all tasks" do
+        context "Retrieve all tasks" do
+          subject { tm.tasks }
+          
+          its(:count) { should == 7 }
+        end
+      end
+       
+      context "Retrieve Plan to kill Justin Bieber' project tasks" do
         subject { secret_project.tasks }
         its(:count) { should == 4 }
         
