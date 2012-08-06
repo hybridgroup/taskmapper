@@ -37,6 +37,12 @@ describe "Delete project" do
       end
 
       its(:count) { should == 1 }
+      describe :delete do 
+        subject { projects.delete project } 
+        it { should be_true }
+      end
+      its(:count) { should == 1 }
+
     end
   end
 end
