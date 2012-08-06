@@ -16,7 +16,7 @@ module TaskMapper
         factory.provider self.entity_class
       end     
       
-      def each(criteria = {}, &block)
+      def each(&block)
         provider.list(criteria).each &block
       end
       
