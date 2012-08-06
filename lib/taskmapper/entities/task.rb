@@ -34,11 +34,9 @@ module TaskMapper
       end
 
       def update_attributes(attrs) 
-        self.title = attrs[:title]
-        self.description = attrs[:description]
-        self.assignee = attrs[:assignee]
-        self.priority = attrs[:priority]
-        self.status = attrs[:status]
+        attrs.each do |key, value|
+          self.send("#{key}=".to_sym, value)
+        end
         super self.to_hash
       end
 
