@@ -66,8 +66,12 @@ module TaskMapper
         end
       end
       
-      def dynamic_find(method, value)
-        find_by_attribute method.to_s.sub(FINDER_PATTERN, ''), value
+      def dynamic_find(finder_method, value)
+        find_by_attribute parse_attribute(finder_method), value
+      end
+      
+      def parse_attribute(finder_method)
+        finder_method.to_s.sub(FINDER_PATTERN, '')
       end
       
       protected
