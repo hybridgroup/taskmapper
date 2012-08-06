@@ -30,7 +30,8 @@ module TaskMapper
       def create_task(attrs)
         tasks.create attrs
       end
-
+      alias :task! :create_task
+      
       def to_hash
         super.merge({ 
           :name => name,
