@@ -33,12 +33,6 @@ module TaskMapper
         factory.tasks.update self
       end
 
-      def update_attributes(attrs) 
-        attrs.each do |key, value|
-          self.send("#{key}=".to_sym, value)
-        end
-        super self.to_hash
-      end
 
       def validate
         validate_presence_of :title
