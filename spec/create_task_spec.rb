@@ -7,7 +7,7 @@ describe "Create Task" do
     
     let(:project) { tm.project! :name => 'Project X' }
     
-    let(:task) { project.task! attributes }
+    let(:task) { project.create_task attributes }
     
     context "When I create a task for Project X" do
       let(:attributes) {{

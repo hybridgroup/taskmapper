@@ -12,30 +12,30 @@ describe "Search Tasks" do
     
     context "Given the following tasks" do
       before do
-        secret_project.task!  :title        => "Buy bomb materias",
+        secret_project.create_task  :title        => "Buy bomb materias",
                               :description  => "Go to hardware store",
                               :requestor    => "Ludwig van Beethoven"
                                
-        secret_project.task!  :title        => "Contruct a bomb",
+        secret_project.create_task  :title        => "Contruct a bomb",
                               :description  => "Visit howstuffworks.com",
                               :requestor    => "Ludwig van Beethoven"
                                 
-        secret_project.task!  :title        => "Install the bomb in Justin Bieber's house",
+        secret_project.create_task  :title        => "Install the bomb in Justin Bieber's house",
                               :description  => "Go there and do it",
                               :requestor    => "Ludwig van Beethoven"
                               
-        secret_project.task!  :title        => "Detonate bomb with remote controller",
+        secret_project.create_task  :title        => "Detonate bomb with remote controller",
                               :description  => "Save the world",
                               :requestor    => "Ludwig van Beethoven"
                               
-        learn_ukulele.task! :title      =>  "Buy Ukulele",
+        learn_ukulele.create_task :title      =>  "Buy Ukulele",
 
                             :requestor  =>  "Me"
                             
-        learn_ukulele.task! :title      =>  "Buy Ukulele book",
+        learn_ukulele.create_task :title      =>  "Buy Ukulele book",
                             :requestor  =>  "Me"
                             
-        learn_ukulele.task! :title      =>  "Practice hard",
+        learn_ukulele.create_task :title      =>  "Practice hard",
                             :requestor  =>  "Me"
       end
       
