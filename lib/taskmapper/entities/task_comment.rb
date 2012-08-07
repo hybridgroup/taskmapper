@@ -10,6 +10,7 @@ module TaskMapper
       protected :author=, :task_id=
       
       def initialize(attrs)
+        super attrs
         self.author     = attrs[:author]
         self.body       = attrs[:body]
         self.task_id    = attrs[:task_id]
