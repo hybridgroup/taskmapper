@@ -18,7 +18,7 @@ module TaskMapper
       end     
       
       def each(&block)
-        provider.list(criteria).each &block
+        provider.search(criteria).each &block
       end
       
       def update(attributes)

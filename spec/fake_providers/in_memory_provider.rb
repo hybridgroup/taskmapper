@@ -31,7 +31,7 @@ module InMemoryProvider
     objects.delete_if { |o| o[:id] == object[:id] }
   end
   
-  def list(criteria = {})
+  def search(criteria = {})
     objects.select { |o| o == o.merge(criteria) }
   end
   
