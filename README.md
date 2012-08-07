@@ -23,6 +23,17 @@ You could then install for instance taskmapper-pivotal:
 
 ## Usage
 
+```ruby
+  require 'taskmapper'
+  require 'taskmapper-provider'
+
+  tm = TaskMapper.new :provider, 
+                    :user => 'username',
+                    :password => 'password'
+
+  # Delete a project
+  tm.projects.first.delete
+```
 
 ## Note on Patches/Pull Requests
 
