@@ -17,6 +17,10 @@ module TaskMapper
       end
       
       def method_missing(method, *args, &block)
+        raise_implementation_instructions(method, args)        
+      end
+      
+      def raise_implementation_instructions(method, args)
         def args.to_s
           empty? ? "" : "(#{map(&:class).join ','})"
         end
