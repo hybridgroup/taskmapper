@@ -10,26 +10,84 @@ describe "Create a task comment" do
     context "Given Task X" do
       let(:task_x) { project_x.create_task  :title      => "Task X",
                                             :requestor  => "Omar" }
-                                      
-      context "When I create a task comment on Task X" do
-        before :all do 
-          task_x.create_comment :body   => "This is a test",
-                                :author => "Magoo"
+      context "Given valid attributes" do
+        context "When I create a task comment on Task X" do
+          before :all do 
+            task_x.create_comment :body   => "This is a test", :author => "Magoo"
+          end
+          
+          describe :task_x do
+            subject { task_x }
+            
+            its(:comments_count) { should == 1 }
+            
+            describe :first_comment do
+              subject { task_x.comments.first }
+              
+              its(:body)    { should eql "This is a test" }
+              its(:author)  { should eql "Magoo" }
+              its(:task_id) { should eql task_x.id }
+            end
+          end        
+        end
+      end
+      
+      pending "Invalid attributes" do
+        context "When I create a task comment with nil body" do
+          let(:error) do 
+            catch_error(TaskMapper::Exceptions::RequiredAttribute) do 
+              task_x.create_comment :body => nil, :author => 'Omar'
+            end
+          end
+           
+          describe :error do
+            subject { error }
+            it { should_not be_nil }
+            its(:message) { should match /Task body is required/ }
+          end
         end
         
-        describe :task_x do
-          subject { task_x }
-          
-          its(:comments_count) { should == 1 }
-          
-          describe :first_comment do
-            subject { task_x.comments.first }
-            
-            its(:body)    { should eql "This is a test" }
-            its(:author)  { should eql "Magoo" }
-            its(:task_id) { should eql task_x.id }
+        context "When I create a task comment with empty body" do
+          let(:error) do 
+            catch_error(TaskMapper::Exceptions::RequiredAttribute) do 
+              task_x.create_comment :body => '', :author => 'Omar'
+            end
           end
-        end        
+           
+          describe :error do
+            subject { error }
+            it { should_not be_nil }
+            its(:message) { should match /Task body is required/ }
+          end
+        end
+        
+        context "When I create a task comment with nil author" do
+          let(:error) do 
+            catch_error(TaskMapper::Exceptions::RequiredAttribute) do 
+              task_x.create_comment :body => 'test', :author => nil
+            end
+          end
+           
+          describe :error do
+            subject { error }
+            it { should_not be_nil }
+            its(:message) { should match /Task author is required/ }
+          end
+        end
+        
+        context "When I create a task comment with empty author" do
+          let(:error) do 
+            catch_error(TaskMapper::Exceptions::RequiredAttribute) do 
+              task_x.create_comment :body => 'test', :author => ''
+            end
+          end
+           
+          describe :error do
+            subject { error }
+            it { should_not be_nil }
+            its(:message) { should match /Task author is required/ }
+          end
+        end
       end
     end
   end
