@@ -78,7 +78,7 @@ module TaskMapper
         FINDER_PATTERN = /^find_by_/
         
         def <<(attributes)
-          provider.create(attributes)
+          provider << attributes
         end
     end
   end

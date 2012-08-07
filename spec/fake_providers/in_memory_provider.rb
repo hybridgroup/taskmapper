@@ -17,7 +17,7 @@ module InMemoryProvider
     @objects ||= []
   end
   
-  def create(object)
+  def <<(object)
     id = next_id
     attributes = object.to_hash
     
@@ -26,7 +26,7 @@ module InMemoryProvider
       :updated_at => Time.now)
     id
   end
-
+  
   def delete(object)
     objects.delete_if { |o| o[:id] == object[:id] }
   end
