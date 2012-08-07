@@ -67,6 +67,7 @@ module TaskMapper
       Repositories::Tasks.new self, criteria
     end
     
+    #TODO Rename to task_comments
     def comments(criteria = {})
       Repositories::TaskComments.new self, criteria
     end

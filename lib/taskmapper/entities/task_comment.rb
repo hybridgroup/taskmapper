@@ -5,16 +5,22 @@ module TaskMapper
       
       attr_accessor :author,
         :body,
-        :task_id
+        :task_id,
+        :factory
         
-      protected :author=, :task_id=
+      protected :author=, :task_id=, :factory=
       
       def initialize(attrs)
         super attrs
         self.author     = attrs[:author]
         self.body       = attrs[:body]
         self.task_id    = attrs[:task_id]
+        self.factory    = attrs[:factory]
         validate
+      end
+      
+      def save
+        factory.comments.update self
       end
       
       def validate
@@ -24,6 +30,7 @@ module TaskMapper
       
       def to_hash
         {
+          :id         => id,
           :author     => author,
           :body       => body,
           :task_id    => task_id
