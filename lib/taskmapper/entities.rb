@@ -1,5 +1,4 @@
 require_relative 'entities/entity'
-require_relative 'entities/entity_provider'
 require_relative 'entities/session'
 require_relative 'entities/project'
 require_relative 'entities/task'
