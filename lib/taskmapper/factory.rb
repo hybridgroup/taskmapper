@@ -15,7 +15,7 @@ module TaskMapper
       self.providers = {
         Entities::Project   => Providers::Provider.new(self, :Projects),
         Entities::Task      => Providers::Provider.new(self, :Tasks),
-        Entities::TaskComment   => Providers::Provider.new(self, :Comments) 
+        Entities::TaskComment   => Providers::Provider.new(self, :TaskComments) 
       }
     end
     
@@ -68,7 +68,7 @@ module TaskMapper
     end
     
     def comments(criteria = {})
-      Repositories::Comments.new self, criteria
+      Repositories::TaskComments.new self, criteria
     end
     
     def provider_metadata

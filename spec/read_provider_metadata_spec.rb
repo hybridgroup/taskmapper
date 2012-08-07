@@ -3,7 +3,7 @@ require 'spec_helper'
 module TaskMapper::Providers::NoMetaData
   module Projects; end
   module Tasks; end
-  module Comments; end
+  module TaskComments; end
 end
 
 describe "Read Provider metadata" do

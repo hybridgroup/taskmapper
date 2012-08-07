@@ -77,7 +77,7 @@ module TaskMapper
         end
       end
       
-      module Comments
+      module TaskComments
         include InMemoryProvider
         include Finders
         
@@ -100,7 +100,7 @@ module TaskMapper
         include InMemoryProvider
       end
       
-      module Comments
+      module TaskComments
         include InMemoryProvider
       end
     end
