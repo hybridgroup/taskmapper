@@ -14,7 +14,7 @@ describe "Search task comments" do
                                   :requestor  =>  "Me"
       end
 
-      pending "And 'buy ukulele' have the following comments" do
+      context "And 'buy ukulele' have the following comments" do
         before do
           buy_ukulele.create_comment  :body => 'Researching ukuleles best price',
                                       :author => 'Omar'
@@ -27,11 +27,14 @@ describe "Search task comments" do
         end
 
         context "When a retrieve all 'buy ukulele' comments" do
-          subject { buy_ukulele.coments }
+          let(:comments) { buy_ukulele.comments }
+          
+          subject { comments }
 
           its(:count) { should == 3 }
 
           describe :second do
+            subject { comments[1] }
             its(:id)      { should == 2 }
             its(:body)    { should == 'Found a good deal in X store' }
             its(:author)  { should == 'Omar' }
