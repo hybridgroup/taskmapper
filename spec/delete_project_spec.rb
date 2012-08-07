@@ -16,26 +16,34 @@ describe "Delete project" do
     let(:projects) { tm.projects }
 
     context "Delete a single project" do 
-      subject { projects }
+      context "Projects#delete" do 
+        describe :delete do 
+          subject { projects.delete project } 
+          it { should be_eql project }
 
-      describe :delete do 
-        subject { projects.delete project } 
-        it { should be_eql project }
-
-        describe :first do 
-          subject { projects.first }
-          its(:name) { should == 'Bored Project' }
-          its(:id) { should == 2 }
+          describe :first do 
+            subject { projects.first }
+            its(:name) { should == 'Bored Project' }
+            its(:id) { should == 2 }
+          end
         end
       end
 
-      its(:count) { should == 1 }
-      describe :delete do 
-        subject { projects.delete project } 
-        it { should be_true }
-      end
-      its(:count) { should == 1 }
+      context "Project#delete" do 
+        subject { project } 
+        its(:name) { should == 'Awesome Project' }
+        its(:id) { should == 1 }
 
+        describe :delete do 
+          subject { project.delete }
+          it { should be_true }
+
+          describe "Retrieve same project" do 
+            subject { projects.find_by_id 1 } 
+            it { should be_nil }
+          end
+        end
+      end
     end
   end
 end

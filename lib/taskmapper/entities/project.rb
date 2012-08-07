@@ -19,6 +19,10 @@ module TaskMapper
         factory.projects.update self
       end
       
+      def delete
+        !factory.projects.delete(self).nil?
+      end
+      
       def validate
         validate_presence_of :name
       end
