@@ -17,8 +17,11 @@ describe "Update a task comment" do
     
     context "And 'Task X' have a comment" do
       before(:all) do 
-        task.create_comment :body => "Comment #1",
-                            :author => "Omar"
+        comment = task.create_comment :body => "Comment #1",
+                                      :author => "Omar"
+        comment.instance_eval do
+          updated_at = Time.new 1984, 2, 20
+        end
       end
       
       context "When I update the comment body" do
@@ -34,8 +37,15 @@ describe "Update a task comment" do
         end
         
         describe :comment do
-          subject { task.comments.find 1 }
+          let(:comment) { task.comments.find 1 }
+          subject { comment }
+          
           its(:body) { should == "Updated Comment" }
+          
+          describe(:updated_at) do
+            subject { comment.updated_at }
+            its(:day) { should == Time.now.day }
+          end
         end
       end
     end
