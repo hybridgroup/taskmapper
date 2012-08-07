@@ -20,7 +20,7 @@ module TaskMapper
       end
       
       def save
-        factory.comments.update self
+        factory.task_comments.update self
       end
       
       def validate
