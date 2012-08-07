@@ -42,8 +42,18 @@ module TaskMapper
         validate_presence_of :requestor
       end
       
+      def create_comment(attrs)
+        comments.create attrs
+      end
+      
+      alias :comment! :create_comment
+      
       def comments
-        factory.comments.where(:task => self)
+        factory.comments.where(:task_id => id)
+      end
+      
+      def comments_count
+        comments.count
       end
       
       def to_hash

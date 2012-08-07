@@ -15,7 +15,7 @@ describe "Read Provider metadata" do
       its(:operations) { should == {
         :projects => [:create, :search, :find],
         :tasks    => [:create, :search, :find],
-        :comments => [:create, :search, :find]
+        :comments => [:create, :search]
       }}
     end
     

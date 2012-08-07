@@ -48,7 +48,7 @@ module TaskMapper
     end
     
     def comment_class
-      Entities::Project
+      Entities::Comment
     end
     
     def entity(entity_class, attrs)
