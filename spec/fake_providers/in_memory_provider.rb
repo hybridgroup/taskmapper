@@ -77,9 +77,13 @@ module TaskMapper
         end
       end
       
-      module Comments
+      module TaskComments
         include InMemoryProvider
         include Finders
+        
+        def supported_operations
+          [:create, :search]
+        end
       end
     end
   end
@@ -96,7 +100,7 @@ module TaskMapper
         include InMemoryProvider
       end
       
-      module Comments
+      module TaskComments
         include InMemoryProvider
       end
     end
