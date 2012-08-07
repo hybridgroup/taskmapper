@@ -11,11 +11,6 @@ module TaskMapper
         self.updated_at  = attrs[:updated_at] || Time.now
       end
       
-      def satisfy(given_attrs)
-        attrs = to_hash
-        attrs == attrs.merge(given_attrs)
-      end
-      
       def validate_presence_of(attribute)
         value = self.__send__ attribute
         if value.nil? or value.empty?

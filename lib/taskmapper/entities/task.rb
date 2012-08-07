@@ -7,13 +7,13 @@ module TaskMapper
         :description, 
         :requestor, 
         :assignee, 
-        :project,
+        :project_id, 
         :priority,
         :status,
         :factory
       
       protected :requestor=,
-        :project=,
+        :project_id=,
         :factory=
       
       def initialize(attrs)
@@ -22,9 +22,9 @@ module TaskMapper
         self.description  = attrs[:description]
         self.requestor    = attrs[:requestor]
         self.assignee     = attrs[:assignee]
-        self.project      = attrs[:project]
         self.priority     = attrs[:priority]
         self.status       = attrs[:status]
+        self.project_id   = attrs[:project_id]
         self.factory      = attrs[:factory]
         validate
       end
@@ -32,8 +32,11 @@ module TaskMapper
       def save
         factory.tasks.update self
       end
-
-
+      
+      def delete
+        factory.tasks.delete self
+      end
+      
       def validate
         validate_presence_of :title
         validate_presence_of :requestor
@@ -49,7 +52,7 @@ module TaskMapper
           :description  => self.description,
           :requestor    => self.requestor,
           :assignee     => self.assignee,
-          :project      => self.project.to_hash
+          :project_id   => self.project_id
         })
       end
       

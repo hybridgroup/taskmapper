@@ -30,11 +30,7 @@ describe "Create Task" do
         its(:description) { should == 'This is a test'; }
         its(:requestor)   { should == 'Ron Evans' }
         its(:assignee)    { should == 'Omar Rodriguez' }
-        
-        describe :task_comments_parent do
-          subject { task.comments.task.title }
-          it { should == 'Test Task' }
-        end
+        its(:project_id)  { should == 1 }
       end
     end
     

@@ -6,11 +6,11 @@ module TaskMapper
       end
       
       def create(attrs)
-        super attrs.merge(:project => project)
+        super attrs.merge(:project_id => project_id)
       end
       
-      def project
-        criteria[:project]
+      def project_id
+        criteria[:project_id]
       end
     end
   end
