@@ -31,8 +31,7 @@ You could then install for instance taskmapper-pivotal:
                     :user => 'username',
                     :password => 'password'
 
-  # Delete projects
-  tm.projects.delete project 
+  # Delete a project
   tm.projects.first.delete
 ```
 
