@@ -3,7 +3,7 @@ module TaskMapper
     attr_accessor :session, :factory
     
     protected :session=, :session=
-    
+
     def initialize(provider_name, credentials = {}, factory = Factory.new(provider_name, credentials))
       self.factory = factory
       self.session = factory.session
