@@ -1,6 +1,6 @@
 module TaskMapper
   module Providers
-    class Provider
+    class EntityProvider
       attr_accessor :credentials, :entity, :factory
       
       protected :credentials=, :entity=, :factory=

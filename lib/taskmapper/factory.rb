@@ -13,9 +13,9 @@ module TaskMapper
       self.provider_name = provider_name
       self.credentials = credentials
       self.providers = {
-        Entities::Project   => Providers::Provider.new(self, :Projects),
-        Entities::Task      => Providers::Provider.new(self, :Tasks),
-        Entities::TaskComment   => Providers::Provider.new(self, :TaskComments) 
+        Entities::Project     => Providers::EntityProvider.new(self, :Projects),
+        Entities::Task        => Providers::EntityProvider.new(self, :Tasks),
+        Entities::TaskComment => Providers::EntityProvider.new(self, :TaskComments) 
       }
     end
     
