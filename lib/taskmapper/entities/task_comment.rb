@@ -13,6 +13,12 @@ module TaskMapper
         self.author     = attrs[:author]
         self.body       = attrs[:body]
         self.task_id    = attrs[:task_id]
+        validate
+      end
+      
+      def validate
+        validate_presence_of :body
+        validate_presence_of :author
       end
       
       def to_hash

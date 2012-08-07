@@ -32,7 +32,7 @@ describe "Create a task comment" do
         end
       end
       
-      pending "Invalid attributes" do
+      context "Invalid attributes" do
         context "When I create a task comment with nil body" do
           let(:error) do 
             catch_error(TaskMapper::Exceptions::RequiredAttribute) do 
@@ -43,7 +43,7 @@ describe "Create a task comment" do
           describe :error do
             subject { error }
             it { should_not be_nil }
-            its(:message) { should match /Task body is required/ }
+            its(:message) { should match /TaskComment body is required/ }
           end
         end
         
@@ -57,7 +57,7 @@ describe "Create a task comment" do
           describe :error do
             subject { error }
             it { should_not be_nil }
-            its(:message) { should match /Task body is required/ }
+            its(:message) { should match /TaskComment body is required/ }
           end
         end
         
@@ -71,7 +71,7 @@ describe "Create a task comment" do
           describe :error do
             subject { error }
             it { should_not be_nil }
-            its(:message) { should match /Task author is required/ }
+            its(:message) { should match /TaskComment author is required/ }
           end
         end
         
@@ -85,7 +85,7 @@ describe "Create a task comment" do
           describe :error do
             subject { error }
             it { should_not be_nil }
-            its(:message) { should match /Task author is required/ }
+            its(:message) { should match /TaskComment author is required/ }
           end
         end
       end
