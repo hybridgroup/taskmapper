@@ -1,6 +1,6 @@
 module TaskMapper
   module Entities
-    class Comment
+    class TaskComment
       include Entity
       
       attr_accessor :author,

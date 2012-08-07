@@ -15,7 +15,7 @@ module TaskMapper
       self.providers = {
         Entities::Project   => Providers::Provider.new(self, :Projects),
         Entities::Task      => Providers::Provider.new(self, :Tasks),
-        Entities::Comment   => Providers::Provider.new(self, :Comments) 
+        Entities::TaskComment   => Providers::Provider.new(self, :Comments) 
       }
     end
     
@@ -48,7 +48,7 @@ module TaskMapper
     end
     
     def comment_class
-      Entities::Comment
+      Entities::TaskComment
     end
     
     def entity(entity_class, attrs)
