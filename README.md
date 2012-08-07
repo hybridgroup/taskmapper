@@ -23,7 +23,7 @@ You could then install for instance taskmapper-pivotal:
 
 ## Usage
 
-'''ruby
+```ruby
   require 'taskmapper'
   require 'taskmapper-provider'
 
@@ -34,8 +34,7 @@ You could then install for instance taskmapper-pivotal:
   # Delete projects
   tm.projects.delete project 
   tm.projects.first.delete
-'''
-
+```
 
 ## Note on Patches/Pull Requests
 
