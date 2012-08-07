@@ -5,7 +5,7 @@ describe "Search Tasks" do
     TaskMapper.new :in_memory, :user => 'mark', :password => 'twain'
   end
   
-  context "Given the project following projects" do
+  context "Given the following projects" do
     let(:secret_project) { tm.project! :name => 'Plan to kill Justin Bieber' }
     
     let(:learn_ukulele) { tm.project! :name => 'Leard to play ukulele' }

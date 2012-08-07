@@ -18,7 +18,7 @@ module TaskMapper
       end     
       
       def each(&block)
-        provider.list(criteria).each &block
+        provider.search(criteria).each &block
       end
       
       def update(attributes)
@@ -78,7 +78,7 @@ module TaskMapper
         FINDER_PATTERN = /^find_by_/
         
         def <<(attributes)
-          provider.create(attributes)
+          provider << attributes
         end
     end
   end

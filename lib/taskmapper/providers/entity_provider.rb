@@ -31,11 +31,15 @@ module TaskMapper
       
       # Default behavior for finder methods if not defined by the provider
       def find_by_id(id)
-        list.find { |attributes| attributes[:id] == id }
+        all.find { |attributes| attributes[:id] == id }
       end
       
       def find_by_attributes(attributes)
-        list.find { |attrs| attrs.merge(attributes) == attrs }
+        all.find { |attrs| attrs.merge(attributes) == attrs }
+      end
+      
+      def all
+        search
       end
       
       protected
