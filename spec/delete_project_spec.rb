@@ -17,7 +17,6 @@ describe "Delete project" do
 
     context "Delete a single project" do 
       subject { projects }
-
       describe :delete do 
         subject { projects.delete project } 
         it { should be_eql project }
@@ -28,14 +27,6 @@ describe "Delete project" do
           its(:id) { should == 2 }
         end
       end
-
-      its(:count) { should == 1 }
-      describe :delete do 
-        subject { projects.delete project } 
-        it { should be_true }
-      end
-      its(:count) { should == 1 }
-
     end
   end
 end
