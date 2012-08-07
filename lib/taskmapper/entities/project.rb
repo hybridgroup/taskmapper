@@ -20,7 +20,7 @@ module TaskMapper
       end
       
       def delete
-        factory.projects.delete self
+        !factory.projects.delete(self).nil?
       end
       
       def validate
