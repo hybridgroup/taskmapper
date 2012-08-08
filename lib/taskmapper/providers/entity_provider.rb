@@ -26,7 +26,7 @@ module TaskMapper
         end
         
         raise TaskMapper::Exceptions::ImplementationNotFound
-          .new(factory.get_provider_module, entity, method, args)
+          .new(factory.provider_module, entity, method, args)
       end
       
       # Default behavior for finder methods if not defined by the provider

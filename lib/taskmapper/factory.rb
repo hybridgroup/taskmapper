@@ -76,9 +76,6 @@ module TaskMapper
       Providers::Metadata.new self
     end
     
-    def get_entity_module(entity_name)
-      get_provider_module.const_get(entity_name)
-    end
     
     def providers_module
       TaskMapper::Providers
@@ -88,24 +85,33 @@ module TaskMapper
       TaskMapper::Exceptions
     end
     
-    def get_provider_module
-      unless provider_module_name
-        raise exceptions_module::ProviderNotFound
-          .new(nice_provider_name) 
-      end      
-      providers_module.const_get provider_module_name
+    def provider_module
+      @provider_module ||= get_provider_module
     end
     
-    def provider_module_name
-      providers_module.constants
-        .find { |c| c.to_s.downcase == nice_provider_name }
+    def get_entity_module(entity_name)
+      get_provider_module.const_get(entity_name)
     end
     
-    def nice_provider_name
-      provider_name.to_s
-        .gsub /\_/, ''
-        .capitalize
-        .downcase
-    end
+    protected
+      def get_provider_module
+        unless get_provider_module_name
+          raise exceptions_module::ProviderNotFound
+            .new(nice_provider_name) 
+        end      
+        providers_module.const_get get_provider_module_name
+      end
+      
+      def get_provider_module_name
+        providers_module.constants
+          .find { |c| c.to_s.downcase == nice_provider_name }
+      end
+      
+      def nice_provider_name
+        provider_name.to_s
+          .gsub /\_/, ''
+          .capitalize
+          .downcase
+      end
   end
 end
