@@ -34,7 +34,7 @@ describe "Create a new Project" do
       describe :error do
         subject { error }
         it { should_not be_nil }
-        its(:message) { should match /Provider TaskMapper::Providers::NotImplemented does not define Projects#create\(Hash\)/i }
+        its(:message) { should match /Provider TaskMapper::Providers::NotImplemented does not define Projects#<<\(Hash\)/i }
       end
     end
   end

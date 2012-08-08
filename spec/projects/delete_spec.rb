@@ -19,7 +19,7 @@ describe "Delete project" do
       context "Projects#delete" do 
         describe :delete do 
           subject { projects.delete project } 
-          it { should be_eql project }
+          its(:id) { should be_eql project.id }
 
           describe :first do 
             subject { projects.first }
