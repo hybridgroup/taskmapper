@@ -73,7 +73,7 @@ module TaskMapper
     end
     
     def provider_metadata
-      Provider::Metadata.new self
+      Providers::Metadata.new self
     end
     
     def get_entity_module(entity_name)

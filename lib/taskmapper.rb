@@ -3,7 +3,6 @@ require 'taskmapper/exceptions'
 require 'taskmapper/repositories'
 require 'taskmapper/entities'
 require 'taskmapper/client'
-require 'taskmapper/provider_metadata'
 require 'taskmapper/providers'
 require 'taskmapper/factory'
 
