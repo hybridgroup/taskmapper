@@ -7,17 +7,13 @@ require 'taskmapper/providers'
 require 'taskmapper/factory'
 
 module TaskMapper
-  # @param [String] name of the provider you want to create
+  # @param [String] the provider you want to create
   # @param [Hash] the provider credentials
   #
   # @example
+  #   TaskMapper.new :in_memory, :user => 'username' :password => 'password' #=> <TaskMapper
   #
-  # TaskMapper.new :in_memory, 
-  #                :user => 'username' 
-  #                :password => 'password'
-  # #=> <TaskMapper
-  #
-  # @returns [Client] 
+  # @return [Client] 
   def self.new(provider_name, credentials = {})
     TaskMapper::Factory.new(provider_name, credentials).client
   end

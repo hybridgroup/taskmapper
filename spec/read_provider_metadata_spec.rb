@@ -6,7 +6,10 @@ module TaskMapper::Providers::NoMetaData
   module TaskComments; end
 end
 
-describe "Read Provider metadata" do
+#
+# Specs
+#
+describe TaskMapper::Providers::Metadata, "Read Provider metadata" do
   context "Given a provider with metadata available" do
     let(:tm) { TaskMapper.new :in_memory, { :user => 'foo', :password => 'bar' } } 
     

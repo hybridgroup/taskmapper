@@ -17,7 +17,14 @@ module TaskMapper
       :providers,
       :providers=
 
-
+    # @param [String] 
+    # @param [Hash]
+    # @param [Hash] Optional instantiation options
+    #
+    # @example
+    #   Factory.new "kanbanpad", {:user => '', :password => ''}
+    #
+    # @return [TaskMapper::Factory] instance
     def initialize(provider_name, credentials, options ={})
       self.provider_name = provider_name
       self.credentials = credentials
@@ -28,42 +35,70 @@ module TaskMapper
       }
     end
     
+    # Return the TaskMapper client instance
+    #
+    # @return [TaskMapper::Client]
+    #
+    # @see [TaskMapper.new]
     def client
       TaskMapper::Client.new provider_name, credentials
     end    
     
+    # Return the projects instance for a built provider
+    #
+    # @return [TaskMapper::Providers::Projects]
     def projects_provider
       providers[project_class]
     end
 
+    # Return the task instance for a built provider
+    #
+    # @return [TaskMapper::Providers::Tasks]
     def tasks_provider
       providers[task_class]
     end
     
+    # Return the comment for a task instance of a built provider
+    #
+    # @return [TaskMapper::Providers::TaskComment]
     def comments_provider
       providers[comment_class]
     end
-    
+
+    # Return any entity from the built provider
+    #
+    # @param [Entity] class constant 
+    #
+    # @return [TaskMapper::Providers::EntityProvider]
     def provider(entity_class)
       providers[entity_class]
     end
     
+    # @return [TaskMapper::Providers::Entities::Task]
     def task_class
       Entities::Task
     end
     
+    # @return [TaskMapper::Providers::Entities::Project]
     def project_class
       Entities::Project
     end
     
+    # @return [TaskMapper::Providers::Entities::TaskComment]
     def comment_class
       Entities::TaskComment
     end
     
+    # Builder for any entity
+    #
+    # @param [TaskMapper::Entities::Entity]
     def entity(entity_class, attrs)
       entity_class.new attrs.merge(:factory => self)
     end
     
+    # Return the session instance for the provider
+    #
+    # @return [TaskMapper::Providers:Session]
     def session
       Providers::Session.new self
     end
@@ -72,15 +107,35 @@ module TaskMapper
       Projects.new self
     end
     
+    # Return a instance of a task repository for the provider
+    #
+    # @param [Hash] criteria for searching inside tasks repository 
+    #
+    # @example 
+    #   Factory.new(...).tasks
+    #   #=> <TaskMapper::Repositories::Tasks>
+    #
+    # @return [TaskMapper::Repositories::Tasks] instance
     def tasks(criteria = {})
       Repositories::Tasks.new self, criteria
     end
     
-    #TODO Rename to task_comments
+    # Return a instance of a task comments repository for the provider
+    #
+    # @param [Hash] criteria for searching inside the tasks comment repositories
+    #
+    # @example
+    #   Factory.new(...).task_comments
+    #   #=> <TaskMapper::Repositories::TaskComments>
+    #
+    # @return [TaskMapper::Repositories::TaskComments] instance
     def task_comments(criteria = {})
       Repositories::TaskComments.new self, criteria
     end
     
+    # Return the provider meta data instance
+    #
+    # @return [TaskMapper::Providers::Metadata]
     def provider_metadata
       Providers::Metadata.new self
     end
