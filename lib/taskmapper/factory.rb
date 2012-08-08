@@ -1,5 +1,13 @@
 module TaskMapper
   class Factory
+    # !@attribute [r] provider_name
+    #   @return [String] 
+    #
+    # !@attribute [r] credentials
+    #   @return [Hash] 
+    #
+    # !@attribute [r] providers
+    #   @return [Hash]
     attr_accessor :provider_name, 
       :credentials,
       :providers
@@ -8,7 +16,8 @@ module TaskMapper
       :credentials=,
       :providers,
       :providers=
-    
+
+
     def initialize(provider_name, credentials, options ={})
       self.provider_name = provider_name
       self.credentials = credentials
