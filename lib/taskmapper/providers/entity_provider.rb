@@ -44,7 +44,7 @@ module TaskMapper
       
       protected
         def get_entity_module
-          factory.get_entity_module(entity)
+          factory.entity_module(entity)
         end
     end
   end

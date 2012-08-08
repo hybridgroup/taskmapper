@@ -76,7 +76,6 @@ module TaskMapper
       Providers::Metadata.new self
     end
     
-    
     def providers_module
       TaskMapper::Providers
     end
@@ -89,11 +88,19 @@ module TaskMapper
       @provider_module ||= get_provider_module
     end
     
-    def get_entity_module(entity_name)
-      get_provider_module.const_get(entity_name)
+    def entity_module(entity_name)
+      entity_modules[entity_name] ||= get_entity_module(entity_name)
+    end
+    
+    def entity_modules
+      @entity_modules ||= {}
     end
     
     protected
+      def get_entity_module(entity_name)
+        get_provider_module.const_get(entity_name)
+      end
+      
       def get_provider_module
         unless get_provider_module_name
           raise exceptions_module::ProviderNotFound
