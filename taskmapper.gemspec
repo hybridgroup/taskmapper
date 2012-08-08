@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency "rspec"
+  s.add_development_dependency "yard"
+  s.add_development_dependency "redcarpet"
   s.add_development_dependency "simplecov"
   s.add_development_dependency "guard"
   s.add_development_dependency "guard-rspec"
