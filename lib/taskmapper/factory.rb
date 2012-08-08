@@ -56,7 +56,7 @@ module TaskMapper
     end
     
     def session
-      Session.new self
+      Providers::Session.new self
     end
     
     def projects
