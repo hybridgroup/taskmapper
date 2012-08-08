@@ -4,6 +4,7 @@ require 'taskmapper/repositories'
 require 'taskmapper/entities'
 require 'taskmapper/client'
 require 'taskmapper/providers'
+require 'taskmapper/session'
 require 'taskmapper/factory'
 
 module TaskMapper

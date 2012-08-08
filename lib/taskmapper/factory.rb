@@ -56,7 +56,7 @@ module TaskMapper
     end
     
     def session
-      Entities::Session.new self
+      Session.new self
     end
     
     def projects
