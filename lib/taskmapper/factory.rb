@@ -56,7 +56,7 @@ module TaskMapper
     end
     
     def session
-      Entities::Session.new self
+      Providers::Session.new self
     end
     
     def projects
@@ -67,16 +67,13 @@ module TaskMapper
       Repositories::Tasks.new self, criteria
     end
     
-    def comments(criteria = {})
+    #TODO Rename to task_comments
+    def task_comments(criteria = {})
       Repositories::TaskComments.new self, criteria
     end
     
     def provider_metadata
-      Provider::Metadata.new self
-    end
-    
-    def get_entity_module(entity_name)
-      get_provider_module.const_get(entity_name)
+      Providers::Metadata.new self
     end
     
     def providers_module
@@ -87,24 +84,41 @@ module TaskMapper
       TaskMapper::Exceptions
     end
     
-    def get_provider_module
-      unless provider_module_name
-        raise exceptions_module::ProviderNotFound
-          .new(nice_provider_name) 
-      end      
-      providers_module.const_get provider_module_name
+    def provider_module
+      @provider_module ||= get_provider_module
     end
     
-    def provider_module_name
-      providers_module.constants
-        .find { |c| c.to_s.downcase == nice_provider_name }
+    def entity_module(entity_name)
+      entity_modules[entity_name] ||= get_entity_module(entity_name)
     end
     
-    def nice_provider_name
-      provider_name.to_s
-        .gsub /\_/, ''
-        .capitalize
-        .downcase
+    def entity_modules
+      @entity_modules ||= {}
     end
+    
+    protected
+      def get_entity_module(entity_name)
+        get_provider_module.const_get(entity_name)
+      end
+      
+      def get_provider_module
+        unless get_provider_module_name
+          raise exceptions_module::ProviderNotFound
+            .new(nice_provider_name) 
+        end      
+        providers_module.const_get get_provider_module_name
+      end
+      
+      def get_provider_module_name
+        providers_module.constants
+          .find { |c| c.to_s.downcase == nice_provider_name }
+      end
+      
+      def nice_provider_name
+        provider_name.to_s
+          .gsub /\_/, ''
+          .capitalize
+          .downcase
+      end
   end
 end
