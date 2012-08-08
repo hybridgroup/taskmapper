@@ -23,6 +23,10 @@ module TaskMapper
         factory.task_comments.update self
       end
       
+      def delete
+        factory.task_comments.delete self
+      end
+      
       def validate
         validate_presence_of :body
         validate_presence_of :author
