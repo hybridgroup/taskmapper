@@ -1,5 +1,5 @@
 module TaskMapper
-  module Entities
+  module Providers
     class Session
       attr_accessor :projects, :tasks
       

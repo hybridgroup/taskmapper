@@ -3,7 +3,6 @@ require 'taskmapper/exceptions'
 require 'taskmapper/repositories'
 require 'taskmapper/entities'
 require 'taskmapper/client'
-require 'taskmapper/provider_metadata'
 require 'taskmapper/providers'
 require 'taskmapper/factory'
 
@@ -21,10 +20,6 @@ module TaskMapper
   #
   # Returns a client instance 
   def self.new(provider_name, credentials = {})
-    factory = TaskMapper::Factory.new(provider_name, credentials)
-    factory.client
-  end
-  
-  module Providers
+    TaskMapper::Factory.new(provider_name, credentials).client
   end
 end

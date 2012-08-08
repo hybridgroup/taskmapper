@@ -1,5 +1,5 @@
 module TaskMapper
-  class Provider
+  module Providers
     class Metadata
       attr_accessor :operations
       
