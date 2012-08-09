@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Taskmapper::VERSION
   s.authors     = ["Omar Rodriguez", "Cored"]
   s.email       = ["omarjavier15@gmail.com", "george.rafael@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/hybridgroup/taskmapper"
   s.summary     = %q{ Taskmapper is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API. }
   s.description = %q{ Taskmapper let's you "remap" a system into the consistent Taskmapper API, easily. For instance the description of an issue/ticket, might be named description in one system, and problem-description somewhere else. Via Taskmapper, this would always be called description. The Taskmapper remaps makes it easy for you to integrate different kinds of ticket systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. Taskmapper handles all this for you, so you can focus on making your application awesome. }
 

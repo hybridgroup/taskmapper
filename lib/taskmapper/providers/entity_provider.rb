@@ -46,6 +46,10 @@ module TaskMapper
         def get_entity_module
           factory.entity_module(entity)
         end
+        
+        def provider_module
+          factory.provider_module
+        end
     end
   end
 end
