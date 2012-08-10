@@ -40,6 +40,12 @@ module TaskMapper
       def validate
         validate_presence_of :body
         validate_presence_of :author
+        validate_task
+      end
+      
+      def validate_task
+        raise TaskMapper::Exceptions::TaskMapperException
+          .new("Must provider a task_id or a task object") if @task_id.nil? and @task.nil?
       end
       
       def to_hash

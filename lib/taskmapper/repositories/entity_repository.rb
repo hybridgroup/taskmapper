@@ -1,8 +1,8 @@
 module TaskMapper
   module Repositories
     class EntityRepository < Repository
-      def each(&block)
-        super { |attributes| yield new_entity(attributes) }
+      def search(criteria = {})
+        super(criteria).map { |attributes| new_entity(attributes) }
       end
       
       def create(attributes)
@@ -40,7 +40,7 @@ module TaskMapper
         end
         
         def new_entity(attrs)
-          factory.entity(entity_class, attrs)
+          factory.entity(entity_class, attrs.merge(criteria))
         end
         
         def new_entity_or_nil(attrs)
