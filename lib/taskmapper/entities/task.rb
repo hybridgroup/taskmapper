@@ -38,9 +38,14 @@ module TaskMapper
       end
       
       def validate
-        validate_presence_of :title
-        validate_presence_of :requestor
+        validate_presence_of  :title
+        validate_presence_of  :requestor
+        validate_inclusion_of :status, :in => [:open, :close]
       end
+
+      def validate_inclusion_of(*args)
+
+      end 
       
       def create_comment(attrs)
         comments.create attrs

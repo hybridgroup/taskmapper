@@ -21,5 +21,11 @@ module TaskMapper
         super "Provider #{provider} does not define #{entities}##{method}#{args}"
       end
     end
+
+    class InvalidStatus < TaskMapperException
+      def initialize(*values)
+        super "Status should has the following values #{values.join(',')}"
+      end
+    end
   end
 end

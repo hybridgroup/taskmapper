@@ -38,7 +38,18 @@ describe "Create Task" do
       end
     end
 
-    context "When I create a project with nil name" do
+    pending "When I create a task with nil status" do 
+      let(:attributes_without_status) {{ :status => nil }}
+      let(:error) { catch_error(TaskMapper::Exceptions::InvalidStatus) { task } }
+
+      describe :error do 
+        subject { error }
+        it { should_not be_nil }
+        its(:message) { should match /Task status should be :open or :close/ }
+      end
+    end
+
+    context "When I create a task with nil title" do
       let(:attributes) {{ :title => nil, :requestor => 'Ron' }}
       let(:error) { catch_error(TaskMapper::Exceptions::RequiredAttribute) { task } }
 
@@ -49,7 +60,7 @@ describe "Create Task" do
       end
     end
 
-    context "When I create a project with nil requestor" do
+    context "When I create a task with nil requestor" do
       let(:attributes) {{ :title => "test" }}
       let(:error) { catch_error(TaskMapper::Exceptions::RequiredAttribute) { task } }
 
