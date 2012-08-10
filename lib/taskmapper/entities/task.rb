@@ -38,9 +38,19 @@ module TaskMapper
       end
       
       def validate
-        validate_presence_of :title
-        validate_presence_of :requestor
+        validate_presence_of  :title
+        validate_presence_of  :requestor
+        validate_inclusion_of :attr => :status, 
+                              :in => [:open, :close], 
+                              :msg => "Status has to be"
       end
+
+      def validate_inclusion_of(validation_criteria)
+        attr = validation_criteria[:attr]
+        in_values = validation_criteria[:in]
+        msg = validation_criteria[:msg]
+        raise Exceptions::InvalidRangeValue.new(msg, in_values) unless in_values.include? self.__send__ attr
+      end 
       
       def create_comment(attrs)
         comments.create attrs
@@ -62,7 +72,8 @@ module TaskMapper
           :description  => self.description,
           :requestor    => self.requestor,
           :assignee     => self.assignee,
-          :project_id   => self.project_id
+          :project_id   => self.project_id,
+          :status       => self.status
         })
       end
       

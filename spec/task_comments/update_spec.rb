@@ -13,6 +13,7 @@ describe "Update a task comment" do
                             :priority     => 1,
                             :assignee     => "Omar",
                             :requestor    => "Ron",
+                            :status       => :open
     end
     
     context "And 'Task X' have a comment" do

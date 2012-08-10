@@ -9,7 +9,7 @@ describe "Create a task comment" do
     
     context "Given Task X" do
       let(:task_x) { project_x.create_task  :title      => "Task X",
-                                            :requestor  => "Omar" }
+                                            :requestor  => "Omar", :status => :open }
       context "Given valid attributes" do
         context "When I create a task comment on Task X" do
           before :all do 
