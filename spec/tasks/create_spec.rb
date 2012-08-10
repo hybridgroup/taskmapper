@@ -19,6 +19,8 @@ describe "Create Task" do
       :description  => 'This is a test',
       :requestor    => 'Ron Evans',
       :assignee     => 'Omar Rodriguez',
+      :status       => :open,
+      :priority     => :low
     }}
 
     context "When I create a task for Project X" do
@@ -31,19 +33,8 @@ describe "Create Task" do
         its(:requestor)   { should == 'Ron Evans' }
         its(:assignee)    { should == 'Omar Rodriguez' }
         its(:project_id)  { should == 1 }
-      end
-    end
-
-    context "When create a project passing priority and status" do 
-      let(:attributes_with_status_priority) do
-        attributes.merge! :status => :open, :priority => :low
-      end
-
-      describe :task do 
-        subject { project.create_task attributes_with_status_priority }
-
-        its(:status)          { should == :open }
-        its(:priority)        { should == :low  }
+        its(:status)      { should == :open }
+        its(:priority)    { should == :low  }
       end
     end
 
