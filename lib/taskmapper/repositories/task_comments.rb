@@ -6,11 +6,11 @@ module TaskMapper
       end
       
       def create(attrs)
-        super attrs.merge(:task_id => task_id)
+        super attrs.merge :task => task
       end
 
-      def task_id
-        criteria[:task_id]
+      def task
+        criteria[:task]
       end
     end
   end

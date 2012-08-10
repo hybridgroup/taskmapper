@@ -22,11 +22,16 @@ describe "Create a task comment" do
             its(:comments_count) { should == 1 }
             
             describe :first_comment do
-              subject { task_x.comments.first }
+              let(:comment) { task_x.comments.first }
+              subject { comment }
               
               its(:body)    { should eql "This is a test" }
               its(:author)  { should eql "Magoo" }
-              its(:task_id) { should eql task_x.id }
+              
+              describe :task do
+                subject { comment.task }
+                its(:id) { should == task_x.id }
+              end
             end
           end        
         end

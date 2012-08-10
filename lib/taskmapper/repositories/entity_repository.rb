@@ -10,7 +10,7 @@ module TaskMapper
       end
       
       def update(entity)
-        updated = super entity.to_hash
+        updated = super entity
         entity.instance_eval do
           updated_at = Time.now
         end if updated
@@ -26,13 +26,13 @@ module TaskMapper
       end
       
       def delete(entity)
-        super entity.to_hash
+        super entity
         entity
       end
       
       protected
         def <<(entity)
-          new_id = super(entity.to_hash)
+          new_id = super(entity)
           entity.instance_eval do
             self.id = new_id
           end
