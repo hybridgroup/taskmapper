@@ -34,7 +34,7 @@ describe "Create Task" do
       end
     end
 
-    pending "When create a project passing priority and status" do 
+    context "When create a project passing priority and status" do 
       let(:attributes_with_status_priority) do
         attributes.merge! :status => :open, :priority => :low
       end
