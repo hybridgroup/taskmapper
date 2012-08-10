@@ -9,10 +9,10 @@ describe "Delete a task comment" do
     let(:task) do
       project.create_task   :title        => "Task X",
                             :description  => "This is task X",
-                            :status       => :new,
+                            :status       => :open,
                             :priority     => 1,
                             :assignee     => "Omar",
-                            :requestor    => "Ron",
+                            :requestor    => "Ron" 
     end
 
     context "And 'Task X' have 3 comments" do

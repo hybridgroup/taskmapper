@@ -18,6 +18,13 @@ module TaskMapper
         end
       end
 
+      def validate_inclusion_of(validation_criteria)
+        attr = validation_criteria[:attr]
+        in_values = validation_criteria[:in]
+        msg = validation_criteria[:msg]
+        raise Exceptions::InvalidStatus.new(msg, in_values) unless in_values.include? self.__send__ attr
+      end 
+      
       def update_attributes(attrs) 
         attrs.each do |key, value|
           self.send("#{key}=".to_sym, value)

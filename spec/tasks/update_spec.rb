@@ -8,7 +8,7 @@ describe "Update a Task" do
     let(:task) do 
       project.create_task   :title        => "Task X",
                             :description  => "This is task X",
-                            :status       => :new,
+                            :status       => :open,
                             :priority     => 1,
                             :assignee     => "Omar",
                             :requestor    => "Ron",
@@ -21,7 +21,8 @@ describe "Update a Task" do
                                   :description  => "This is task X.1",
                                   :status       => :in_progress,
                                   :priority     => 2,
-                                  :assignee     => "Rafa"
+                                  :assignee     => "Rafa", 
+                                  :status       => :open
       end
       
       describe :update? do
@@ -36,7 +37,7 @@ describe "Update a Task" do
           subject { task }
           its(:title)       { should == "Task X.1" }
           its(:description) { should == "This is task X.1" }
-          its(:status)      { should == :in_progress }
+          its(:status)      { should == :open }
           its(:priority)    { should == 2 }
           its(:assignee)    { should == "Rafa" }
         end

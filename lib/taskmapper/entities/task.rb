@@ -15,7 +15,7 @@ module TaskMapper
       protected :requestor=,
         :project_id=,
         :factory=
-      
+
       def initialize(attrs)
         super attrs
         self.title        = attrs[:title]
@@ -38,10 +38,22 @@ module TaskMapper
       end
       
       def validate
-        validate_presence_of :title
-        validate_presence_of :requestor
+        validate_presence_of  :title
+        validate_presence_of  :requestor
+        validate_status :in => [:open, :close] 
+        validate_priority 
       end
-      
+
+      def validate_status(criteria)
+        in_values = criteria[:in]
+        raise Exceptions::InvalidStatus.new(in_values) unless in_values.include? self.status
+      end 
+
+      def validate_priority
+        raise Exceptions::InvalidPriority.new if self.priority.nil? || self.priority < 0
+      end
+
+
       def create_comment(attrs)
         comments.create attrs
       end
@@ -62,7 +74,9 @@ module TaskMapper
           :description  => self.description,
           :requestor    => self.requestor,
           :assignee     => self.assignee,
-          :project_id   => self.project_id
+          :project_id   => self.project_id,
+          :status       => self.status, 
+          :priority     => self.priority
         })
       end
       
