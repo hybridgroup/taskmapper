@@ -11,7 +11,9 @@ describe "Search task comments" do
     context "And 'learn ukulele' have the 'buy ukulele' task" do
       let(:buy_ukulele) do
         learn_ukulele.create_task :title      =>  "Buy Ukulele",
-                                  :requestor  =>  "Me", :status => :open
+                                  :requestor  =>  "Me", :status => :open, 
+                                  :priority => 1
+
       end
 
       context "And 'buy ukulele' have the following comments" do

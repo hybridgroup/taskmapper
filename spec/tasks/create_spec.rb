@@ -22,7 +22,7 @@ describe "Create Task" do
         :requestor    => 'Ron Evans',
         :assignee     => 'Omar Rodriguez',
         :status       => :open,
-        :priority     => :low
+        :priority     => 1 
       }}
 
       describe :task do
@@ -35,7 +35,7 @@ describe "Create Task" do
         its(:assignee)    { should == 'Omar Rodriguez' }
         its(:project_id)  { should == 1 }
         its(:status)      { should == :open }
-        its(:priority)    { should == :low  }
+        its(:priority)    { should == 1 }
       end
     end
 
@@ -50,6 +50,21 @@ describe "Create Task" do
         subject { error }
         it { should_not be_nil }
         its(:message) { should match /Status has to be/ }
+      end
+    end
+
+    context "When I create a task with nil priority" do 
+      let(:attributes) { { :title => 'Test Task', :requestor => 'Ron Evans', :status => :open, 
+                           :priority => nil } }
+      let(:task_without_priority) { project.create_task attributes }
+      let(:error) do 
+        catch_error(TaskMapper::Exceptions::InvalidRangeValue) { task_without_priority }
+      end
+
+      describe :error do 
+        subject { error } 
+        it { should_not be_nil }
+        its(:message) { should match /Priority has to be/ }
       end
     end
 

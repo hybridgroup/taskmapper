@@ -43,6 +43,9 @@ module TaskMapper
         validate_inclusion_of :attr => :status, 
                               :in => [:open, :close], 
                               :msg => "Status has to be"
+        validate_inclusion_of :attr => :priority, 
+                              :in => [1,2,3,4], 
+                              :msg => "Priority has to be"
       end
 
       def create_comment(attrs)
@@ -66,7 +69,8 @@ module TaskMapper
           :requestor    => self.requestor,
           :assignee     => self.assignee,
           :project_id   => self.project_id,
-          :status       => self.status
+          :status       => self.status, 
+          :priority     => self.priority
         })
       end
       

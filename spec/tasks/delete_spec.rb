@@ -9,10 +9,10 @@ describe "Delete a Task" do
       
       context "And Project X have Tasks X and Y" do
         before :all do
-          project_x.task! :title => "Task X",
+          project_x.task! :title => "Task X", :priority => 1, 
                           :requestor => "Me", :status => :open
                                     
-          project_x.task! :title => "Task Y",
+          project_x.task! :title => "Task Y", :priority => 1, 
                           :requestor => "Me", :status => :open
         end
         
