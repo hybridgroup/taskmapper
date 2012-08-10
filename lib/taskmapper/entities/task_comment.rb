@@ -5,18 +5,28 @@ module TaskMapper
       
       attr_accessor :author,
         :body,
+        :task,
         :task_id,
         :factory
         
-      protected :author=, :task_id=, :factory=
+      protected :author=, :task=, :task_id=, :factory=
       
       def initialize(attrs)
         super attrs
         self.author     = attrs[:author]
         self.body       = attrs[:body]
         self.task_id    = attrs[:task_id]
+        self.task       = attrs[:task]
         self.factory    = attrs[:factory]
         validate
+      end
+      
+      def task_id
+        @task_id ||= task.id
+      end
+      
+      def task
+        @task ||= factory.tasks.find task_id
       end
       
       def save

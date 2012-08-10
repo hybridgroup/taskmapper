@@ -45,8 +45,8 @@ module TaskMapper
         find_by_attributes attribute.to_sym => value
       end
       
-      def delete(attributes)
-        provider.delete attributes
+      def delete(object)
+        provider.delete object
       end
       
       def [](index)
@@ -77,8 +77,8 @@ module TaskMapper
       protected
         FINDER_PATTERN = /^find_by_/
         
-        def <<(attributes)
-          provider << attributes
+        def <<(object)
+          provider << object
         end
     end
   end
