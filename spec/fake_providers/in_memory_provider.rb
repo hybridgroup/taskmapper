@@ -19,25 +19,26 @@ module InMemoryProvider
   
   def <<(object)
     id = next_id
-    attributes = object.to_hash
     
-    objects << attributes.merge(:id => id, 
-      :created_at => Time.now, 
+    objects << object.to_hash.merge(:id => id,
+      :created_at => Time.now,
       :updated_at => Time.now)
+    
     id
   end
   
   def delete(object)
-    objects.delete_if { |o| o[:id] == object[:id] }
+    objects.delete_if { |o| o[:id] == object.id }
+    object
   end
   
   def search(criteria = {})
     objects.select { |o| o == o.merge(criteria) }
   end
   
-  def update(attributes)
-    hash = objects.find { |o| o[:id] == attributes[:id] }
-    hash.merge! attributes
+  def update(object)
+    hash = objects.find { |o| o[:id] == object.id }
+    hash.merge! object.to_hash
     true
   end
   
@@ -80,6 +81,20 @@ module TaskMapper
       module TaskComments
         include InMemoryProvider
         include Finders
+    
+        def create(comment)
+          super comment
+        end
+        
+        def search(criteria)
+          task = criteria.delete(:task)
+          super criteria
+        end
+        
+        def find_by_attributes(attrs)
+          attrs.delete :task
+          super attrs
+        end
         
         def supported_operations
           [:create, :search]
