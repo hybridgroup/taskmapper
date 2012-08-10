@@ -45,13 +45,6 @@ module TaskMapper
                               :msg => "Status has to be"
       end
 
-      def validate_inclusion_of(validation_criteria)
-        attr = validation_criteria[:attr]
-        in_values = validation_criteria[:in]
-        msg = validation_criteria[:msg]
-        raise Exceptions::InvalidRangeValue.new(msg, in_values) unless in_values.include? self.__send__ attr
-      end 
-      
       def create_comment(attrs)
         comments.create attrs
       end
@@ -59,7 +52,7 @@ module TaskMapper
       alias :comment! :create_comment
       
       def comments
-        factory.task_comments.where(:task => self)
+        factory.task_comments.where(:task_id => id)
       end
       
       def comments_count
