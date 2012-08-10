@@ -52,7 +52,7 @@ module TaskMapper
       alias :comment! :create_comment
       
       def comments
-        factory.task_comments.where(:task_id => id)
+        factory.task_comments.where(:task => self)
       end
       
       def comments_count
