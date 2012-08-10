@@ -22,7 +22,7 @@ module TaskMapper
         attr = validation_criteria[:attr]
         in_values = validation_criteria[:in]
         msg = validation_criteria[:msg]
-        raise Exceptions::InvalidRangeValue.new(msg, in_values) unless in_values.include? self.__send__ attr
+        raise Exceptions::InvalidStatus.new(msg, in_values) unless in_values.include? self.__send__ attr
       end 
       
       def update_attributes(attrs) 

@@ -43,7 +43,7 @@ describe "Create Task" do
       let(:attributes) { {:title => 'Test Task', :requestor => 'Ron Evans', :status => nil} }
       let(:task_without_status) { project.create_task attributes }
       let(:error) do 
-        catch_error(TaskMapper::Exceptions::InvalidRangeValue) { task_without_status } 
+        catch_error(TaskMapper::Exceptions::InvalidStatus) { task_without_status } 
       end
 
       describe :error do 
@@ -58,7 +58,7 @@ describe "Create Task" do
                            :priority => nil } }
       let(:task_without_priority) { project.create_task attributes }
       let(:error) do 
-        catch_error(TaskMapper::Exceptions::InvalidRangeValue) { task_without_priority }
+        catch_error(TaskMapper::Exceptions::InvalidPriority) { task_without_priority }
       end
 
       describe :error do 

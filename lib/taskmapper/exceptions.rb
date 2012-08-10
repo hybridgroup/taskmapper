@@ -22,10 +22,17 @@ module TaskMapper
       end
     end
 
-    class InvalidRangeValue < TaskMapperException
-      def initialize(msg, *values)
-        super "#{msg} #{values.join(',')}"
+    class InvalidStatus < TaskMapperException
+      def initialize(*values)
+        super "Status has to be #{values.join(',')}"
       end
     end
+
+    class InvalidPriority < TaskMapperException
+      def initialize
+        super "Priority has to be a positive number"
+      end
+    end
+
   end
 end
