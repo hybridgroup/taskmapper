@@ -6,20 +6,20 @@ module TaskMapper
     
     def initialize(provider_name, credentials = {}, factory = Factory.new(provider_name, credentials))
       self.factory = factory
-      self.session = factory.session
     end
     
     def create_project(attrs)
-      session.create_project(attrs.merge :session => self)
+      projects.create(attrs)
     end
+    
     alias :project! :create_project
 
     def projects
-      session.projects
+      factory.projects
     end
     
     def tasks
-      session.tasks
+      factory.tasks
     end
     
     def metadata
