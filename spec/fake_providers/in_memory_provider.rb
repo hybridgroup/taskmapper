@@ -73,6 +73,17 @@ module TaskMapper
         include InMemoryProvider
         include Finders
         
+        def search(criteria)
+          project = criteria.delete :project
+          criteria[:project_id] = project.id if project
+          super criteria
+        end
+        
+        def find_by_attributes(attrs)
+          attrs.delete :project
+          super attrs
+        end
+        
         def supported_operations
           [:create, :search, :find]
         end
@@ -82,12 +93,8 @@ module TaskMapper
         include InMemoryProvider
         include Finders
     
-        def create(comment)
-          super comment
-        end
-        
         def search(criteria)
-          task = criteria.delete(:task)
+          criteria.delete(:task)
           super criteria
         end
         
