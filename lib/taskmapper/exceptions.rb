@@ -21,5 +21,11 @@ module TaskMapper
         super "Provider #{provider} does not define #{entities}##{method}#{args}"
       end
     end
+
+    class InvalidRangeValue < TaskMapperException
+      def initialize(msg, *values)
+        super "#{msg} #{values.join(',')}"
+      end
+    end
   end
 end
