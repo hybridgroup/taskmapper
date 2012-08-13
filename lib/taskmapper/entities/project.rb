@@ -28,7 +28,7 @@ module TaskMapper
       end
       
       def tasks
-        factory.tasks.where :project_id => self.id
+        factory.tasks.where :project => self
       end
       
       def create_task(attrs)

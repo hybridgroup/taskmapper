@@ -3,14 +3,14 @@ module TaskMapper
     class Repository
       include Enumerable
       
-      attr_accessor :factory, :criteria, :entity_class
+      attr_accessor :factory, :filter, :entity_class
       
-      protected :factory=, :criteria=, :entity_class=
+      protected :factory=, :filter=, :entity_class=
       
-      def initialize(factory, entity_class, criteria = {})
+      def initialize(factory, entity_class, filter = {})
         self.factory      = factory
         self.entity_class = entity_class
-        self.criteria     = criteria
+        self.filter       = filter
       end
       
       def provider
@@ -18,11 +18,11 @@ module TaskMapper
       end     
       
       def each(&block)
-        search(criteria).each &block
+        search(filter).each &block
       end
       
       def search(criteria = {})
-        provider.search(criteria)
+        provider.search(criteria.merge filter)
       end
       
       def update(attributes)
@@ -42,7 +42,7 @@ module TaskMapper
       end
       
       def find_by_attributes(attrs)
-        provider.find_by_attributes(attrs.merge criteria)
+        provider.find_by_attributes(attrs.merge filter)
       end
       
       def find_by_attribute(attribute, value)
@@ -58,7 +58,7 @@ module TaskMapper
       end
       
       def where(criteria = {})
-        self.class.new factory, self.criteria.merge(criteria)
+        self.class.new factory, filter.merge(criteria)
       end
       
       # Dynamic finder

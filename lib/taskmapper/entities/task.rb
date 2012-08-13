@@ -6,13 +6,15 @@ module TaskMapper
       attr_accessor :title, 
         :description, 
         :requestor, 
-        :assignee, 
+        :assignee,
+        :project,
         :project_id, 
         :priority,
         :status,
         :factory
       
       protected :requestor=,
+        :project=,
         :project_id=,
         :factory=
       
@@ -25,8 +27,17 @@ module TaskMapper
         self.priority     = attrs[:priority]
         self.status       = attrs[:status]
         self.project_id   = attrs[:project_id]
+        self.project      = attrs[:project]
         self.factory      = attrs[:factory]
         validate
+      end
+      
+      def project_id
+        @project_id ||= project.id
+      end
+      
+      def project
+        @project ||= factory.projects.find project_id
       end
 
       def save
@@ -40,6 +51,12 @@ module TaskMapper
       def validate
         validate_presence_of :title
         validate_presence_of :requestor
+        validate_project
+      end
+      
+      def validate_project
+        raise TaskMapper::Exceptions::TaskMapperException
+          .new("Must provider a project_id or a project object") if @project_id.nil? and @project.nil?
       end
       
       def create_comment(attrs)
