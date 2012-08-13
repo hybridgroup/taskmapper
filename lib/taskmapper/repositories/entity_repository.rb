@@ -1,8 +1,8 @@
 module TaskMapper
   module Repositories
     class EntityRepository < Repository
-      def search(criteria = {})
-        super(criteria).map { |attributes| new_entity(attributes) }
+      def search(filter = {})
+        super(filter).map { |attributes| new_entity(attributes) }
       end
       
       def create(attributes)
@@ -11,9 +11,7 @@ module TaskMapper
       
       def update(entity)
         updated = super entity
-        entity.instance_eval do
-          updated_at = Time.now
-        end if updated
+        entity.instance_eval { updated_at = Time.now } if updated
         updated
       end
       
@@ -40,7 +38,7 @@ module TaskMapper
         end
         
         def new_entity(attrs)
-          factory.entity(entity_class, attrs.merge(criteria))
+          factory.entity(entity_class, attrs.merge(filter))
         end
         
         def new_entity_or_nil(attrs)
