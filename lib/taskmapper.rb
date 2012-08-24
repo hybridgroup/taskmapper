@@ -24,6 +24,7 @@ end
 # This is the TaskMapper class
 #
 class TaskMapper
+  PROVIDERS_OPERATIONS = {:kanbanpad => {:projects => [:search]}}
   attr_reader :provider, :symbol
   attr_accessor :default_project
   
@@ -49,5 +50,9 @@ class TaskMapper
   # Providers should over-write this method
   def authorize(authentication = {})
     raise TaskMapper::Exception.new("This method must be reimplemented in the provider")
+  end
+
+  def providers_operations
+    PROVIDERS_OPERATIONS
   end
 end

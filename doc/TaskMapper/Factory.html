@@ -1,0 +1,1899 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: TaskMapper::Factory
+  
+    &mdash; Documentation by YARD 0.8.2.1
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../TaskMapper.html" title="TaskMapper (module)">TaskMapper</a></span></span>
+     &raquo; 
+    <span class="title">Factory</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: TaskMapper::Factory
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">TaskMapper::Factory</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/taskmapper/factory.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#credentials-instance_method" title="#credentials (instance method)">- (Object) <strong>credentials</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+!@attribute [r] provider_name.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#provider_name-instance_method" title="#provider_name (instance method)">- (Object) <strong>provider_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+!@attribute [r] provider_name.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#client-instance_method" title="#client (instance method)">- (TaskMapper::Client) <strong>client</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return the TaskMapper client instance.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#comment_class-instance_method" title="#comment_class (instance method)">- (TaskMapper::Providers::Entities::TaskComment) <strong>comment_class</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#comments_provider-instance_method" title="#comments_provider (instance method)">- (TaskMapper::Providers::TaskComment) <strong>comments_provider</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return the comment for a task instance of a built provider.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entity-instance_method" title="#entity (instance method)">- (Object) <strong>entity</strong>(entity_class, attrs) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Builder for any entity.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entity_module-instance_method" title="#entity_module (instance method)">- (Object) <strong>entity_module</strong>(entity_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entity_modules-instance_method" title="#entity_modules (instance method)">- (Object) <strong>entity_modules</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exceptions_module-instance_method" title="#exceptions_module (instance method)">- (Object) <strong>exceptions_module</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (TaskMapper::Factory) <strong>initialize</strong>(provider_name, credentials, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Instance.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_class-instance_method" title="#project_class (instance method)">- (TaskMapper::Providers::Entities::Project) <strong>project_class</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#projects-instance_method" title="#projects (instance method)">- (Object) <strong>projects</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#projects_provider-instance_method" title="#projects_provider (instance method)">- (TaskMapper::Providers::Projects) <strong>projects_provider</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return the projects instance for a built provider.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#provider-instance_method" title="#provider (instance method)">- (TaskMapper::Providers::EntityProvider) <strong>provider</strong>(entity_class) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return any entity from the built provider.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#provider_metadata-instance_method" title="#provider_metadata (instance method)">- (TaskMapper::Providers::Metadata) <strong>provider_metadata</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return the provider meta data instance.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#provider_module-instance_method" title="#provider_module (instance method)">- (Object) <strong>provider_module</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#providers_module-instance_method" title="#providers_module (instance method)">- (Object) <strong>providers_module</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#session-instance_method" title="#session (instance method)">- (TaskMapper::Providers:Session) <strong>session</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return the session instance for the provider.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#task_class-instance_method" title="#task_class (instance method)">- (TaskMapper::Providers::Entities::Task) <strong>task_class</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#task_comments-instance_method" title="#task_comments (instance method)">- (TaskMapper::Repositories::TaskComments) <strong>task_comments</strong>(criteria = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return a instance of a task comments repository for the provider.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tasks-instance_method" title="#tasks (instance method)">- (TaskMapper::Repositories::Tasks) <strong>tasks</strong>(criteria = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return a instance of a task repository for the provider.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tasks_provider-instance_method" title="#tasks_provider (instance method)">- (TaskMapper::Providers::Tasks) <strong>tasks_provider</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return the task instance for a built provider.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="TaskMapper::Factory (class)">TaskMapper::Factory</a></span></tt>) <strong>initialize</strong>(provider_name, credentials, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Instance
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><span class='const'>Factory</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>kanbanpad</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:user</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:password</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rbrace'>}</span></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>Optional</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+instantiation options
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_provider_name'>provider_name</span><span class='comma'>,</span> <span class='id identifier rubyid_credentials'>credentials</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_provider_name'>provider_name</span> <span class='op'>=</span> <span class='id identifier rubyid_provider_name'>provider_name</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_credentials'>credentials</span> <span class='op'>=</span> <span class='id identifier rubyid_credentials'>credentials</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_providers'>providers</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='const'>Entities</span><span class='op'>::</span><span class='const'>Project</span>     <span class='op'>=&gt;</span> <span class='const'>Providers</span><span class='op'>::</span><span class='const'>Projects</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Entities</span><span class='op'>::</span><span class='const'>Task</span>        <span class='op'>=&gt;</span> <span class='const'>Providers</span><span class='op'>::</span><span class='const'>Tasks</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Entities</span><span class='op'>::</span><span class='const'>TaskComment</span> <span class='op'>=&gt;</span> <span class='const'>Providers</span><span class='op'>::</span><span class='const'>TaskComments</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span> 
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="credentials=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="credentials-instance_method">
+  
+    - (<tt>Object</tt>) <strong>credentials</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+!@attribute [r] provider_name
+</p>
+<pre class="code ruby"><code>
+  <span class='ivar'>@return</span> <span class='lbracket'>[</span><span class='const'>String</span><span class='rbracket'>]</span> 
+</code></pre>
+<p>
+!@attribute [r] credentials
+</p>
+<pre class="code ruby"><code>
+  <span class='ivar'>@return</span> <span class='lbracket'>[</span><span class='const'>Hash</span><span class='rbracket'>]</span> 
+</code></pre>
+<p>
+!@attribute [r] providers
+</p>
+<pre class="code ruby"><code>
+  <span class='ivar'>@return</span> <span class='lbracket'>[</span><span class='const'>Hash</span><span class='rbracket'>]</span></code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_credentials'>credentials</span>
+  <span class='ivar'>@credentials</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="provider_name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="provider_name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>provider_name</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+!@attribute [r] provider_name
+</p>
+<pre class="code ruby"><code>
+  <span class='ivar'>@return</span> <span class='lbracket'>[</span><span class='const'>String</span><span class='rbracket'>]</span> 
+</code></pre>
+<p>
+!@attribute [r] credentials
+</p>
+<pre class="code ruby"><code>
+  <span class='ivar'>@return</span> <span class='lbracket'>[</span><span class='const'>Hash</span><span class='rbracket'>]</span> 
+</code></pre>
+<p>
+!@attribute [r] providers
+</p>
+<pre class="code ruby"><code>
+  <span class='ivar'>@return</span> <span class='lbracket'>[</span><span class='const'>Hash</span><span class='rbracket'>]</span></code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_provider_name'>provider_name</span>
+  <span class='ivar'>@provider_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="client-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Client.html" title="TaskMapper::Client (class)">TaskMapper::Client</a></span></tt>) <strong>client</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return the TaskMapper client instance
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Client.html" title="TaskMapper::Client (class)">TaskMapper::Client</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>TaskMapper::Factory.[TaskMapper[TaskMapper.new]</li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_client'>client</span>
+  <span class='const'>TaskMapper</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_provider_name'>provider_name</span><span class='comma'>,</span> <span class='id identifier rubyid_credentials'>credentials</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="comment_class-instance_method">
+  
+    - (<tt>TaskMapper::Providers::Entities::TaskComment</tt>) <strong>comment_class</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TaskMapper::Providers::Entities::TaskComment</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_comment_class'>comment_class</span>
+  <span class='const'>Entities</span><span class='op'>::</span><span class='const'>TaskComment</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="comments_provider-instance_method">
+  
+    - (<tt>TaskMapper::Providers::TaskComment</tt>) <strong>comments_provider</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return the comment for a task instance of a built provider
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TaskMapper::Providers::TaskComment</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 64</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_comments_provider'>comments_provider</span>
+  <span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='id identifier rubyid_comment_class'>comment_class</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="entity-instance_method">
+  
+    - (<tt>Object</tt>) <strong>entity</strong>(entity_class, attrs) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Builder for any entity
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Entities/Entity.html" title="TaskMapper::Entities::Entity (module)">TaskMapper::Entities::Entity</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_entity'>entity</span><span class='lparen'>(</span><span class='id identifier rubyid_entity_class'>entity_class</span><span class='comma'>,</span> <span class='id identifier rubyid_attrs'>attrs</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_entity_class'>entity_class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_attrs'>attrs</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='symbol'>:factory</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="entity_module-instance_method">
+  
+    - (<tt>Object</tt>) <strong>entity_module</strong>(entity_name) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 155</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_entity_module'>entity_module</span><span class='lparen'>(</span><span class='id identifier rubyid_entity_name'>entity_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_entity_modules'>entity_modules</span><span class='lbracket'>[</span><span class='id identifier rubyid_entity_name'>entity_name</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id identifier rubyid_get_entity_module'>get_entity_module</span><span class='lparen'>(</span><span class='id identifier rubyid_entity_name'>entity_name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="entity_modules-instance_method">
+  
+    - (<tt>Object</tt>) <strong>entity_modules</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 159</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_entity_modules'>entity_modules</span>
+  <span class='ivar'>@entity_modules</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="exceptions_module-instance_method">
+  
+    - (<tt>Object</tt>) <strong>exceptions_module</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_exceptions_module'>exceptions_module</span>
+  <span class='const'>TaskMapper</span><span class='op'>::</span><span class='const'>Exceptions</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_class-instance_method">
+  
+    - (<tt>TaskMapper::Providers::Entities::Project</tt>) <strong>project_class</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TaskMapper::Providers::Entities::Project</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_class'>project_class</span>
+  <span class='const'>Entities</span><span class='op'>::</span><span class='const'>Project</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="projects-instance_method">
+  
+    - (<tt>Object</tt>) <strong>projects</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 106</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_projects'>projects</span>
+  <span class='const'>Projects</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="projects_provider-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Providers/Projects.html" title="TaskMapper::Providers::Projects (class)">TaskMapper::Providers::Projects</a></span></tt>) <strong>projects_provider</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return the projects instance for a built provider
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Providers/Projects.html" title="TaskMapper::Providers::Projects (class)">TaskMapper::Providers::Projects</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_projects_provider'>projects_provider</span>
+  <span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='id identifier rubyid_project_class'>project_class</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="provider-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Providers/EntityProvider.html" title="TaskMapper::Providers::EntityProvider (class)">TaskMapper::Providers::EntityProvider</a></span></tt>) <strong>provider</strong>(entity_class) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return any entity from the built provider
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>class</span>
+      
+      
+        <span class='type'>(<tt>Entity</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+constant
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Providers/EntityProvider.html" title="TaskMapper::Providers::EntityProvider (class)">TaskMapper::Providers::EntityProvider</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_provider'>provider</span><span class='lparen'>(</span><span class='id identifier rubyid_entity_class'>entity_class</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='id identifier rubyid_entity_class'>entity_class</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="provider_metadata-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Providers/Metadata.html" title="TaskMapper::Providers::Metadata (class)">TaskMapper::Providers::Metadata</a></span></tt>) <strong>provider_metadata</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return the provider meta data instance
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Providers/Metadata.html" title="TaskMapper::Providers::Metadata (class)">TaskMapper::Providers::Metadata</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_provider_metadata'>provider_metadata</span>
+  <span class='const'>Providers</span><span class='op'>::</span><span class='const'>Metadata</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="provider_module-instance_method">
+  
+    - (<tt>Object</tt>) <strong>provider_module</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 151</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_provider_module'>provider_module</span>
+  <span class='ivar'>@provider_module</span> <span class='op'>||=</span> <span class='id identifier rubyid_get_provider_module'>get_provider_module</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="providers_module-instance_method">
+  
+    - (<tt>Object</tt>) <strong>providers_module</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+143
+144
+145</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 143</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_providers_module'>providers_module</span>
+  <span class='const'>TaskMapper</span><span class='op'>::</span><span class='const'>Providers</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="session-instance_method">
+  
+    - (<tt>TaskMapper::Providers:Session</tt>) <strong>session</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return the session instance for the provider
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TaskMapper::Providers:Session</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_session'>session</span>
+  <span class='const'>Providers</span><span class='op'>::</span><span class='const'>Session</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="task_class-instance_method">
+  
+    - (<tt>TaskMapper::Providers::Entities::Task</tt>) <strong>task_class</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TaskMapper::Providers::Entities::Task</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_task_class'>task_class</span>
+  <span class='const'>Entities</span><span class='op'>::</span><span class='const'>Task</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="task_comments-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Repositories/TaskComments.html" title="TaskMapper::Repositories::TaskComments (class)">TaskMapper::Repositories::TaskComments</a></span></tt>) <strong>task_comments</strong>(criteria = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return a instance of a task comments repository for the provider
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code">Factory.new(...).task_comments
+#=&gt; &lt;TaskMapper::Repositories::TaskComments&gt;</pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>criteria</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+for searching inside the tasks comment repositories
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Repositories/TaskComments.html" title="TaskMapper::Repositories::TaskComments (class)">TaskMapper::Repositories::TaskComments</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+instance
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+132
+133
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 132</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_task_comments'>task_comments</span><span class='lparen'>(</span><span class='id identifier rubyid_criteria'>criteria</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'>Repositories</span><span class='op'>::</span><span class='const'>TaskComments</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_criteria'>criteria</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="tasks-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Repositories/Tasks.html" title="TaskMapper::Repositories::Tasks (class)">TaskMapper::Repositories::Tasks</a></span></tt>) <strong>tasks</strong>(criteria = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return a instance of a task repository for the provider
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code">Factory.new(...).tasks
+#=&gt; &lt;TaskMapper::Repositories::Tasks&gt;</pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>criteria</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+for searching inside tasks repository
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Repositories/Tasks.html" title="TaskMapper::Repositories::Tasks (class)">TaskMapper::Repositories::Tasks</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+instance
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tasks'>tasks</span><span class='lparen'>(</span><span class='id identifier rubyid_criteria'>criteria</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'>Repositories</span><span class='op'>::</span><span class='const'>Tasks</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_criteria'>criteria</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="tasks_provider-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Providers/Tasks.html" title="TaskMapper::Providers::Tasks (class)">TaskMapper::Providers::Tasks</a></span></tt>) <strong>tasks_provider</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>
+Return the task instance for a built provider
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Providers/Tasks.html" title="TaskMapper::Providers::Tasks (class)">TaskMapper::Providers::Tasks</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/taskmapper/factory.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tasks_provider'>tasks_provider</span>
+  <span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='id identifier rubyid_task_class'>task_class</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Aug  8 18:00:09 2012 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.2.1 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
