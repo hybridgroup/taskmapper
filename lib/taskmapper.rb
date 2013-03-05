@@ -40,10 +40,10 @@ class TaskMapper
       system = system.nil? ? data['default'] || data.first.first : system.to_s
       authentication = data[system]['authentication'] if authentication.nil? and data[system]['authentication']
     end
-    self.extend TaskMapper::Provider.const_get(system.to_s.capitalize)
+    self.extend @provider = TaskMapper::Provider.const_get(system.to_s.capitalize)
     authorize authentication
     @symbol = system.to_sym
-    @provider = TaskMapper::Provider.const_get(system.to_s.capitalize)
+    @provider 
   end
   
   # Providers should over-write this method
