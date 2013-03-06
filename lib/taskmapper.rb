@@ -20,7 +20,6 @@ end
   tester/tester.rb
 }.each {|lib| require File.dirname(__FILE__) + '/taskmapper/' + lib }
 
-
 # This is the TaskMapper class
 #
 class TaskMapper
@@ -47,7 +46,7 @@ class TaskMapper
   end
   
   # Providers should over-write this method
-  def authorize(authentication = {})
+  def authorize
     raise TaskMapper::Exception.new("This method must be reimplemented in the provider")
   end
 end
