@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require 'spec_helper'
 
 # This can also act as an example test or test skeleton for your provider.
 # Just replace the Dummy in @project_class and @ticket_class

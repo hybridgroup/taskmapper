@@ -1,0 +1,100 @@
+---
+UnusedParameters:
+  exclude: 
+  - AQL::Node#emit
+UncommunicativeParameterName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+LargeClass:
+  max_methods: 10
+  exclude: []
+  enabled: true
+  max_instance_variables: 2
+UncommunicativeMethodName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^[a-z]$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+LongParameterList:
+  max_params: 2
+  exclude: 
+  - AQL::Buffer#wrap_delimited # 3 params
+  - AQL::Buffer#binary         # 3 params
+  enabled: true
+  overrides: {}
+FeatureEnvy:
+  exclude: 
+  - AQL::Node::Block#emit         # Definitive a false positive
+  - AQL::Node::Call#for_argument? # Definitive a false positive
+  enabled: true
+ClassVariable:
+  exclude: []
+  enabled: true
+BooleanParameter:
+  exclude: []
+  enabled: true
+IrresponsibleModule:
+  exclude: []
+  enabled: true
+UncommunicativeModuleName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+NestedIterators:
+  ignore_iterators: []
+  exclude: []
+  enabled: true
+  max_allowed_nesting: 1
+LongMethod:
+  max_statements: 5
+  exclude: 
+  - AQL::Buffer#binary # 6 statements
+  - AQL::Node::Operation::For#emit # 6 statements
+  enabled: true
+Duplication:
+  allow_calls: []
+  exclude: []
+  enabled: true
+  max_calls: 1
+UtilityFunction:
+  max_helper_calls: 1
+  exclude: []
+  enabled: true
+Attribute:
+  exclude: []
+  enabled: false
+UncommunicativeVariableName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+SimulatedPolymorphism:
+  exclude: []
+  enabled: true
+  max_ifs: 1
+DataClump:
+  exclude: []
+  enabled: true
+  max_copies: 1
+  min_clump_size: 3
+ControlCouple:
+  exclude: []
+  enabled: true
+LongYieldList:
+  max_params: 1
+  exclude: []
+  enabled: true
