@@ -40,10 +40,10 @@ module TaskMapper::Provider
         elsif first.is_a? Array
           first.collect { |id| self.find_by_id(project_id, ticket_id, id) }
         elsif first == :first
-          comments = attributes.nil? ? self.find_by_attributes(project_id, ticket_id) : self.find_by_attributes(project_id, ticket_id, attributes)
+          comments = find_all_with_attributes(project_id, ticket_id, attributes)
           comments.first
         elsif first == :last
-          comments = attributes.nil? ? self.find_by_attributes(project_id, ticket_id) : self.find_by_attributes(project_id, ticket_id, attributes)
+          comments = find_all_with_attributes(project_id, ticket_id, attributes)
           comments.last
         elsif first == :all
           self.find_by_attributes(project_id, ticket_id, attributes)
@@ -91,6 +91,11 @@ module TaskMapper::Provider
         else
           raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
+      end
+
+      private
+      def self.find_all_with_attributes(project_id, ticket_id, attributes)
+        attributes.nil? ? self.find_by_attributes(project_id, ticket_id) : self.find_by_attributes(project_id, ticket_id, attributes)
       end
     end
   end
