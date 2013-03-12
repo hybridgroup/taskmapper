@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../..', 'lib'))
+require File.expand_path(File.dirname(__FILE__) + '../../spec_helper')
 
 require 'fileutils'
 
@@ -8,8 +8,8 @@ require 'fileutils'
 # I'm not quite sure what the most effective way to test this is...
 describe "TaskMapper CLI" do
   before(:all) do
-    @ticket = File.expand_path(File.dirname(__FILE__) + '/../bin/tm')
-    @cli_dir = File.expand_path(File.dirname(__FILE__) + '/../lib/taskmapper/cli')
+    @ticket = File.expand_path(File.dirname(__FILE__) + '/../../bin/tm')
+    @cli_dir = File.expand_path(File.dirname(__FILE__) + '/../../lib/taskmapper/cli')
   end
 
   it "should output help if no command given" do
