@@ -12,7 +12,6 @@ Gem::Specification.new do |s|
   s.date = "2013-04-01"
   s.description = "TaskMapper provides a universal API to ticket tracking and project management systems."
   s.email = "info@hybridgroup.com"
-  s.executables = ["tm"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md",
