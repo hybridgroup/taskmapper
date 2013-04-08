@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "taskmapper"
-  s.version = "0.8.1"
+  s.version = "0.9.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  s.date = "2013-04-01"
+  s.date = "2013-04-08"
   s.description = "TaskMapper provides a universal API to ticket tracking and project management systems."
   s.email = "info@hybridgroup.com"
   s.extra_rdoc_files = [
@@ -28,32 +28,12 @@ Gem::Specification.new do |s|
     "Rakefile",
     "TODO",
     "VERSION",
-    "bin/tm",
     "examples/tm_example.rb",
     "examples/tm_example_2.rb",
     "examples/tm_example_3.rb",
     "examples/tm_example_4.rb",
     "lib/taskmapper.rb",
     "lib/taskmapper/authenticator.rb",
-    "lib/taskmapper/cli/commands/config.rb",
-    "lib/taskmapper/cli/commands/console.rb",
-    "lib/taskmapper/cli/commands/generate.rb",
-    "lib/taskmapper/cli/commands/generate/provider.rb",
-    "lib/taskmapper/cli/commands/generate/provider/comment.rb",
-    "lib/taskmapper/cli/commands/generate/provider/project.rb",
-    "lib/taskmapper/cli/commands/generate/provider/provider.rb",
-    "lib/taskmapper/cli/commands/generate/provider/ticket.rb",
-    "lib/taskmapper/cli/commands/help.rb",
-    "lib/taskmapper/cli/commands/help/config",
-    "lib/taskmapper/cli/commands/help/console",
-    "lib/taskmapper/cli/commands/help/generate",
-    "lib/taskmapper/cli/commands/help/help",
-    "lib/taskmapper/cli/commands/help/project",
-    "lib/taskmapper/cli/commands/help/ticket",
-    "lib/taskmapper/cli/commands/project.rb",
-    "lib/taskmapper/cli/commands/ticket.rb",
-    "lib/taskmapper/cli/common.rb",
-    "lib/taskmapper/cli/init.rb",
     "lib/taskmapper/comment.rb",
     "lib/taskmapper/common.rb",
     "lib/taskmapper/dummy/comment.rb",
@@ -91,6 +71,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<activeresource>, ["~> 3.0"])
       s.add_runtime_dependency(%q<activesupport>, ["~> 3.0"])
       s.add_runtime_dependency(%q<hashie>, ["~> 2.0"])
+      s.add_runtime_dependency(%q<taskmapper-cli>, ["= 0.0.1"])
       s.add_development_dependency(%q<rspec>, ["~> 2.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8"])
       s.add_development_dependency(%q<simplecov>, ["~> 0.5"])
@@ -99,6 +80,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<activeresource>, ["~> 3.0"])
       s.add_dependency(%q<activesupport>, ["~> 3.0"])
       s.add_dependency(%q<hashie>, ["~> 2.0"])
+      s.add_dependency(%q<taskmapper-cli>, ["= 0.0.1"])
       s.add_dependency(%q<rspec>, ["~> 2.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8"])
       s.add_dependency(%q<simplecov>, ["~> 0.5"])
@@ -108,6 +90,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<activeresource>, ["~> 3.0"])
     s.add_dependency(%q<activesupport>, ["~> 3.0"])
     s.add_dependency(%q<hashie>, ["~> 2.0"])
+    s.add_dependency(%q<taskmapper-cli>, ["= 0.0.1"])
     s.add_dependency(%q<rspec>, ["~> 2.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8"])
     s.add_dependency(%q<simplecov>, ["~> 0.5"])
