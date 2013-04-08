@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'activeresource', '~> 3.0'
 gem 'activesupport', '~> 3.0'
 gem 'hashie', "~> 2.0"
+gem 'taskmapper-cli', '0.0.1'
 
 group :test, :development  do
   gem 'rspec', '~> 2.0'
