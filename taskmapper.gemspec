@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "taskmapper"
-  s.version = "0.9.0"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  s.date = "2013-04-08"
+  s.date = "2013-04-09"
   s.description = "TaskMapper provides a universal API to ticket tracking and project management systems."
   s.email = "info@hybridgroup.com"
   s.extra_rdoc_files = [
@@ -71,7 +71,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<activeresource>, ["~> 3.0"])
       s.add_runtime_dependency(%q<activesupport>, ["~> 3.0"])
       s.add_runtime_dependency(%q<hashie>, ["~> 2.0"])
-      s.add_runtime_dependency(%q<taskmapper-cli>, ["= 0.0.1"])
+      s.add_runtime_dependency(%q<taskmapper-cli>, ["= 0.0.3"])
       s.add_development_dependency(%q<rspec>, ["~> 2.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8"])
       s.add_development_dependency(%q<simplecov>, ["~> 0.5"])
@@ -80,7 +80,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<activeresource>, ["~> 3.0"])
       s.add_dependency(%q<activesupport>, ["~> 3.0"])
       s.add_dependency(%q<hashie>, ["~> 2.0"])
-      s.add_dependency(%q<taskmapper-cli>, ["= 0.0.1"])
+      s.add_dependency(%q<taskmapper-cli>, ["= 0.0.3"])
       s.add_dependency(%q<rspec>, ["~> 2.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8"])
       s.add_dependency(%q<simplecov>, ["~> 0.5"])
@@ -90,7 +90,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<activeresource>, ["~> 3.0"])
     s.add_dependency(%q<activesupport>, ["~> 3.0"])
     s.add_dependency(%q<hashie>, ["~> 2.0"])
-    s.add_dependency(%q<taskmapper-cli>, ["= 0.0.1"])
+    s.add_dependency(%q<taskmapper-cli>, ["= 0.0.3"])
     s.add_dependency(%q<rspec>, ["~> 2.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8"])
     s.add_dependency(%q<simplecov>, ["~> 0.5"])
