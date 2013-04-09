@@ -228,6 +228,11 @@ Require and you can talk to Bugzilla with Taskmapper!
 
 The source code is located at [taskmapper-bugzilla](http://github.com/hybridgroup/taskmapper-bugzilla)
 
+## Taskmapper CLI 
+
+For the full documentation on the CLI 
+[taskmapper-cli](http://github.com/hybridgroup/taskmapper-cli)
+
 ## Creating a provider
 Creating a provider consists of three steps:
 
@@ -238,7 +243,7 @@ Creating a provider consists of three steps:
 
 ### Create the Taskmapper provider
 Thanks to a simple generator, it is easy to get started with a new provider. Run this from the command line:
-    tm generate myprovider
+    tm generate --provider-name='myprovider'
 
 This will generate a new skeleton provider called taskmapper-myprovider in the current directory. Create a repo from that directory, and you can start implementing your provider.
 
