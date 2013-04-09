@@ -103,7 +103,7 @@ GEM
     taskmapper-bugzilla (0.3.0)
       rubyzilla (~> 0.1)
       taskmapper (~> 0.8)
-    taskmapper-cli (0.0.1)
+    taskmapper-cli (0.0.3)
       gli (= 2.5.5)
       rainbow
       taskmapper
@@ -175,4 +175,4 @@ DEPENDENCIES
   rcov (~> 1.0)
   rspec (~> 2.0)
   simplecov (~> 0.5)
-  taskmapper-cli (= 0.0.1)
+  taskmapper-cli (= 0.0.3)
