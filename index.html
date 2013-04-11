@@ -40,9 +40,9 @@
 
         <h1>Taskmapper</h1>
 
-<p>Taskmapper is a Gem which eases communication with various project management and bug tracking/ticket tracking systems by providing a consistent Ruby API.</p>
+<p>Taskmapper is a Gem which eases communication with various project and ticket management systems by providing a consistent Ruby API.</p>
 
-<p>Taskmapper let's you "remap" a system into the consistent Taskmapper API, easily. For instance the description of an issue/ticket, might be named <strong>description</strong> in one system, and <strong>problem-description</strong> somewhere else. Via Taskmapper, this would always be called <strong>description</strong>. The Taskmapper remaps makes it easy for you to integrate different kinds of ticket/task systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. Taskmapper handles all this <em>for</em> you, so you can focus on making your application awesome.</p>
+<p>Taskmapper let's you "remap" a system into the consistent Taskmapper API, easily. For instance the description of an issue/ticket, might be named <strong>description</strong> in one system, and <strong>problem-description</strong> somewhere else. Via Taskmapper, this would always be called <strong>description</strong>. The Taskmapper remaps makes it easy for you to integrate different kinds of ticket systems, into your own system. You don't have to take care of all the different kinds of systems, and their different APIs. Taskmapper handles all this <em>for</em> you, so you can focus on making your application awesome.</p>
 
 <h2>Installation</h2>
 
@@ -51,7 +51,7 @@
 <pre><code>gem install taskmapper
 </code></pre>
 
-<p>Taskmapper depends on <a href="http://github.com/intridea/hashie">Hashie</a>, which is an amazing library which makes converting objects to hashes, and the other way around, a joy. It should be installed automatically whenever installing Taskmapper.</p>
+<p>Taskmapper depends on <a href="http://github.com/intridea/hashie">Hashie</a>, which is an amazing library which makes converting objects to hashes, and the other way around, a joy. It should be installed automatically whenever installing taskmapper.</p>
 
 <h3>Finding and installing a provider</h3>
 
@@ -76,7 +76,7 @@
 
 <h3>Grabbing a project</h3>
 
-<p>Now that we've got out taskmapper instance, let's go ahead and grab "testproject":</p>
+<p>Now that we've got out Taskmapper instance, let's go ahead and grab "testproject":</p>
 
 <pre><code>project = pivotal.project["testproject"]
     #=&gt; TaskMapper::Project&lt;#name="testproject"..&gt;
@@ -285,7 +285,7 @@ trac = taskmapper.new(:trac, {:username =&gt; "..", :password =&gt; "..", :url =
 <p>To use Bugzilla with Taskmapper, install it:
     gem install taskmapper-bugzilla</p>
 
-<p>Require and you can talk to Bugzilla with taskmapper!</p>
+<p>Require and you can talk to Bugzilla with Taskmapper!</p>
 
 <pre><code>require 'taskmapper'
 require 'taskmapper-bugzilla'
@@ -294,23 +294,28 @@ codaset = taskmapper.new(:bugzilla, {:username =&gt; "foo", :password =&gt; "bar
 
 <p>The source code is located at <a href="http://github.com/hybridgroup/taskmapper-bugzilla">taskmapper-bugzilla</a></p>
 
+<h2>Taskmapper CLI</h2>
+
+<p>For the full documentation on the CLI 
+<a href="http://github.com/hybridgroup/taskmapper-cli">taskmapper-cli</a></p>
+
 <h2>Creating a provider</h2>
 
 <p>Creating a provider consists of three steps:</p>
 
 <ul>
 <li>Run the generator like this:
-tm generate myprovider</li>
+tm generate --provider-name='myprovider'</li>
 <li>Implement whatever is needed to connect to your desired backend</li>
 <li>Release it to RubyGems</li>
 </ul><h3>Create the Taskmapper provider</h3>
 
 <p>Thanks to a simple generator, it is easy to get started with a new provider. Run this from the command line:
-    tm generate myprovider</p>
+    tm generate --provider-name='myprovider'</p>
 
 <p>This will generate a new skeleton provider called taskmapper-myprovider in the current directory. Create a repo from that directory, and you can start implementing your provider.</p>
 
-<p>Almost all APIs are different. And so are their Ruby providers. Taskmapper attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the taskmapper API. This is the providers job. The provider is the glue between Taskmapper, and the project management or bug tracking system's API.
+<p>Almost all APIs are different. And so are their Ruby providers. Taskmapper attempts to create an universal API for ticket and project management systems, and thus, we need to map the functionality to the Taskmapper API. This is the providers job. The provider is the glue between Taskmapper, and the task management system's API.
 Usually, your provider would rely on another library for the raw HTTP interaction. For instance, <a href="http://github.com/hybridgroup/taskmapper-lighthouse">taskmapper-lighthouse</a> relies on ActiveResource in order to interact with the Lighthouse API. Look at it like this:</p>
 
 <p><strong>Taskmapper</strong> -&gt; <strong>Provider</strong> -&gt; <em>(Ruby library)</em> -&gt; <strong>Site's API</strong></p>
@@ -352,11 +357,11 @@ future version unintentionally.</li>
 <li>Send us a pull request. Bonus points for feature branches.</li>
 </ul><h2>Copyright</h2>
 
-<p>Copyright (c) 2010-2012 <a href="http://hybridgroup.com">The Hybrid Group</a>. See LICENSE for details.</p>
+<p>Copyright (c) 2010-2013 <a href="http://hybridgroup.com">The Hybrid Group</a>. See LICENSE for details.</p>
       </section>
 
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
