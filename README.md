@@ -237,7 +237,7 @@ For the full documentation on the CLI
 Creating a provider consists of three steps:
 
 * Run the generator like this:
-    tm generate myprovider
+    tm generate --provider-name='myprovider'
 * Implement whatever is needed to connect to your desired backend
 * Release it to RubyGems
 
@@ -285,4 +285,4 @@ They should be presented with a nice list of all available providers.
 
 ## Copyright
 
-Copyright (c) 2010-2012 [The Hybrid Group](http://hybridgroup.com). See LICENSE for details.
+Copyright (c) 2010-2013 [The Hybrid Group](http://hybridgroup.com). See LICENSE for details.
