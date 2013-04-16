@@ -233,6 +233,10 @@ The source code is located at [taskmapper-bugzilla](http://github.com/hybridgrou
 For the full documentation on the CLI 
 [taskmapper-cli](http://github.com/hybridgroup/taskmapper-cli)
 
+### Installing the CLI
+
+  gem install taskmapper-cli
+
 ## Creating a provider
 Creating a provider consists of three steps:
 
