@@ -2,7 +2,7 @@ require 'bundler'
 require 'rspec/core/rake_task'
 require 'rdoc/task'
 
-task default: :spec
+task :default => :spec
 
 RSpec::Core::RakeTask.new :spec
 
