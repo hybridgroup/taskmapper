@@ -8,73 +8,120 @@ describe "Projects" do
   let(:project_class) { TaskMapper::Provider::Dummy::Project }
 
   describe "with a connection to a provider" do
-    context "when #projects" do
-      subject { tm.projects }
-      it { should be_an_instance_of Array }
-      it { subject.first.should be_an_instance_of project_class }
-      it { subject.last.should be_an_instance_of project_class }
+    describe "#projects" do
+      context "without arguments" do
+        let(:projects) { tm.projects }
+
+        it "is an array" do
+          expect(projects).to be_an Array
+        end
+
+        it "contains projects" do
+          expect(projects.first).to be_a project_class
+          expect(projects.last).to be_a project_class
+        end
+      end
+
+      context "with an ID argument" do
+        let(:project) { tm.projects(555) }
+
+        it "returns the requested project" do
+          expect(project).to be_a project_class
+          expect(project.id).to eq 555
+        end
+      end
+
+      context "with an array of IDs" do
+        let(:projects) { tm.projects([555]) }
+
+        it "returns an array of projects" do
+          expect(projects).to be_an Array
+        end
+
+        it "returns the requested projects" do
+          expect(projects.first).to be_a project_class
+          expect(projects.first.id).to eq 555
+        end
+      end
+
+      context "with a hash" do
+        let(:projects) { tm.projects(:id => 555) }
+
+        it "returns an array of projects" do
+          expect(projects).to be_an Array
+        end
+
+        it "returns the requested projects" do
+          expect(projects.first).to be_a project_class
+          expect(projects.first.id).to eq 555
+        end
+      end
+
+      describe "#first" do
+        let(:project) { tm.projects.first }
+
+        it "returns the requested project" do
+          expect(project.description).to_not be_nil
+          expect(project.description).to eq "Mock!-ing Bird"
+        end
+      end
     end
 
-    context "when #project with a hash is call" do
-      subject { tm.project(:name => "Whack whack what?") }
-      it { should be_an_instance_of project_class }
-      it { subject.name.should be_eql("Whack whack what?") }
-    end
+    describe "#project" do
+      context "without arguments" do
+        let(:project) { tm.project }
+        let(:first) { project.first }
+        let(:last) { project.last }
 
-    context "when retreiving a project" do
-      subject { tm.projects.first }
-      it { subject.description.should_not be_nil }
-      it { subject.description.should be_eql("Mock!-ing Bird") }
-    end
+        it "returns the project class" do
+          expect(project).to eq project_class
+        end
 
-    context "when #projects is call with an ID" do
-      subject { tm.projects(555) }
-      it { should be_an_instance_of project_class }
-      it { subject.id.should be_eql(555) }
-    end
+        it "contains the default items" do
+          expect(first.description).to eq "Mock!-ing Bird"
+          expect(last.description).to eq "Mock!-ing Bird"
+        end
+      end
 
-    context "when #projects is call with an array of IDs" do
-      subject { tm.projects([555]) }
-      it { should be_an_instance_of Array }
-      it { subject.first.should be_an_instance_of project_class }
-      it { subject.first.id.should be_eql(555) }
-    end
+      context "with a hash" do
+        let(:project) { tm.project(:name => "Whack whack what?") }
 
-    context "when #projects is call with a hash" do
-      subject { tm.projects(:id => 555) }
-      it { should be_an_instance_of Array }
-      it { subject.first.should be_an_instance_of project_class }
-      it { subject.first.id.should be_eql(555) }
-    end
+        it "returns the requested project" do
+          expect(project).to be_a project_class
+          expect(project.name).to eq "Whack whack what?"
+        end
+      end
 
-    context "when #project is call" do
-      subject { tm.project }
-      it { should be_eql project_class }
-      it { subject.first.description be_eql("Mock!-ing Bird") }
-      it { subject.last.description be_eql("Mock!-ing Bird") }
-    end
+      describe "#find" do
+        let(:project) { tm.project.find(:first, :description => "Shocking Dirb") }
 
-    context "when #project is call with a hash" do
-      subject { tm.project.find(:first, :description => "Shocking Dirb") }
-      it { should be_an_instance_of project_class }
-      it { subject.description.should be_eql("Shocking Dirb") }
-    end
-  end
+        it "returns the requested project" do
+          expect(project).to be_a project_class
+          expect(project.description).to eq "Shocking Dirb"
+        end
+      end
 
-  describe "declaring a new project" do
-    context "when calling #new" do
-      subject { tm.project.new(default_info) }
-      it { should be_an_instance_of project_class }
-      it { subject.name.should be_eql("Tiket Name  c") }
-      it { subject.save.should be_true }
-    end
-  end
+      describe "#new" do
+        let(:project) { tm.project.new(default_info) }
 
-  describe "creating a new project" do
-    context "when calling #create" do
-      subject { tm.project.create(default_info) }
-      it { should be_an_instance_of project_class }
-      it { subject.name.should be_eql("Tiket Name  c") }
+        it "returns a new project" do
+          expect(project).to be_a project_class
+          expect(project.name).to eq "Tiket Name  c"
+        end
+
+        it "persists the new project" do
+          expect(project.save).to be_true
+        end
+      end
+
+      describe "#create" do
+        let(:project) { tm.project.create(default_info) }
+
+        it "returns a new project" do
+          expect(project).to be_a project_class
+          expect(project.name).to eq "Tiket Name  c"
+        end
+      end
     end
   end
 
