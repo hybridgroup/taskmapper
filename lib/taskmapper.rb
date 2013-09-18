@@ -4,7 +4,7 @@
   active_resource
 }.each {|lib| require lib }
 
-class TaskMapper 
+class TaskMapper
 end
 
 %w{
@@ -20,13 +20,11 @@ end
   tester/tester.rb
 }.each {|lib| require File.dirname(__FILE__) + '/taskmapper/' + lib }
 
-
 # This is the TaskMapper class
-#
 class TaskMapper
   attr_reader :provider, :symbol
   attr_accessor :default_project
-  
+
   # This initializes the TaskMapper instance and prepares the provider
   # If called without any arguments, it conveniently tries searching for the information in
   # ~/.taskmapper.yml
@@ -45,7 +43,7 @@ class TaskMapper
     @symbol = system.to_sym
     @provider = TaskMapper::Provider.const_get(system.to_s.capitalize)
   end
-  
+
   # Providers should over-write this method
   def authorize(authentication = {})
     raise TaskMapper::Exception.new("This method must be reimplemented in the provider")

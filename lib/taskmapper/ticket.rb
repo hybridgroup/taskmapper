@@ -23,11 +23,11 @@ module TaskMapper::Provider
     # * update!
     # * self.find
     #
-    # A provider should define as many attributes as feasibly possible. The list below are 
+    # A provider should define as many attributes as feasibly possible. The list below are
     # some guidelines as to what attributes are necessary, if your provider's api does not
     # implement them, point it to an attribute that is close to it. (for example, a title
     # can point to summary. and assignee might point to assigned_to. Remember to alias it in your class!)
-    # 
+    #
     # * id
     # * status
     # * priority
@@ -73,17 +73,17 @@ module TaskMapper::Provider
           self.find_by_id(project_id, first)
         end
       end
-      
+
       # The first of whatever ticket
       def self.first(project_id, *options)
         self.find(project_id, :first, *options)
       end
-      
+
       # The last of whatever ticket
       def self.last(project_id, *options)
         self.find(project_id, :last, *options)
       end
-      
+
       # Accepts an integer id and returns the single ticket instance
       # Must be defined by the provider
       def self.find_by_id(project_id, ticket_id)
@@ -93,7 +93,7 @@ module TaskMapper::Provider
           raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
-      
+
       # Accepts an attributes hash and returns all tickets matching those attributes in an array
       # Should return all tickets if the attributes hash is empty
       # Must be defined by the provider
@@ -104,7 +104,7 @@ module TaskMapper::Provider
           raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
-      
+
       # This is a helper method to find
       def self.search(project_id, options = {}, limit = 1000)
         if self::API.is_a? Class
@@ -122,7 +122,7 @@ module TaskMapper::Provider
         options.insert 1, id
         easy_finder(provider_parent(self.class)::Comment, :all, options, 2)
       end
-      
+
       def comment(*options)
         if options.length > 0
           options.insert(0, project_id)
@@ -130,25 +130,24 @@ module TaskMapper::Provider
         end
         easy_finder(provider_parent(self.class)::Comment, :first, options, 2)
       end
-      
+
       # Create a comment
       def comment!(*options)
         options[0].merge!(:project_id => project_id, :ticket_id => id) if options.first.is_a?(Hash)
         provider_parent(self.class)::Comment.create(*options)
       end
-      
+
       # Close this ticket
       #
       # On success it should return true, otherwise false
       def close(*options)
         raise TaskMapper::Exception.new("#{self.class.name}::#{this_method} method must be implemented by the provider")
       end
-      
+
       # Reload this ticket
       def reload!(*options)
         raise TaskMapper::Exception.new("#{self.class.name}::#{this_method} method must be implemented by the provider")
       end
-
     end
   end
 end

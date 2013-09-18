@@ -2,7 +2,7 @@ module TaskMapper::Provider
   module Base
     # The comment class
     #
-    # This will probably one of the most troublesome parts of creating a provider for taskmapper 
+    # This will probably one of the most troublesome parts of creating a provider for taskmapper
     # since there are so many different ways comments are handled by different APIs.
     # Keep in mind that if you do need to change/overwrite the methods, you will most likely
     # only need to overwrite #find_by_id, #find_by_attributes, #search, and possibly #initialize
@@ -51,17 +51,17 @@ module TaskMapper::Provider
           self.find_by_id(project_id, ticket_id, first)
         end
       end
-      
+
       # The first of whatever comment
       def self.first(project_id, ticket_id, *options)
         self.find(project_id, ticket_id, :first, *options)
       end
-      
+
       # The last of whatever comment
       def self.last(project_id, ticket_id, *options)
         self.find(project_id, ticket_id, :last, *options)
       end
-      
+
       # Accepts an integer id and returns the single comment instance
       # Must be defined by the provider
       def self.find_by_id(project_id, ticket_id, id)
@@ -71,7 +71,7 @@ module TaskMapper::Provider
           raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
-      
+
       # Accepts an attributes hash and returns all comments matching those attributes in an array
       # Should return all comments if the attributes hash is empty
       # Must be defined by the provider
@@ -82,7 +82,7 @@ module TaskMapper::Provider
           raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
-      
+
       # This is a helper method to find
       def self.search(project_id, ticket_id, options = {}, limit = 1000)
         if self::API.is_a? Class

@@ -3,7 +3,7 @@ module TaskMapper::Provider
     # This is the base Project class for providers
     #
     # Providers should inherit this class and redefine the methods
-    # 
+    #
     # Each provider should have their own @system defined.
     # For example, taskmapper-unfuddle's @system is :unfuddle and taskmapper-lighthouse's
     # @system is :lighthouse.
@@ -26,11 +26,11 @@ module TaskMapper::Provider
     # * self.find - although you can define your own to optimize it a bit
     # * update!
     #
-    # A provider should define as many attributes as feasibly possible. The list below are 
+    # A provider should define as many attributes as feasibly possible. The list below are
     # some guidelines as to what attributes are necessary, if your provider's api does not
     # implement them, point it to an attribute that is close to it. (for example, a name
     # can point to title. Remember to alias it in your class!)
-    # 
+    #
     # * id
     # * name
     # * created_at
@@ -71,17 +71,17 @@ module TaskMapper::Provider
           self.find_by_id(first)
         end
       end
-      
+
       # The first of whatever project
       def self.first(*options)
         self.find(:first, *options)
       end
-      
+
       # The last of whatever project
       def self.last(*options)
         self.find(:last, *options)
       end
-      
+
       # Accepts an integer id and returns the single project instance
       # Must be defined by the provider
       def self.find_by_id(id)
@@ -91,7 +91,7 @@ module TaskMapper::Provider
           raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
-      
+
       # Accepts an attributes hash and returns all projects matching those attributes in an array
       # Should return all projects if the attributes hash is empty
       # Must be defined by the provider
@@ -102,7 +102,7 @@ module TaskMapper::Provider
           raise TaskMapper::Exception.new("#{self.name}::#{this_method} method must be implemented by the provider")
         end
       end
-      
+
       # This is a helper method to find
       def self.search(options = {}, limit = 1000)
         if self::API.is_a? Class
@@ -119,7 +119,7 @@ module TaskMapper::Provider
         options.insert 0, id
         easy_finder(provider_parent(self.class)::Ticket, :all, options, 1)
       end
-      
+
       # Very similar to tickets, and is practically an alias of it
       # however this returns the ticket class if no parameter is given
       # unlike tickets which returns an array of all tickets when given no parameters
@@ -127,19 +127,18 @@ module TaskMapper::Provider
         options.insert(0, id) if options.length > 0
         easy_finder(provider_parent(self.class)::Ticket, :first, options, 1)
       end
-      
+
       # Create a ticket
       def ticket!(*options)
         options[0].merge!(:project_id => id) if options.first.is_a?(Hash)
         provider_parent(self.class)::Ticket.create(*options)
       end
-      
+
       # Define some provider specific initalizations
       def initialize(*options)
         # @system_data = {'some' => 'data}
         super(*options)
       end
-      
     end
   end
 end

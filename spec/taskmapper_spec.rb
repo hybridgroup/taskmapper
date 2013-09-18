@@ -4,10 +4,9 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 # Just replace the Dummy in @project_class and @ticket_class
 # Also, remember to mock or stub any API calls
 describe TaskMapper do
-  context "when calling new it should always return a taskmapper instance" do 
+  context "when calling new it should always return a taskmapper instance" do
     subject { TaskMapper.new(:dummy, {}) }
     it { should be_an_instance_of TaskMapper }
     it { should be_a_kind_of TaskMapper::Provider::Dummy }
   end
-
 end
