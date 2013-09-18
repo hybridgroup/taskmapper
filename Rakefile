@@ -1,34 +1,13 @@
-require 'rubygems'
-require 'rake'
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "taskmapper"
-    gem.summary = %Q{TaskMapper provides a universal API to ticket tracking and project management systems.}
-    gem.description = %Q{TaskMapper provides a universal API to ticket tracking and project management systems.}
-    gem.email = "info@hybridgroup.com"
-    gem.homepage = "http://ticketrb.com"
-    gem.authors = ["kiafaldorius", "Sirupsen", "deadprogrammer"]
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
-
-require 'rspec/core'
+require 'bundler'
 require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList['spec/**/*_spec.rb']
-end
-
-RSpec::Core::RakeTask.new do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-end
+require 'rdoc/task'
 
 task :default => :spec
 
-require 'rdoc/task'
+RSpec::Core::RakeTask.new :spec
+
+Bundler::GemHelper.install_tasks
+
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
