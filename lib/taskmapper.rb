@@ -18,6 +18,7 @@ end
   exception
   dummy/dummy.rb
   tester/tester.rb
+  version
 }.each {|lib| require File.dirname(__FILE__) + '/taskmapper/' + lib }
 
 
