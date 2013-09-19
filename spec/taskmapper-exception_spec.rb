@@ -11,16 +11,20 @@ describe "TaskMapper Exception Messages" do
   let(:easy_finder_error) { "TaskMapper::Provider::Helper::easy_finder method must be implemented by the provider" }
 
   describe TaskMapper::Provider::Base do
-    context "when calling #valid? method" do
-      subject { lambda { tm.valid? } }
-      it { should raise_error(exception, validation_error) }
+    describe "#valid?" do
+      it "has a custom exception message" do
+        expect{tm.valid?}.to raise_error(exception, validation_error)
+      end
     end
   end
 
   describe TaskMapper::Provider::Helper do
-    context "when calling #easy_finder" do
-      subject { lambda { tm.easy_finder(1, :test, {}) } }
-      it { should raise_error(exception, easy_finder_error) }
+    describe "#easy_finder" do
+      it "has a custom exception message" do
+        expect {
+          tm.easy_finder(1, :test, {})
+        }.to raise_error(exception, easy_finder_error)
+      end
     end
   end
 
@@ -32,35 +36,49 @@ describe "TaskMapper Exception Messages" do
     let(:save_error) { "TaskMapper::Provider::Tester::Project::save method must be implemented by the provider"}
     let(:destroy_error) { "TaskMapper::Provider::Tester::Project::destroy method must be implemented by the provider" }
 
-    context "when calling #find_by_id" do
-      subject { lambda { tm.project([1]) } }
-      it { should raise_error(exception, find_by_id_error) }
+    describe "#find_by_id" do
+      it "has a custom exception message" do
+        expect{tm.project([1])}.to raise_error(exception, find_by_id_error)
+      end
     end
 
-    context "when calling #find_by_attributes" do
-      subject { lambda { tm.project.find :all, :name => 'Test Project' } }
-      it { should raise_error(exception, find_by_attributes_error) }
+    describe "#find_by_attributes" do
+      it "has a custom exception message" do
+        expect {
+          tm.project.find :all, :name => 'Test Project'
+        }.to raise_error(exception, find_by_attributes_error)
+      end
     end
 
-    context "when calling #search" do
-      subject { lambda { tm.project.search :tag => 'testing' } }
-      it { should raise_error(exception, search_error) }
+    describe "#search" do
+      it "has a custom exception message" do
+        expect {
+          tm.project.search :tag => 'testing'
+        }.to raise_error(exception, search_error)
+      end
     end
 
-    context "when calling #create" do
-      subject { lambda { tm.project.create :name => 'Foo Bar' } }
-      it { should raise_error(exception, create_error) }
+    describe "#create" do
+      it "has a custom exception message" do
+        expect {
+          tm.project.create :name => 'Foo Bar'
+        }.to raise_error(exception, create_error)
+      end
     end
 
-    context "when calling #save" do
-      subject { lambda { tm.project.save } }
-      pending { should raise_error(exception, save_error) }
+    describe "#save" do
+      it "has a custom exception message" do
+        pending
+        expect{tm.project.save}.to raise_error(exception, save_error)
+      end
     end
 
-    context "when calling #destroy" do
+    describe "#destroy" do
       let(:project) { TaskMapper::Provider::Tester::Project.new }
-      subject { lambda { project.destroy } }
-      it { should raise_error(exception, destroy_error) }
+
+      it "has a custom exception message" do
+        expect{project.destroy}.to raise_error(exception, destroy_error)
+      end
     end
   end
 
@@ -75,44 +93,58 @@ describe "TaskMapper Exception Messages" do
     let(:close_error) { "TaskMapper::Provider::Tester::Ticket::close method must be implemented by the provider" }
     let(:reload_error) { "TaskMapper::Provider::Tester::Ticket::reload! method must be implemented by the provider" }
 
-    context "when #find_by_id" do
-      subject { lambda { tm.tickets(:id => 22) } }
-      it { should raise_error(exception, find_by_id_error) }
+    describe "#find_by_id" do
+      it "has a custom exception message" do
+        expect{tm.tickets(:id => 22)}.to raise_error(exception, find_by_id_error)
+      end
     end
 
-    context "when #find_by_attributes" do
-      subject { lambda { tm.ticket.find(1, :all, :title => 'Test ticket') } }
-      it { should raise_error(exception, find_by_attributes_error) }
+    describe "#find_by_attributes" do
+      it "has a custom exception message" do
+        expect {
+          tm.ticket.find(1, :all, :title => 'Test ticket')
+        }.to raise_error(exception, find_by_attributes_error)
+      end
     end
 
-    context "when #search" do
-      subject { lambda { tm.ticket.search :tag => 'testing' } }
-      it { should raise_error(exception, search_error) }
+    describe "#search" do
+      it "has a custom exception message" do
+        expect {
+          tm.ticket.search :tag => 'testing'
+        }.to raise_error(exception, search_error)
+      end
     end
 
-    context "when #create" do
-      subject { lambda { tm.ticket.create :name => 'Foo Bar' } }
-      it { should raise_error(exception, create_error) }
+    describe "#create" do
+      it "has a custom exception message" do
+        expect {
+          tm.ticket.create :name => 'Foo Bar'
+        }.to raise_error(exception, create_error)
+      end
     end
 
-    context "when #save" do
-      subject { lambda { ticket.save } }
-      it { should raise_error(exception, save_error) }
+    describe "#save" do
+      it "has a custom exception message" do
+        expect{ticket.save}.to raise_error(exception, save_error)
+      end
     end
 
-    context "when #destroy" do
-      subject { lambda { ticket.destroy } }
-      it { should raise_error(exception, destroy_error) }
+    describe "#destroy" do
+      it "has a custom exception message" do
+        expect{ticket.destroy}.to raise_error(exception, destroy_error)
+      end
     end
 
-    context "when #close" do
-      subject { lambda { ticket.close } }
-      it { should raise_error(exception, close_error) }
+    describe "#close" do
+      it "has a custom exception message" do
+        expect{ticket.close}.to raise_error(exception, close_error)
+      end
     end
 
-    context "when #reload!" do
-      subject { lambda { ticket.reload! } }
-      it { should raise_error(exception, reload_error) }
+    describe "#reload!" do
+      it "has a custom exception message" do
+        expect{ticket.reload!}.to raise_error(exception, reload_error)
+      end
     end
   end
 
@@ -126,34 +158,48 @@ describe "TaskMapper Exception Messages" do
     let(:save_error) { "TaskMapper::Provider::Tester::Comment::save method must be implemented by the provider" }
     let(:destroy_error) { "TaskMapper::Provider::Tester::Comment::destroy method must be implemented by the provider" }
 
-    context "when #find_by_id" do
-      subject { lambda { ticket_with_comments.comment.find(1,1,[1,2]) } }
-      it { should raise_error(exception, find_by_id_error) }
+    describe "#find_by_id" do
+      it "has a custom exception message" do
+        expect {
+          ticket_with_comments.comment.find(1,1,[1,2])
+        }.to raise_error(exception, find_by_id_error)
+      end
     end
 
-    context "when #find_by_attributes" do
-      subject { lambda { ticket_with_comments.comment.find(1, 1, :all, :tag => 'tag') } }
-      it { should raise_error(exception, find_by_attributes_error) }
+    describe "#find_by_attributes" do
+      it "has a custom exception message" do
+        expect {
+          ticket_with_comments.comment.find(1, 1, :all, :tag => 'tag')
+        }.to raise_error(exception, find_by_attributes_error)
+      end
     end
 
-    context "when #search" do
-      subject { lambda { ticket_with_comments.comment.search(1, 1, :tag => 'testing') } }
-      it { should raise_error(exception, search_error) }
+    describe "#search" do
+      it "has a custom exception message" do
+        expect {
+          ticket_with_comments.comment.search(1, 1, :tag => 'testing')
+        }.to raise_error(exception, search_error)
+      end
     end
 
-    context "when #create" do
-      subject { lambda { ticket_with_comments.comment.create :name => 'Foo Bar' } }
-      it { should raise_error(exception, create_error) }
+    describe "#create" do
+      it "has a custom exception message" do
+        expect{
+          ticket_with_comments.comment.create :name => 'Foo Bar'
+        }.to raise_error(exception, create_error)
+      end
     end
 
-    context "when #save" do
-      subject { lambda { comment.save } }
-      it { should raise_error(exception, save_error) }
+    describe "#save" do
+      it "has a custom exception message" do
+        expect{comment.save}.to raise_error(exception, save_error)
+      end
     end
 
-    context "when #destroy" do
-      subject { lambda { comment.destroy } }
-      it { should raise_error(exception, destroy_error) }
+    describe "#destroy" do
+      it "has a custom exception message" do
+        expect{comment.destroy}.to raise_error(exception, destroy_error)
+      end
     end
   end
 end

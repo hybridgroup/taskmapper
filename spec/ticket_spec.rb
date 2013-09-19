@@ -9,48 +9,62 @@ describe "Tickets" do
   let(:ticket_class) { TaskMapper::Provider::Dummy::Ticket }
   let(:project) { tm.projects.first }
 
-  describe "for a Project" do
-    context "when #tickets" do
-      subject { project.tickets }
-      it { should be_an_instance_of Array }
-      it { subject.first.should be_an_instance_of ticket_class }
+  describe "#tickets" do
+    context "without arguments" do
+      let(:tickets) { project.tickets }
+
+      it "returns an array of tickets" do
+        expect(tickets).to be_an Array
+        expect(tickets.first).to be_a ticket_class
+      end
     end
 
-    context "when searching wanting back all tickets that match the query" do
-      subject { project.tickets([999]) }
-      it { should be_an_instance_of Array }
-      it { subject.first.should be_an_instance_of ticket_class }
-      it { subject.first.id.should be_eql(999) }
+    context "with an array of IDs" do
+      let(:tickets) { project.tickets([999]) }
+      let(:ticket) { tickets.first }
+
+      it "returns an array of all matching tickets" do
+        expect(tickets).to be_a Array
+        expect(ticket).to be_a ticket_class
+        expect(ticket.id).to eq 999
+      end
     end
 
-    context "when passing an query hash" do
-      subject { project.tickets(:id => 999) }
-      it { should be_an_instance_of Array }
+    context "with a hash containing in ID" do
+      let(:tickets) { project.tickets(:id => 999) }
+      let(:ticket) { tickets.first }
+
+      it "returns an array of all matching tickets" do
+        expect(tickets).to be_a Array
+        expect(ticket).to be_a ticket_class
+        expect(ticket.id).to eq 999
+      end
+    end
+  end
+
+  describe "#ticket" do
+    context "without arguments" do
+      it "returns the ticket class" do
+        expect(project.ticket).to eq ticket_class
+      end
     end
 
-    context "when searching wanting back the first ticket that matches the query" do
-      subject { project.ticket }
-      it { should be_eql TaskMapper::Provider::Dummy::Ticket }
+    context "with an ID" do
+      let(:ticket) { project.ticket(888) }
+
+      it "returns the requested ticket" do
+        expect(ticket).to be_a ticket_class
+        expect(ticket.id).to eq 888
+      end
     end
 
-    context "when querying using default ID query" do
-      subject { project.ticket(888) }
-      it { should be_an_instance_of ticket_class }
-    end
+    context "with an hash containing an ID" do
+      let(:ticket) { project.ticket(:id => 888) }
 
-    context "when passing an id to #ticket" do
-      subject { project.ticket(888) }
-      it { subject.id.should be_eql(888) }
-    end
-
-    context "when passing a hash to #ticket" do
-      subject { project.ticket(:id => 888) }
-      it { should be_an_instance_of ticket_class }
-    end
-
-    context "when passing an id to #ticket" do
-      subject { project.ticket(888) }
-      it { subject.id.should be_eql(888) }
+      it "returns the requested ticket" do
+        expect(ticket).to be_a ticket_class
+        expect(ticket.id).to eq 888
+      end
     end
   end
 end
