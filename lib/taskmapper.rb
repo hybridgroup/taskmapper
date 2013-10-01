@@ -4,9 +4,6 @@
   active_resource
 }.each {|lib| require lib }
 
-class TaskMapper
-end
-
 %w{
   common
   helper

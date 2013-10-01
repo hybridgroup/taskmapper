@@ -67,9 +67,10 @@ describe "TaskMapper Exception Messages" do
     end
 
     describe "#save" do
+      let(:project) { TaskMapper::Provider::Tester::Project.new }
+
       it "has a custom exception message" do
-        pending
-        expect{tm.project.save}.to raise_error(exception, save_error)
+        expect{project.save}.to raise_error(exception, save_error)
       end
     end
 
