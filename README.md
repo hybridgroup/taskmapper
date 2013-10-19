@@ -120,7 +120,7 @@ Then simply require it, and you are good to use Pivotal Tracker with Taskmapper!
 
     require 'taskmapper'
     require 'taskmapper-pivotal'
-    unfuddle = taskmapper.new(:pivotal, {:username => "..", :password => ".."})
+    pivotal = taskmapper.new(:pivotal, {:username => "..", :password => ".."})
 
 The source code is located at [taskmapper-pivotal](http://github.com/hybridgroup/taskmapper-pivotal)
 
