@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport", "~> 3.2"
   spec.add_dependency "hashie", "~> 2.0"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "rdoc", "~> 4.0"
+  spec.add_development_dependency "rdoc", "~> 6.3"
   spec.add_development_dependency "rspec", "~> 2.14.1"
 end
